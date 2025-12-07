@@ -10,6 +10,10 @@ import { refreshCharacters } from "./firebase/characters";
 import { Spell } from "./types/Spell";
 import { SpellSelect } from "./SpellSelect";
 import { wizardSpells } from "./data/wizardSpells";
+import { Route, Routes } from "react-router-dom";
+import CharactersPage from "./pages/CharactersPage";
+import CharacterPage from "./pages/CharacterPage";
+import Navbar from "./components/custom/Navbar";
 
 function App() {
   const user = useAtomValue(userAtom);
@@ -26,18 +30,15 @@ function App() {
 
   return (
     <div>
-      {/* <div className="bg-white dark:bg-gray-900 text-black dark:text-white p-4"> */}
-      <div className="bg-background text-foreground">Hello Dark Mode</div>
+      <Navbar />
 
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Login />
+      <Routes>
+        <Route path="/characters" element={<CharactersPage />} />
+        <Route path="/character" element={<CharacterPage />} />
+      </Routes>
 
       {user && (
         <div>
-          <div>
-            Characters:
-            <CharacterList />
-          </div>
           <div>
             <SpellSelect
               spells={wizardSpells}
@@ -56,13 +57,6 @@ function App() {
                 </a>
               </p>
             )}
-            <p>Hello there</p>
-            <p>Hello there</p>
-            <p>Hello there</p>
-            <p>Hello there</p>
-            <p>Hello there</p>
-            <p>Hello there</p>
-            <p>Hello there</p>
           </div>
         </div>
       )}
