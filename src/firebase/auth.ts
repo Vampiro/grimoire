@@ -29,11 +29,9 @@ export async function logout(): Promise<void> {
 
 /**
  * Get the currently logged-in user's UID.
- * Throws an error if no user is logged in.
+ * Undefined if no user.
  */
-export function getCurrentUid(): string {
+export function getCurrentUserId(): string | undefined {
   const user = auth.currentUser;
-  if (!user) throw new Error("No user is logged in.");
-  console.log(user);
-  return user.uid;
+  return user?.uid;
 }

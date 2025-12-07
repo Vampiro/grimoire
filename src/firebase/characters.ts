@@ -14,13 +14,13 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import type { Character } from "../types/Character";
-import { getCurrentUid } from "./auth";
+import { getCurrentUserId } from "./auth";
+import { charactersAtom, store } from "../globalState";
 
 /**
  * Returns the collection reference for a user's characters
  */
-function charactersCollection() {
-  const uid = getCurrentUid();
+function charactersCollection(uid: string) {
   return collection(db, "users", uid, "characters");
 }
 
@@ -28,8 +28,7 @@ function charactersCollection() {
  * Get reference to a specific character document.
  * @param characterId - Character document ID
  */
-export function characterDoc(characterId: string) {
-  const uid = getCurrentUid();
+function characterDoc(uid: string, characterId: string) {
   return doc(db, `users/${uid}/characters/${characterId}`);
 }
 
@@ -39,7 +38,12 @@ export function characterDoc(characterId: string) {
 export async function createCharacter(
   data: Omit<Character, "id" | "createdAt" | "updatedAt">,
 ) {
-  const col = charactersCollection();
+  const uid = getCurrentUserId();
+  if (!uid) {
+    throw new Error("Not logged in");
+  }
+
+  const col = charactersCollection(uid);
   const id = crypto.randomUUID();
 
   const char: Character = {
@@ -51,39 +55,85 @@ export async function createCharacter(
 
   await setDoc(doc(col, id), char);
 
-  return char;
+  const chars = store.get(charactersAtom);
+  store.set(charactersAtom, [...chars, char]);
 }
 
 /**
- * Loads all characters for a user
+ * Gets all characters.
+ * @returns All characters.
  */
-export async function getCharacters(): Promise<Character[]> {
-  const col = charactersCollection();
+async function getCharacters(): Promise<Character[]> {
+  const uid = getCurrentUserId();
+  if (!uid) {
+    throw new Error("Not logged in");
+  }
+
+  const col = charactersCollection(uid);
   const q = query(col, orderBy("createdAt", "asc"));
   const snap = await getDocs(q);
 
   return snap.docs.map((d) => d.data() as Character);
 }
 
+/** Refreshes the global state list of characters. */
+export async function refreshCharacters(): Promise<void> {
+  const chars = await getCharacters();
+  store.set(charactersAtom, chars);
+}
+
 /**
- * Update a character
+ * Updates a character in the Firestore database.
+ * @param id ID of the character.
+ * @param data Attributes to update.
  */
 export async function updateCharacter(id: string, data: Partial<Character>) {
-  const uid = getCurrentUid();
+  const uid = getCurrentUserId();
+  if (!uid) {
+    throw new Error("Not logged in");
+  }
+
   const ref = doc(db, "users", uid, "characters", id);
+  const updatedAt = Date.now();
   await updateDoc(ref, {
     ...data,
-    updatedAt: Date.now(),
+    updatedAt,
   });
+
+  const chars = store.get(charactersAtom);
+  const char = chars.find((c) => c.id === id);
+  if (char) {
+    const newChars = chars.filter((c) => c.id !== id);
+    const updatedChar: Character = {
+      ...char,
+      ...data,
+      updatedAt,
+    };
+    newChars.push(updatedChar);
+    store.set(
+      charactersAtom,
+      chars.filter((c) => c.id !== id),
+    );
+  }
 }
 
 /**
  * Delete a character document for a given user.
  *
- * @param characterId - The ID of the character to delete
- * @returns Promise<void>
+ * @param id - The ID of the character to delete
  */
-export async function deleteCharacter(characterId: string): Promise<void> {
-  const ref = characterDoc(characterId);
+export async function deleteCharacter(id: string): Promise<void> {
+  const uid = getCurrentUserId();
+  if (!uid) {
+    throw new Error("Not logged in");
+  }
+
+  const ref = characterDoc(uid, id);
   await deleteDoc(ref);
+
+  const chars = store.get(charactersAtom);
+  store.set(
+    charactersAtom,
+    chars.filter((c) => c.id !== id),
+  );
 }

@@ -1,7 +1,8 @@
-import { onAuthStateChanged, type User } from "firebase/auth";
+import { type User } from "firebase/auth";
 import { atom, getDefaultStore } from "jotai";
-import { auth } from "./firebase";
+import { Character } from "./types/Character";
 
+export const store = getDefaultStore();
 /**
  * Holds the currently authenticated Firebase user.
  *
@@ -9,5 +10,6 @@ import { auth } from "./firebase";
  * - `User` object from Firebase Auth if logged in.
  */
 export const userAtom = atom<User | null>(null);
-// keep user atom in sync with auth state changes
-onAuthStateChanged(auth, (u) => getDefaultStore().set(userAtom, u));
+
+/** Atom for the user's characters. */
+export const charactersAtom = atom<Character[]>([]);

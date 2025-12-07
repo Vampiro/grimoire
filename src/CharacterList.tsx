@@ -1,42 +1,20 @@
-import { useEffect, useState } from "react";
-import {
-  getCharacters,
-  createCharacter,
-  deleteCharacter,
-} from "./firebase/characters";
-import { Character } from "./types/Character";
+import { createCharacter, deleteCharacter } from "./firebase/characters";
+import { useAtomValue } from "jotai";
+import { charactersAtom } from "./globalState";
 
 export default function CharacterList() {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  async function load() {
-    setLoading(true);
-    console.log("GET CHARACTERS");
-    const chars = await getCharacters();
-    setCharacters(chars);
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    load();
-  }, []);
-
+  const characters = useAtomValue(charactersAtom);
   async function onCreate() {
     await createCharacter({
       name: `New Wizard - ${crypto.randomUUID()}`,
       class: "Wizard",
     });
-    load();
   }
 
   /** Delete a character and refresh list */
   const handleDelete = async (characterId: string) => {
     await deleteCharacter(characterId);
-    load();
   };
-
-  if (loading) return <p>Loading...</p>;
 
   return (
     <div>
