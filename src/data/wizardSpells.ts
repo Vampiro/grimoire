@@ -1,0 +1,12274 @@
+import { Spell } from "../types/Spell";
+
+/* List of wizard spells from https://adnd2e.fandom.com/wiki/All_Wizard_Spells */
+export const wizardSpells: Spell[] = [
+  // --- Level 1 Spells ---
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Absolute_Location_(Wizard_Spell)",
+    name: "Absolute Location",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Accuracy_(Wizard_Spell)",
+    name: "Accuracy",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Adhesion_(Wizard_Spell)",
+    name: "Adhesion",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Affect_Normal_Fires_(Wizard_Spell)",
+    name: "Affect Normal Fires",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Alarm_(Wizard_Spell)",
+    name: "Alarm",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Instrument_(Wizard_Spell)",
+    name: "Alter Instrument",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Normal_Winds_(Wizard_Spell)",
+    name: "Alter Normal Winds",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Amplify_(Wizard_Spell)",
+    name: "Amplify",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Animal_Nonaggression_(Wizard_Spell)",
+    name: "Animal Nonaggression",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Animal_Sanctuary_(Wizard_Spell)",
+    name: "Animal Sanctuary",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Dead_Animals_(Wizard_Spell)",
+    name: "Animate Dead Animals",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Wood_(Wizard_Spell)",
+    name: "Animate Wood",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Aquavision_(Wizard_Spell)",
+    name: "Aquavision",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Armor_(Wizard_Spell)",
+    name: "Armor",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Arrowflight_(Wizard_Spell)",
+    name: "Arrowflight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Audible_Glamer_(Wizard_Spell)",
+    name: "Audible Glamer",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Aunty's_Bath_(Wizard_Spell)",
+    name: "Aunty's Bath",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Aura_Fire_(Wizard_Spell)",
+    name: "Aura Fire",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Avert_Evil_Eye_(Wizard_Spell)",
+    name: "Avert Evil Eye",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Avoid_Planar_Effects_(Wizard_Spell)",
+    name: "Avoid Planar Effects",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Balance_(Wizard_Spell)",
+    name: "Balance",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Barrier_(Wizard_Spell)",
+    name: "Barrier",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Bookworm_Bane_(Wizard_Spell)",
+    name: "Bigby's Bookworm Bane",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Feeling_Fingers_(Wizard_Spell)",
+    name: "Bigby's Feeling Fingers",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Bird_Charm_I_(Wizard_Spell)",
+    name: "Bird Charm I",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Blacksteel_(Wizard_Spell)",
+    name: "Blacksteel",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Blackthorns_(Wizard_Spell)",
+    name: "Blackthorns",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Bloom_(Wizard_Spell)",
+    name: "Bloom",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Breathe_(Wizard_Spell)",
+    name: "Breathe",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Burning_Hands_(Wizard_Spell)",
+    name: "Burning Hands",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Burning_Sands_(Wizard_Spell)",
+    name: "Burning Sands",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Burnish_(Wizard_Spell)",
+    name: "Burnish",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cantrip_(Wizard_Spell)",
+    name: "Cantrip",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cast-Iron_Stomach_(Wizard_Spell)",
+    name: "Cast-Iron Stomach",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cat_Charm_(Wizard_Spell)",
+    name: "Cat Charm",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Catapult_(Wizard_Spell)",
+    name: "Catapult",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cause_Light_Wounds_(Wizard_Spell)",
+    name: "Cause Light Wounds",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Chameleon_(Wizard_Spell)",
+    name: "Chameleon",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Change_Self_(Wizard_Spell)",
+    name: "Change Self",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Person_(Wizard_Spell)",
+    name: "Charm Person",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Chill_(Wizard_Spell)",
+    name: "Chill",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Chill_Touch_(Wizard_Spell)",
+    name: "Chill Touch",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Chromatic_Orb_(Wizard_Spell)",
+    name: "Chromatic Orb",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Circle_(Wizard_Spell)",
+    name: "Circle",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Claws_of_Velsharoon_(Wizard_Spell)",
+    name: "Claws of Velsharoon",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cling_(Wizard_Spell)",
+    name: "Cling",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cloud_Ladder_(Wizard_Spell)",
+    name: "Cloud Ladder",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cloud_Messenger_(Wizard_Spell)",
+    name: "Cloud Messenger",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Color_(Wizard_Spell)",
+    name: "Color",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Color_Blindness_(Wizard_Spell)",
+    name: "Color Blindness",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Color_Spray_(Wizard_Spell)",
+    name: "Color Spray",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Command_Undead_(Wizard_Spell)",
+    name: "Command Undead",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Compass_(Wizard_Spell)",
+    name: "Compass",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Comprehend_Languages_(Wizard_Spell)",
+    name: "Comprehend Languages",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Spell_Component_(Wizard_Spell)",
+    name: "Conjure Spell Component",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Control_Vapor_(Wizard_Spell)",
+    name: "Control Vapor",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cool_(Wizard_Spell)",
+    name: "Cool",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cool_Strength_(Wizard_Spell)",
+    name: "Cool Strength",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cooling_Canopy_(Wizard_Spell)",
+    name: "Cooling Canopy",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Copy_(Wizard_Spell)",
+    name: "Copy",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Corpse_Link_(Wizard_Spell)",
+    name: "Corpse Link",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Corpse_Visage_(Wizard_Spell)",
+    name: "Corpse Visage",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Corpselight_(Wizard_Spell)",
+    name: "Corpselight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Craft_Divining_Rod_(Wizard_Spell)",
+    name: "Craft Divining Rod",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cure_Lumber_(Wizard_Spell)",
+    name: "Cure Lumber",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Cut_(Wizard_Spell)",
+    name: "Cut",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dance_Macabre_(Wizard_Spell)",
+    name: "Dance Macabre",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dancing_Fire_(Wizard_Spell)",
+    name: "Dancing Fire",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dancing_Lights_(Wizard_Spell)",
+    name: "Dancing Lights",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Deflection_(Wizard_Spell)",
+    name: "Deflection",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Delay_Image_(Wizard_Spell)",
+    name: "Delay Image",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Depthsounder_(Wizard_Spell)",
+    name: "Depthsounder",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Desalinate_(Wizard_Spell)",
+    name: "Desalinate",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Disease_(Wizard_Spell)",
+    name: "Detect Disease",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Illithid_(Wizard_Spell)",
+    name: "Detect Illithid",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Illusion_(Wizard_Spell)",
+    name: "Detect Illusion",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Life_-_Alhoon_(Wizard_Spell)",
+    name: "Detect Life - Alhoon",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Magic_(Wizard_Spell)",
+    name: "Detect Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Metals_and_Minerals_(Wizard_Spell)",
+    name: "Detect Metals and Minerals",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Phase_(Wizard_Spell)",
+    name: "Detect Phase",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Secret_Passages_and_Portals_(Wizard_Spell)",
+    name: "Detect Secret Passages and Portals",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Structural_Flaw_(Wizard_Spell)",
+    name: "Detect Structural Flaw",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Temporal_Anomaly_(Wizard_Spell)",
+    name: "Detect Temporal Anomaly",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Undead_(Wizard_Spell)",
+    name: "Detect Undead",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Untruth_(Wizard_Spell)",
+    name: "Detect Untruth",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Detho's_Delirium_(Wizard_Spell)",
+    name: "Detho's Delirium",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dictation_(Wizard_Spell)",
+    name: "Dictation",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Disarm_(Wizard_Spell)",
+    name: "Disarm",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Disguise_-_Hishna_(Wizard_Spell)",
+    name: "Disguise - Hishna",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Distort_(Wizard_Spell)",
+    name: "Distort",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Divining_Rod_(Wizard_Spell)",
+    name: "Divining Rod",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dolent's_Helm_(Wizard_Spell)",
+    name: "Dolent's Helm",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Tongues_(Wizard_Spell)",
+    name: "Dragon Tongues",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Beast_of_Burden_(Wizard_Spell)",
+    name: "Drawmij's Beast of Burden",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Light_Step_(Wizard_Spell)",
+    name: "Drawmij's Light Step",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Drowsy_Insects_(Wizard_Spell)",
+    name: "Drowsy Insects",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Burst_(Wizard_Spell)",
+    name: "Elemental Burst",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Elevate_I_(Wizard_Spell)",
+    name: "Elevate I",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Empathic_Seizure_(Wizard_Spell)",
+    name: "Empathic Seizure",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Empathy_(Wizard_Spell)",
+    name: "Empathy",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Emirikol's_Question_(Wizard_Spell)",
+    name: "Emirikol's Question",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_(Wizard_Spell)",
+    name: "Enhance",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Enlarge_(Wizard_Spell)",
+    name: "Enlarge",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Enlarge_Skeleton_(Wizard_Spell)",
+    name: "Enlarge Skeleton",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Erase_(Wizard_Spell)",
+    name: "Erase",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Erdlu_Claw_(Wizard_Spell)",
+    name: "Erdlu Claw",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Expeditious_Retreat_(Wizard_Spell)",
+    name: "Expeditious Retreat",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Exterminate_(Wizard_Spell)",
+    name: "Exterminate",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Face-Blur_(Wizard_Spell)",
+    name: "Face-Blur",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/False_Tracks_(Wizard_Spell)",
+    name: "False Tracks",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Farseer_(Wizard_Spell)",
+    name: "Farseer",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Feather_Fall_(Wizard_Spell)",
+    name: "Feather Fall",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Feather_Float_(Wizard_Spell)",
+    name: "Feather Float",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Featherweaving_(Wizard_Spell)",
+    name: "Featherweaving",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fiery_Eyes_(Wizard_Spell)",
+    name: "Fiery Eyes",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Filth's_Bane_(Wizard_Spell)",
+    name: "Filth's Bane",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Find_Direction_(Wizard_Spell)",
+    name: "Find Direction",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Find_Familiar_(Wizard_Spell)",
+    name: "Find Familiar",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Burst_(Wizard_Spell)",
+    name: "Fire Burst",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Quill_(Wizard_Spell)",
+    name: "Fire Quill",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Truth_(Wizard_Spell)",
+    name: "Fire Truth",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Firewater_(Wizard_Spell)",
+    name: "Firewater",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fist_of_Stone_(Wizard_Spell)",
+    name: "Fist of Stone",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Flamespin_(Wizard_Spell)",
+    name: "Flamespin",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Flare_(Wizard_Spell)",
+    name: "Flare",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Flashlight_(Wizard_Spell)",
+    name: "Flashlight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Flicker_(Wizard_Spell)",
+    name: "Flicker",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Float_(Wizard_Spell)",
+    name: "Float",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Fogbolt_(Wizard_Spell)",
+    name: "Fogbolt",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Friends_(Wizard_Spell)",
+    name: "Friends",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Frost_Fingers_(Wizard_Spell)",
+    name: "Frost Fingers",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Frost_Shroud_(Wizard_Spell)",
+    name: "Frost Shroud",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Gallop_(Wizard_Spell)",
+    name: "Gallop",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Gardener's_Touch_(Wizard_Spell)",
+    name: "Gardener's Touch",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Gauntlet_(Wizard_Spell)",
+    name: "Gauntlet",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Gaze_Reflection_(Wizard_Spell)",
+    name: "Gaze Reflection",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Gemidan's_Icicle_(Wizard_Spell)",
+    name: "Gemidan's Icicle",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ghost_Light_(Wizard_Spell)",
+    name: "Ghost Light",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ghostharp_(Wizard_Spell)",
+    name: "Ghostharp",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Giant_Fur_(Wizard_Spell)",
+    name: "Giant Fur",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Glide_(Wizard_Spell)",
+    name: "Glide",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Grease_(Wizard_Spell)",
+    name: "Grease",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hail_of_Stone_(Wizard_Spell)",
+    name: "Hail of Stone",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hair_(Wizard_Spell)",
+    name: "Hair",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hoard_Servant_(Wizard_Spell)",
+    name: "Hoard Servant",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Portal_(Wizard_Spell)",
+    name: "Hold Portal",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Honor_Mark_(Wizard_Spell)",
+    name: "Honor Mark",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hornung's_Guess_(Wizard_Spell)",
+    name: "Hornung's Guess",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Huntsman's_Call_(Wizard_Spell)",
+    name: "Huntsman's Call",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Hypnotism_(Wizard_Spell)",
+    name: "Hypnotism",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Identify_(Wizard_Spell)",
+    name: "Identify",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ignite_Flame_(Wizard_Spell)",
+    name: "Ignite Flame",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Illusory_Talent_(Wizard_Spell)",
+    name: "Illusory Talent",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Immunity_to_Adherence_(Wizard_Spell)",
+    name: "Immunity to Adherence",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Insulation_(Wizard_Spell)",
+    name: "Insulation",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Jump_(Wizard_Spell)",
+    name: "Jump",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Khinasi_Trade_Tongue_(Wizard_Spell)",
+    name: "Khinasi Trade Tongue",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_Bloodline_Derivation_(Wizard_Spell)",
+    name: "Know Bloodline Derivation",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_Bloodline_Strength_(Wizard_Spell)",
+    name: "Know Bloodline Strength",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_Cerilian_Origin_(Wizard_Spell)",
+    name: "Know Cerilian Origin",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_Faction_(Wizard_Spell)",
+    name: "Know Faction",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_History_(Wizard_Spell)",
+    name: "Know History",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_School_(Wizard_Spell)",
+    name: "Know School",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Know_Weight_(Wizard_Spell)",
+    name: "Know Weight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ladder_(Wizard_Spell)",
+    name: "Ladder",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Dancing_Whip_(Wizard_Spell)",
+    name: "Laeral's Dancing Whip",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Lasting_Breath_(Wizard_Spell)",
+    name: "Lasting Breath",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Distraction_(Wizard_Spell)",
+    name: "Lesser Distraction",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Light_(Wizard_Spell)",
+    name: "Light",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Bug_(Wizard_Spell)",
+    name: "Lightning Bug",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Liquid_Orb_(Wizard_Spell)",
+    name: "Liquid Orb",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Little_Bird_(Wizard_Spell)",
+    name: "Little Bird",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Living_Link_(Wizard_Spell)",
+    name: "Living Link",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Locate_Remains_(Wizard_Spell)",
+    name: "Locate Remains",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Disk_(Wizard_Spell)",
+    name: "Magic Disk",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Fist_(Wizard_Spell)",
+    name: "Magic Fist",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Missile_(Wizard_Spell)",
+    name: "Magic Missile",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/March_(Wizard_Spell)",
+    name: "March",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Masque_Mask_(Wizard_Spell)",
+    name: "Masque Mask",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Melt_(Wizard_Spell)",
+    name: "Melt",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Mending_(Wizard_Spell)",
+    name: "Mending",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Message_(Wizard_Spell)",
+    name: "Message",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Metamorphose_Liquids_(Wizard_Spell)",
+    name: "Metamorphose Liquids",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Quest_(Wizard_Spell)",
+    name: "Minor Quest",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Moonglow_(Wizard_Spell)",
+    name: "Moonglow",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Protection_from_Avians_(Wizard_Spell)",
+    name: "Mordenkainen's Protection from Avians",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Mount_(Wizard_Spell)",
+    name: "Mount",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Mournful_Mutter_(Wizard_Spell)",
+    name: "Mournful Mutter",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Move_Sand_(Wizard_Spell)",
+    name: "Move Sand",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Murdock's_Feathery_Flyer_(Wizard_Spell)",
+    name: "Murdock's Feathery Flyer",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Nahal's_Reckless_Dweomer_(Wizard_Spell)",
+    name: "Nahal's Reckless Dweomer",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Normal_Aura_(Wizard_Spell)",
+    name: "Normal Aura",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Nybor's_Gentle_Reminder_(Wizard_Spell)",
+    name: "Nybor's Gentle Reminder",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Dancing_Werelight_(Wizard_Spell)",
+    name: "Nystul's Dancing Werelight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Flash_(Wizard_Spell)",
+    name: "Nystul's Flash",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Magical_Aura_(Wizard_Spell)",
+    name: "Nystul's Magical Aura",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Odeen's_Magic_Tailor_(Wizard_Spell)",
+    name: "Odeen's Magic Tailor",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Oilskin_(Wizard_Spell)",
+    name: "Oilskin",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Bubbling_Buoyancy_(Wizard_Spell)",
+    name: "Otiluke's Bubbling Buoyancy",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Smoky_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Smoky Sphere",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Chime_of_Release_(Wizard_Spell)",
+    name: "Otto's Chime of Release",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Patternweave_(Wizard_Spell)",
+    name: "Patternweave",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Petrification_(Wizard_Spell)",
+    name: "Petrification",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Petrify_Wood_(Wizard_Spell)",
+    name: "Petrify Wood",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Phantasmal_Force_(Wizard_Spell)",
+    name: "Phantasmal Force",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Phantasmal_Pose_(Wizard_Spell)",
+    name: "Phantasmal Pose",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Armor_(Wizard_Spell)",
+    name: "Phantom Armor",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Portal_Beacon_(Wizard_Spell)",
+    name: "Portal Beacon",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Precipitation_(Wizard_Spell)",
+    name: "Precipitation",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Precognitive_Sense_(Wizard_Spell)",
+    name: "Precognitive Sense",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Predict_Tide_(Wizard_Spell)",
+    name: "Predict Tide",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Preserve_(Wizard_Spell)",
+    name: "Preserve",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Preserve_Dead_(Wizard_Spell)",
+    name: "Preserve Dead",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Prestidigitation_(Wizard_Spell)",
+    name: "Prestidigitation",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protection_(Wizard_Spell)",
+    name: "Protection",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Evil_(Wizard_Spell)",
+    name: "Protection from Evil",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Hunger_and_Thirst_-_Lvl_1_(Wizard_Spell)",
+    name: "Protection from Hunger and Thirst - Lvl 1",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Rust_(Wizard_Spell)",
+    name: "Protection from Rust",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Vermin_(Wizard_Spell)",
+    name: "Protection from Vermin",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Protective_Amulet_(Wizard_Spell)",
+    name: "Protective Amulet",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Push_(Wizard_Spell)",
+    name: "Push",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Empathic_Perception_(Wizard_Spell)",
+    name: "Rary's Empathic Perception",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ray_of_Fatigue_(Wizard_Spell)",
+    name: "Ray of Fatigue",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Read_Illusionist_Magic_(Wizard_Spell)",
+    name: "Read Illusionist Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Read_Magic_(Wizard_Spell)",
+    name: "Read Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Read_Paramandic_Magic_(Wizard_Spell)",
+    name: "Read Paramandic Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Read_Southern_Magic_(Wizard_Spell)",
+    name: "Read Southern Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Reflected_Image_(Wizard_Spell)",
+    name: "Reflected Image",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Regenerate_Self_(Wizard_Spell)",
+    name: "Regenerate Self",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Release_Weapon_(Wizard_Spell)",
+    name: "Release Weapon",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Reveal_Magic_(Wizard_Spell)",
+    name: "Reveal Magic",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Run_-_Lvl_1_(Wizard_Spell)",
+    name: "Run - Lvl 1",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Jambiya_(Wizard_Spell)",
+    name: "Sand Jambiya",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Slumber_(Wizard_Spell)",
+    name: "Sand Slumber",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Whisper/Sand_Quiet_(Wizard_Spell)",
+    name: "Sand Whisper/Sand Quiet",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Scale_Shift_(Wizard_Spell)",
+    name: "Scale Shift",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Scatterspray_(Wizard_Spell)",
+    name: "Scatterspray",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sea_Sight_(Wizard_Spell)",
+    name: "Sea Sight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Secret_Signs_(Wizard_Spell)",
+    name: "Secret Signs",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_I_(Wizard_Spell)",
+    name: "Seduction I",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Serpent_Missile_(Wizard_Spell)",
+    name: "Serpent Missile",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Scry_(Wizard_Spell)",
+    name: "Shadow Scry",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sharpen_(Wizard_Spell)",
+    name: "Sharpen",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sharptooth_-_Lvl_1_(Wizard_Spell)",
+    name: "Sharptooth - Lvl 1",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Shield_(Wizard_Spell)",
+    name: "Shield",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Shield_Flame_(Wizard_Spell)",
+    name: "Shield Flame",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Shocking_Grasp_(Wizard_Spell)",
+    name: "Shocking Grasp",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sidhelien_Bow_(Wizard_Spell)",
+    name: "Sidhelien Bow",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sleep_(Wizard_Spell)",
+    name: "Sleep",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Slingstar_(Wizard_Spell)",
+    name: "Slingstar",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Slow_Metabolism_(Wizard_Spell)",
+    name: "Slow Metabolism",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Snake_Charm_(Wizard_Spell)",
+    name: "Snake Charm",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Snilloc's_Snowball_(Wizard_Spell)",
+    name: "Snilloc's Snowball",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Soothe_the_Beast_(Wizard_Spell)",
+    name: "Soothe the Beast",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sorcerous_Scribe_(Wizard_Spell)",
+    name: "Sorcerous Scribe",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sound_Bubble_(Wizard_Spell)",
+    name: "Sound Bubble",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spearflight_(Wizard_Spell)",
+    name: "Spearflight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Ears_(Wizard_Spell)",
+    name: "Spectral Ears",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Voice_(Wizard_Spell)",
+    name: "Spectral Voice",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spider_Climb_(Wizard_Spell)",
+    name: "Spider Climb",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spidereyes_(Wizard_Spell)",
+    name: "Spidereyes",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spirit_Servant_(Wizard_Spell)",
+    name: "Spirit Servant",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spoil_Holy_Water_(Wizard_Spell)",
+    name: "Spoil Holy Water",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Spook_(Wizard_Spell)",
+    name: "Spook",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Still_Water_(Wizard_Spell)",
+    name: "Still Water",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sting_(Wizard_Spell)",
+    name: "Sting",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Stoneflight_(Wizard_Spell)",
+    name: "Stoneflight",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Storm's_Frozen_Moment_(Wizard_Spell)",
+    name: "Storm's Frozen Moment",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Strip_(Wizard_Spell)",
+    name: "Strip",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Fetish_Spirit_(Wizard_Spell)",
+    name: "Summon Fetish Spirit",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Undead_(Wizard_Spell)",
+    name: "Summon Undead",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Suric's_Swift_Perusal_(Wizard_Spell)",
+    name: "Suric's Swift Perusal",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Sustain_Fire_(Wizard_Spell)",
+    name: "Sustain Fire",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Swim_(Wizard_Spell)",
+    name: "Swim",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Talon's_Waterproof_(Wizard_Spell)",
+    name: "Talon's Waterproof",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Talonblade_(Wizard_Spell)",
+    name: "Talonblade",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tasso's_Shriek_(Wizard_Spell)",
+    name: "Tasso's Shriek",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Taunt_(Wizard_Spell)",
+    name: "Taunt",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tears_of_the_Crocodile_(Wizard_Spell)",
+    name: "Tears of the Crocodile",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Eye_of_the_Tiger_(Wizard_Spell)",
+    name: "Tenser's Eye of the Tiger",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Floating_Disc_(Wizard_Spell)",
+    name: "Tenser's Floating Disc",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Steady_Aim_(Wizard_Spell)",
+    name: "Tenser's Steady Aim",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Tipple_(Wizard_Spell)",
+    name: "Tipple",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Traceless_Travel_(Wizard_Spell)",
+    name: "Traceless Travel",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Trembling_Horn_(Wizard_Spell)",
+    name: "Trembling Horn",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Troll_Repellent_(Wizard_Spell)",
+    name: "Troll Repellent",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Turtle_Soup_(Wizard_Spell)",
+    name: "Turtle Soup",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Servant_(Wizard_Spell)",
+    name: "Undead Servant",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Unseen_Servant_(Wizard_Spell)",
+    name: "Unseen Servant",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Venom's_Brambletangle_(Wizard_Spell)",
+    name: "Venom's Brambletangle",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ventriloquism_(Wizard_Spell)",
+    name: "Ventriloquism",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Vermin-ward_(Wizard_Spell)",
+    name: "Vermin-ward",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Waking_Light_of_Dawn_(Wizard_Spell)",
+    name: "Waking Light of Dawn",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Fog_(Wizard_Spell)",
+    name: "Wall of Fog",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Wandbane_(Wizard_Spell)",
+    name: "Wandbane",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ward_-_Athas_(Wizard_Spell)",
+    name: "Ward - Athas",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Ward_-_Old_Empire_(Wizard_Spell)",
+    name: "Ward - Old Empire",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Wardaway_(Wizard_Spell)",
+    name: "Wardaway",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Warmth_(Wizard_Spell)",
+    name: "Warmth",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Warp_Wood_(Wizard_Spell)",
+    name: "Warp Wood",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Water_Protection_(Wizard_Spell)",
+    name: "Water Protection",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Waterbane_(Wizard_Spell)",
+    name: "Waterbane",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Weathertell_(Wizard_Spell)",
+    name: "Weathertell",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Compass_(Wizard_Spell)",
+    name: "Wind Compass",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Wizard_Mark_(Wizard_Spell)",
+    name: "Wizard Mark",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Write_(Wizard_Spell)",
+    name: "Write",
+  },
+  {
+    level: 1,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Icejacket_(Wizard_Spell)",
+    name: "Zala's Icejacket",
+  },
+
+  // --- Level 2 Spells ---
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Accelerate_Plant_Growth_(Wizard_Spell)",
+    name: "Accelerate Plant Growth",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Aerial_Acceleration_(Wizard_Spell)",
+    name: "Aerial Acceleration",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Agannazar's_Scorcher_(Wizard_Spell)",
+    name: "Agannazar's Scorcher",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Agra's_Ambush_(Wizard_Spell)",
+    name: "Agra's Ambush",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Self_(Wizard_Spell)",
+    name: "Alter Self",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Alustriel's_Banner_(Wizard_Spell)",
+    name: "Alustriel's Banner",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Alustriel's_Fang_(Wizard_Spell)",
+    name: "Alustriel's Fang",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ambush_(Wizard_Spell)",
+    name: "Ambush",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Anchor_(Wizard_Spell)",
+    name: "Anchor",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Animal_Companion_(Wizard_Spell)",
+    name: "Animal Companion",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Skeletons_(Wizard_Spell)",
+    name: "Animate Skeletons",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Water_(Wizard_Spell)",
+    name: "Animate Water",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Apparition_(Wizard_Spell)",
+    name: "Apparition",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Attract_Ghoul_(Wizard_Spell)",
+    name: "Attract Ghoul",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Aura_of_Terror_(Wizard_Spell)",
+    name: "Aura of Terror",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bafflement_(Wizard_Spell)",
+    name: "Bafflement",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Balliard's_Rejuvenating_Touch_(Wizard_Spell)",
+    name: "Balliard's Rejuvenating Touch",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Banish_Dazzle_(Wizard_Spell)",
+    name: "Banish Dazzle",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Battering_Ram_(Wizard_Spell)",
+    name: "Battering Ram",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Become_Bones_(Wizard_Spell)",
+    name: "Become Bones",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Belsham's_Mace_(Wizard_Spell)",
+    name: "Belsham's Mace",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bendal's_Swoop_(Wizard_Spell)",
+    name: "Bendal's Swoop",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Dexterous_Digits_(Wizard_Spell)",
+    name: "Bigby's Dexterous Digits",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Silencing_Hand_(Wizard_Spell)",
+    name: "Bigby's Silencing Hand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bind_(Wizard_Spell)",
+    name: "Bind",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bladeleap_(Wizard_Spell)",
+    name: "Bladeleap",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bladethirst_(Wizard_Spell)",
+    name: "Bladethirst",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Blandness_(Wizard_Spell)",
+    name: "Blandness",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Blastbones_(Wizard_Spell)",
+    name: "Blastbones",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Blindness_(Wizard_Spell)",
+    name: "Blindness",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bloodbridge_(Wizard_Spell)",
+    name: "Bloodbridge",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bloodglass_(Wizard_Spell)",
+    name: "Bloodglass",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Blur_(Wizard_Spell)",
+    name: "Blur",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Boneharden_(Wizard_Spell)",
+    name: "Boneharden",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Boneiron_(Wizard_Spell)",
+    name: "Boneiron",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Bonewood_(Wizard_Spell)",
+    name: "Bonewood",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Breath_of_Bewilderment_(Wizard_Spell)",
+    name: "Breath of Bewilderment",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Breathsense_(Wizard_Spell)",
+    name: "Breathsense",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Calder's_Starry_Sky_(Wizard_Spell)",
+    name: "Calder's Starry Sky",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Call_Society_(Wizard_Spell)",
+    name: "Call Society",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Calm_-_Draconomicon_(Wizard_Spell)",
+    name: "Calm - Draconomicon",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Camouflage_(Wizard_Spell)",
+    name: "Camouflage",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Candletrick_(Wizard_Spell)",
+    name: "Candletrick",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Cat's_Grace_(Wizard_Spell)",
+    name: "Cat's Grace",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Cerulean_Shock_(Wizard_Spell)",
+    name: "Cerulean Shock",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Chamber_(Wizard_Spell)",
+    name: "Chamber",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Chaos_Shield_(Wizard_Spell)",
+    name: "Chaos Shield",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Charge_(Wizard_Spell)",
+    name: "Charge",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Man_I_(Wizard_Spell)",
+    name: "Charm Man I",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Choke_(Wizard_Spell)",
+    name: "Choke",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Circle_Dance_(Wizard_Spell)",
+    name: "Circle Dance",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Circle_of_Flame_(Wizard_Spell)",
+    name: "Circle of Flame",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Cloak_from_Undead_(Wizard_Spell)",
+    name: "Cloak from Undead",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Cloak_Undead_(Wizard_Spell)",
+    name: "Cloak Undead",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Collision_Alarm_(Wizard_Spell)",
+    name: "Collision Alarm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Combust_(Wizard_Spell)",
+    name: "Combust",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Compose_Mind_(Wizard_Spell)",
+    name: "Compose Mind",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Comprehend_Magics_(Wizard_Spell)",
+    name: "Comprehend Magics",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Continual_Light_(Wizard_Spell)",
+    name: "Continual Light",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Corruption_(Wizard_Spell)",
+    name: "Corruption",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Create_Enchanted_Tattoo_(Wizard_Spell)",
+    name: "Create Enchanted Tattoo",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Create_Water_(Wizard_Spell)",
+    name: "Create Water",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Curse_of_the_Grinning_Skull_(Wizard_Spell)",
+    name: "Curse of the Grinning Skull",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Damage_Mirror_(Wizard_Spell)",
+    name: "Damage Mirror",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dancing_Shadows_(Wizard_Spell)",
+    name: "Dancing Shadows",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dark_Mirror_(Wizard_Spell)",
+    name: "Dark Mirror",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Darkness,_15'_Radius_(Wizard_Spell)",
+    name: "Darkness, 15' Radius",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Darsson's_Cooling_Breeze_(Wizard_Spell)",
+    name: "Darsson's Cooling Breeze",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Darsson's_Fiery_Cube_(Wizard_Spell)",
+    name: "Darsson's Fiery Cube",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dazzle_(Wizard_Spell)",
+    name: "Dazzle",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Deafness_(Wizard_Spell)",
+    name: "Deafness",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Death_Armor_(Wizard_Spell)",
+    name: "Death Armor",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Death_Recall_(Wizard_Spell)",
+    name: "Death Recall",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Decastave_(Wizard_Spell)",
+    name: "Decastave",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Deep_Eyes_(Wizard_Spell)",
+    name: "Deep Eyes",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Deepen_Shadows_(Wizard_Spell)",
+    name: "Deepen Shadows",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Deeppockets_(Wizard_Spell)",
+    name: "Deeppockets",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/DeGras's_Pilfering_Fingers_(Wizard_Spell)",
+    name: "DeGras's Pilfering Fingers",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Delayed_Light_(Wizard_Spell)",
+    name: "Delayed Light",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Deny_Cold/Deny_Fire_(Wizard_Spell)",
+    name: "Deny Cold/Deny Fire",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Depth_Warning_(Wizard_Spell)",
+    name: "Depth Warning",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Evil_(Wizard_Spell)",
+    name: "Detect Evil",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Invisibility_(Wizard_Spell)",
+    name: "Detect Invisibility",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Life_(Wizard_Spell)",
+    name: "Detect Life",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Lycanthrope_(Wizard_Spell)",
+    name: "Detect Lycanthrope",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Poison_(Wizard_Spell)",
+    name: "Detect Poison",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Psionics_(Wizard_Spell)",
+    name: "Detect Psionics",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Thought_(Wizard_Spell)",
+    name: "Detect Thought",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Diary_(Wizard_Spell)",
+    name: "Diary",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Discern_Sire_(Wizard_Spell)",
+    name: "Discern Sire",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Diskboat_(Wizard_Spell)",
+    name: "Diskboat",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Displace_Self_(Wizard_Spell)",
+    name: "Displace Self",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Message_(Wizard_Spell)",
+    name: "Dragon Message",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dragonbane_(Wizard_Spell)",
+    name: "Dragonbane",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Adventurer's_Luck_(Wizard_Spell)",
+    name: "Drawmij's Adventurer's Luck",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Breath_of_Life_(Wizard_Spell)",
+    name: "Drawmij's Breath of Life",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Scent_Mask_(Wizard_Spell)",
+    name: "Drawmij's Scent Mask",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Swift_Mount_(Wizard_Spell)",
+    name: "Drawmij's Swift Mount",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Annoying_Poke_(Wizard_Spell)",
+    name: "Drenal's Annoying Poke",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Distraction_(Wizard_Spell)",
+    name: "Drenal's Distraction",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Dry_Ink_(Wizard_Spell)",
+    name: "Drenal's Dry Ink",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Stone_Flame_(Wizard_Spell)",
+    name: "Drenal's Stone Flame",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Due_North_(Wizard_Spell)",
+    name: "Due North",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Dust_Curtain_(Wizard_Spell)",
+    name: "Dust Curtain",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Eagle-vision_(Wizard_Spell)",
+    name: "Eagle-vision",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ebony_Hand_(Wizard_Spell)",
+    name: "Ebony Hand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Echoes_(Wizard_Spell)",
+    name: "Echoes",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Guide_(Wizard_Spell)",
+    name: "Elemental Guide",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Elonia's_Glamer_(Wizard_Spell)",
+    name: "Elonia's Glamer",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Embalm_(Wizard_Spell)",
+    name: "Embalm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Empathic_Control_(Wizard_Spell)",
+    name: "Empathic Control",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Enchanted_Blade_(Wizard_Spell)",
+    name: "Enchanted Blade",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Enhanced_Olfaction_(Wizard_Spell)",
+    name: "Enhanced Olfaction",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Enlarge_Desert_Creature_(Wizard_Spell)",
+    name: "Enlarge Desert Creature",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Enter_Dream_(Wizard_Spell)",
+    name: "Enter Dream",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/ESP_(Wizard_Spell)",
+    name: "ESP",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/ESP_-_Witch_(Wizard_Spell)",
+    name: "ESP - Witch",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Everwatching_Skull_(Wizard_Spell)",
+    name: "Everwatching Skull",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Eye_of_the_Storm_(Wizard_Spell)",
+    name: "Eye of the Storm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Falling_Wall_(Wizard_Spell)",
+    name: "Falling Wall",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_I_(Wizard_Spell)",
+    name: "Familiar Enhancer I",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fang_Fist_(Wizard_Spell)",
+    name: "Fang Fist",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fascinate_(Wizard_Spell)",
+    name: "Fascinate",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Featherfoot_(Wizard_Spell)",
+    name: "Featherfoot",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Filter_(Wizard_Spell)",
+    name: "Filter",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Find_Familiar_-_Necromancer_(Wizard_Spell)",
+    name: "Find Familiar - Necromancer",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Arrows_(Wizard_Spell)",
+    name: "Fire Arrows",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Shuriken_(Wizard_Spell)",
+    name: "Fire Shuriken",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fireproof_(Wizard_Spell)",
+    name: "Fireproof",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Firestaff_(Wizard_Spell)",
+    name: "Firestaff",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/First_Strike_(Wizard_Spell)",
+    name: "First Strike",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fisheye_(Wizard_Spell)",
+    name: "Fisheye",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fisher's_Luck_(Wizard_Spell)",
+    name: "Fisher's Luck",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fist_of_the_Adder_(Wizard_Spell)",
+    name: "Fist of the Adder",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flame_Dagger_(Wizard_Spell)",
+    name: "Flame Dagger",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flame_Ray_(Wizard_Spell)",
+    name: "Flame Ray",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flaming_Sphere_(Wizard_Spell)",
+    name: "Flaming Sphere",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flamedouse_(Wizard_Spell)",
+    name: "Flamedouse",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flann's_Finery_(Wizard_Spell)",
+    name: "Flann's Finery",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flash_(Wizard_Spell)",
+    name: "Flash",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flashpuff_(Wizard_Spell)",
+    name: "Flashpuff",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flying_Fist_(Wizard_Spell)",
+    name: "Flying Fist",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Flying_Jambiya_(Wizard_Spell)",
+    name: "Flying Jambiya",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fog_Cloud_(Wizard_Spell)",
+    name: "Fog Cloud",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fog_Light_(Wizard_Spell)",
+    name: "Fog Light",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fools'_Copper_(Wizard_Spell)",
+    name: "Fools' Copper",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Fools'_Gold_(Wizard_Spell)",
+    name: "Fools' Gold",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Footsteps_of_the_Quarry_(Wizard_Spell)",
+    name: "Footsteps of the Quarry",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Forcewave_(Wizard_Spell)",
+    name: "Forcewave",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Forget_(Wizard_Spell)",
+    name: "Forget",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Frostfire_(Wizard_Spell)",
+    name: "Frostfire",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Gate_Ward_(Wizard_Spell)",
+    name: "Gate Ward",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Gemidan's_Paralytic_Missile_(Wizard_Spell)",
+    name: "Gemidan's Paralytic Missile",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ghost_Blade_(Wizard_Spell)",
+    name: "Ghost Blade",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ghost_Pipes_(Wizard_Spell)",
+    name: "Ghost Pipes",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ghoul_Touch_(Wizard_Spell)",
+    name: "Ghoul Touch",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Glitterdust_(Wizard_Spell)",
+    name: "Glitterdust",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Detect_Undead_(Wizard_Spell)",
+    name: "Greater Detect Undead",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Gripdeck_(Wizard_Spell)",
+    name: "Gripdeck",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Guardian_(Wizard_Spell)",
+    name: "Guardian",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Hand_(Wizard_Spell)",
+    name: "Hand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Heartsense_(Wizard_Spell)",
+    name: "Heartsense",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Helmsman_(Wizard_Spell)",
+    name: "Helmsman",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Portal_Open_(Wizard_Spell)",
+    name: "Hold Portal Open",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Hornung's_Baneful_Deflector_(Wizard_Spell)",
+    name: "Hornung's Baneful Deflector",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Hypnosis_(Wizard_Spell)",
+    name: "Hypnosis",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Hypnotic_Pattern_(Wizard_Spell)",
+    name: "Hypnotic Pattern",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ice_Knife_(Wizard_Spell)",
+    name: "Ice Knife",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Immunity_to_Spider_Venom_(Wizard_Spell)",
+    name: "Immunity to Spider Venom",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Immurk's_Distraction_(Wizard_Spell)",
+    name: "Immurk's Distraction",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Chill_Touch_(Wizard_Spell)",
+    name: "Improved Chill Touch",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Phantasmal_Force_(Wizard_Spell)",
+    name: "Improved Phantasmal Force",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Spider_Climb_(Wizard_Spell)",
+    name: "Improved Spider Climb",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Infratorch_(Wizard_Spell)",
+    name: "Infratorch",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Insatiable_Thirst_(Wizard_Spell)",
+    name: "Insatiable Thirst",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Intruder_Alert_(Wizard_Spell)",
+    name: "Intruder Alert",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Invisibility_(Wizard_Spell)",
+    name: "Invisibility",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Irritation_(Wizard_Spell)",
+    name: "Irritation",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Jester's_Jest_(Wizard_Spell)",
+    name: "Jester's Jest",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Knock_(Wizard_Spell)",
+    name: "Knock",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Know_Alignment_(Wizard_Spell)",
+    name: "Know Alignment",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Know_Intent_(Wizard_Spell)",
+    name: "Know Intent",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Cutting_Hand_(Wizard_Spell)",
+    name: "Laeral's Cutting Hand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Trap_(Wizard_Spell)",
+    name: "Leomund's Trap",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Levitate_(Wizard_Spell)",
+    name: "Levitate",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Life_Sounding_(Wizard_Spell)",
+    name: "Life Sounding",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Strike_(Wizard_Spell)",
+    name: "Lightning Strike",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Living_Link_(Wizard_Spell)",
+    name: "Living Link",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Locate_Object_(Wizard_Spell)",
+    name: "Locate Object",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Locate_Portal_(Wizard_Spell)",
+    name: "Locate Portal",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Ear_(Wizard_Spell)",
+    name: "Magic Ear",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Missile_Reflection_(Wizard_Spell)",
+    name: "Magic Missile Reflection",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Mouth_(Wizard_Spell)",
+    name: "Magic Mouth",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Trick_(Wizard_Spell)",
+    name: "Magic Trick",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mask_Bloodline_(Wizard_Spell)",
+    name: "Mask Bloodline",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Jump_(Wizard_Spell)",
+    name: "Mass Jump",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Maximilian's_Earthen_Grasp_(Wizard_Spell)",
+    name: "Maximilian's Earthen Grasp",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Measure_Cinnabryl_(Wizard_Spell)",
+    name: "Measure Cinnabryl",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Melf's_Acid_Arrow_(Wizard_Spell)",
+    name: "Melf's Acid Arrow",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mimicry_(Wizard_Spell)",
+    name: "Mimicry",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mind_Mantle_(Wizard_Spell)",
+    name: "Mind Mantle",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mirror_Image_(Wizard_Spell)",
+    name: "Mirror Image",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Misdirection_(Wizard_Spell)",
+    name: "Misdirection",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Misfortune_-_Lvl_2_(Wizard_Spell)",
+    name: "Misfortune - Lvl 2",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mist_Magic_(Wizard_Spell)",
+    name: "Mist Magic",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Moon_Rune_(Wizard_Spell)",
+    name: "Moon Rune",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Encompassing_Vision_(Wizard_Spell)",
+    name: "Mordenkainen's Encompassing Vision",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mouse_(Wizard_Spell)",
+    name: "Mouse",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Move_Object_(Wizard_Spell)",
+    name: "Move Object",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Murmuring_Masses_(Wizard_Spell)",
+    name: "Murmuring Masses",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Mystic_Writing_(Wizard_Spell)",
+    name: "Mystic Writing",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nahal's_Nonsensical_Nullifier_(Wizard_Spell)",
+    name: "Nahal's Nonsensical Nullifier",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nature_Call_(Wizard_Spell)",
+    name: "Nature Call",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Net_(Wizard_Spell)",
+    name: "Net",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nimodes'_Major_Delousing_(Wizard_Spell)",
+    name: "Nimodes' Major Delousing",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nimodes'_Unseen_Butler_(Wizard_Spell)",
+    name: "Nimodes' Unseen Butler",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Blackmote_(Wizard_Spell)",
+    name: "Nystul's Blackmote",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Blazing_Beam_(Wizard_Spell)",
+    name: "Nystul's Blazing Beam",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Crystal_Dagger_(Wizard_Spell)",
+    name: "Nystul's Crystal Dagger",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Magical_Mask_(Wizard_Spell)",
+    name: "Nystul's Magical Mask",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Odeen's_Magic_Cloud_(Wizard_Spell)",
+    name: "Odeen's Magic Cloud",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Odeen's_Sounding_Stick_(Wizard_Spell)",
+    name: "Odeen's Sounding Stick",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Omen_(Wizard_Spell)",
+    name: "Omen",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Orb_of_Power_(Wizard_Spell)",
+    name: "Orb of Power",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Boiling_Oil_Bath_(Wizard_Spell)",
+    name: "Otiluke's Boiling Oil Bath",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Soothing_Vibrations_(Wizard_Spell)",
+    name: "Otto's Soothing Vibrations",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Tones_of_Forgetfulness_(Wizard_Spell)",
+    name: "Otto's Tones of Forgetfulness",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Pacify_(Wizard_Spell)",
+    name: "Pacify",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Past_Life_(Wizard_Spell)",
+    name: "Past Life",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Pillar_of_Sand_(Wizard_Spell)",
+    name: "Pillar of Sand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Pit_(Wizard_Spell)",
+    name: "Pit",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Plant_Renewal_(Wizard_Spell)",
+    name: "Plant Renewal",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Poisonstar_(Wizard_Spell)",
+    name: "Poisonstar",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Portal_Alarm_(Wizard_Spell)",
+    name: "Portal Alarm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Portrait_(Wizard_Spell)",
+    name: "Portrait",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Sleep_(Wizard_Spell)",
+    name: "Power Word, Sleep",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Preserve_(Wizard_Spell)",
+    name: "Preserve",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Preserve_from_Decay_(Wizard_Spell)",
+    name: "Preserve from Decay",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Preservation_(Wizard_Spell)",
+    name: "Preservation",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Projected_Magnification_(Wizard_Spell)",
+    name: "Projected Magnification",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Birds_(Wizard_Spell)",
+    name: "Protection from Birds",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Cantrips_(Wizard_Spell)",
+    name: "Protection from Cantrips",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Charm_(Wizard_Spell)",
+    name: "Protection from Charm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Deathbane_(Wizard_Spell)",
+    name: "Protection from Deathbane",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Mechanical_Traps_(Wizard_Spell)",
+    name: "Protection from Mechanical Traps",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Paralysis_(Wizard_Spell)",
+    name: "Protection from Paralysis",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Plants_(Wizard_Spell)",
+    name: "Protection from Plants",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Poison_(Wizard_Spell)",
+    name: "Protection from Poison",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Poison_-_Red_Wizard_(Wizard_Spell)",
+    name: "Protection from Poison - Red Wizard",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Prime_(Wizard_Spell)",
+    name: "Protection from Prime",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Pyrotechnics_(Wizard_Spell)",
+    name: "Pyrotechnics",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Quimby's_Enchanting_Gourmet_(Wizard_Spell)",
+    name: "Quimby's Enchanting Gourmet",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Rain_of_Blood_(Wizard_Spell)",
+    name: "Rain of Blood",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Rainfire_(Wizard_Spell)",
+    name: "Rainfire",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Aptitude_Appropriator_(Wizard_Spell)",
+    name: "Rary's Aptitude Appropriator",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ray_of_Enfeeblement_(Wizard_Spell)",
+    name: "Ray of Enfeeblement",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ray_of_Ondovir_(Wizard_Spell)",
+    name: "Ray of Ondovir",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Remove_Disease_(Wizard_Spell)",
+    name: "Remove Disease",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Resist_Turning_(Wizard_Spell)",
+    name: "Resist Turning",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ride_the_Wind_(Wizard_Spell)",
+    name: "Ride the Wind",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Rope_Trick_(Wizard_Spell)",
+    name: "Rope Trick",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Run_-_Lvl_2_(Wizard_Spell)",
+    name: "Run - Lvl 2",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Ruornil's_Tracks_(Wizard_Spell)",
+    name: "Ruornil's Tracks",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Safe_Fall_(Wizard_Spell)",
+    name: "Safe Fall",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Shadow_(Wizard_Spell)",
+    name: "Sand Shadow",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sashelan_Blessing_(Wizard_Spell)",
+    name: "Sashelan Blessing",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Scalesnare_(Wizard_Spell)",
+    name: "Scalesnare",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Scare_(Wizard_Spell)",
+    name: "Scare",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Scrollsee_(Wizard_Spell)",
+    name: "Scrollsee",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Seal_(Wizard_Spell)",
+    name: "Seal",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Seal_Mouth_(Wizard_Spell)",
+    name: "Seal Mouth",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_II_(Wizard_Spell)",
+    name: "Seduction II",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/See_Through_Other_Eyes_(Wizard_Spell)",
+    name: "See Through Other Eyes",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Seeking_(Wizard_Spell)",
+    name: "Seeking",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sense_Shifting_(Wizard_Spell)",
+    name: "Sense Shifting",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Burst_(Wizard_Spell)",
+    name: "Shadow Burst",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Shark_Bolt_(Wizard_Spell)",
+    name: "Shark Bolt",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sharpwings_(Wizard_Spell)",
+    name: "Sharpwings",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Shatter_(Wizard_Spell)",
+    name: "Shatter",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Signature_Sigil_(Wizard_Spell)",
+    name: "Signature Sigil",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Silence,_15'_Radius_-_Bard_(Wizard_Spell)",
+    name: "Silence, 15' Radius - Bard",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sinister_Cantrip_(Wizard_Spell)",
+    name: "Sinister Cantrip",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Skeletal_Hands_(Wizard_Spell)",
+    name: "Skeletal Hands",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Skyhook_(Wizard_Spell)",
+    name: "Skyhook",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Slowspell_(Wizard_Spell)",
+    name: "Slowspell",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Slumberward_(Wizard_Spell)",
+    name: "Slumberward",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Smelting_(Wizard_Spell)",
+    name: "Smelting",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Smoke_Screen_(Wizard_Spell)",
+    name: "Smoke Screen",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Smoke_Shape_(Wizard_Spell)",
+    name: "Smoke Shape",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Smoky_Form_(Wizard_Spell)",
+    name: "Smoky Form",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Snilloc's_Snowball_Swarm_(Wizard_Spell)",
+    name: "Snilloc's Snowball Swarm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Snow_Tread_(Wizard_Spell)",
+    name: "Snow Tread",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spark_Shower_(Wizard_Spell)",
+    name: "Spark Shower",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spawn_Heritage_(Wizard_Spell)",
+    name: "Spawn Heritage",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Speak_in_Tongues_(Wizard_Spell)",
+    name: "Speak in Tongues",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Speak_with_Dead_(Wizard_Spell)",
+    name: "Speak with Dead",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Eyes_(Wizard_Spell)",
+    name: "Spectral Eyes",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Hand_(Wizard_Spell)",
+    name: "Spectral Hand",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Speed_(Wizard_Spell)",
+    name: "Speed",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Speedmount_(Wizard_Spell)",
+    name: "Speedmount",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spelltouch_-_Lvl_2_(Wizard_Spell)",
+    name: "Spelltouch - Lvl 2",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Spider_Gout_(Wizard_Spell)",
+    name: "Spider Gout",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Stairway_(Wizard_Spell)",
+    name: "Stairway",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Stealth_(Wizard_Spell)",
+    name: "Stealth",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Stinking_Cloud_(Wizard_Spell)",
+    name: "Stinking Cloud",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Sleep_(Wizard_Spell)",
+    name: "Stone Sleep",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Stormsail_(Wizard_Spell)",
+    name: "Stormsail",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Strahd's_Baneful_Attractor_(Wizard_Spell)",
+    name: "Strahd's Baneful Attractor",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Strength_(Wizard_Spell)",
+    name: "Strength",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Cats_(Wizard_Spell)",
+    name: "Summon Cats",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Equine_Beings_(Wizard_Spell)",
+    name: "Summon Equine Beings",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Swarm_(Wizard_Spell)",
+    name: "Summon Swarm",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Sundazzle_(Wizard_Spell)",
+    name: "Sundazzle",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Swim_(Wizard_Spell)",
+    name: "Swim",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Tasha's_Uncontrollable_Hideous_Laughter_(Wizard_Spell)",
+    name: "Tasha's Uncontrollable Hideous Laughter",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Brawl_(Wizard_Spell)",
+    name: "Tenser's Brawl",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Hunting_Hawk_(Wizard_Spell)",
+    name: "Tenser's Hunting Hawk",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Threestones_(Wizard_Spell)",
+    name: "Threestones",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Thump_(Wizard_Spell)",
+    name: "Thump",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Thundaerl's_Universal_Taster_(Wizard_Spell)",
+    name: "Thundaerl's Universal Taster",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Thunderball_(Wizard_Spell)",
+    name: "Thunderball",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Timeslip_(Wizard_Spell)",
+    name: "Timeslip",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Toothed_Tentacle_(Wizard_Spell)",
+    name: "Toothed Tentacle",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Train_Vegetation_(Wizard_Spell)",
+    name: "Train Vegetation",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/True_Bearing_(Wizard_Spell)",
+    name: "True Bearing",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Tumble_(Wizard_Spell)",
+    name: "Tumble",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Tunnel_Vision_(Wizard_Spell)",
+    name: "Tunnel Vision",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Turn_(Wizard_Spell)",
+    name: "Turn",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Unbridle_the_Wild_Beast_(Wizard_Spell)",
+    name: "Unbridle the Wild Beast",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Mount_(Wizard_Spell)",
+    name: "Undead Mount",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Unpickable_Lock_(Wizard_Spell)",
+    name: "Unpickable Lock",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Venom_Bite_(Wizard_Spell)",
+    name: "Venom Bite",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Venom's_Thicketgrowth_(Wizard_Spell)",
+    name: "Venom's Thicketgrowth",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Vocalize_(Wizard_Spell)",
+    name: "Vocalize",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wakefulness_(Wizard_Spell)",
+    name: "Wakefulness",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wall_Against_Noise_(Wizard_Spell)",
+    name: "Wall Against Noise",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Gloom_(Wizard_Spell)",
+    name: "Wall of Gloom",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Warp_Sense_(Wizard_Spell)",
+    name: "Warp Sense",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Waves_of_Weariness_-_Lvl_2_(Wizard_Spell)",
+    name: "Waves of Weariness - Lvl 2",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Web_(Wizard_Spell)",
+    name: "Web",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Whip_(Wizard_Spell)",
+    name: "Whip",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Whispering_Tide_(Wizard_Spell)",
+    name: "Whispering Tide",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Whirling_Blade_(Wizard_Spell)",
+    name: "Whirling Blade",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Whispering_Wind_(Wizard_Spell)",
+    name: "Whispering Wind",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wings_(Wizard_Spell)",
+    name: "Wings",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Witch's_Glamor_(Wizard_Spell)",
+    name: "Witch's Glamor",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Withstand_Water_(Wizard_Spell)",
+    name: "Withstand Water",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wizard_Lock_(Wizard_Spell)",
+    name: "Wizard Lock",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Words_of_Fire_(Wizard_Spell)",
+    name: "Words of Fire",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Wound_Bind_(Wizard_Spell)",
+    name: "Wound Bind",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Lifeforce_Guardian_(Wizard_Spell)",
+    name: "Zala's Lifeforce Guardian",
+  },
+  {
+    level: 2,
+    link: "https://adnd2e.fandom.com/wiki/Zephyr_(Wizard_Spell)",
+    name: "Zephyr",
+  },
+
+  // --- Level 3 Spells ---
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Lash_(Wizard_Spell)",
+    name: "Acid Lash",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Acidic_Blast_(Wizard_Spell)",
+    name: "Acidic Blast",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Age_to_Destruction_(Wizard_Spell)",
+    name: "Age to Destruction",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Airbolt_(Wizard_Spell)",
+    name: "Airbolt",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Airsphere_(Wizard_Spell)",
+    name: "Airsphere",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Alacrity_(Wizard_Spell)",
+    name: "Alacrity",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Alahandra's_Questing_Call_(Wizard_Spell)",
+    name: "Alahandra's Questing Call",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Alamir's_Fundamental_Breakdown_(Wizard_Spell)",
+    name: "Alamir's Fundamental Breakdown",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Alternate_Reality_(Wizard_Spell)",
+    name: "Alternate Reality",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Analyze_Device_(Wizard_Spell)",
+    name: "Analyze Device",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Fire_(Wizard_Spell)",
+    name: "Animate Fire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Zombies_(Wizard_Spell)",
+    name: "Animate Zombies",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Arachnophobia_(Wizard_Spell)",
+    name: "Arachnophobia",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Articus's_Melee_Manager_(Wizard_Spell)",
+    name: "Articus's Melee Manager",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Assist_(Wizard_Spell)",
+    name: "Assist",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Augment_Undead_(Wizard_Spell)",
+    name: "Augment Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Augmentation_I_(Wizard_Spell)",
+    name: "Augmentation I",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Backblast_(Wizard_Spell)",
+    name: "Backblast",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ball_Lightning_(Wizard_Spell)",
+    name: "Ball Lightning",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bands_of_Sirellyn_(Wizard_Spell)",
+    name: "Bands of Sirellyn",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Basket_Trick_(Wizard_Spell)",
+    name: "Basket Trick",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Battlecurse_(Wizard_Spell)",
+    name: "Battlecurse",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bewilder_(Wizard_Spell)",
+    name: "Bewilder",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Pugnacious_Pugilist_(Wizard_Spell)",
+    name: "Bigby's Pugnacious Pugilist",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Blacklight_(Wizard_Spell)",
+    name: "Blacklight",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Blast_Jewel_(Wizard_Spell)",
+    name: "Blast Jewel",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Blink_(Wizard_Spell)",
+    name: "Blink",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bloodburn_(Wizard_Spell)",
+    name: "Bloodburn",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Blossom_(Wizard_Spell)",
+    name: "Blossom",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Club_(Wizard_Spell)",
+    name: "Bone Club",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Dance_(Wizard_Spell)",
+    name: "Bone Dance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Knit_(Wizard_Spell)",
+    name: "Bone Knit",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Brannart's_Acidic_Grip_(Wizard_Spell)",
+    name: "Brannart's Acidic Grip",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Breathe_Smoke,_Dust,_or_Ash_(Wizard_Spell)",
+    name: "Breathe Smoke, Dust, or Ash",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cache_(Wizard_Spell)",
+    name: "Cache",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Call_Undead_(Wizard_Spell)",
+    name: "Call Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Callistram's_Gondola_(Wizard_Spell)",
+    name: "Callistram's Gondola",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Calm_-_Witch_(Wizard_Spell)",
+    name: "Calm - Witch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Calm_Wind_-_Lvl_3_(Wizard_Spell)",
+    name: "Calm Wind - Lvl 3",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cause_Blindness_or_Deafness_(Wizard_Spell)",
+    name: "Cause Blindness or Deafness",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cause_Disease_(Wizard_Spell)",
+    name: "Cause Disease",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cervate's_Summoning_(Wizard_Spell)",
+    name: "Cervate's Summoning",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Chant_of_the_Red_Wizards_(Wizard_Spell)",
+    name: "Chant of the Red Wizards",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Man_II_(Wizard_Spell)",
+    name: "Charm Man II",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Undead_(Wizard_Spell)",
+    name: "Charm Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Charmthwart_(Wizard_Spell)",
+    name: "Charmthwart",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Chill_Fire_(Wizard_Spell)",
+    name: "Chill Fire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Clairaudience_(Wizard_Spell)",
+    name: "Clairaudience",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Clairvoyance_(Wizard_Spell)",
+    name: "Clairvoyance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cloak_of_Adeamozs_(Wizard_Spell)",
+    name: "Cloak of Adeamozs",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cloak_of_Insanity_(Wizard_Spell)",
+    name: "Cloak of Insanity",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cloak_of_Warding_(Wizard_Spell)",
+    name: "Cloak of Warding",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Close_Path_(Wizard_Spell)",
+    name: "Close Path",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Cloudburst_(Wizard_Spell)",
+    name: "Cloudburst",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Clutch_Ward_(Wizard_Spell)",
+    name: "Clutch Ward",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Comfort_(Wizard_Spell)",
+    name: "Comfort",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Commune_with_Lesser_Spirit_(Wizard_Spell)",
+    name: "Commune with Lesser Spirit",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Conservation_(Wizard_Spell)",
+    name: "Conservation",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Converse_with_Sea_Creatures_(Wizard_Spell)",
+    name: "Converse with Sea Creatures",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Create_Darkness_(Wizard_Spell)",
+    name: "Create Darkness",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Crew_of_Phantoms_(Wizard_Spell)",
+    name: "Crew of Phantoms",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Curse_of_the_Gypsies_(Wizard_Spell)",
+    name: "Curse of the Gypsies",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Curse_Tablet_(Wizard_Spell)",
+    name: "Curse Tablet",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dark_Familiar_(Wizard_Spell)",
+    name: "Dark Familiar",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dark_Wings_(Wizard_Spell)",
+    name: "Dark Wings",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Darksense_(Wizard_Spell)",
+    name: "Darksense",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Death_Mark_(Wizard_Spell)",
+    name: "Death Mark",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Death_Sight_(Wizard_Spell)",
+    name: "Death Sight",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Death_Talisman_(Wizard_Spell)",
+    name: "Death Talisman",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dedication_(Wizard_Spell)",
+    name: "Dedication",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Delay_Death_(Wizard_Spell)",
+    name: "Delay Death",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Delude_(Wizard_Spell)",
+    name: "Delude",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Depth_Perception_(Wizard_Spell)",
+    name: "Depth Perception",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Charm_(Wizard_Spell)",
+    name: "Detect Charm",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Lycanthrope_-_Gypsy_(Wizard_Spell)",
+    name: "Detect Lycanthrope - Gypsy",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Shapechanger_(Wizard_Spell)",
+    name: "Detect Shapechanger",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Detect_the_Living_(Wizard_Spell)",
+    name: "Detect the Living",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dire_Charm_(Wizard_Spell)",
+    name: "Dire Charm",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Disguise_-_Wu_Jen_(Wizard_Spell)",
+    name: "Disguise - Wu Jen",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Fog_(Wizard_Spell)",
+    name: "Dispel Fog",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Magic_(Wizard_Spell)",
+    name: "Dispel Magic",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Mirage_(Wizard_Spell)",
+    name: "Dispel Mirage",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Silence_(Wizard_Spell)",
+    name: "Dispel Silence",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dissipate_Vapor_(Wizard_Spell)",
+    name: "Dissipate Vapor",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Distract_(Wizard_Spell)",
+    name: "Distract",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Distraction_(Wizard_Spell)",
+    name: "Distraction",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Double_Spell_(Wizard_Spell)",
+    name: "Double Spell",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Double_Undead_(Wizard_Spell)",
+    name: "Double Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Doublespace_(Wizard_Spell)",
+    name: "Doublespace",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Fall_(Wizard_Spell)",
+    name: "Dragon Fall",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Iron_Sack_(Wizard_Spell)",
+    name: "Drawmij's Iron Sack",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Marvelous_Shield_(Wizard_Spell)",
+    name: "Drawmij's Marvelous Shield",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Amok_Needles_(Wizard_Spell)",
+    name: "Drenal's Amok Needles",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Eyesore_(Wizard_Spell)",
+    name: "Drenal's Eyesore",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drenal's_Sound_Barrier_(Wizard_Spell)",
+    name: "Drenal's Sound Barrier",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Drought_(Wizard_Spell)",
+    name: "Drought",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Dweomer_Vortex_(Wizard_Spell)",
+    name: "Dweomer Vortex",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Eagle_Vision_(Wizard_Spell)",
+    name: "Eagle Vision",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Elevate_II_(Wizard_Spell)",
+    name: "Elevate II",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Elminster's_Multiple_Mouths_(Wizard_Spell)",
+    name: "Elminster's Multiple Mouths",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Empathic_Link_(Wizard_Spell)",
+    name: "Empathic Link",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Enchanted_Torch_(Wizard_Spell)",
+    name: "Enchanted Torch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Energy_Conduit_(Wizard_Spell)",
+    name: "Energy Conduit",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Blood_Ability_(Wizard_Spell)",
+    name: "Enhance Blood Ability",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Rating_(Wizard_Spell)",
+    name: "Enhance Rating",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Entomb_(Wizard_Spell)",
+    name: "Entomb",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Erdlu_Hide_(Wizard_Spell)",
+    name: "Erdlu Hide",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Erik's_Quills_(Wizard_Spell)",
+    name: "Erik's Quills",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Explosive_Runes_(Wizard_Spell)",
+    name: "Explosive Runes",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Eye-Shield_(Wizard_Spell)",
+    name: "Eye-Shield",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fabricate_-_Wu_Jen_(Wizard_Spell)",
+    name: "Fabricate - Wu Jen",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Face_(Wizard_Spell)",
+    name: "Face",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/False_Face_(Wizard_Spell)",
+    name: "False Face",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_II_(Wizard_Spell)",
+    name: "Familiar Enhancer II",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Far_Reaching_I_(Wizard_Spell)",
+    name: "Far Reaching I",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Farspeaker_(Wizard_Spell)",
+    name: "Farspeaker",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fast_Travel_(Wizard_Spell)",
+    name: "Fast Travel",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fearfire_(Wizard_Spell)",
+    name: "Fearfire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Feign_Death_(Wizard_Spell)",
+    name: "Feign Death",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Find_Companion_(Wizard_Spell)",
+    name: "Find Companion",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Find_Familiar_-_Dragon_(Wizard_Spell)",
+    name: "Find Familiar - Dragon",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Find_Humanoid_Familiar_(Wizard_Spell)",
+    name: "Find Humanoid Familiar",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Find_Traps_(Wizard_Spell)",
+    name: "Find Traps",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Find_Water_(Wizard_Spell)",
+    name: "Find Water",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fiery_Fists_(Wizard_Spell)",
+    name: "Fiery Fists",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Lance_(Wizard_Spell)",
+    name: "Fire Lance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Phantom_(Wizard_Spell)",
+    name: "Fire Phantom",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Rain_(Wizard_Spell)",
+    name: "Fire Rain",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Wings_(Wizard_Spell)",
+    name: "Fire Wings",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fireball_(Wizard_Spell)",
+    name: "Fireball",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fireflow_(Wizard_Spell)",
+    name: "Fireflow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Flame_Arrow_(Wizard_Spell)",
+    name: "Flame Arrow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Flashburst_(Wizard_Spell)",
+    name: "Flashburst",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fleet_Feet_(Wizard_Spell)",
+    name: "Fleet Feet",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fly_(Wizard_Spell)",
+    name: "Fly",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Fool's_Speech_(Wizard_Spell)",
+    name: "Fool's Speech",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Foothold_(Wizard_Spell)",
+    name: "Foothold",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Freezefire_(Wizard_Spell)",
+    name: "Freezefire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Gamalon's_Fiery_Backlash_(Wizard_Spell)",
+    name: "Gamalon's Fiery Backlash",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Gate_Seal_(Wizard_Spell)",
+    name: "Gate Seal",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ghastly_Hands_(Wizard_Spell)",
+    name: "Ghastly Hands",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ghost_Armor_(Wizard_Spell)",
+    name: "Ghost Armor",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Grease_Slick_(Wizard_Spell)",
+    name: "Grease Slick",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Distraction_(Wizard_Spell)",
+    name: "Greater Distraction",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ground_Fog_(Wizard_Spell)",
+    name: "Ground Fog",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Gust_of_Wind_(Wizard_Spell)",
+    name: "Gust of Wind",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Haelyn's_Bow_(Wizard_Spell)",
+    name: "Haelyn's Bow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hand_of_Darkness_(Wizard_Spell)",
+    name: "Hand of Darkness",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Haste_(Wizard_Spell)",
+    name: "Haste",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Healing_Dream_(Wizard_Spell)",
+    name: "Healing Dream",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Healing_Touch_(Wizard_Spell)",
+    name: "Healing Touch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Heartcall_(Wizard_Spell)",
+    name: "Heartcall",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hissing_Sand_(Wizard_Spell)",
+    name: "Hissing Sand",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hoard_Armor_(Wizard_Spell)",
+    name: "Hoard Armor",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Person_(Wizard_Spell)",
+    name: "Hold Person",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Undead_(Wizard_Spell)",
+    name: "Hold Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Vapor_(Wizard_Spell)",
+    name: "Hold Vapor",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hover_(Wizard_Spell)",
+    name: "Hover",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Hovering_Skull_(Wizard_Spell)",
+    name: "Hovering Skull",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ice_Claws_(Wizard_Spell)",
+    name: "Ice Claws",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Icelance_(Wizard_Spell)",
+    name: "Icelance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Identify_Species_(Wizard_Spell)",
+    name: "Identify Species",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Illusionary_Script_(Wizard_Spell)",
+    name: "Illusionary Script",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Magic_Missile_(Wizard_Spell)",
+    name: "Improved Magic Missile",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Magic_Mouth_(Wizard_Spell)",
+    name: "Improved Magic Mouth",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Mind_Mantle_(Wizard_Spell)",
+    name: "Improved Mind Mantle",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Whispering_Wind_(Wizard_Spell)",
+    name: "Improved Whispering Wind",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Infravision_(Wizard_Spell)",
+    name: "Infravision",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Instant_Audience_(Wizard_Spell)",
+    name: "Instant Audience",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Interruptible_Light_(Wizard_Spell)",
+    name: "Interruptible Light",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Invisibility,_10'_Radius_(Wizard_Spell)",
+    name: "Invisibility, 10' Radius",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Invisible_Mail_(Wizard_Spell)",
+    name: "Invisible Mail",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Iron_Kimono_(Wizard_Spell)",
+    name: "Iron Kimono",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Iron_Mind_(Wizard_Spell)",
+    name: "Iron Mind",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ironwood_(Wizard_Spell)",
+    name: "Ironwood",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Isolde's_Answer_(Wizard_Spell)",
+    name: "Isolde's Answer",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Item_(Wizard_Spell)",
+    name: "Item",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Jalartan's_Miraculum_(Wizard_Spell)",
+    name: "Jalartan's Miraculum",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Khelben's_Suspended_Silence_(Wizard_Spell)",
+    name: "Khelben's Suspended Silence",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Dancing_Dweomer_(Wizard_Spell)",
+    name: "Laeral's Dancing Dweomer",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Raging_Griffon_(Wizard_Spell)",
+    name: "Laeral's Raging Griffon",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lance_of_Disruption_(Wizard_Spell)",
+    name: "Lance of Disruption",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Tiny_Hut_(Wizard_Spell)",
+    name: "Leomund's Tiny Hut",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lessen_Gravity_(Wizard_Spell)",
+    name: "Lessen Gravity",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Rhabdomancy_(Wizard_Spell)",
+    name: "Lesser Rhabdomancy",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Sign_of_Sealing_(Wizard_Spell)",
+    name: "Lesser Sign of Sealing",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Life_Tether_(Wizard_Spell)",
+    name: "Life Tether",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Bolt_(Wizard_Spell)",
+    name: "Lightning Bolt",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Reflection_(Wizard_Spell)",
+    name: "Lightning Reflection",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Rod_(Wizard_Spell)",
+    name: "Lightning Rod",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lob_(Wizard_Spell)",
+    name: "Lob",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Locate_Person_(Wizard_Spell)",
+    name: "Locate Person",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lorloveim's_Creeping_Shadow_(Wizard_Spell)",
+    name: "Lorloveim's Creeping Shadow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Love_Charm_(Wizard_Spell)",
+    name: "Love Charm",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lubricity_(Wizard_Spell)",
+    name: "Lubricity",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Lysander's_Kaleidoscope_(Wizard_Spell)",
+    name: "Lysander's Kaleidoscope",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Magnetism_(Wizard_Spell)",
+    name: "Magnetism",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mailed_Might_(Wizard_Spell)",
+    name: "Mailed Might",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Maladweomer_(Wizard_Spell)",
+    name: "Maladweomer",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Manyjaws_(Wizard_Spell)",
+    name: "Manyjaws",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mask_Magic_(Wizard_Spell)",
+    name: "Mask Magic",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Material_(Wizard_Spell)",
+    name: "Material",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Maximilian's_Stony_Grasp_(Wizard_Spell)",
+    name: "Maximilian's Stony Grasp",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Melf's_Minute_Meteors_(Wizard_Spell)",
+    name: "Melf's Minute Meteors",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mellix's_Fire_Mouth_(Wizard_Spell)",
+    name: "Mellix's Fire Mouth",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Memory_(Wizard_Spell)",
+    name: "Memory",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mental_Block_(Wizard_Spell)",
+    name: "Mental Block",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mental_Dagger_(Wizard_Spell)",
+    name: "Mental Dagger",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mental_Transport_(Wizard_Spell)",
+    name: "Mental Transport",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Malison_(Wizard_Spell)",
+    name: "Minor Malison",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Paradox_(Wizard_Spell)",
+    name: "Minor Paradox",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Misfortune_(Wizard_Spell)",
+    name: "Misfortune",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Modron_Mind_(Wizard_Spell)",
+    name: "Modron Mind",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_I_(Wizard_Spell)",
+    name: "Monster Summoning I",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Moonglow_Symbol_(Wizard_Spell)",
+    name: "Moonglow Symbol",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Defense_Against_Lycanthropes_(Wizard_Spell)",
+    name: "Mordenkainen's Defense Against Lycanthropes",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Defense_Against_Nonmagical_Reptiles_and_Amphibians_(Wizard_Spell)",
+    name: "Mordenkainen's Defense Against Nonmagical Reptiles and Amphibians",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Protection_from_Insects_and_Arachnids_(Wizard_Spell)",
+    name: "Mordenkainen's Protection from Insects and Arachnids",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mummy_Touch_(Wizard_Spell)",
+    name: "Mummy Touch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Mystic_Rope_(Wizard_Spell)",
+    name: "Mystic Rope",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nautical_Ironwood_(Wizard_Spell)",
+    name: "Nautical Ironwood",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nchaser's_Glowing_Globe_(Wizard_Spell)",
+    name: "Nchaser's Glowing Globe",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Net_-_Mazitica_(Wizard_Spell)",
+    name: "Net - Mazitica",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Night's_Jambiya_(Wizard_Spell)",
+    name: "Night's Jambiya",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nightscar_(Wizard_Spell)",
+    name: "Nightscar",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Non-Detection_(Wizard_Spell)",
+    name: "Non-Detection",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Numbness_(Wizard_Spell)",
+    name: "Numbness",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nurturing_Seeds_(Wizard_Spell)",
+    name: "Nurturing Seeds",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nybor's_Mild_Admonishment_(Wizard_Spell)",
+    name: "Nybor's Mild Admonishment",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Crystal_Dirk_(Wizard_Spell)",
+    name: "Nystul's Crystal Dirk",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Expeditious_Fire_Extinguisher_(Wizard_Spell)",
+    name: "Nystul's Expeditious Fire Extinguisher",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Golden_Revelation_(Wizard_Spell)",
+    name: "Nystul's Golden Revelation",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Radiant_Baton_(Wizard_Spell)",
+    name: "Nystul's Radiant Baton",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Odeen's_Secret_Word_(Wizard_Spell)",
+    name: "Odeen's Secret Word",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/One-Way_Lock_(Wizard_Spell)",
+    name: "One-Way Lock",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Organic_Disruption_(Wizard_Spell)",
+    name: "Organic Disruption",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Acid_Cloud_(Wizard_Spell)",
+    name: "Otiluke's Acid Cloud",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Force_Umbrella_(Wizard_Spell)",
+    name: "Otiluke's Force Umbrella",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Crystal_Rhythms_(Wizard_Spell)",
+    name: "Otto's Crystal Rhythms",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Sure-Footed_Shuffle_(Wizard_Spell)",
+    name: "Otto's Sure-Footed Shuffle",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Pain_Touch_(Wizard_Spell)",
+    name: "Pain Touch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Paralyzation_(Wizard_Spell)",
+    name: "Paralyzation",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Paralyze_(Wizard_Spell)",
+    name: "Paralyze",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Paralyzing_Touch_(Wizard_Spell)",
+    name: "Paralyzing Touch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Pestilence_(Wizard_Spell)",
+    name: "Pestilence",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Light_(Wizard_Spell)",
+    name: "Phantom Light",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Sail_(Wizard_Spell)",
+    name: "Phantom Sail",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Steed_(Wizard_Spell)",
+    name: "Phantom Steed",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Wind_(Wizard_Spell)",
+    name: "Phantom Wind",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Plant_Entrapment_(Wizard_Spell)",
+    name: "Plant Entrapment",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Preserve_Wood_(Wizard_Spell)",
+    name: "Preserve Wood",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Pressure_Resistance_(Wizard_Spell)",
+    name: "Pressure Resistance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Probe_Spellshadow_(Wizard_Spell)",
+    name: "Probe Spellshadow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Proficiency_(Wizard_Spell)",
+    name: "Proficiency",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Proof_from_Teleportation_(Wizard_Spell)",
+    name: "Proof from Teleportation",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Amorphs_(Wizard_Spell)",
+    name: "Protection from Amorphs",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Cold_(Wizard_Spell)",
+    name: "Protection from Cold",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Evil,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Evil, 10' Radius",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Fire_(Wizard_Spell)",
+    name: "Protection from Fire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Glebes_(Wizard_Spell)",
+    name: "Protection from Glebes",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Illusions_(Wizard_Spell)",
+    name: "Protection from Illusions",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Magical_Blunt_Weapons_(Wizard_Spell)",
+    name: "Protection from Magical Blunt Weapons",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Magical_Edged_Weapons_(Wizard_Spell)",
+    name: "Protection from Magical Edged Weapons",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Magical_Missiles_(Wizard_Spell)",
+    name: "Protection from Magical Missiles",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Magical_Traps_(Wizard_Spell)",
+    name: "Protection from Magical Traps",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Normal_Blunt_Weapons_(Wizard_Spell)",
+    name: "Protection from Normal Blunt Weapons",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Normal_Edged_Weapons_(Wizard_Spell)",
+    name: "Protection from Normal Edged Weapons",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Normal_Missiles_(Wizard_Spell)",
+    name: "Protection from Normal Missiles",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Telekinesis_(Wizard_Spell)",
+    name: "Protection from Telekinesis",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Putrefaction_(Wizard_Spell)",
+    name: "Putrefaction",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Pseudodragon_(Wizard_Spell)",
+    name: "Pseudodragon",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Random's_Commodious_Pocket_(Wizard_Spell)",
+    name: "Random's Commodious Pocket",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ranike_Cloud_(Wizard_Spell)",
+    name: "Ranike Cloud",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ray_of_Paralysis_(Wizard_Spell)",
+    name: "Ray of Paralysis",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Remove_Smell_(Wizard_Spell)",
+    name: "Remove Smell",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Resist_Energy_Drain_(Wizard_Spell)",
+    name: "Resist Energy Drain",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Reveal_Invisible_(Wizard_Spell)",
+    name: "Reveal Invisible",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Revenance_(Wizard_Spell)",
+    name: "Revenance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Reverse_Fossilization_(Wizard_Spell)",
+    name: "Reverse Fossilization",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ritual_Strength_(Wizard_Spell)",
+    name: "Ritual Strength",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Robust_Construction_(Wizard_Spell)",
+    name: "Robust Construction",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sail_in_Irons_(Wizard_Spell)",
+    name: "Sail in Irons",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Seal_(Wizard_Spell)",
+    name: "Sand Seal",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Sword_(Wizard_Spell)",
+    name: "Sand Sword",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Tools_(Wizard_Spell)",
+    name: "Sand Tools",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sandspray_(Wizard_Spell)",
+    name: "Sandspray",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scalding_Spout_(Wizard_Spell)",
+    name: "Scalding Spout",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scalespray_(Wizard_Spell)",
+    name: "Scalespray",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scarf_(Wizard_Spell)",
+    name: "Scarf",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scattergloom_(Wizard_Spell)",
+    name: "Scattergloom",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scintillating_Sphere_(Wizard_Spell)",
+    name: "Scintillating Sphere",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sculpt_Features_(Wizard_Spell)",
+    name: "Sculpt Features",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Scry_(Wizard_Spell)",
+    name: "Scry",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Searing_Serpent_(Wizard_Spell)",
+    name: "Searing Serpent",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Secret_Page_(Wizard_Spell)",
+    name: "Secret Page",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_III_(Wizard_Spell)",
+    name: "Seduction III",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/See_Hidden_Doors_(Wizard_Spell)",
+    name: "See Hidden Doors",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Seelie_Spell_of_Forgetting_(Wizard_Spell)",
+    name: "Seelie Spell of Forgetting",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sepia_Snake_Sigil_(Wizard_Spell)",
+    name: "Sepia Snake Sigil",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Serrel's_Guardian_(Wizard_Spell)",
+    name: "Serrel's Guardian",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Serrel's_Minor_Enchantment_(Wizard_Spell)",
+    name: "Serrel's Minor Enchantment",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Blink_(Wizard_Spell)",
+    name: "Shadow Blink",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Bolt_(Wizard_Spell)",
+    name: "Shadow Bolt",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Cloak_(Wizard_Spell)",
+    name: "Shadow Cloak",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sharptooth_-_Lvl_3_(Wizard_Spell)",
+    name: "Sharptooth - Lvl 3",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Shield_Vessel_(Wizard_Spell)",
+    name: "Shield Vessel",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Skeletal_Hand_(Wizard_Spell)",
+    name: "Skeletal Hand",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Skin_of_the_Fire_Tiger_(Wizard_Spell)",
+    name: "Skin of the Fire Tiger",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Skull_Watch_(Wizard_Spell)",
+    name: "Skull Watch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Skulltrap_(Wizard_Spell)",
+    name: "Skulltrap",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Skywrite_(Wizard_Spell)",
+    name: "Skywrite",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sleep_of_Horror_(Wizard_Spell)",
+    name: "Sleep of Horror",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Slow_(Wizard_Spell)",
+    name: "Slow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Slumber_(Wizard_Spell)",
+    name: "Slumber",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Snapping_Teeth_(Wizard_Spell)",
+    name: "Snapping Teeth",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Solvent_of_Corrosion_(Wizard_Spell)",
+    name: "Solvent of Corrosion",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Farce_(Wizard_Spell)",
+    name: "Spectral Farce",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Force_(Wizard_Spell)",
+    name: "Spectral Force",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Sense_(Wizard_Spell)",
+    name: "Spell Sense",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Spirit_Armor_(Wizard_Spell)",
+    name: "Spirit Armor",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Squaring_the_Circle_(Wizard_Spell)",
+    name: "Squaring the Circle",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Stabilize_Chaos_(Wizard_Spell)",
+    name: "Stabilize Chaos",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Staffspell_(Wizard_Spell)",
+    name: "Staffspell",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Statue_-_Wu_Jen_(Wizard_Spell)",
+    name: "Statue - Wu Jen",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Steam_Blast_(Wizard_Spell)",
+    name: "Steam Blast",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Steam_Breath_(Wizard_Spell)",
+    name: "Steam Breath",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Steeldance_(Wizard_Spell)",
+    name: "Steeldance",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Stench_of_Death_(Wizard_Spell)",
+    name: "Stench of Death",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Hull_(Wizard_Spell)",
+    name: "Stone Hull",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Stoneiron_(Wizard_Spell)",
+    name: "Stoneiron",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Storm's_Swordfire_(Wizard_Spell)",
+    name: "Storm's Swordfire",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Suggestion_(Wizard_Spell)",
+    name: "Suggestion",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Modron_(Wizard_Spell)",
+    name: "Summon Modron",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Sunscorch_(Wizard_Spell)",
+    name: "Sunscorch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Suppress_Blood_Ability_(Wizard_Spell)",
+    name: "Suppress Blood Ability",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Syluné's_Viper_(Wizard_Spell)",
+    name: "Syluné's Viper",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Talon's_Skitmaster_(Wizard_Spell)",
+    name: "Talon's Skitmaster",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Talon's_Soundmaster_(Wizard_Spell)",
+    name: "Talon's Soundmaster",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Target_(Wizard_Spell)",
+    name: "Target",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Tasirin's_Haunted_Sleep_(Wizard_Spell)",
+    name: "Tasirin's Haunted Sleep",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_Object_(Wizard_Spell)",
+    name: "Teleport Object",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Deadly_Strike_(Wizard_Spell)",
+    name: "Tenser's Deadly Strike",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Eye_of_the_Eagle_(Wizard_Spell)",
+    name: "Tenser's Eye of the Eagle",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Teratism_I_(Wizard_Spell)",
+    name: "Teratism I",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Time_Snare_(Wizard_Spell)",
+    name: "Time Snare",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Tongues_(Wizard_Spell)",
+    name: "Tongues",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Touch_the_Black_(Wizard_Spell)",
+    name: "Touch the Black",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Transpose_(Wizard_Spell)",
+    name: "Transpose",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Trap_Spellbook_(Wizard_Spell)",
+    name: "Trap Spellbook",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Control_(Wizard_Spell)",
+    name: "Undead Control",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Lieutenancy_(Wizard_Spell)",
+    name: "Undead Lieutenancy",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_I_(Wizard_Spell)",
+    name: "Undead Summoning I",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Torch_(Wizard_Spell)",
+    name: "Undead Torch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Unmask_(Wizard_Spell)",
+    name: "Unmask",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Vampiric_Touch_(Wizard_Spell)",
+    name: "Vampiric Touch",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Venom_Bolt_(Wizard_Spell)",
+    name: "Venom Bolt",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Venomdust_(Wizard_Spell)",
+    name: "Venomdust",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Paper_(Wizard_Spell)",
+    name: "Wall of Paper",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Sound_(Wizard_Spell)",
+    name: "Wall of Sound",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Water_(Wizard_Spell)",
+    name: "Wall of Water",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Ward_Against_Undead_(Wizard_Spell)",
+    name: "Ward Against Undead",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Water_Breathing_(Wizard_Spell)",
+    name: "Water Breathing",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Water_Summoning_(Wizard_Spell)",
+    name: "Water Summoning",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Watery_Double_(Wizard_Spell)",
+    name: "Watery Double",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Watery_Form_(Wizard_Spell)",
+    name: "Watery Form",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Waves_of_Weariness_-_Lvl_3_(Wizard_Spell)",
+    name: "Waves of Weariness - Lvl 3",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Weapon_Proficiency_(Wizard_Spell)",
+    name: "Weapon Proficiency",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Whip_of_Pain_(Wizard_Spell)",
+    name: "Whip of Pain",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Whispering_Sand_(Wizard_Spell)",
+    name: "Whispering Sand",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Servant_(Wizard_Spell)",
+    name: "Wind Servant",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Windrider_(Wizard_Spell)",
+    name: "Windrider",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Shadow_(Wizard_Spell)",
+    name: "Wind Shadow",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Wall_(Wizard_Spell)",
+    name: "Wind Wall",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wings_-_Lvl_3_(Wizard_Spell)",
+    name: "Wings - Lvl 3",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Witchweed_(Wizard_Spell)",
+    name: "Witchweed",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wizard_Sight_(Wizard_Spell)",
+    name: "Wizard Sight",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wood_Shape_(Wizard_Spell)",
+    name: "Wood Shape",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wraithform_(Wizard_Spell)",
+    name: "Wraithform",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Wylunde's_Ward_(Wizard_Spell)",
+    name: "Wylunde's Ward",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Forcebuckler_(Wizard_Spell)",
+    name: "Zala's Forcebuckler",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Zikalan_Fireform_(Wizard_Spell)",
+    name: "Zikalan Fireform",
+  },
+  {
+    level: 3,
+    link: "https://adnd2e.fandom.com/wiki/Zombie_Animation_(Wizard_Spell)",
+    name: "Zombie Animation",
+  },
+  // --- Level 4 Spells ---
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Bolt_(Wizard_Spell)",
+    name: "Acid Bolt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Bolt_-_Drow_(Wizard_Spell)",
+    name: "Acid Bolt - Drow",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Agitate_Wounds_(Wizard_Spell)",
+    name: "Agitate Wounds",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Alustriel's_Mantle_(Wizard_Spell)",
+    name: "Alustriel's Mantle",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Animal_Magnetism_(Wizard_Spell)",
+    name: "Animal Magnetism",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Arcane_Runes_(Wizard_Spell)",
+    name: "Arcane Runes",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Argaster's_Cloak_of_Shadows_(Wizard_Spell)",
+    name: "Argaster's Cloak of Shadows",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Arnvid's_Unseen_Limb_(Wizard_Spell)",
+    name: "Arnvid's Unseen Limb",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Aryeric's_Cloak_of_Protection_(Wizard_Spell)",
+    name: "Aryeric's Cloak of Protection",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Assume_Undead_Form_(Wizard_Spell)",
+    name: "Assume Undead Form",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Awaken_Intelligence_(Wizard_Spell)",
+    name: "Awaken Intelligence",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Azuth's_Fedensor_(Wizard_Spell)",
+    name: "Azuth's Fedensor",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Baatezu_Bane_(Wizard_Spell)",
+    name: "Baatezu Bane",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Backlash_-_Athas_(Wizard_Spell)",
+    name: "Backlash - Athas",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Backlash_-_Drow_(Wizard_Spell)",
+    name: "Backlash - Drow",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bands_of_Ice_(Wizard_Spell)",
+    name: "Bands of Ice",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bargain_(Wizard_Spell)",
+    name: "Bargain",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Beltyn's_Burning_Blood_(Wizard_Spell)",
+    name: "Beltyn's Burning Blood",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Battering_Gauntlet_(Wizard_Spell)",
+    name: "Bigby's Battering Gauntlet",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Construction_Crew_(Wizard_Spell)",
+    name: "Bigby's Construction Crew",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Force_Sculpture_(Wizard_Spell)",
+    name: "Bigby's Force Sculpture",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bird_Charm_II_(Wizard_Spell)",
+    name: "Bird Charm II",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Blacksphere_(Wizard_Spell)",
+    name: "Blacksphere",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Blood_Lightning_(Wizard_Spell)",
+    name: "Blood Lightning",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Form_(Wizard_Spell)",
+    name: "Bone Form",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Seize_(Wizard_Spell)",
+    name: "Bone Seize",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Border_Guard_(Wizard_Spell)",
+    name: "Border Guard",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Brainkill_(Wizard_Spell)",
+    name: "Brainkill",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Caligarde's_Claw_(Wizard_Spell)",
+    name: "Caligarde's Claw",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Cause_Serious_Wounds_(Wizard_Spell)",
+    name: "Cause Serious Wounds",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Cerulean_Hail_(Wizard_Spell)",
+    name: "Cerulean Hail",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Chaos_Hammer_(Wizard_Spell)",
+    name: "Chaos Hammer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Man_III_(Wizard_Spell)",
+    name: "Charm Man III",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Monster_(Wizard_Spell)",
+    name: "Charm Monster",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Chastise_(Wizard_Spell)",
+    name: "Chastise",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Command_Elementals_(Wizard_Spell)",
+    name: "Command Elementals",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Confusion_(Wizard_Spell)",
+    name: "Confusion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Cabinet_(Wizard_Spell)",
+    name: "Conjure Cabinet",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Dream_Object_(Wizard_Spell)",
+    name: "Conjure Dream Object",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Elemental-Kin_(Wizard_Spell)",
+    name: "Conjure Elemental-Kin",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Sand_Lion_(Wizard_Spell)",
+    name: "Conjure Sand Lion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Contagion_(Wizard_Spell)",
+    name: "Contagion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Control_Death_Tyrant_(Wizard_Spell)",
+    name: "Control Death Tyrant",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Control_Fluid_(Wizard_Spell)",
+    name: "Control Fluid",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Cook_(Wizard_Spell)",
+    name: "Cook",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Corpse_Whisper_(Wizard_Spell)",
+    name: "Corpse Whisper",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Counterspell_Immunity_(Wizard_Spell)",
+    name: "Counterspell Immunity",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Create_Darkenbeast_(Wizard_Spell)",
+    name: "Create Darkenbeast",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Cursed_Image_(Wizard_Spell)",
+    name: "Cursed Image",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Daltim's_Flaming_Fist_(Wizard_Spell)",
+    name: "Daltim's Flaming Fist",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dancing_Blade_(Wizard_Spell)",
+    name: "Dancing Blade",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dancing_Weapon_(Wizard_Spell)",
+    name: "Dancing Weapon",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Darkning_Bolt_(Wizard_Spell)",
+    name: "Darkning Bolt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Darsson's_Eye_in_the_Sky_(Wizard_Spell)",
+    name: "Darsson's Eye in the Sky",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Darsson's_Potion_(Wizard_Spell)",
+    name: "Darsson's Potion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Death's_Door_(Wizard_Spell)",
+    name: "Death's Door",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Degenerate_Breed_(Wizard_Spell)",
+    name: "Degenerate Breed",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Delayed_Magic_Missile_(Wizard_Spell)",
+    name: "Delayed Magic Missile",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Despair_(Wizard_Spell)",
+    name: "Despair",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Destroy_Undead_(Wizard_Spell)",
+    name: "Destroy Undead",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Ensorcellment_(Wizard_Spell)",
+    name: "Detect Ensorcellment",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Detect_Scrying_(Wizard_Spell)",
+    name: "Detect Scrying",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dig_(Wizard_Spell)",
+    name: "Dig",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dilation_I_(Wizard_Spell)",
+    name: "Dilation I",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dimension_Door_(Wizard_Spell)",
+    name: "Dimension Door",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Disfigure_(Wizard_Spell)",
+    name: "Disfigure",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Disguise_(Wizard_Spell)",
+    name: "Disguise",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Illusion_(Wizard_Spell)",
+    name: "Dispel Illusion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Disrupt_Undead_(Wizard_Spell)",
+    name: "Disrupt Undead",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Distant_Diary_(Wizard_Spell)",
+    name: "Distant Diary",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Distort_Life_I_(Wizard_Spell)",
+    name: "Distort Life I",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Divination_Enhancement_(Wizard_Spell)",
+    name: "Divination Enhancement",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Mastery_(Wizard_Spell)",
+    name: "Dragon Mastery",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Handy_Timepiece_(Wizard_Spell)",
+    name: "Drawmij's Handy Timepiece",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Instant_Exit_(Wizard_Spell)",
+    name: "Drawmij's Instant Exit",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Protection_from_Non-Magical_Gas_(Wizard_Spell)",
+    name: "Drawmij's Protection from Non-Magical Gas",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Tool_Box_(Wizard_Spell)",
+    name: "Drawmij's Tool Box",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dread_Whisper_(Wizard_Spell)",
+    name: "Dread Whisper",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dream_Vision_(Wizard_Spell)",
+    name: "Dream Vision",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Duhlark's_Long_Reach_(Wizard_Spell)",
+    name: "Duhlark's Long Reach",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Dune_(Wizard_Spell)",
+    name: "Dune",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Duplicate_(Wizard_Spell)",
+    name: "Duplicate",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Electrical_Wards_(Wizard_Spell)",
+    name: "Electrical Wards",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Control_(Wizard_Spell)",
+    name: "Elemental Control",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Form_(Wizard_Spell)",
+    name: "Elemental Form",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Turning_(Wizard_Spell)",
+    name: "Elemental Turning",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Elude_Blow_(Wizard_Spell)",
+    name: "Elude Blow",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Emotion_(Wizard_Spell)",
+    name: "Emotion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Empathic_Wound_Transfer_(Wizard_Spell)",
+    name: "Empathic Wound Transfer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Empower_Skeleton_(Wizard_Spell)",
+    name: "Empower Skeleton",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Enchanted_Weapon_(Wizard_Spell)",
+    name: "Enchanted Weapon",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Encrypt_(Wizard_Spell)",
+    name: "Encrypt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Enervation_(Wizard_Spell)",
+    name: "Enervation",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Fire_Creature_(Wizard_Spell)",
+    name: "Enhance Fire Creature",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Evard's_Black_Tentacles_(Wizard_Spell)",
+    name: "Evard's Black Tentacles",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ever-changing_Self_(Wizard_Spell)",
+    name: "Ever-changing Self",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Everlasting_Fire_(Wizard_Spell)",
+    name: "Everlasting Fire",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Everpresent_Record_(Wizard_Spell)",
+    name: "Everpresent Record",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Extension_I_(Wizard_Spell)",
+    name: "Extension I",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Eyes_of_the_Undead_(Wizard_Spell)",
+    name: "Eyes of the Undead",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_III_(Wizard_Spell)",
+    name: "Familiar Enhancer III",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Far_Reaching_II_(Wizard_Spell)",
+    name: "Far Reaching II",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fatigue_(Wizard_Spell)",
+    name: "Fatigue",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fear_(Wizard_Spell)",
+    name: "Fear",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Feign_Destruction_(Wizard_Spell)",
+    name: "Feign Destruction",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Find_Person_(Wizard_Spell)",
+    name: "Find Person",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Find_Treasure_(Wizard_Spell)",
+    name: "Find Treasure",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_(Wizard_Spell)",
+    name: "Fire",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Aura_(Wizard_Spell)",
+    name: "Fire Aura",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Charm_(Wizard_Spell)",
+    name: "Fire Charm",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Enchantment_(Wizard_Spell)",
+    name: "Fire Enchantment",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Gate_(Wizard_Spell)",
+    name: "Fire Gate",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Shield_(Wizard_Spell)",
+    name: "Fire Shield",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Trap_(Wizard_Spell)",
+    name: "Fire Trap",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Wake_(Wizard_Spell)",
+    name: "Fire Wake",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Firebrand_(Wizard_Spell)",
+    name: "Firebrand",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Firetrail_(Wizard_Spell)",
+    name: "Firetrail",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fistandantilus's_Firequench_(Wizard_Spell)",
+    name: "Fistandantilus's Firequench",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Flamsterd's_Flamestrike_(Wizard_Spell)",
+    name: "Flamsterd's Flamestrike",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Flesh_to_Air_(Wizard_Spell)",
+    name: "Flesh to Air",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Focus_Fear_(Wizard_Spell)",
+    name: "Focus Fear",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Forcefend_(Wizard_Spell)",
+    name: "Forcefend",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Forcelash_(Wizard_Spell)",
+    name: "Forcelash",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Fumble_(Wizard_Spell)",
+    name: "Fumble",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Galathar's_Gnostic_Chain_(Wizard_Spell)",
+    name: "Galathar's Gnostic Chain",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Galkyn's_Bolt_(Wizard_Spell)",
+    name: "Galkyn's Bolt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Gaseous_Form_-_Lvl_4_(Wizard_Spell)",
+    name: "Gaseous Form - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Geirdorn's_Grappling_Grasp_(Wizard_Spell)",
+    name: "Geirdorn's Grappling Grasp",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Genie_Contract_(Wizard_Spell)",
+    name: "Genie Contract",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ghelkyn's_Wounding_(Wizard_Spell)",
+    name: "Ghelkyn's Wounding",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ghost_Rigging_(Wizard_Spell)",
+    name: "Ghost Rigging",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Gloom_(Wizard_Spell)",
+    name: "Gloom",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Gloomcloud_(Wizard_Spell)",
+    name: "Gloomcloud",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Great_Thump_(Wizard_Spell)",
+    name: "Great Thump",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Malison_(Wizard_Spell)",
+    name: "Greater Malison",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Gregori's_Awareness_(Wizard_Spell)",
+    name: "Gregori's Awareness",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hailcone_(Wizard_Spell)",
+    name: "Hailcone",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hallucinatory_Terrain_(Wizard_Spell)",
+    name: "Hallucinatory Terrain",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Halo_of_Eyes_(Wizard_Spell)",
+    name: "Halo of Eyes",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Handfangs_(Wizard_Spell)",
+    name: "Handfangs",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Heroism_(Wizard_Spell)",
+    name: "Heroism",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hiding_Place_(Wizard_Spell)",
+    name: "Hiding Place",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hoardguard_(Wizard_Spell)",
+    name: "Hoardguard",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Giant_(Wizard_Spell)",
+    name: "Hold Giant",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Hurricane_Anchor_(Wizard_Spell)",
+    name: "Hurricane Anchor",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ice_Storm_(Wizard_Spell)",
+    name: "Ice Storm",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Identify_Race_(Wizard_Spell)",
+    name: "Identify Race",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Identify_Tighmaevril_(Wizard_Spell)",
+    name: "Identify Tighmaevril",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Illusionary_Wall_(Wizard_Spell)",
+    name: "Illusionary Wall",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ilyykur's_Mantle_(Wizard_Spell)",
+    name: "Ilyykur's Mantle",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Armor_(Wizard_Spell)",
+    name: "Improved Armor",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Featherfoot_(Wizard_Spell)",
+    name: "Improved Featherfoot",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Invisibility_(Wizard_Spell)",
+    name: "Improved Invisibility",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Mirror_Image_(Wizard_Spell)",
+    name: "Improved Mirror Image",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Strength_(Wizard_Spell)",
+    name: "Improved Strength",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Vampiric_Touch_(Wizard_Spell)",
+    name: "Improved Vampiric Touch",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Iron_Maiden_(Wizard_Spell)",
+    name: "Iron Maiden",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ivy's_Irresistible_Scent_(Wizard_Spell)",
+    name: "Ivy's Irresistible Scent",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Jackal_Ward_(Wizard_Spell)",
+    name: "Jackal Ward",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Jest_(Wizard_Spell)",
+    name: "Jest",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Juggle_(Wizard_Spell)",
+    name: "Juggle",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Know_Path_of_Magic_(Wizard_Spell)",
+    name: "Know Path of Magic",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Aqueous_Column_(Wizard_Spell)",
+    name: "Laeral's Aqueous Column",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Gesture_(Wizard_Spell)",
+    name: "Laeral's Gesture",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lapse_(Wizard_Spell)",
+    name: "Lapse",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Secure_Shelter_(Wizard_Spell)",
+    name: "Leomund's Secure Shelter",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Geas_(Wizard_Spell)",
+    name: "Lesser Geas",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Spelldream_(Wizard_Spell)",
+    name: "Lesser Spelldream",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lich_Armor_(Wizard_Spell)",
+    name: "Lich Armor",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lich_Touch_(Wizard_Spell)",
+    name: "Lich Touch",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Life_Bolt_(Wizard_Spell)",
+    name: "Life Bolt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Life_Field_/Death_Field_(Wizard_Spell)",
+    name: "Life Field /Death Field",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Life_Force_Transfer_-_Lvl_4_(Wizard_Spell)",
+    name: "Life Force Transfer - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lifesurge_(Wizard_Spell)",
+    name: "Lifesurge",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Shield_(Wizard_Spell)",
+    name: "Lightning Shield",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Locate_Creature_(Wizard_Spell)",
+    name: "Locate Creature",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Loyalty_(Wizard_Spell)",
+    name: "Loyalty",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mage_Seeker_(Wizard_Spell)",
+    name: "Mage Seeker",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Mirror_(Wizard_Spell)",
+    name: "Magic Mirror",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Resistance_(Wizard_Spell)",
+    name: "Magic Resistance",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mask_Light_(Wizard_Spell)",
+    name: "Mask Light",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mask_of_Death_(Wizard_Spell)",
+    name: "Mask of Death",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Massmorph_(Wizard_Spell)",
+    name: "Massmorph",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mechanical_Disruption_(Wizard_Spell)",
+    name: "Mechanical Disruption",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Melt_Metal_(Wizard_Spell)",
+    name: "Melt Metal",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Merald's_Murderous_Mist_(Wizard_Spell)",
+    name: "Merald's Murderous Mist",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mimic_Blood_Ability_(Wizard_Spell)",
+    name: "Mimic Blood Ability",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mimic_Mortal_(Wizard_Spell)",
+    name: "Mimic Mortal",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Creation_(Wizard_Spell)",
+    name: "Minor Creation",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Globe_of_Invulnerability_(Wizard_Spell)",
+    name: "Minor Globe of Invulnerability",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Minor_Spell_Turning_(Wizard_Spell)",
+    name: "Minor Spell Turning",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mirage_Wall_(Wizard_Spell)",
+    name: "Mirage Wall",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Missile_Mastery_(Wizard_Spell)",
+    name: "Missile Mastery",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_II_(Wizard_Spell)",
+    name: "Monster Summoning II",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Celerity_(Wizard_Spell)",
+    name: "Mordenkainen's Celerity",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Electric_Arc_(Wizard_Spell)",
+    name: "Mordenkainen's Electric Arc",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Faithful_Phantom_Shield-Maidens_(Wizard_Spell)",
+    name: "Mordenkainen's Faithful Phantom Shield-Maidens",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Force_Missiles_(Wizard_Spell)",
+    name: "Mordenkainen's Force Missiles",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Protection_from_Slime_(Wizard_Spell)",
+    name: "Mordenkainen's Protection from Slime",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Mourning_Stone_(Wizard_Spell)",
+    name: "Mourning Stone",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Murlynd's_Ogre_(Wizard_Spell)",
+    name: "Murlynd's Ogre",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Native_Item_(Wizard_Spell)",
+    name: "Native Item",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Nautical_Ball_Lightning_(Wizard_Spell)",
+    name: "Nautical Ball Lightning",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Negate_Magical_Weapon_(Wizard_Spell)",
+    name: "Negate Magical Weapon",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Neutralize_Components_(Wizard_Spell)",
+    name: "Neutralize Components",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Neverending_Nightmares_(Wizard_Spell)",
+    name: "Neverending Nightmares",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Blacklight_Burst_(Wizard_Spell)",
+    name: "Nystul's Blacklight Burst",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Grue_Conjuration_(Wizard_Spell)",
+    name: "Nystul's Grue Conjuration",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Lightburst_(Wizard_Spell)",
+    name: "Nystul's Lightburst",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Odeen's_Impenetrable_Lock_(Wizard_Spell)",
+    name: "Odeen's Impenetrable Lock",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Othnal's_Spectral_Dagger_(Wizard_Spell)",
+    name: "Othnal's Spectral Dagger",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Dispelling_Screen_(Wizard_Spell)",
+    name: "Otiluke's Dispelling Screen",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Resilient_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Resilient Sphere",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Steaming_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Steaming Sphere",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ottar's_Mask_(Wizard_Spell)",
+    name: "Ottar's Mask",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Drums_of_Despair_(Wizard_Spell)",
+    name: "Otto's Drums of Despair",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Silver_Tongue_(Wizard_Spell)",
+    name: "Otto's Silver Tongue",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Tin_Soldiers_(Wizard_Spell)",
+    name: "Otto's Tin Soldiers",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Tonal_Attack_(Wizard_Spell)",
+    name: "Otto's Tonal Attack",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Warding_Tones_(Wizard_Spell)",
+    name: "Otto's Warding Tones",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Out_of_Time's_Grip_(Wizard_Spell)",
+    name: "Out of Time's Grip",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Phantasamorph_(Wizard_Spell)",
+    name: "Phantasamorph",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Phantasmal_Killer_(Wizard_Spell)",
+    name: "Phantasmal Killer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Phase_Shift_(Wizard_Spell)",
+    name: "Phase Shift",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Phase_Trap_(Wizard_Spell)",
+    name: "Phase Trap",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Plague_(Wizard_Spell)",
+    name: "Plague",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Plant_Death_(Wizard_Spell)",
+    name: "Plant Death",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Plant_Growth_(Wizard_Spell)",
+    name: "Plant Growth",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Poison_(Wizard_Spell)",
+    name: "Poison",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Polymorph_Other_(Wizard_Spell)",
+    name: "Polymorph Other",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Polymorph_Self_(Wizard_Spell)",
+    name: "Polymorph Self",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Prismal's_Handy_Mirror_(Wizard_Spell)",
+    name: "Prismal's Handy Mirror",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Prismal's_Pictograph_(Wizard_Spell)",
+    name: "Prismal's Pictograph",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Programmed_Glamer_(Wizard_Spell)",
+    name: "Programmed Glamer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Prophecy_(Wizard_Spell)",
+    name: "Prophecy",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Deathbane,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Deathbane, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Electricity_(Wizard_Spell)",
+    name: "Protection from Electricity",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Elementals,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Elementals, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Gas,_5'_Radius_(Wizard_Spell)",
+    name: "Protection from Gas, 5' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Lycanthropes,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Lycanthropes, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Plants,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Plants, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Possession,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Possession, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Prime,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Prime, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_the_Elements_(Wizard_Spell)",
+    name: "Protection from the Elements",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Traps,_5'_Radius_(Wizard_Spell)",
+    name: "Protection from Traps, 5' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Undead,_5'_Radius_(Wizard_Spell)",
+    name: "Protection from Undead, 5' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Psionic_Dampener_(Wizard_Spell)",
+    name: "Psionic Dampener",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Psionic_Tracer_(Wizard_Spell)",
+    name: "Psionic Tracer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Psychic_Protection_(Wizard_Spell)",
+    name: "Psychic Protection",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Quell_(Wizard_Spell)",
+    name: "Quell",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rain_of_Terror_(Wizard_Spell)",
+    name: "Rain of Terror",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rainbow_Pattern_(Wizard_Spell)",
+    name: "Rainbow Pattern",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rainbow_Shield_(Wizard_Spell)",
+    name: "Rainbow Shield",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ramael's_Cyclical_Light_(Wizard_Spell)",
+    name: "Ramael's Cyclical Light",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Memory_Alteration_(Wizard_Spell)",
+    name: "Rary's Memory Alteration",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Mind_Scan_(Wizard_Spell)",
+    name: "Rary's Mind Scan",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Mnemonic_Enhancer_(Wizard_Spell)",
+    name: "Rary's Mnemonic Enhancer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Spell_Enhancer_(Wizard_Spell)",
+    name: "Rary's Spell Enhancer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Rastor's_Mystical_Spy_(Wizard_Spell)",
+    name: "Rastor's Mystical Spy",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ray_of_Oblivion_(Wizard_Spell)",
+    name: "Ray of Oblivion",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Raze_(Wizard_Spell)",
+    name: "Raze",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Read_Arcane_Runes_(Wizard_Spell)",
+    name: "Read Arcane Runes",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Remove_Curse_(Wizard_Spell)",
+    name: "Remove Curse",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Reopened_Gate_(Wizard_Spell)",
+    name: "Reopened Gate",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Repulse_Metal_(Wizard_Spell)",
+    name: "Repulse Metal",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Reverse_Flow_(Wizard_Spell)",
+    name: "Reverse Flow",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ritual_of_Twaining_(Wizard_Spell)",
+    name: "Ritual of Twaining",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sammaster's_Lash_(Wizard_Spell)",
+    name: "Sammaster's Lash",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Samprey's_Sensible_Sea_Sphere_(Wizard_Spell)",
+    name: "Samprey's Sensible Sea Sphere",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Healing_(Wizard_Spell)",
+    name: "Sand Healing",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sandcone_(Wizard_Spell)",
+    name: "Sandcone",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sargasso_(Wizard_Spell)",
+    name: "Sargasso",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Scapegoat_(Wizard_Spell)",
+    name: "Scapegoat",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_IV_(Wizard_Spell)",
+    name: "Seduction IV",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sending_-_Lvl_4_(Wizard_Spell)",
+    name: "Sending - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Serpent_Garland_(Wizard_Spell)",
+    name: "Serpent Garland",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Dance_(Wizard_Spell)",
+    name: "Shadow Dance",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Monsters_(Wizard_Spell)",
+    name: "Shadow Monsters",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Serpents_(Wizard_Spell)",
+    name: "Shadow Serpents",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Skeleton_(Wizard_Spell)",
+    name: "Shadow Skeleton",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Summoning_(Wizard_Spell)",
+    name: "Shadow Summoning",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadowshield_(Wizard_Spell)",
+    name: "Shadowshield",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shadowstrike_(Wizard_Spell)",
+    name: "Shadowstrike",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shaefpaete's_Shadowy_Distinction_(Wizard_Spell)",
+    name: "Shaefpaete's Shadowy Distinction",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shatterhull_(Wizard_Spell)",
+    name: "Shatterhull",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shayn's_Infallible_Identification_(Wizard_Spell)",
+    name: "Shayn's Infallible Identification",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ship_Invisibility_(Wizard_Spell)",
+    name: "Ship Invisibility",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shock_(Wizard_Spell)",
+    name: "Shock",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Shout_(Wizard_Spell)",
+    name: "Shout",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sinuous_Horrors_(Wizard_Spell)",
+    name: "Sinuous Horrors",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sleepwalking_(Wizard_Spell)",
+    name: "Sleepwalking",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Slowspell,_10'_Radius_(Wizard_Spell)",
+    name: "Slowspell, 10' Radius",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Slumber_-_Lvl_4_(Wizard_Spell)",
+    name: "Slumber - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Smooth_Sailing_(Wizard_Spell)",
+    name: "Smooth Sailing",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Solid_Fog_(Wizard_Spell)",
+    name: "Solid Fog",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spark_Burst_(Wizard_Spell)",
+    name: "Spark Burst",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Special_Effects_(Wizard_Spell)",
+    name: "Special Effects",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Wings_(Wizard_Spell)",
+    name: "Spectral Wings",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Deferment_(Wizard_Spell)",
+    name: "Spell Deferment",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Fangs_(Wizard_Spell)",
+    name: "Spell Fangs",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spelltouch_-_Lvl_4_(Wizard_Spell)",
+    name: "Spelltouch - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spelltrap_-_Lvl_4_(Wizard_Spell)",
+    name: "Spelltrap - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spendelard's_Chaser_(Wizard_Spell)",
+    name: "Spendelard's Chaser",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sphere_of_Entrapment_(Wizard_Spell)",
+    name: "Sphere of Entrapment",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sphere_of_Eyes_(Wizard_Spell)",
+    name: "Sphere of Eyes",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spider_Leap_(Wizard_Spell)",
+    name: "Spider Leap",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spider_Shape_(Wizard_Spell)",
+    name: "Spider Shape",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Spider_Strand_(Wizard_Spell)",
+    name: "Spider Strand",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Steelsting_(Wizard_Spell)",
+    name: "Steelsting",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Stoneskin_(Wizard_Spell)",
+    name: "Stoneskin",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Stop_(Wizard_Spell)",
+    name: "Stop",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Strengthen_Water_Creature_(Wizard_Spell)",
+    name: "Strengthen Water Creature",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Lycanthrope_(Wizard_Spell)",
+    name: "Summon Lycanthrope",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Spirit_-_Necromancer_(Wizard_Spell)",
+    name: "Summon Spirit - Necromancer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sunbolt_(Wizard_Spell)",
+    name: "Sunbolt",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sunburst_-_Lvl_4_(Wizard_Spell)",
+    name: "Sunburst - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sunfire_-_At'ar's_Fire_(Wizard_Spell)",
+    name: "Sunfire - At'ar's Fire",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Sunwarp_(Wizard_Spell)",
+    name: "Sunwarp",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Suppress_Lycanthropy_(Wizard_Spell)",
+    name: "Suppress Lycanthropy",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Swordshun_(Wizard_Spell)",
+    name: "Swordshun",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tap_Menhir_(Wizard_Spell)",
+    name: "Tap Menhir",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Push_(Wizard_Spell)",
+    name: "Temporal Push",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Flaming_Blade_(Wizard_Spell)",
+    name: "Tenser's Flaming Blade",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Giant_Strength_(Wizard_Spell)",
+    name: "Tenser's Giant Strength",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Master_of_Arms_(Wizard_Spell)",
+    name: "Tenser's Master of Arms",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Running_Warrior_(Wizard_Spell)",
+    name: "Tenser's Running Warrior",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Staff_of_Smiting_(Wizard_Spell)",
+    name: "Tenser's Staff of Smiting",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/There/Not_There_(Wizard_Spell)",
+    name: "There/Not There",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Thunder_Staff_(Wizard_Spell)",
+    name: "Thunder Staff",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Thunderlance_(Wizard_Spell)",
+    name: "Thunderlance",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Timeheal_(Wizard_Spell)",
+    name: "Timeheal",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Transfix_(Wizard_Spell)",
+    name: "Transfix",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Transfuse_(Wizard_Spell)",
+    name: "Transfuse",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Fire_to_Smoke_(Wizard_Spell)",
+    name: "Transmute Fire to Smoke",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Sand_to_Stone_(Wizard_Spell)",
+    name: "Transmute Sand to Stone",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/True_Dream_(Wizard_Spell)",
+    name: "True Dream",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/True_Nightmare_(Wizard_Spell)",
+    name: "True Nightmare",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Tulrun's_Tracer_(Wizard_Spell)",
+    name: "Tulrun's Tracer",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Turn_Pebble_to_Boulder_(Wizard_Spell)",
+    name: "Turn Pebble to Boulder",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Turn_Undead_(Wizard_Spell)",
+    name: "Turn Undead",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ultravision_(Wizard_Spell)",
+    name: "Ultravision",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Unburn_(Wizard_Spell)",
+    name: "Unburn",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_II_(Wizard_Spell)",
+    name: "Undead Summoning II",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Unluck_(Wizard_Spell)",
+    name: "Unluck",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vacancy_(Wizard_Spell)",
+    name: "Vacancy",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vampire_Mist_(Wizard_Spell)",
+    name: "Vampire Mist",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vengeance_(Wizard_Spell)",
+    name: "Vengeance",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vision_Stone_(Wizard_Spell)",
+    name: "Vision Stone",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vitriolic_Sphere_(Wizard_Spell)",
+    name: "Vitriolic Sphere",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Vrock's_Screech_(Wizard_Spell)",
+    name: "Vrock's Screech",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Evil_(Wizard_Spell)",
+    name: "Wall of Evil",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Fire_(Wizard_Spell)",
+    name: "Wall of Fire",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Ice_(Wizard_Spell)",
+    name: "Wall of Ice",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Sand_(Wizard_Spell)",
+    name: "Wall of Sand",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Ward_Against_Charms_(Wizard_Spell)",
+    name: "Ward Against Charms",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Watchware_(Wizard_Spell)",
+    name: "Watchware",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Water_Move_(Wizard_Spell)",
+    name: "Water Move",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Weave_Mythal_(Wizard_Spell)",
+    name: "Weave Mythal",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wesley's_Temporal_Disjunction_(Wizard_Spell)",
+    name: "Wesley's Temporal Disjunction",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Whisper_Blade_(Wizard_Spell)",
+    name: "Whisper Blade",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Blade_(Wizard_Spell)",
+    name: "Wind Blade",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Breath_(Wizard_Spell)",
+    name: "Wind Breath",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wind_of_the_Zephyrs_(Wizard_Spell)",
+    name: "Wind of the Zephyrs",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wingbind_-_Lvl_4_(Wizard_Spell)",
+    name: "Wingbind - Lvl 4",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Wizard_Eye_(Wizard_Spell)",
+    name: "Wizard Eye",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Woodiron_(Wizard_Spell)",
+    name: "Woodiron",
+  },
+  {
+    level: 4,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Amberhelm_(Wizard_Spell)",
+    name: "Zala's Amberhelm",
+  },
+  // --- Level 5 Spells ---
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Accelerate_Animal_Growth_(Wizard_Spell)",
+    name: "Accelerate Animal Growth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Advanced_Illusion_(Wizard_Spell)",
+    name: "Advanced Illusion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Aiming_at_the_Target_(Wizard_Spell)",
+    name: "Aiming at the Target",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Airy_Water_(Wizard_Spell)",
+    name: "Airy Water",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Andrui's_Baneful_Backfire_(Wizard_Spell)",
+    name: "Andrui's Baneful Backfire",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Anesthesia_(Wizard_Spell)",
+    name: "Anesthesia",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Animal_Growth_(Wizard_Spell)",
+    name: "Animal Growth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Dead_(Wizard_Spell)",
+    name: "Animate Dead",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Articus's_Devolutionary_Warrior_(Wizard_Spell)",
+    name: "Articus's Devolutionary Warrior",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Avoidance_(Wizard_Spell)",
+    name: "Avoidance",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Azure_Flame_(Wizard_Spell)",
+    name: "Azure Flame",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Azuth's_Exalted_Triad_(Wizard_Spell)",
+    name: "Azuth's Exalted Triad",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ballant's_Stonestrength_(Wizard_Spell)",
+    name: "Ballant's Stonestrength",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bestow_Enchantment_(Wizard_Spell)",
+    name: "Bestow Enchantment",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Fantastic_Fencers_(Wizard_Spell)",
+    name: "Bigby's Fantastic Fencers",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Interposing_Hand_(Wizard_Spell)",
+    name: "Bigby's Interposing Hand",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Strangling_Grip_(Wizard_Spell)",
+    name: "Bigby's Strangling Grip",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Superior_Force_Sculpture_(Wizard_Spell)",
+    name: "Bigby's Superior Force Sculpture",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bind_Undead_(Wizard_Spell)",
+    name: "Bind Undead",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Blastcloak_(Wizard_Spell)",
+    name: "Blastcloak",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Blinkship_(Wizard_Spell)",
+    name: "Blinkship",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Blight_(Wizard_Spell)",
+    name: "Bone Blight",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Growth_(Wizard_Spell)",
+    name: "Bone Growth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bowgentle's_Fleeting_Journey_(Wizard_Spell)",
+    name: "Bowgentle's Fleeting Journey",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Breathblock_(Wizard_Spell)",
+    name: "Breathblock",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Breathe_Earth_(Wizard_Spell)",
+    name: "Breathe Earth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Breathe_Fire_or_Magma_(Wizard_Spell)",
+    name: "Breathe Fire or Magma",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Bubka's_Superior_Identification_(Wizard_Spell)",
+    name: "Bubka's Superior Identification",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Caddelyn's_Catastrophe_(Wizard_Spell)",
+    name: "Caddelyn's Catastrophe",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Calm_Water_(Wizard_Spell)",
+    name: "Calm Water",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Calm_Wind_-_Lvl_5_(Wizard_Spell)",
+    name: "Calm Wind - Lvl 5",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Cause_Critical_Wounds_(Wizard_Spell)",
+    name: "Cause Critical Wounds",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Chaos_(Wizard_Spell)",
+    name: "Chaos",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Animals_(Wizard_Spell)",
+    name: "Charm Animals",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Chromatic_Blade_-_Lvl_5_(Wizard_Spell)",
+    name: "Chromatic Blade - Lvl 5",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Cloudkill_(Wizard_Spell)",
+    name: "Cloudkill",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/The_Clutches_of_Time_(Wizard_Spell)",
+    name: "The Clutches of Time",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Command_Dragon_(Wizard_Spell)",
+    name: "Command Dragon",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Conduit_(Wizard_Spell)",
+    name: "Conduit",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Conduit_Pierce_(Wizard_Spell)",
+    name: "Conduit Pierce",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Cone_of_Cold_(Wizard_Spell)",
+    name: "Cone of Cold",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Elemental_(Wizard_Spell)",
+    name: "Conjure Elemental",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Nightmare_(Wizard_Spell)",
+    name: "Conjure Nightmare",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Contact_Other_Plane_(Wizard_Spell)",
+    name: "Contact Other Plane",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Control_Undead_-_Witch_(Wizard_Spell)",
+    name: "Control Undead - Witch",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Create_Chosen_One_(Wizard_Spell)",
+    name: "Create Chosen One",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Create_Portal_(Wizard_Spell)",
+    name: "Create Portal",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Create_Slipgate_(Wizard_Spell)",
+    name: "Create Slipgate",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Create_Talisman_of_Hishna_(Wizard_Spell)",
+    name: "Create Talisman of Hishna",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Create_Talisman_of_Pluma_(Wizard_Spell)",
+    name: "Create Talisman of Pluma",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Creeping_Darkness_(Wizard_Spell)",
+    name: "Creeping Darkness",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Crimson_Scourge_(Wizard_Spell)",
+    name: "Crimson Scourge",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Daltim's_Fiery_Protector_(Wizard_Spell)",
+    name: "Daltim's Fiery Protector",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Darkbolt_(Wizard_Spell)",
+    name: "Darkbolt",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Darsson's_Music_Box_(Wizard_Spell)",
+    name: "Darsson's Music Box",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Death_Bump_(Wizard_Spell)",
+    name: "Death Bump",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Death_Smoke_(Wizard_Spell)",
+    name: "Death Smoke",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Death_Whip_(Wizard_Spell)",
+    name: "Death Whip",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Deathguard_(Wizard_Spell)",
+    name: "Deathguard",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Deathmaster's_Vial_(Wizard_Spell)",
+    name: "Deathmaster's Vial",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Defend_Distant_Ward_(Wizard_Spell)",
+    name: "Defend Distant Ward",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Demi-Shadow_Monsters_(Wizard_Spell)",
+    name: "Demi-Shadow Monsters",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Desert_Fist_(Wizard_Spell)",
+    name: "Desert Fist",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Discord_(Wizard_Spell)",
+    name: "Discord",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Disguise_Bloodline_(Wizard_Spell)",
+    name: "Disguise Bloodline",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Disguise_Undead_(Wizard_Spell)",
+    name: "Disguise Undead",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Dismissal_(Wizard_Spell)",
+    name: "Dismissal",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Exhaustion_(Wizard_Spell)",
+    name: "Dispel Exhaustion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Distance_Distortion_(Wizard_Spell)",
+    name: "Distance Distortion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Distort_Life_II_(Wizard_Spell)",
+    name: "Distort Life II",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Dolor_(Wizard_Spell)",
+    name: "Dolor",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Domination_(Wizard_Spell)",
+    name: "Domination",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Flying_Feat_(Wizard_Spell)",
+    name: "Drawmij's Flying Feat",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Dream_(Wizard_Spell)",
+    name: "Dream",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Dream_Globe_(Wizard_Spell)",
+    name: "Dream Globe",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Eagle_Form_(Wizard_Spell)",
+    name: "Eagle Form",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Enchanted_Mirrors_(Wizard_Spell)",
+    name: "Enchanted Mirrors",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Maneuverability_(Wizard_Spell)",
+    name: "Enhance Maneuverability",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Plant_(Wizard_Spell)",
+    name: "Enhance Plant",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Erdlu_Egg_(Wizard_Spell)",
+    name: "Erdlu Egg",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ethereal_Banishment_(Wizard_Spell)",
+    name: "Ethereal Banishment",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Extension_II_(Wizard_Spell)",
+    name: "Extension II",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Eyefire_(Wizard_Spell)",
+    name: "Eyefire",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fabricate_(Wizard_Spell)",
+    name: "Fabricate",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Facet_(Wizard_Spell)",
+    name: "Facet",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/False_Vision_(Wizard_Spell)",
+    name: "False Vision",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fallion's_Fabulous_Fireball_(Wizard_Spell)",
+    name: "Fallion's Fabulous Fireball",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_IV_(Wizard_Spell)",
+    name: "Familiar Enhancer IV",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Far_Reaching_III_(Wizard_Spell)",
+    name: "Far Reaching III",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Farscry_(Wizard_Spell)",
+    name: "Farscry",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fear_Aura_(Wizard_Spell)",
+    name: "Fear Aura",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Feeblemind_(Wizard_Spell)",
+    name: "Feeblemind",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Feign_Undead_(Wizard_Spell)",
+    name: "Feign Undead",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fiendform_(Wizard_Spell)",
+    name: "Fiendform",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Breath_(Wizard_Spell)",
+    name: "Fire Breath",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Stones_(Wizard_Spell)",
+    name: "Fire Stones",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Track_(Wizard_Spell)",
+    name: "Fire Track",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Flesh_Mirage_(Wizard_Spell)",
+    name: "Flesh Mirage",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Fleshshiver_(Wizard_Spell)",
+    name: "Fleshshiver",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Flexible_Force_Field_(Wizard_Spell)",
+    name: "Flexible Force Field",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Flyfield_(Wizard_Spell)",
+    name: "Flyfield",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Force_Shapechange_(Wizard_Spell)",
+    name: "Force Shapechange",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Gaseous_Form_-_Lvl_5_(Wizard_Spell)",
+    name: "Gaseous Form - Lvl 5",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ghast_Creation_(Wizard_Spell)",
+    name: "Ghast Creation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Graft_Flesh_(Wizard_Spell)",
+    name: "Graft Flesh",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Rhabdomancy_(Wizard_Spell)",
+    name: "Greater Rhabdomancy",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Grimwald's_Graymantle_-_Lvl_5_(Wizard_Spell)",
+    name: "Grimwald's Graymantle - Lvl 5",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Guard_Life_(Wizard_Spell)",
+    name: "Guard Life",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Guise_of_the_Yak-Man_(Wizard_Spell)",
+    name: "Guise of the Yak-Man",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Halaster's_Grappling_Hand_(Wizard_Spell)",
+    name: "Halaster's Grappling Hand",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Hasten_Growth_(Wizard_Spell)",
+    name: "Hasten Growth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Heat_Mirage_(Wizard_Spell)",
+    name: "Heat Mirage",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Hedge_Enchantment_(Wizard_Spell)",
+    name: "Hedge Enchantment",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Monster_(Wizard_Spell)",
+    name: "Hold Monster",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Immunity_to_Poison_and_Disease_(Wizard_Spell)",
+    name: "Immunity to Poison and Disease",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Blink_(Wizard_Spell)",
+    name: "Improved Blink",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Skull_Watch_(Wizard_Spell)",
+    name: "Improved Skull Watch",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Insect_Sight_(Wizard_Spell)",
+    name: "Insect Sight",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Invulnerability_to_Normal_Weapons_(Wizard_Spell)",
+    name: "Invulnerability to Normal Weapons",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ironguard_(Wizard_Spell)",
+    name: "Ironguard",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ironwood_(Wizard_Spell)",
+    name: "Ironwood",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Jaggar's_Strengthened_Bastion_(Wizard_Spell)",
+    name: "Jaggar's Strengthened Bastion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Jaguar_Form_(Wizard_Spell)",
+    name: "Jaguar Form",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Jhanifer's_Deliquescence_(Wizard_Spell)",
+    name: "Jhanifer's Deliquescence",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Jonstal's_Double_Wizardry_(Wizard_Spell)",
+    name: "Jonstal's Double Wizardry",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Kank_Shell_(Wizard_Spell)",
+    name: "Kank Shell",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Khazid's_Procurement_(Wizard_Spell)",
+    name: "Khazid's Procurement",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Knoslira's_Crypt_(Wizard_Spell)",
+    name: "Knoslira's Crypt",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Know_Value_(Wizard_Spell)",
+    name: "Know Value",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Disrobement_(Wizard_Spell)",
+    name: "Laeral's Disrobement",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lapis_Bonds_(Wizard_Spell)",
+    name: "Lapis Bonds",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Hidden_Lodge_(Wizard_Spell)",
+    name: "Leomund's Hidden Lodge",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Lamentable_Belaborment_(Wizard_Spell)",
+    name: "Leomund's Lamentable Belaborment",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Leomund's_Secret_Chest_(Wizard_Spell)",
+    name: "Leomund's Secret Chest",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lesser_Etherealness_(Wizard_Spell)",
+    name: "Lesser Etherealness",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lethal_Hatchling_(Wizard_Spell)",
+    name: "Lethal Hatchling",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Life_Steal_(Wizard_Spell)",
+    name: "Life Steal",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Curtain_(Wizard_Spell)",
+    name: "Lightning Curtain",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Lash_(Wizard_Spell)",
+    name: "Lightning Lash",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Reflection_(Wizard_Spell)",
+    name: "Lightning Reflection",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Liquid_Earth_(Wizard_Spell)",
+    name: "Liquid Earth",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Lower_Resistance_(Wizard_Spell)",
+    name: "Lower Resistance",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Jar_(Wizard_Spell)",
+    name: "Magic Jar",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Staff_(Wizard_Spell)",
+    name: "Magic Staff",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Major_Creation_(Wizard_Spell)",
+    name: "Major Creation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Major_Gate_Ward_(Wizard_Spell)",
+    name: "Major Gate Ward",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Manor's_Mindsight_(Wizard_Spell)",
+    name: "Manor's Mindsight",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Manshoon's_Xorn_Talons_(Wizard_Spell)",
+    name: "Manshoon's Xorn Talons",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mass_(Wizard_Spell)",
+    name: "Mass",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Contagion_(Wizard_Spell)",
+    name: "Mass Contagion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Mounts_(Wizard_Spell)",
+    name: "Mass Mounts",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Maximum_Damage_(Wizard_Spell)",
+    name: "Maximum Damage",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Melisander's_Harp_(Wizard_Spell)",
+    name: "Melisander's Harp",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Metal_Skin_(Wizard_Spell)",
+    name: "Metal Skin",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mind_Control_Invisibility_(Wizard_Spell)",
+    name: "Mind Control Invisibility",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mind_Fog_(Wizard_Spell)",
+    name: "Mind Fog",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Misspell_Mantle_(Wizard_Spell)",
+    name: "Misspell Mantle",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_III_(Wizard_Spell)",
+    name: "Monster Summoning III",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mooncloak_(Wizard_Spell)",
+    name: "Mooncloak",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Faithful_Hound_(Wizard_Spell)",
+    name: "Mordenkainen's Faithful Hound",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Faithful_Phantom_Defenders_(Wizard_Spell)",
+    name: "Mordenkainen's Faithful Phantom Defenders",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Involuntary_Wizardry_(Wizard_Spell)",
+    name: "Mordenkainen's Involuntary Wizardry",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Private_Sanctum_(Wizard_Spell)",
+    name: "Mordenkainen's Private Sanctum",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Morgannaver's_Sting_(Wizard_Spell)",
+    name: "Morgannaver's Sting",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Morphail's_Unholy_Blessing_(Wizard_Spell)",
+    name: "Morphail's Unholy Blessing",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Motion_(Wizard_Spell)",
+    name: "Motion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Move_Dune_(Wizard_Spell)",
+    name: "Move Dune",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Move_Fire_or_Magma_(Wizard_Spell)",
+    name: "Move Fire or Magma",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Muirara's_Map_(Wizard_Spell)",
+    name: "Muirara's Map",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mummy_Creation_(Wizard_Spell)",
+    name: "Mummy Creation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mummy_Production_(Wizard_Spell)",
+    name: "Mummy Production",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Mummy_Rot_(Wizard_Spell)",
+    name: "Mummy Rot",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Nemicron's_Transference_(Wizard_Spell)",
+    name: "Nemicron's Transference",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Nulathoe's_Ninemen_(Wizard_Spell)",
+    name: "Nulathoe's Ninemen",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Enveloping_Darkness_(Wizard_Spell)",
+    name: "Nystul's Enveloping Darkness",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Nystul's_Radiant_Arch_(Wizard_Spell)",
+    name: "Nystul's Radiant Arch",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Oathbinding_(Wizard_Spell)",
+    name: "Oathbinding",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Open_the_Living_(Wizard_Spell)",
+    name: "Open the Living",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Electrical_Screen_(Wizard_Spell)",
+    name: "Otiluke's Electrical Screen",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Polar_Screen_(Wizard_Spell)",
+    name: "Otiluke's Polar Screen",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Radiant_Screen_(Wizard_Spell)",
+    name: "Otiluke's Radiant Screen",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Gong_of_Isolation_(Wizard_Spell)",
+    name: "Otto's Gong of Isolation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ozone_Cloud_(Wizard_Spell)",
+    name: "Ozone Cloud",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Passwall_(Wizard_Spell)",
+    name: "Passwall",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Passweb_(Wizard_Spell)",
+    name: "Passweb",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Persona_of_Death_(Wizard_Spell)",
+    name: "Persona of Death",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Blade_(Wizard_Spell)",
+    name: "Phantom Blade",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Physical_Invisibility_(Wizard_Spell)",
+    name: "Physical Invisibility",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Pierce_Magic_Resistance_(Wizard_Spell)",
+    name: "Pierce Magic Resistance",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Pilfer_Dweomer_(Wizard_Spell)",
+    name: "Pilfer Dweomer",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Presper's_Moonbow_(Wizard_Spell)",
+    name: "Presper's Moonbow",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Produce_Flame_(Wizard_Spell)",
+    name: "Produce Flame",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Proofing_versus_Combustion_(Wizard_Spell)",
+    name: "Proofing versus Combustion",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Acid_(Wizard_Spell)",
+    name: "Protection from Acid",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Cold,_15'_Radius_(Wizard_Spell)",
+    name: "Protection from Cold, 15' Radius",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Fiends,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Fiends, 10' Radius",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Fire,_15'_Radius_(Wizard_Spell)",
+    name: "Protection from Fire, 15' Radius",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Illusions,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Illusions, 10' Radius",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Notice_(Wizard_Spell)",
+    name: "Protection from Notice",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Petrification,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Petrification, 10' Radius",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Prying_Eyes_(Wizard_Spell)",
+    name: "Prying Eyes",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Psionic_Override_(Wizard_Spell)",
+    name: "Psionic Override",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Question_Ball_(Wizard_Spell)",
+    name: "Question Ball",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Ragestorm_(Wizard_Spell)",
+    name: "Ragestorm",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rapid_Reflexive_Response_(Wizard_Spell)",
+    name: "Rapid Reflexive Response",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Mind_Shield_(Wizard_Spell)",
+    name: "Rary's Mind Shield",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Superior_Spell_Enhancer_(Wizard_Spell)",
+    name: "Rary's Superior Spell Enhancer",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Telepathic_Bond_(Wizard_Spell)",
+    name: "Rary's Telepathic Bond",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Razorfangs_(Wizard_Spell)",
+    name: "Razorfangs",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Read_Object_(Wizard_Spell)",
+    name: "Read Object",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Reconnect_(Wizard_Spell)",
+    name: "Reconnect",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Reflection_(Wizard_Spell)",
+    name: "Reflection",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Reflectorum_Arcana_(Wizard_Spell)",
+    name: "Reflectorum Arcana",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rejuvenate_(Wizard_Spell)",
+    name: "Rejuvenate",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Revelation_of_Auras_(Wizard_Spell)",
+    name: "Revelation of Auras",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rip_(Wizard_Spell)",
+    name: "Rip",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Rusting_Grasp_(Wizard_Spell)",
+    name: "Rusting Grasp",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Safeguarding_(Wizard_Spell)",
+    name: "Safeguarding",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sacremon's_Acid_Wit_(Wizard_Spell)",
+    name: "Sacremon's Acid Wit",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sandstorm_(Wizard_Spell)",
+    name: "Sandstorm",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Satire_(Wizard_Spell)",
+    name: "Satire",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Seal_Path_(Wizard_Spell)",
+    name: "Seal Path",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Secure_(Wizard_Spell)",
+    name: "Secure",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_V_(Wizard_Spell)",
+    name: "Seduction V",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Seeming_(Wizard_Spell)",
+    name: "Seeming",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sending_(Wizard_Spell)",
+    name: "Sending",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sense_of_the_Predator_(Wizard_Spell)",
+    name: "Sense of the Predator",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Serrel's_Major_Enchantment_(Wizard_Spell)",
+    name: "Serrel's Major Enchantment",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Servant_Horde_(Wizard_Spell)",
+    name: "Servant Horde",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Door_(Wizard_Spell)",
+    name: "Shadow Door",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Dragon_(Wizard_Spell)",
+    name: "Shadow Dragon",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Hand_(Wizard_Spell)",
+    name: "Shadow Hand",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Head_(Wizard_Spell)",
+    name: "Shadow Head",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Magic_(Wizard_Spell)",
+    name: "Shadow Magic",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Play_(Wizard_Spell)",
+    name: "Shadow Play",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shadow-Form_(Wizard_Spell)",
+    name: "Shadow-Form",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shandaril's_Tracer_(Wizard_Spell)",
+    name: "Shandaril's Tracer",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shield_of_Winds_(Wizard_Spell)",
+    name: "Shield of Winds",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shipshock_(Wizard_Spell)",
+    name: "Shipshock",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shock_Shield_(Wizard_Spell)",
+    name: "Shock Shield",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shoondal's_Seeking_(Wizard_Spell)",
+    name: "Shoondal's Seeking",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Shroud_of_Flame_(Wizard_Spell)",
+    name: "Shroud of Flame",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sighing_Chain_(Wizard_Spell)",
+    name: "Sighing Chain",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Silent_Alarm_(Wizard_Spell)",
+    name: "Silent Alarm",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sinister_Surroundings_(Wizard_Spell)",
+    name: "Sinister Surroundings",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Skeletal_Spellcraft_(Wizard_Spell)",
+    name: "Skeletal Spellcraft",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sleepless_Curse_(Wizard_Spell)",
+    name: "Sleepless Curse",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Slow_Mutation_(Wizard_Spell)",
+    name: "Slow Mutation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Snilloc's_Major_Missile_(Wizard_Spell)",
+    name: "Snilloc's Major Missile",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Soul_Anchor_(Wizard_Spell)",
+    name: "Soul Anchor",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Immunity_(Wizard_Spell)",
+    name: "Spell Immunity",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Shield_(Wizard_Spell)",
+    name: "Spell Shield",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Spidercloak_Armor_(Wizard_Spell)",
+    name: "Spidercloak Armor",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Spirit_Form_(Wizard_Spell)",
+    name: "Spirit Form",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Spirit_Self_(Wizard_Spell)",
+    name: "Spirit Self",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Stabilize_Ether_(Wizard_Spell)",
+    name: "Stabilize Ether",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Steal_Energy_(Wizard_Spell)",
+    name: "Steal Energy",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Stealweb_(Wizard_Spell)",
+    name: "Stealweb",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Drill_(Wizard_Spell)",
+    name: "Stone Drill",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Shape_(Wizard_Spell)",
+    name: "Stone Shape",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Storm's_Spell_Thrust_(Wizard_Spell)",
+    name: "Storm's Spell Thrust",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Strahd's_Malefic_Meld_(Wizard_Spell)",
+    name: "Strahd's Malefic Meld",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Darsson_(Wizard_Spell)",
+    name: "Summon Darsson",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Deadly_Smog_(Wizard_Spell)",
+    name: "Summon Deadly Smog",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Shadow_(Wizard_Spell)",
+    name: "Summon Shadow",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Superheroism_(Wizard_Spell)",
+    name: "Superheroism",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Suspension_(Wizard_Spell)",
+    name: "Suspension",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Sword_of_Deception_(Wizard_Spell)",
+    name: "Sword of Deception",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Tanar'ri_Tribulation_(Wizard_Spell)",
+    name: "Tanar'ri Tribulation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Telekinesis_(Wizard_Spell)",
+    name: "Telekinesis",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_(Wizard_Spell)",
+    name: "Teleport",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Wall_(Wizard_Spell)",
+    name: "Temporal Wall",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Tempus_Fugit_(Wizard_Spell)",
+    name: "Tempus Fugit",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Destructive_Resonance_(Wizard_Spell)",
+    name: "Tenser's Destructive Resonance",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Primal_Fury_(Wizard_Spell)",
+    name: "Tenser's Primal Fury",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Teratism_II_(Wizard_Spell)",
+    name: "Teratism II",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Thornbush_Arrows_(Wizard_Spell)",
+    name: "Thornbush Arrows",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Thrice_(Wizard_Spell)",
+    name: "Thrice",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Throbbing_Bones_(Wizard_Spell)",
+    name: "Throbbing Bones",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Thultaun's_Thrust_(Wizard_Spell)",
+    name: "Thultaun's Thrust",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Thunguul's_Preservation_(Wizard_Spell)",
+    name: "Thunguul's Preservation",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Rock_to_Mud_(Wizard_Spell)",
+    name: "Transmute Rock to Mud",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Snow_to_Stone_(Wizard_Spell)",
+    name: "Transmute Snow to Stone",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Familiar_(Wizard_Spell)",
+    name: "Undead Familiar",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_III_(Wizard_Spell)",
+    name: "Undead Summoning III",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Valiancy_(Wizard_Spell)",
+    name: "Valiancy",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Vecna's_Conflagration_(Wizard_Spell)",
+    name: "Vecna's Conflagration",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Vile_Venom_(Wizard_Spell)",
+    name: "Vile Venom",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Von_Gasik's_Refusal_(Wizard_Spell)",
+    name: "Von Gasik's Refusal",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Vortex_(Wizard_Spell)",
+    name: "Vortex",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Bones_(Wizard_Spell)",
+    name: "Wall of Bones",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Force_(Wizard_Spell)",
+    name: "Wall of Force",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Iron_(Wizard_Spell)",
+    name: "Wall of Iron",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wall_of_Stone_(Wizard_Spell)",
+    name: "Wall of Stone",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Water_Blast_(Wizard_Spell)",
+    name: "Water Blast",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Water_Bomb_(Wizard_Spell)",
+    name: "Water Bomb",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Water_to_Poison_(Wizard_Spell)",
+    name: "Water to Poison",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Waveform_(Wizard_Spell)",
+    name: "Waveform",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Waves_of_Sand_(Wizard_Spell)",
+    name: "Waves of Sand",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Weakness_(Wizard_Spell)",
+    name: "Weakness",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wild_Jibe_(Wizard_Spell)",
+    name: "Wild Jibe",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wind_Carpet_(Wizard_Spell)",
+    name: "Wind Carpet",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wizard's_Oracle_(Wizard_Spell)",
+    name: "Wizard's Oracle",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wonderform_(Wizard_Spell)",
+    name: "Wonderform",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Wood_Rot_-_Wu_Jen_(Wizard_Spell)",
+    name: "Wood Rot - Wu Jen",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Xult's_Magical_Doom_(Wizard_Spell)",
+    name: "Xult's Magical Doom",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Deception_(Wizard_Spell)",
+    name: "Zala's Deception",
+  },
+  {
+    level: 5,
+    link: "https://adnd2e.fandom.com/wiki/Zone_of_Despair_(Wizard_Spell)",
+    name: "Zone of Despair",
+  },
+  // --- Level 6 Spells ---
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Accelerate_Metabolism_(Wizard_Spell)",
+    name: "Accelerate Metabolism",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Rain_(Wizard_Spell)",
+    name: "Acid Rain",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Rain_-_Red_Wizard_(Wizard_Spell)",
+    name: "Acid Rain - Red Wizard",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Age_Animal_(Wizard_Spell)",
+    name: "Age Animal",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Airy_Earth_(Wizard_Spell)",
+    name: "Airy Earth",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Breath_Weapon_(Wizard_Spell)",
+    name: "Alter Breath Weapon",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Dream_(Wizard_Spell)",
+    name: "Alter Dream",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Alvira's_Stasis_Shell_(Wizard_Spell)",
+    name: "Alvira's Stasis Shell",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Blood_(Wizard_Spell)",
+    name: "Animate Blood",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Dead_Monster_(Wizard_Spell)",
+    name: "Animate Dead Monster",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Animate_Dread_Warrior_(Wizard_Spell)",
+    name: "Animate Dread Warrior",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Anti-Magic_Aura_(Wizard_Spell)",
+    name: "Anti-Magic Aura",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Anti-Magic_Shell_(Wizard_Spell)",
+    name: "Anti-Magic Shell",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Archveult's_Skybolt_(Wizard_Spell)",
+    name: "Archveult's Skybolt",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Arrow_of_Bone_(Wizard_Spell)",
+    name: "Arrow of Bone",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Augmentation_II_(Wizard_Spell)",
+    name: "Augmentation II",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Aura_(Wizard_Spell)",
+    name: "Aura",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Aura_of_the_Sea_(Wizard_Spell)",
+    name: "Aura of the Sea",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ballant's_Stonesplit_(Wizard_Spell)",
+    name: "Ballant's Stonesplit",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Banish_Tyr-Storm_(Wizard_Spell)",
+    name: "Banish Tyr-Storm",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Barrier_Reaver_(Wizard_Spell)",
+    name: "Barrier Reaver",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Besieging_Bolt_(Wizard_Spell)",
+    name: "Bigby's Besieging Bolt",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Forceful_Hand_(Wizard_Spell)",
+    name: "Bigby's Forceful Hand",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Blackmantle_(Wizard_Spell)",
+    name: "Blackmantle",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Blade_of_Doom_(Wizard_Spell)",
+    name: "Blade of Doom",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Blending_(Wizard_Spell)",
+    name: "Blending",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Bloodstone's_Spectral_Steed_(Wizard_Spell)",
+    name: "Bloodstone's Spectral Steed",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Bonebind_(Wizard_Spell)",
+    name: "Bonebind",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Bones_of_the_Earth_(Wizard_Spell)",
+    name: "Bones of the Earth",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Breach_Defenses_(Wizard_Spell)",
+    name: "Breach Defenses",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Brightsong_(Wizard_Spell)",
+    name: "Brightsong",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Capacitor_(Wizard_Spell)",
+    name: "Capacitor",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Cathala's_Compulsion_(Wizard_Spell)",
+    name: "Cathala's Compulsion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Chain_Lightning_(Wizard_Spell)",
+    name: "Chain Lightning",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Claws_of_the_Umber_Hulk_(Wizard_Spell)",
+    name: "Claws of the Umber Hulk",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Clone_Animal_(Wizard_Spell)",
+    name: "Clone Animal",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Close_Gate_(Wizard_Spell)",
+    name: "Close Gate",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Command_Water_Spirits_(Wizard_Spell)",
+    name: "Command Water Spirits",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Conceal_Temporal_Anomaly_(Wizard_Spell)",
+    name: "Conceal Temporal Anomaly",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Animals_(Wizard_Spell)",
+    name: "Conjure Animals",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Construct_Undead_(Wizard_Spell)",
+    name: "Construct Undead",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Construction_(Wizard_Spell)",
+    name: "Construction",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Contingency_(Wizard_Spell)",
+    name: "Contingency",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Control_Weather_(Wizard_Spell)",
+    name: "Control Weather",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Control_Winds_(Wizard_Spell)",
+    name: "Control Winds",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Corpse_Host_(Wizard_Spell)",
+    name: "Corpse Host",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Create_Minor_Helm_(Wizard_Spell)",
+    name: "Create Minor Helm",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Crushing_Sphere_(Wizard_Spell)",
+    name: "Crushing Sphere",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Cubehopper_(Wizard_Spell)",
+    name: "Cubehopper",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Curse_of_Lycanthropy_(Wizard_Spell)",
+    name: "Curse of Lycanthropy",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dauntra's_Cloak_(Wizard_Spell)",
+    name: "Dauntra's Cloak",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dead_Man's_Eyes_(Wizard_Spell)",
+    name: "Dead Man's Eyes",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Death_Fog_(Wizard_Spell)",
+    name: "Death Fog",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Death_Spell_(Wizard_Spell)",
+    name: "Death Spell",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Demi-Shadow_Magic_(Wizard_Spell)",
+    name: "Demi-Shadow Magic",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Deplete_Cinnabryl_(Wizard_Spell)",
+    name: "Deplete Cinnabryl",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dilation_II_(Wizard_Spell)",
+    name: "Dilation II",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dimensional_Blade_(Wizard_Spell)",
+    name: "Dimensional Blade",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Disable_Helm_(Wizard_Spell)",
+    name: "Disable Helm",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Disintegrate_(Wizard_Spell)",
+    name: "Disintegrate",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Possession_(Wizard_Spell)",
+    name: "Dispel Possession",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dissipate_(Wizard_Spell)",
+    name: "Dissipate",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Distort_Life_III_(Wizard_Spell)",
+    name: "Distort Life III",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Double_Steel_(Wizard_Spell)",
+    name: "Double Steel",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Scales_(Wizard_Spell)",
+    name: "Dragon Scales",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Beneficent_Polymorph_(Wizard_Spell)",
+    name: "Drawmij's Beneficent Polymorph",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Merciful_Metamorphosis_(Wizard_Spell)",
+    name: "Drawmij's Merciful Metamorphosis",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Duhlark's_Animerge_(Wizard_Spell)",
+    name: "Duhlark's Animerge",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Duhlark's_Glasstrike_(Wizard_Spell)",
+    name: "Duhlark's Glasstrike",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Duhlark's_Glasstrike_Trap_(Wizard_Spell)",
+    name: "Duhlark's Glasstrike Trap",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dusts_of_Death_(Wizard_Spell)",
+    name: "Dusts of Death",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dweomer_Divest_(Wizard_Spell)",
+    name: "Dweomer Divest",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Dweomerburst_(Wizard_Spell)",
+    name: "Dweomerburst",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Enchant_an_Item_(Wizard_Spell)",
+    name: "Enchant an Item",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Energy_Transformation_(Wizard_Spell)",
+    name: "Energy Transformation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Enfeeble_(Wizard_Spell)",
+    name: "Enfeeble",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_Water_Creature_(Wizard_Spell)",
+    name: "Enhance Water Creature",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ensnarement_(Wizard_Spell)",
+    name: "Ensnarement",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Etherealness_(Wizard_Spell)",
+    name: "Etherealness",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Evaporate_Fluid_(Wizard_Spell)",
+    name: "Evaporate Fluid",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Extension_III_(Wizard_Spell)",
+    name: "Extension III",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Eyebite_(Wizard_Spell)",
+    name: "Eyebite",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_V_(Wizard_Spell)",
+    name: "Familiar Enhancer V",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Fellblade_(Wizard_Spell)",
+    name: "Fellblade",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Find_Minion_(Wizard_Spell)",
+    name: "Find Minion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Eyes_(Wizard_Spell)",
+    name: "Fire Eyes",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Flame_of_Justice_(Wizard_Spell)",
+    name: "Flame of Justice",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Flameproof_(Wizard_Spell)",
+    name: "Flameproof",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Forest's_Fiery_Constrictor_(Wizard_Spell)",
+    name: "Forest's Fiery Constrictor",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Gambler's_Luck_(Wizard_Spell)",
+    name: "Gambler's Luck",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Gauntlet_of_Teeth_(Wizard_Spell)",
+    name: "Gauntlet of Teeth",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Geas_(Wizard_Spell)",
+    name: "Geas",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ghostgrail_(Wizard_Spell)",
+    name: "Ghostgrail",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ghoul_Gauntlet_(Wizard_Spell)",
+    name: "Ghoul Gauntlet",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Glassee_(Wizard_Spell)",
+    name: "Glassee",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Globe_of_Invulnerability_(Wizard_Spell)",
+    name: "Globe of Invulnerability",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Graft_(Wizard_Spell)",
+    name: "Graft",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Sign_of_Sealing_(Wizard_Spell)",
+    name: "Greater Sign of Sealing",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Spelldream_(Wizard_Spell)",
+    name: "Greater Spelldream",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Gregori's_Shadow_(Wizard_Spell)",
+    name: "Gregori's Shadow",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Gregori's_Spell_Damper_(Wizard_Spell)",
+    name: "Gregori's Spell Damper",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Grimwald's_Graymantle_-_Lvl_6_(Wizard_Spell)",
+    name: "Grimwald's Graymantle - Lvl 6",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Guards_and_Wards_(Wizard_Spell)",
+    name: "Guards and Wards",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Heal_Self_(Wizard_Spell)",
+    name: "Heal Self",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Howl_of_Pandemonium_(Wizard_Spell)",
+    name: "Howl of Pandemonium",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Howling_Chain_(Wizard_Spell)",
+    name: "Howling Chain",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ice_Magic_(Wizard_Spell)",
+    name: "Ice Magic",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Imbue_Undead_with_Spell_Ability_(Wizard_Spell)",
+    name: "Imbue Undead with Spell Ability",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Impersonation_(Wizard_Spell)",
+    name: "Impersonation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Haste_(Wizard_Spell)",
+    name: "Improved Haste",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Slow_(Wizard_Spell)",
+    name: "Improved Slow",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Inscribe_(Wizard_Spell)",
+    name: "Inscribe",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Itembane_(Wizard_Spell)",
+    name: "Itembane",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Invisible_Stalker_(Wizard_Spell)",
+    name: "Invisible Stalker",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Invulnerability_to_Magical_Weapons_(Wizard_Spell)",
+    name: "Invulnerability to Magical Weapons",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Isolate_Templar_(Wizard_Spell)",
+    name: "Isolate Templar",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Javelin_(Wizard_Spell)",
+    name: "Javelin",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Jonstal's_Improved_Double_Wizardry_(Wizard_Spell)",
+    name: "Jonstal's Improved Double Wizardry",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Legend_Lore_(Wizard_Spell)",
+    name: "Legend Lore",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lich_Touch_(Wizard_Spell)",
+    name: "Lich Touch",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Rod_-_Polyhedron_(Wizard_Spell)",
+    name: "Lightning Rod - Polyhedron",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lightningcloak_(Wizard_Spell)",
+    name: "Lightningcloak",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lorloveim's_Shadowy_Transformation_(Wizard_Spell)",
+    name: "Lorloveim's Shadowy Transformation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lower_Water_(Wizard_Spell)",
+    name: "Lower Water",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Lusus_Naturae_(Wizard_Spell)",
+    name: "Lusus Naturae",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Manager_(Wizard_Spell)",
+    name: "Magic Manager",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Magical_Susceptibility_(Wizard_Spell)",
+    name: "Magical Susceptibility",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Maintain_(Wizard_Spell)",
+    name: "Maintain",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Suggestion_(Wizard_Spell)",
+    name: "Mass Suggestion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mempter's_Barrier_(Wizard_Spell)",
+    name: "Mempter's Barrier",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Metal_to_Rust_(Wizard_Spell)",
+    name: "Metal to Rust",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mirage_Arcana_(Wizard_Spell)",
+    name: "Mirage Arcana",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mislead_(Wizard_Spell)",
+    name: "Mislead",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_IV_(Wizard_Spell)",
+    name: "Monster Summoning IV",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Faithful_Phantom_Guardian_(Wizard_Spell)",
+    name: "Mordenkainen's Faithful Phantom Guardian",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Lucubration_(Wizard_Spell)",
+    name: "Mordenkainen's Lucubration",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Move_Earth_(Wizard_Spell)",
+    name: "Move Earth",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Multi-Lock_(Wizard_Spell)",
+    name: "Multi-Lock",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Murlynd's_Void_(Wizard_Spell)",
+    name: "Murlynd's Void",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/No_Breath_(Wizard_Spell)",
+    name: "No Breath",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Obold's_Brightness_(Wizard_Spell)",
+    name: "Obold's Brightness",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Diamond_Screen_(Wizard_Spell)",
+    name: "Otiluke's Diamond Screen",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Excruciating_Screen_(Wizard_Spell)",
+    name: "Otiluke's Excruciating Screen",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Freezing_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Freezing Sphere",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Orb_of_Containment_(Wizard_Spell)",
+    name: "Otiluke's Orb of Containment",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Pain_(Wizard_Spell)",
+    name: "Pain",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Paradox_(Wizard_Spell)",
+    name: "Paradox",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Part_Sand_(Wizard_Spell)",
+    name: "Part Sand",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Part_Water_(Wizard_Spell)",
+    name: "Part Water",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Permanent_Illusion_(Wizard_Spell)",
+    name: "Permanent Illusion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Phantasmagoria_(Wizard_Spell)",
+    name: "Phantasmagoria",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Phantom_Stalker_(Wizard_Spell)",
+    name: "Phantom Stalker",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Silence_(Wizard_Spell)",
+    name: "Power Word, Silence",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Prepare_Enchantment_(Wizard_Spell)",
+    name: "Prepare Enchantment",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Prismatic_Eye_(Wizard_Spell)",
+    name: "Prismatic Eye",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Programmed_Illusion_(Wizard_Spell)",
+    name: "Programmed Illusion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Project_Image_(Wizard_Spell)",
+    name: "Project Image",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Project_Shadow_(Wizard_Spell)",
+    name: "Project Shadow",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Electricity,_10'_Radius_(Wizard_Spell)",
+    name: "Protection from Electricity, 10' Radius",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Psychic_Drain_(Wizard_Spell)",
+    name: "Psychic Drain",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Psychic_Reversal_(Wizard_Spell)",
+    name: "Psychic Reversal",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Protection_from_Scrying_(Wizard_Spell)",
+    name: "Rary's Protection from Scrying",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Urgent_Utterance_(Wizard_Spell)",
+    name: "Rary's Urgent Utterance",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Recharge_(Wizard_Spell)",
+    name: "Recharge",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Reconstruction_(Wizard_Spell)",
+    name: "Reconstruction",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Reincarnation_(Wizard_Spell)",
+    name: "Reincarnation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Remove_Life_Level_(Wizard_Spell)",
+    name: "Remove Life Level",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Repulsion_(Wizard_Spell)",
+    name: "Repulsion",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Revelation_(Wizard_Spell)",
+    name: "Revelation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Reverse_Missile_(Wizard_Spell)",
+    name: "Reverse Missile",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ring_of_Disintegration_(Wizard_Spell)",
+    name: "Ring of Disintegration",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Salamander's_Seismic_Seizure_(Wizard_Spell)",
+    name: "Salamander's Seismic Seizure",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Shroud_(Wizard_Spell)",
+    name: "Sand Shroud",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_VI_(Wizard_Spell)",
+    name: "Seduction VI",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Seek_Teleporter_(Wizard_Spell)",
+    name: "Seek Teleporter",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Seizure_(Wizard_Spell)",
+    name: "Seizure",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Sense_Treason_(Wizard_Spell)",
+    name: "Sense Treason",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Serrel's_Confining_Sphere_(Wizard_Spell)",
+    name: "Serrel's Confining Sphere",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shades_(Wizard_Spell)",
+    name: "Shades",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Gauntlet_(Wizard_Spell)",
+    name: "Shadow Gauntlet",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Shroud_(Wizard_Spell)",
+    name: "Shadow Shroud",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Speak_(Wizard_Spell)",
+    name: "Shadow Speak",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Veil_(Wizard_Spell)",
+    name: "Shadow Veil",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shadowsteal_(Wizard_Spell)",
+    name: "Shadowsteal",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Shatterbone_(Wizard_Spell)",
+    name: "Shatterbone",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Ship_of_Fools_(Wizard_Spell)",
+    name: "Ship of Fools",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Sidhelien_Mien_(Wizard_Spell)",
+    name: "Sidhelien Mien",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Skeletal_Bride_(Wizard_Spell)",
+    name: "Skeletal Bride",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Speak_with_Dead_-_Wu_Jen_(Wizard_Spell)",
+    name: "Speak with Dead - Wu Jen",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Guard_-_Lvl_6_(Wizard_Spell)",
+    name: "Spectral Guard - Lvl 6",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Mirror_(Wizard_Spell)",
+    name: "Spell Mirror",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Reflection_(Wizard_Spell)",
+    name: "Spell Reflection",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Spirit_Wrack_(Wizard_Spell)",
+    name: "Spirit Wrack",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Starharp_(Wizard_Spell)",
+    name: "Starharp",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Static_Field_(Wizard_Spell)",
+    name: "Static Field",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Barrier_(Wizard_Spell)",
+    name: "Stone Barrier",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Stone_to_Flesh_(Wizard_Spell)",
+    name: "Stone to Flesh",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Fire_Dragons_(Wizard_Spell)",
+    name: "Summon Fire Dragons",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Least_Yugoloth_(Wizard_Spell)",
+    name: "Summon Least Yugoloth",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Spider_(Wizard_Spell)",
+    name: "Summon Spider",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Wind_Dragons_(Wizard_Spell)",
+    name: "Summon Wind Dragons",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Superior_Magnetism_(Wizard_Spell)",
+    name: "Superior Magnetism",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Suppress_Bloodline_(Wizard_Spell)",
+    name: "Suppress Bloodline",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Suspension_(Wizard_Spell)",
+    name: "Suspension",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Sword_of_Darkness_(Wizard_Spell)",
+    name: "Sword of Darkness",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Tattoo_of_Power_(Wizard_Spell)",
+    name: "Tattoo of Power",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_Dead_(Wizard_Spell)",
+    name: "Teleport Dead",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_Other_(Wizard_Spell)",
+    name: "Teleport Other",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Fortunes_of_War_(Wizard_Spell)",
+    name: "Tenser's Fortunes of War",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Tenser's_Transformation_(Wizard_Spell)",
+    name: "Tenser's Transformation",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Tentacles_(Wizard_Spell)",
+    name: "Tentacles",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Tower_of_Mental_Resistance_(Wizard_Spell)",
+    name: "Tower of Mental Resistance",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Bone_to_Steel_(Wizard_Spell)",
+    name: "Transmute Bone to Steel",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Transmute_Water_to_Dust_(Wizard_Spell)",
+    name: "Transmute Water to Dust",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Trollish_Fortitude_(Wizard_Spell)",
+    name: "Trollish Fortitude",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/True_Name_-_Lvl_6_(Wizard_Spell)",
+    name: "True Name - Lvl 6",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/True_Seeing_(Wizard_Spell)",
+    name: "True Seeing",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Turn_Lightning_(Wizard_Spell)",
+    name: "Turn Lightning",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Turnshadow_(Wizard_Spell)",
+    name: "Turnshadow",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Regeneration_(Wizard_Spell)",
+    name: "Undead Regeneration",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_IV_(Wizard_Spell)",
+    name: "Undead Summoning IV",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Up_the_Abyssal_Walls_(Wizard_Spell)",
+    name: "Up the Abyssal Walls",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Vampire_Dagger_(Wizard_Spell)",
+    name: "Vampire Dagger",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Vampiric_Lash_(Wizard_Spell)",
+    name: "Vampiric Lash",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Veil_(Wizard_Spell)",
+    name: "Veil",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Vessel_(Wizard_Spell)",
+    name: "Vessel",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wall_with_No_Doors_(Wizard_Spell)",
+    name: "Wall with No Doors",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wards_of_Defense_(Wizard_Spell)",
+    name: "Wards of Defense",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Warp_Stone_(Wizard_Spell)",
+    name: "Warp Stone",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Watchware,_30'_Radius_(Wizard_Spell)",
+    name: "Watchware, 30' Radius",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Weapon_Return_(Wizard_Spell)",
+    name: "Weapon Return",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wildshield_(Wizard_Spell)",
+    name: "Wildshield",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wildstrike_(Wizard_Spell)",
+    name: "Wildstrike",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wizard_Seal_(Wizard_Spell)",
+    name: "Wizard Seal",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Wood_Rot_(Wizard_Spell)",
+    name: "Wood Rot",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Worship_(Wizard_Spell)",
+    name: "Worship",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Worship_-_Old_Empire_(Wizard_Spell)",
+    name: "Worship - Old Empire",
+  },
+  {
+    level: 6,
+    link: "https://adnd2e.fandom.com/wiki/Zala's_Disruption_(Wizard_Spell)",
+    name: "Zala's Disruption",
+  },
+  // --- Level 7 Spells ---
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Acid_Storm_(Wizard_Spell)",
+    name: "Acid Storm",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Reality_(Wizard_Spell)",
+    name: "Alter Reality",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Alustriel's_Improved_Mantle_(Wizard_Spell)",
+    name: "Alustriel's Improved Mantle",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Alustriel's_Sword_of_Stars_(Wizard_Spell)",
+    name: "Alustriel's Sword of Stars",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Amorphous_Blob_(Wizard_Spell)",
+    name: "Amorphous Blob",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Anticipation_(Wizard_Spell)",
+    name: "Anticipation",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Azuth's_Spell_Shield_(Wizard_Spell)",
+    name: "Azuth's Spell Shield",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Banishment_(Wizard_Spell)",
+    name: "Banishment",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Basilisk_Glare_(Wizard_Spell)",
+    name: "Basilisk Glare",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Grasping_Hand_(Wizard_Spell)",
+    name: "Bigby's Grasping Hand",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Bloodstars_(Wizard_Spell)",
+    name: "Bloodstars",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Bloodstone's_Frightful_Joining_(Wizard_Spell)",
+    name: "Bloodstone's Frightful Joining",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Body_Outside_Body_(Wizard_Spell)",
+    name: "Body Outside Body",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Javelin_(Wizard_Spell)",
+    name: "Bone Javelin",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Cacofiend_(Wizard_Spell)",
+    name: "Cacofiend",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Call_Spirit_(Wizard_Spell)",
+    name: "Call Spirit",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Charm_Plants_(Wizard_Spell)",
+    name: "Charm Plants",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Chromatic_Blade_-_Lvl_7_(Wizard_Spell)",
+    name: "Chromatic Blade - Lvl 7",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Circle_of_Protection_(Wizard_Spell)",
+    name: "Circle of Protection",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Cleansing_Flame_(Wizard_Spell)",
+    name: "Cleansing Flame",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Command_Element_(Wizard_Spell)",
+    name: "Command Element",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Commune_with_Greater_Spirit_(Wizard_Spell)",
+    name: "Commune with Greater Spirit",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Greater_Elemental_(Wizard_Spell)",
+    name: "Conjure Greater Elemental",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Conjure_Greater_Elemental_-_Athas_(Wizard_Spell)",
+    name: "Conjure Greater Elemental - Athas",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Consume_Knowledge_(Wizard_Spell)",
+    name: "Consume Knowledge",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Contact_Archetype_(Wizard_Spell)",
+    name: "Contact Archetype",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Control_Lycanthrope_(Wizard_Spell)",
+    name: "Control Lycanthrope",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Control_Undead_(Wizard_Spell)",
+    name: "Control Undead",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Create_Crypt_Thing_(Wizard_Spell)",
+    name: "Create Crypt Thing (Wizard Spell)",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Create_Major_Helm_(Wizard_Spell)",
+    name: "Create Major Helm",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Create_Shade_-_Al-Qadim_(Wizard_Spell)",
+    name: "Create Shade - Al-Qadim",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Create_Soundstaff_(Wizard_Spell)",
+    name: "Create Soundstaff",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Cyclone_Chariot_(Wizard_Spell)",
+    name: "Cyclone Chariot",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Daltim's_Proof_Against_Fire_(Wizard_Spell)",
+    name: "Daltim's Proof Against Fire",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Delayed_Blast_Fireball_(Wizard_Spell)",
+    name: "Delayed Blast Fireball",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Descent_into_Madness_(Wizard_Spell)",
+    name: "Descent into Madness",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Destroy_Magedoom_(Wizard_Spell)",
+    name: "Destroy Magedoom",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Dimensional_Fog_(Wizard_Spell)",
+    name: "Dimensional Fog",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Discern_(Wizard_Spell)",
+    name: "Discern",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Doom_Legion_(Wizard_Spell)",
+    name: "Doom Legion",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Door_of_Death_(Wizard_Spell)",
+    name: "Door of Death",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Double_Dweomer_(Wizard_Spell)",
+    name: "Double Dweomer",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Dragon_Breath_(Wizard_Spell)",
+    name: "Dragon Breath",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Draincone_(Wizard_Spell)",
+    name: "Draincone",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Drawmij's_Instant_Summons_(Wizard_Spell)",
+    name: "Drawmij's Instant Summons",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Duo-Dimension_(Wizard_Spell)",
+    name: "Duo-Dimension",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Electric_Bow_(Wizard_Spell)",
+    name: "Electric Bow",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Servant_(Wizard_Spell)",
+    name: "Elemental Servant",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Enhanced_Empathy_(Wizard_Spell)",
+    name: "Enhanced Empathy",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Ethereal_Walk_(Wizard_Spell)",
+    name: "Ethereal Walk",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Exalted_Eye_(Wizard_Spell)",
+    name: "Exalted Eye",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Faerie_Sword_(Wizard_Spell)",
+    name: "Faerie Sword",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_VI_(Wizard_Spell)",
+    name: "Familiar Enhancer VI",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Find_the_Path_(Wizard_Spell)",
+    name: "Find the Path",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Finger_of_Death_(Wizard_Spell)",
+    name: "Finger of Death",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Flame_Chase_(Wizard_Spell)",
+    name: "Flame Chase",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Forcecage_(Wizard_Spell)",
+    name: "Forcecage",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Gemjump_(Wizard_Spell)",
+    name: "Gemjump",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Greater_Etherealness_(Wizard_Spell)",
+    name: "Greater Etherealness",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Guardian_Mantle_(Wizard_Spell)",
+    name: "Guardian Mantle",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Gullship_(Wizard_Spell)",
+    name: "Gullship",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Harm_(Wizard_Spell)",
+    name: "Harm",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Hatch_the_Stone_from_the_Egg_(Wizard_Spell)",
+    name: "Hatch the Stone from the Egg",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Hold_Golem_(Wizard_Spell)",
+    name: "Hold Golem",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Hornung's_Surge_Selector_(Wizard_Spell)",
+    name: "Hornung's Surge Selector",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Howling_Horror_(Wizard_Spell)",
+    name: "Howling Horror",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Ice_Blight_(Wizard_Spell)",
+    name: "Ice Blight",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Improved_Thrice_(Wizard_Spell)",
+    name: "Improved Thrice",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Incendiary_Entrapment_(Wizard_Spell)",
+    name: "Incendiary Entrapment",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Intensify_Summoning_(Wizard_Spell)",
+    name: "Intensify Summoning",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Item_Protector_(Wizard_Spell)",
+    name: "Item Protector",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Janga's_Jewel_(Wizard_Spell)",
+    name: "Janga's Jewel",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Khelben's_Warding_Whip_(Wizard_Spell)",
+    name: "Khelben's Warding Whip",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Lifeproof_(Wizard_Spell)",
+    name: "Lifeproof",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Limited_Wish_(Wizard_Spell)",
+    name: "Limited Wish",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Love_(Wizard_Spell)",
+    name: "Love",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Lullaby_(Wizard_Spell)",
+    name: "Lullaby",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Lysander's_Bladestorm_(Wizard_Spell)",
+    name: "Lysander's Bladestorm",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Major_Domination_(Wizard_Spell)",
+    name: "Major Domination",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Malec-Keth's_Flame_Fist_(Wizard_Spell)",
+    name: "Malec-Keth's Flame Fist",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Malraz's_Dramatic_Death_(Wizard_Spell)",
+    name: "Malraz's Dramatic Death",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Manor's_Mind_Vision_(Wizard_Spell)",
+    name: "Manor's Mind Vision",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Invisibility_(Wizard_Spell)",
+    name: "Mass Invisibility",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Teleport_(Wizard_Spell)",
+    name: "Mass Teleport",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mindspin_(Wizard_Spell)",
+    name: "Mindspin",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Misty_Summons_(Wizard_Spell)",
+    name: "Misty Summons",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_V_(Wizard_Spell)",
+    name: "Monster Summoning V",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Magnificent_Mansion_(Wizard_Spell)",
+    name: "Mordenkainen's Magnificent Mansion",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Penultimate_Cogitation_(Wizard_Spell)",
+    name: "Mordenkainen's Penultimate Cogitation",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Sword_(Wizard_Spell)",
+    name: "Mordenkainen's Sword",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Negative_Plane_Protection_(Wizard_Spell)",
+    name: "Negative Plane Protection",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Nerve_Dance_(Wizard_Spell)",
+    name: "Nerve Dance",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Neutralize_Gas_(Wizard_Spell)",
+    name: "Neutralize Gas",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Nybor's_Joyful_Voyage_(Wizard_Spell)",
+    name: "Nybor's Joyful Voyage",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Nybor's_Stern_Reproof_(Wizard_Spell)",
+    name: "Nybor's Stern Reproof",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Obedience_(Wizard_Spell)",
+    name: "Obedience",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Ongeldyn's_Fist_(Wizard_Spell)",
+    name: "Ongeldyn's Fist",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Open_the_Gray_Portal_(Wizard_Spell)",
+    name: "Open the Gray Portal",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Death_Screen_(Wizard_Spell)",
+    name: "Otiluke's Death Screen",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Fire_and_Ice_(Wizard_Spell)",
+    name: "Otiluke's Fire and Ice",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Siege_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Siege Sphere",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Paralyzing_Field_(Wizard_Spell)",
+    name: "Paralyzing Field",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Paralyzing_Pit_(Wizard_Spell)",
+    name: "Paralyzing Pit",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Persistence_(Wizard_Spell)",
+    name: "Persistence",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Petrifying_Gaze_(Wizard_Spell)",
+    name: "Petrifying Gaze",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Phase_Door_(Wizard_Spell)",
+    name: "Phase Door",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Planar_Door_(Wizard_Spell)",
+    name: "Planar Door",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Stun_(Wizard_Spell)",
+    name: "Power Word, Stun",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Prismal's_Revenge_(Wizard_Spell)",
+    name: "Prismal's Revenge",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Prismal's_Reversal_(Wizard_Spell)",
+    name: "Prismal's Reversal",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Prismatic_Spray_(Wizard_Spell)",
+    name: "Prismatic Spray",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Hunger_and_Thirst_-_Lvl_7_(Wizard_Spell)",
+    name: "Protection from Hunger and Thirst - Lvl 7",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Rary's_Plane_Truth_(Wizard_Spell)",
+    name: "Rary's Plane Truth",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Reanimation_(Wizard_Spell)",
+    name: "Reanimation",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Rebinding_(Wizard_Spell)",
+    name: "Rebinding",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Repel_Undead_(Wizard_Spell)",
+    name: "Repel Undead",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Resist_Injury_(Wizard_Spell)",
+    name: "Resist Injury",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Resist_Magic_(Wizard_Spell)",
+    name: "Resist Magic",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Return_to_Sand_(Wizard_Spell)",
+    name: "Return to Sand",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Reverse_Gravity_(Wizard_Spell)",
+    name: "Reverse Gravity",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Rodbane_(Wizard_Spell)",
+    name: "Rodbane",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Ruby_Ray_of_Reversal_(Wizard_Spell)",
+    name: "Ruby Ray of Reversal",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Gems_(Wizard_Spell)",
+    name: "Sand Gems",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Sands_of_Time_(Wizard_Spell)",
+    name: "Sands of Time",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_VII_(Wizard_Spell)",
+    name: "Seduction VII",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Semipermanency_(Wizard_Spell)",
+    name: "Semipermanency",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Sequester_(Wizard_Spell)",
+    name: "Sequester",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Seven-Eyes_(Wizard_Spell)",
+    name: "Seven-Eyes",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Walk_(Wizard_Spell)",
+    name: "Shadow Walk",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Shadowcat_(Wizard_Spell)",
+    name: "Shadowcat",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Simulacrum_(Wizard_Spell)",
+    name: "Simulacrum",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Spectral_Guard_(Wizard_Spell)",
+    name: "Spectral Guard",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Drain_(Wizard_Spell)",
+    name: "Spell Drain",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Shape_(Wizard_Spell)",
+    name: "Spell Shape",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Turning_(Wizard_Spell)",
+    name: "Spell Turning",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Spelltrap_(Wizard_Spell)",
+    name: "Spelltrap",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Sprites_(Wizard_Spell)",
+    name: "Sprites",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Statue_(Wizard_Spell)",
+    name: "Statue",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Steal_Enchantment_(Wizard_Spell)",
+    name: "Steal Enchantment",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Stealspell_(Wizard_Spell)",
+    name: "Stealspell",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Stone_Tell_(Wizard_Spell)",
+    name: "Stone Tell",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Strahd's_Frightful_Joining_(Wizard_Spell)",
+    name: "Strahd's Frightful Joining",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Suffocate_(Wizard_Spell)",
+    name: "Suffocate",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Ice_Mephits_(Wizard_Spell)",
+    name: "Summon Ice Mephits",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Sha'ir_(Wizard_Spell)",
+    name: "Summon Sha'ir",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Wind_(Wizard_Spell)",
+    name: "Summon Wind",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Sun_Stone_(Wizard_Spell)",
+    name: "Sun Stone",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Syluné's_Secret_(Wizard_Spell)",
+    name: "Syluné's Secret",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Syluné's_Streaking_Meteor_(Wizard_Spell)",
+    name: "Syluné's Streaking Meteor",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_Without_Error_(Wizard_Spell)",
+    name: "Teleport Without Error",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Eye_(Wizard_Spell)",
+    name: "Temporal Eye",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Teratism_III_(Wizard_Spell)",
+    name: "Teratism III",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/The_Curse_of_Forgetfulness_(Wizard_Spell)",
+    name: "The Curse of Forgetfulness",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/The_Simbul's_Spell_Sequencer_(Wizard_Spell)",
+    name: "The Simbul's Spell Sequencer",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/The_Simbul's_Spell_Supremacy_(Wizard_Spell)",
+    name: "The Simbul's Spell Supremacy",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/The_Simbul's_Synostodweomer_(Wizard_Spell)",
+    name: "The Simbul's Synostodweomer",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Third_Eye_(Wizard_Spell)",
+    name: "Third Eye",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Time_Loop_(Wizard_Spell)",
+    name: "Time Loop",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Timed_Stasis_(Wizard_Spell)",
+    name: "Timed Stasis",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Tool_(Wizard_Spell)",
+    name: "Tool",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Torment_(Wizard_Spell)",
+    name: "Torment",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Translocation_Shift_(Wizard_Spell)",
+    name: "Translocation Shift",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Trick_(Wizard_Spell)",
+    name: "Trick",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/True_Name_(Wizard_Spell)",
+    name: "True Name",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Tymessul's_Planar_Pacifier_(Wizard_Spell)",
+    name: "Tymessul's Planar Pacifier",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_V_(Wizard_Spell)",
+    name: "Undead Summoning V",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Vanish_(Wizard_Spell)",
+    name: "Vanish",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Velsharoon's_Death_Pact_(Wizard_Spell)",
+    name: "Velsharoon's Death Pact",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Vipergout_(Wizard_Spell)",
+    name: "Vipergout",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Vision_(Wizard_Spell)",
+    name: "Vision",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Vision_Crystal_(Wizard_Spell)",
+    name: "Vision Crystal",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wandweird_(Wizard_Spell)",
+    name: "Wandweird",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Ward's_Revenge_(Wizard_Spell)",
+    name: "Ward's Revenge",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wardmist_(Wizard_Spell)",
+    name: "Wardmist",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Watchful_Eye_(Wizard_Spell)",
+    name: "Watchful Eye",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Water_Form_(Wizard_Spell)",
+    name: "Water Form",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Watery_Adaption_(Wizard_Spell)",
+    name: "Watery Adaption",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Weirdshield_(Wizard_Spell)",
+    name: "Weirdshield",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wesley's_Delayed_Damage_(Wizard_Spell)",
+    name: "Wesley's Delayed Damage",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Whirlpool_(Wizard_Spell)",
+    name: "Whirlpool",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wing_Gifting_(Wizard_Spell)",
+    name: "Wing Gifting",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wings_-_Lvl_7_(Wizard_Spell)",
+    name: "Wings - Lvl 7",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Withering_Palm_(Wizard_Spell)",
+    name: "Withering Palm",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Wound_Conferral_(Wizard_Spell)",
+    name: "Wound Conferral",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Younger_(Wizard_Spell)",
+    name: "Younger",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Zombie_Double_(Wizard_Spell)",
+    name: "Zombie Double",
+  },
+  {
+    level: 7,
+    link: "https://adnd2e.fandom.com/wiki/Zone_Perilous_(Wizard_Spell)",
+    name: "Zone Perilous",
+  },
+  // --- Level 8 Spells ---
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Abi-Dalzim's_Horrid_Wilting_(Wizard_Spell)",
+    name: "Abi-Dalzim's Horrid Wilting",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Accelerate_Lifeline_(Wizard_Spell)",
+    name: "Accelerate Lifeline",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Afterclap_(Wizard_Spell)",
+    name: "Afterclap",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Air_Spiral_(Wizard_Spell)",
+    name: "Air Spiral",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Airball_(Wizard_Spell)",
+    name: "Airball",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Airboat_(Wizard_Spell)",
+    name: "Airboat",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Alter_Beast_(Wizard_Spell)",
+    name: "Alter Beast",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Analyze_Dweomer_(Wizard_Spell)",
+    name: "Analyze Dweomer",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Antipathy-Sympathy_(Wizard_Spell)",
+    name: "Antipathy-Sympathy",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Avissar's_Flaming_Weapon_(Wizard_Spell)",
+    name: "Avissar's Flaming Weapon",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Clenched_Fist_(Wizard_Spell)",
+    name: "Bigby's Clenched Fist",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Most_Excellent_Force_Sculpture_(Wizard_Spell)",
+    name: "Bigby's Most Excellent Force Sculpture",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Binding_(Wizard_Spell)",
+    name: "Binding",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Blackstaff_(Wizard_Spell)",
+    name: "Blackstaff",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Block_Advancement_(Wizard_Spell)",
+    name: "Block Advancement",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Body_Link_(Wizard_Spell)",
+    name: "Body Link",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Bombard_(Wizard_Spell)",
+    name: "Bombard",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Bone_Blade_(Wizard_Spell)",
+    name: "Bone Blade",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Bonemelt_(Wizard_Spell)",
+    name: "Bonemelt",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Brain_Spider_(Wizard_Spell)",
+    name: "Brain Spider",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Call_-_Wu_Jen_(Wizard_Spell)",
+    name: "Call - Wu Jen",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Call_of_Despair_(Wizard_Spell)",
+    name: "Call of Despair",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Change_Form_(Wizard_Spell)",
+    name: "Change Form",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Circle_of_Blindness_(Wizard_Spell)",
+    name: "Circle of Blindness",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Cleanse_Water_(Wizard_Spell)",
+    name: "Cleanse Water",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Clone_(Wizard_Spell)",
+    name: "Clone",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Cloud_Trapeze_(Wizard_Spell)",
+    name: "Cloud Trapeze",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Cold_Curtain_(Wizard_Spell)",
+    name: "Cold Curtain",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Collapse_Portal_(Wizard_Spell)",
+    name: "Collapse Portal",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Conversion_(Wizard_Spell)",
+    name: "Conversion",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Create_Atmosphere_(Wizard_Spell)",
+    name: "Create Atmosphere",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Create_Death_Tyrant_-_Beholder_(Wizard_Spell)",
+    name: "Create Death Tyrant - Beholder",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Create_Spectral_Wizard_(Wizard_Spell)",
+    name: "Create Spectral Wizard",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Create_Tree_of_Life_(Wizard_Spell)",
+    name: "Create Tree of Life",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Create_Watchghost_(Wizard_Spell)",
+    name: "Create Watchghost",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Death_Link_(Wizard_Spell)",
+    name: "Death Link",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Death_Matrix_(Wizard_Spell)",
+    name: "Death Matrix",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Death_Shroud_(Wizard_Spell)",
+    name: "Death Shroud",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Death_Spider_(Wizard_Spell)",
+    name: "Death Spider",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Deathbolt_(Wizard_Spell)",
+    name: "Deathbolt",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Deathshroud_(Wizard_Spell)",
+    name: "Deathshroud",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Deep_Delve_(Wizard_Spell)",
+    name: "Deep Delve",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Defoliate_(Wizard_Spell)",
+    name: "Defoliate",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Demand_(Wizard_Spell)",
+    name: "Demand",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Demiplane_Seed_(Wizard_Spell)",
+    name: "Demiplane Seed",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Destroy_Minor_Helm_(Wizard_Spell)",
+    name: "Destroy Minor Helm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Devastate_(Wizard_Spell)",
+    name: "Devastate",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Dispel_Enchantment_(Wizard_Spell)",
+    name: "Dispel Enchantment",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Disrupt_Dominion_(Wizard_Spell)",
+    name: "Disrupt Dominion",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Dragonrage_(Wizard_Spell)",
+    name: "Dragonrage",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Dweomerdeny_(Wizard_Spell)",
+    name: "Dweomerdeny",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Transmogrification_(Wizard_Spell)",
+    name: "Elemental Transmogrification",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Endless_Slumber_(Wizard_Spell)",
+    name: "Endless Slumber",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Enhance_(Wizard_Spell)",
+    name: "Enhance",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Evolve_(Wizard_Spell)",
+    name: "Evolve",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Exchange_Wounds_(Wizard_Spell)",
+    name: "Exchange Wounds",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_VII_(Wizard_Spell)",
+    name: "Familiar Enhancer VII",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Fear_Ward_(Wizard_Spell)",
+    name: "Fear Ward",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Finding_the_Center_(Wizard_Spell)",
+    name: "Finding the Center",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Fire_Storm_(Wizard_Spell)",
+    name: "Fire Storm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Flensing_(Wizard_Spell)",
+    name: "Flensing",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Gateway_(Wizard_Spell)",
+    name: "Gateway",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Ghoul_Lattice_(Wizard_Spell)",
+    name: "Ghoul Lattice",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Giant_Size_(Wizard_Spell)",
+    name: "Giant Size",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Glassteel_(Wizard_Spell)",
+    name: "Glassteel",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Graft_Item_(Wizard_Spell)",
+    name: "Graft Item",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Graft_Limb_(Wizard_Spell)",
+    name: "Graft Limb (Formerly Graft Flesh)",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Great_Shout_(Wizard_Spell)",
+    name: "Great Shout",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Gunther's_Kaleidoscopic_Strike_(Wizard_Spell)",
+    name: "Gunther's Kaleidoscopic Strike",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Heart_of_Stone_(Wizard_Spell)",
+    name: "Heart of Stone",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Hide_Heart_(Wizard_Spell)",
+    name: "Hide Heart",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Homunculus_Shield_(Wizard_Spell)",
+    name: "Homunculus Shield",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Hornung's_Random_Dispatcher_(Wizard_Spell)",
+    name: "Hornung's Random Dispatcher",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Incendiary_Cloud_(Wizard_Spell)",
+    name: "Incendiary Cloud",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Item_Supercharger_(Wizard_Spell)",
+    name: "Item Supercharger",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Iron_Body_(Wizard_Spell)",
+    name: "Iron Body",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Khelben's_Blackstaff_(Wizard_Spell)",
+    name: "Khelben's Blackstaff",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Invisible_Blade_(Wizard_Spell)",
+    name: "Laeral's Invisible Blade",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Laruin's_Blinding_Blizzard_(Wizard_Spell)",
+    name: "Laruin's Blinding Blizzard",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Leviathan_(Wizard_Spell)",
+    name: "Leviathan",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Life_Force_Transfer_(Wizard_Spell)",
+    name: "Life Force Transfer",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Life_Illusion_(Wizard_Spell)",
+    name: "Life Illusion",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Lifedrain_(Wizard_Spell)",
+    name: "Lifedrain",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Ring_(Wizard_Spell)",
+    name: "Lightning Ring",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Lightning_Storm_(Wizard_Spell)",
+    name: "Lightning Storm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Magic_Drain_(Wizard_Spell)",
+    name: "Magic Drain",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Charm_(Wizard_Spell)",
+    name: "Mass Charm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Polymorph_(Wizard_Spell)",
+    name: "Mass Polymorph",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Teleport_Without_Error_(Wizard_Spell)",
+    name: "Mass Teleport Without Error",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Maze_(Wizard_Spell)",
+    name: "Maze",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mind_Blank_(Wizard_Spell)",
+    name: "Mind Blank",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mine_the_Earthspark_(Wizard_Spell)",
+    name: "Mine the Earthspark",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_VI_(Wizard_Spell)",
+    name: "Monster Summoning VI",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Mystic_Shield_(Wizard_Spell)",
+    name: "Mystic Shield",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Net_of_Stars_(Wizard_Spell)",
+    name: "Net of Stars",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Nybor's_Wrathful_Castigation_(Wizard_Spell)",
+    name: "Nybor's Wrathful Castigation",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Nymph's_Aura_(Wizard_Spell)",
+    name: "Nymph's Aura",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Obsidian_Death_(Wizard_Spell)",
+    name: "Obsidian Death",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Otiluke's_Telekinetic_Sphere_(Wizard_Spell)",
+    name: "Otiluke's Telekinetic Sphere",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Otto's_Irresistible_Dance_(Wizard_Spell)",
+    name: "Otto's Irresistible Dance",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Permanency_(Wizard_Spell)",
+    name: "Permanency",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Polymorph_Any_Object_(Wizard_Spell)",
+    name: "Polymorph Any Object",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Blind_(Wizard_Spell)",
+    name: "Power Word, Blind",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Presper's_Double_Wizardry_(Wizard_Spell)",
+    name: "Presper's Double Wizardry",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Prismatic_Wall_(Wizard_Spell)",
+    name: "Prismatic Wall",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Protection_from_Time_(Wizard_Spell)",
+    name: "Protection from Time",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Prismal's_Wormhole_(Wizard_Spell)",
+    name: "Prismal's Wormhole",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Reverse_Teleport_(Wizard_Spell)",
+    name: "Reverse Teleport",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Rising_Colossus_(Wizard_Spell)",
+    name: "Rising Colossus",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/River_of_Sand_(Wizard_Spell)",
+    name: "River of Sand",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Rusting_Touch_(Wizard_Spell)",
+    name: "Rusting Touch",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Worm_(Wizard_Spell)",
+    name: "Sand Worm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Screen_(Wizard_Spell)",
+    name: "Screen",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Seduction_VIII_(Wizard_Spell)",
+    name: "Seduction VIII",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Serten's_Spell_Immunity_(Wizard_Spell)",
+    name: "Serten's Spell Immunity",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Shadow_Form_(Wizard_Spell)",
+    name: "Shadow Form",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Shooting_Stars_(Wizard_Spell)",
+    name: "Shooting Stars",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Simulate_Skill_(Wizard_Spell)",
+    name: "Simulate Skill",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Sink_(Wizard_Spell)",
+    name: "Sink",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Skeletal_Guard_(Wizard_Spell)",
+    name: "Skeletal Guard",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Song_of_Battle_(Wizard_Spell)",
+    name: "Song of Battle",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Engine_(Wizard_Spell)",
+    name: "Spell Engine",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Spellcaster_(Wizard_Spell)",
+    name: "Spellcaster",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Spelldoor_(Wizard_Spell)",
+    name: "Spelldoor",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Statue_Form_(Wizard_Spell)",
+    name: "Statue Form",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Storm_(Wizard_Spell)",
+    name: "Storm",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Fiend_(Wizard_Spell)",
+    name: "Summon Fiend",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Summoning_Wind_(Wizard_Spell)",
+    name: "Summoning Wind",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Sunburst_-_Lvl_8_(Wizard_Spell)",
+    name: "Sunburst - Lvl 8",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Sunflare_(Wizard_Spell)",
+    name: "Sunflare",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Sunstrike_(Wizard_Spell)",
+    name: "Sunstrike",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Surelife_(Wizard_Spell)",
+    name: "Surelife",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Syluné's_Absolute_Immunity_(Wizard_Spell)",
+    name: "Syluné's Absolute Immunity",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Symbol_(Wizard_Spell)",
+    name: "Symbol",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Teleport_Block_(Wizard_Spell)",
+    name: "Teleport Block",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Freedom_(Wizard_Spell)",
+    name: "Temporal Freedom",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Temporary_Resurrection_(Wizard_Spell)",
+    name: "Temporary Resurrection",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/The_Simbul's_Skeletal_Deliquescence_(Wizard_Spell)",
+    name: "The Simbul's Skeletal Deliquescence",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Thrice_Supreme_(Wizard_Spell)",
+    name: "Thrice Supreme",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Timereaver_(Wizard_Spell)",
+    name: "Timereaver",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Transport_(Wizard_Spell)",
+    name: "Transport",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Trap_the_Soul_(Wizard_Spell)",
+    name: "Trap the Soul",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Aides_(Wizard_Spell)",
+    name: "Undead Aides",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_VI_(Wizard_Spell)",
+    name: "Undead Summoning VI",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Unleash_Monolith_(Wizard_Spell)",
+    name: "Unleash Monolith",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Unlife_(Wizard_Spell)",
+    name: "Unlife",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Wasting_(Wizard_Spell)",
+    name: "Wasting",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Waterspout_(Wizard_Spell)",
+    name: "Waterspout",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Wave_of_Death_(Wizard_Spell)",
+    name: "Wave of Death",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Web_of_Lightning_(Wizard_Spell)",
+    name: "Web of Lightning",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Whirlwind_(Wizard_Spell)",
+    name: "Whirlwind",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Wildzone_(Wizard_Spell)",
+    name: "Wildzone",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Witch's_Death_Spell_(Wizard_Spell)",
+    name: "Witch's Death Spell",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/X-Ray_Vision_(Wizard_Spell)",
+    name: "X-Ray Vision",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Year_Stealing_(Wizard_Spell)",
+    name: "Year Stealing",
+  },
+  {
+    level: 8,
+    link: "https://adnd2e.fandom.com/wiki/Youth_(Wizard_Spell)",
+    name: "Youth",
+  },
+
+  // --- Level 9 Spells ---
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Absorption_(Wizard_Spell)",
+    name: "Absorption",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Acererak's_Blackstone_(Wizard_Spell)",
+    name: "Acererak's Blackstone",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Alamanther's_Return_(Wizard_Spell)",
+    name: "Alamanther's Return",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Algarth's_Embattlement_(Wizard_Spell)",
+    name: "Algarth's Embattlement",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Allisandro's_Binding_Curse_(Wizard_Spell)",
+    name: "Allisandro's Binding Curse",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Alyssindra's_Summons_(Wizard_Spell)",
+    name: "Alyssindra's Summons",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Army_(Wizard_Spell)",
+    name: "Army",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Astral_Spell_(Wizard_Spell)",
+    name: "Astral Spell",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Avissar's_Bane_(Wizard_Spell)",
+    name: "Avissar's Bane",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Bigby's_Crushing_Hand_(Wizard_Spell)",
+    name: "Bigby's Crushing Hand",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Binding_Chain_of_Fate_(Wizard_Spell)",
+    name: "Binding Chain of Fate",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Black_Blade_of_Disaster_(Wizard_Spell)",
+    name: "Black Blade of Disaster",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Blade_in_the_Soul_(Wizard_Spell)",
+    name: "Blade in the Soul",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Blood_Drain_(Wizard_Spell)",
+    name: "Blood Drain",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Bloodline_Corruption_(Wizard_Spell)",
+    name: "Bloodline Corruption",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Brainblaze_(Wizard_Spell)",
+    name: "Brainblaze",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Call_-_Old_Empire_(Wizard_Spell)",
+    name: "Call - Old Empire",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Celestial_Army_(Wizard_Spell)",
+    name: "Celestial Army",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Chain_Contingency_(Wizard_Spell)",
+    name: "Chain Contingency",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Combine_(Wizard_Spell)",
+    name: "Combine",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Confer_(Wizard_Spell)",
+    name: "Confer",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Conflagration_(Wizard_Spell)",
+    name: "Conflagration",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Conquer_Self_(Wizard_Spell)",
+    name: "Conquer Self",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Create_Death_Tyrant_(Wizard_Spell)",
+    name: "Create Death Tyrant",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Create_Minion_(Wizard_Spell)",
+    name: "Create Minion",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Create_Shade_(Wizard_Spell)",
+    name: "Create Shade",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Create_Water_-_Al-Qadim_(Wizard_Spell)",
+    name: "Create Water - Al-Qadim",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Crystalbrittle_(Wizard_Spell)",
+    name: "Crystalbrittle",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Death_Ward_(Wizard_Spell)",
+    name: "Death Ward",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Demiplane_Decay_(Wizard_Spell)",
+    name: "Demiplane Decay",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Destroy_Major_Helm_(Wizard_Spell)",
+    name: "Destroy Major Helm",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Disintegrate_Flesh_(Wizard_Spell)",
+    name: "Disintegrate Flesh",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Dismind_(Wizard_Spell)",
+    name: "Dismind",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Disruption_(Wizard_Spell)",
+    name: "Disruption",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Dragonshape_(Wizard_Spell)",
+    name: "Dragonshape",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Draindoom_(Wizard_Spell)",
+    name: "Draindoom",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Elemental_Aura_(Wizard_Spell)",
+    name: "Elemental Aura",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Elminster's_Effulgent_Epuration_(Wizard_Spell)",
+    name: "Elminster's Effulgent Epuration",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Elminster's_Evasion_(Wizard_Spell)",
+    name: "Elminster's Evasion",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Energy_Drain_(Wizard_Spell)",
+    name: "Energy Drain",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Estate_Transference_(Wizard_Spell)",
+    name: "Estate Transference",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Eye_of_Mystra_(Wizard_Spell)",
+    name: "Eye of Mystra",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Eye_of_Power_(Wizard_Spell)",
+    name: "Eye of Power",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Familiar_Enhancer_VIII_(Wizard_Spell)",
+    name: "Familiar Enhancer VIII",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Foresight_(Wizard_Spell)",
+    name: "Foresight",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Gate_(Wizard_Spell)",
+    name: "Gate",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Gift_of_Life_(Wizard_Spell)",
+    name: "Gift of Life",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Glorious_Transmutation_(Wizard_Spell)",
+    name: "Glorious Transmutation",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Iggwilv's_Lightning_Cage_(Wizard_Spell)",
+    name: "Iggwilv's Lightning Cage",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Iggwilv's_Timeless_Sleep_(Wizard_Spell)",
+    name: "Iggwilv's Timeless Sleep",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Immunity_to_Undeath_(Wizard_Spell)",
+    name: "Immunity to Undeath",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Imprisonment_(Wizard_Spell)",
+    name: "Imprisonment",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Instant_Regeneration_(Wizard_Spell)",
+    name: "Instant Regeneration",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Intensify_Nature_(Wizard_Spell)",
+    name: "Intensify Nature",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Internal_Fire_(Wizard_Spell)",
+    name: "Internal Fire",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Juggernaut_(Wizard_Spell)",
+    name: "Juggernaut",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Khelben's_Dweomerdoom_(Wizard_Spell)",
+    name: "Khelben's Dweomerdoom",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Kiss_of_Night's_Guardian_(Wizard_Spell)",
+    name: "Kiss of Night's Guardian",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Laeral's_Crowning_Touch_(Wizard_Spell)",
+    name: "Laeral's Crowning Touch",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Land_Lock_(Wizard_Spell)",
+    name: "Land Lock",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Life_Force_Exchange_(Wizard_Spell)",
+    name: "Life Force Exchange",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Life_Water_(Wizard_Spell)",
+    name: "Life Water",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Lifeblend_(Wizard_Spell)",
+    name: "Lifeblend",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Maelstrom_(Wizard_Spell)",
+    name: "Maelstrom",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mage_Tunnel_(Wizard_Spell)",
+    name: "Mage Tunnel",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Major_Cloak_(Wizard_Spell)",
+    name: "Major Cloak",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Major_Paradox_(Wizard_Spell)",
+    name: "Major Paradox",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Blindness_(Wizard_Spell)",
+    name: "Mass Blindness",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mass_Domination_(Wizard_Spell)",
+    name: "Mass Domination",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Master_Undead_(Wizard_Spell)",
+    name: "Master Undead",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Maw_of_Chaos_(Wizard_Spell)",
+    name: "Maw of Chaos",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Meteor_Swarm_(Wizard_Spell)",
+    name: "Meteor Swarm",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Monsoon_(Wizard_Spell)",
+    name: "Monsoon",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Monster_Summoning_VII_(Wizard_Spell)",
+    name: "Monster Summoning VII",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mordenkainen's_Disjunction_(Wizard_Spell)",
+    name: "Mordenkainen's Disjunction",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mycontil's_Last_Resort_(Wizard_Spell)",
+    name: "Mycontil's Last Resort",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mylsibis's_Arcane_Contention_(Wizard_Spell)",
+    name: "Mylsibis's Arcane Contention",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Mystic_Sphere_(Wizard_Spell)",
+    name: "Mystic Sphere",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Pact_of_Darkness_(Wizard_Spell)",
+    name: "Pact of Darkness",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Phezult's_Sleep_of_Ages_(Wizard_Spell)",
+    name: "Phezult's Sleep of Ages",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Pierce_Any_Shield_(Wizard_Spell)",
+    name: "Pierce Any Shield",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Planar_Call_(Wizard_Spell)",
+    name: "Planar Call",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Banishment_(Wizard_Spell)",
+    name: "Power Word, Banishment",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Kill_(Wizard_Spell)",
+    name: "Power Word, Kill",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Power_Word,_Liquefy_(Wizard_Spell)",
+    name: "Power Word, Liquefy",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Prismatic_Sphere_(Wizard_Spell)",
+    name: "Prismatic Sphere",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Programmed_Amnesia_(Wizard_Spell)",
+    name: "Programmed Amnesia",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Reflection_-_Witch_(Wizard_Spell)",
+    name: "Reflection - Witch",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Ring_of_Swords_(Wizard_Spell)",
+    name: "Ring of Swords",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Ringweave_(Wizard_Spell)",
+    name: "Ringweave",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sammaster's_Conjunction_(Wizard_Spell)",
+    name: "Sammaster's Conjunction",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sand_Form_(Wizard_Spell)",
+    name: "Sand Form",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sandswallow_(Wizard_Spell)",
+    name: "Sandswallow",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sathrah's_Ingenious_Recollection_(Wizard_Spell)",
+    name: "Sathrah's Ingenious Recollection",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Seek_(Wizard_Spell)",
+    name: "Seek",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sever_Lifeline_(Wizard_Spell)",
+    name: "Sever Lifeline",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Shape_Change_(Wizard_Spell)",
+    name: "Shape Change",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Skycastle_(Wizard_Spell)",
+    name: "Skycastle",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Solidify_Air_(Wizard_Spell)",
+    name: "Solidify Air",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Soul_Freedom_(Wizard_Spell)",
+    name: "Soul Freedom",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Soul_Shift_(Wizard_Spell)",
+    name: "Soul Shift",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Spell_Invulnerability_(Wizard_Spell)",
+    name: "Spell Invulnerability",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Spell-Lash_(Wizard_Spell)",
+    name: "Spell-Lash",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Spellstorm_(Wizard_Spell)",
+    name: "Spellstorm",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Spellstrike_(Wizard_Spell)",
+    name: "Spellstrike",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sphere_of_Ultimate_Destruction_(Wizard_Spell)",
+    name: "Sphere of Ultimate Destruction",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sphere_of_Wonder_(Wizard_Spell)",
+    name: "Sphere of Wonder",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Stabilize_(Wizard_Spell)",
+    name: "Stabilize",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Stasis_Clone_(Wizard_Spell)",
+    name: "Stasis Clone",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Succor_(Wizard_Spell)",
+    name: "Succor",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Cosmic_Storm_(Wizard_Spell)",
+    name: "Summon Cosmic Storm",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Summon_Spirit_-_Wu_Jen_(Wizard_Spell)",
+    name: "Summon Spirit - Wu Jen",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sungate_(Wizard_Spell)",
+    name: "Sungate",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sunscream_(Wizard_Spell)",
+    name: "Sunscream",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Sunshield_(Wizard_Spell)",
+    name: "Sunshield",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tempest_(Wizard_Spell)",
+    name: "Tempest",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tempestcone_(Wizard_Spell)",
+    name: "Tempestcone",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Shell_(Wizard_Spell)",
+    name: "Temporal Shell",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Temporal_Stasis_(Wizard_Spell)",
+    name: "Temporal Stasis",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/The_Simbul's_Spell_Trigger_(Wizard_Spell)",
+    name: "The Simbul's Spell Trigger",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Thiondar's_Permanent_Anti-Magic_Field_(Wizard_Spell)",
+    name: "Thiondar's Permanent Anti-Magic Field",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tidal_Wave_(Wizard_Spell)",
+    name: "Tidal Wave",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Time_Stop_(Wizard_Spell)",
+    name: "Time Stop",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tobian's_Ultimate_Circle_(Wizard_Spell)",
+    name: "Tobian's Ultimate Circle",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Transforming_Tune_(Wizard_Spell)",
+    name: "Transforming Tune",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Triad_Gem_(Wizard_Spell)",
+    name: "Triad Gem",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tsunami_(Wizard_Spell)",
+    name: "Tsunami",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tymessul's_Cerulean_Traverse_(Wizard_Spell)",
+    name: "Tymessul's Cerulean Traverse",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tymessul's_Improved_Planar_Pacifier_(Wizard_Spell)",
+    name: "Tymessul's Improved Planar Pacifier",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Tyranteyes_(Wizard_Spell)",
+    name: "Tyranteyes",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Unbinding_(Wizard_Spell)",
+    name: "Unbinding",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Creation_(Wizard_Spell)",
+    name: "Undead Creation",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Master_(Wizard_Spell)",
+    name: "Undead Master",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Undead_Summoning_VII_(Wizard_Spell)",
+    name: "Undead Summoning VII",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Vampiric_Youthfulness_(Wizard_Spell)",
+    name: "Vampiric Youthfulness",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Vaporize_(Wizard_Spell)",
+    name: "Vaporize",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Virus_Charm_(Wizard_Spell)",
+    name: "Virus Charm",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Volcanic_Circle_(Wizard_Spell)",
+    name: "Volcanic Circle",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wail_of_the_Banshee_(Wizard_Spell)",
+    name: "Wail of the Banshee",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wastequake_(Wizard_Spell)",
+    name: "Wastequake",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Web_of_Shadows_(Wizard_Spell)",
+    name: "Web of Shadows",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Weight_Concentration_(Wizard_Spell)",
+    name: "Weight Concentration",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Weird_(Wizard_Spell)",
+    name: "Weird",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wildfire_(Wizard_Spell)",
+    name: "Wildfire",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wildwind_(Wizard_Spell)",
+    name: "Wildwind",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Windtomb_(Wizard_Spell)",
+    name: "Windtomb",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Windwar_(Wizard_Spell)",
+    name: "Windwar",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wingbind_-_Lvl_9_(Wizard_Spell)",
+    name: "Wingbind - Lvl 9",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wish_(Wizard_Spell)",
+    name: "Wish",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Witch's_Banishment_(Wizard_Spell)",
+    name: "Witch's Banishment",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Worldwalk_(Wizard_Spell)",
+    name: "Worldwalk",
+  },
+  {
+    level: 9,
+    link: "https://adnd2e.fandom.com/wiki/Wrath_of_the_Just_(Wizard_Spell)",
+    name: "Wrath of the Just",
+  },
+
+  // --- Level 10+ Spells ---
+  {
+    level: 10,
+    link: "https://adnd2e.fandom.com/wiki/Create_Mythal_(Wizard_Spell)",
+    name: "Create Mythal",
+  },
+  {
+    level: 12,
+    link: "https://adnd2e.fandom.com/wiki/Karsus's_Avatar_(Wizard_Spell)",
+    name: "Karsus's Avatar",
+  },
+];
