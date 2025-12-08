@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DndWikiSearch } from "./NavbarSearch";
 
-export default function Navbar() {
+export function Navbar() {
   const user = useAtomValue(userAtom);
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);

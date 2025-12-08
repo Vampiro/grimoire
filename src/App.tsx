@@ -6,11 +6,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { refreshCharacters } from "./firebase/characters";
 import { Route, Routes } from "react-router-dom";
-import CharactersPage from "./pages/CharactersPage";
-import CharacterPage from "./pages/CharacterPage";
-import Navbar from "./components/custom/Navbar";
-import Spell from "./components/custom/Spell";
+import { CharactersPage } from "./pages/CharactersPage";
+import { CharacterPage } from "./pages/CharacterPage";
+import { Navbar } from "./components/custom/Navbar";
 import { wizardSpells } from "./data/wizardSpells";
+import { SpellViewer } from "./components/custom/SpellViewer";
 
 function App() {
   const user = useAtomValue(userAtom);
@@ -35,7 +35,7 @@ function App() {
         </Routes>
       )}
 
-      <Spell
+      <SpellViewer
         spell={
           wizardSpells.find((s) => s.name === "Fireball") ?? wizardSpells[0]
         }

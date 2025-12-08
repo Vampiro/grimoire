@@ -3,7 +3,7 @@ import { useAtomValue } from "jotai";
 import { charactersAtom } from "./globalState";
 import { CharacterClass } from "./types/Character";
 
-export default function CharacterList() {
+export function CharacterList() {
   const characters = useAtomValue(charactersAtom);
   async function onCreate() {
     await createCharacter({
