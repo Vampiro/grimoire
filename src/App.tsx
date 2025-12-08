@@ -9,6 +9,8 @@ import { Route, Routes } from "react-router-dom";
 import CharactersPage from "./pages/CharactersPage";
 import CharacterPage from "./pages/CharacterPage";
 import Navbar from "./components/custom/Navbar";
+import Spell from "./components/custom/Spell";
+import { wizardSpells } from "./data/wizardSpells";
 
 function App() {
   const user = useAtomValue(userAtom);
@@ -32,6 +34,12 @@ function App() {
           <Route path="/character" element={<CharacterPage />} />
         </Routes>
       )}
+
+      <Spell
+        spell={
+          wizardSpells.find((s) => s.name === "Fireball") ?? wizardSpells[0]
+        }
+      />
     </div>
   );
 }
