@@ -1,4 +1,4 @@
-import { CharacterClass } from "../types/Character";
+import { CharacterClass } from "@/types/ClassProgression";
 import { Spell } from "../types/Spell";
 
 /* List of wizard spells from https://adnd2e.fandom.com/wiki/All_Wizard_Spells */

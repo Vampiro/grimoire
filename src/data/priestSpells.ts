@@ -1,5 +1,5 @@
 import { Spell } from "../types/Spell";
-import { CharacterClass } from "../types/Character";
+import { CharacterClass } from "@/types/ClassProgression";
 
 /* List of priest spells from https://adnd2e.fandom.com/wiki/All_Priest_Spells */
 export const priestSpells: Spell[] = [

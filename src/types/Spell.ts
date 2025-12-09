@@ -1,4 +1,4 @@
-import { CharacterClass } from "./Character";
+import { CharacterClass } from "./ClassProgression";
 
 /**
  * A Spell with general details and links to descriptions. Not linked to a player or spellbook.

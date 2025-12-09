@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/popover";
 import { logout, signInWithGoogle } from "@/firebase/auth";
 import { userAtom } from "@/globalState";
-import { PageRoute } from "@/types/PageRoute";
+import { PageRoute } from "@/pages/PageRoute";
 import { useAtomValue } from "jotai";
 import { User } from "lucide-react";
 import { useState } from "react";
