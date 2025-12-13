@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { useParams } from "react-router-dom";
 import {
@@ -61,6 +61,7 @@ function WizardEditor({
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const levelInputId = useId();
 
   const baseSlots = useMemo(
     () => getSlotsForCaster(CharacterClass.WIZARD, level, []),
@@ -140,17 +141,18 @@ function WizardEditor({
 
         <CardContent className="space-y-3">
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium" htmlFor="wizard-level">
+            <label className="text-sm font-medium" htmlFor={levelInputId}>
               Wizard Level
             </label>
 
             <input
-              id="wizard-level"
-              min="1"
-              max="20"
+              id={levelInputId}
+              min={1}
+              max={20}
               type="number"
               className="w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
-              value="6"
+              value={level}
+              onChange={(e) => setLevel(Number(e.target.value))}
             />
           </div>
         </CardContent>

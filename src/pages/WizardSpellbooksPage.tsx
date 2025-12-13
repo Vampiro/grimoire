@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useMemo, useState, useId } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -282,6 +282,8 @@ function SpellbookCard({
 }
 
 function AddSpellbookForm({ characterId }: { characterId: string }) {
+  const nameId = useId();
+  const pagesId = useId();
   const [name, setName] = useState("");
   const [pages, setPages] = useState("");
   const [saving, setSaving] = useState(false);
@@ -328,11 +330,11 @@ function AddSpellbookForm({ characterId }: { characterId: string }) {
       <CardContent>
         <form className="space-y-3" onSubmit={handleSubmit}>
           <div className="grid gap-2">
-            <label className="text-sm font-medium" htmlFor="spellbook-name">
+            <label className="text-sm font-medium" htmlFor={nameId}>
               Name
             </label>
             <input
-              id="spellbook-name"
+              id={nameId}
               value={name}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setName(e.target.value)
@@ -344,11 +346,11 @@ function AddSpellbookForm({ characterId }: { characterId: string }) {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-sm font-medium" htmlFor="spellbook-pages">
+            <label className="text-sm font-medium" htmlFor={pagesId}>
               Pages
             </label>
             <input
-              id="spellbook-pages"
+              id={pagesId}
               type="number"
               min={1}
               value={pages}
