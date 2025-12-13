@@ -137,19 +137,22 @@ function WizardEditor({
             Set the wizard level to drive spell slots.
           </CardDescription>
         </CardHeader>
+
         <CardContent className="space-y-3">
-          <label className="text-sm font-medium" htmlFor="wizard-level">
-            Wizard Level
-          </label>
-          <input
-            id="wizard-level"
-            type="number"
-            min={1}
-            max={20}
-            value={level}
-            onChange={(e) => setLevel(Number(e.target.value))}
-            className="w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
-          />
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium" htmlFor="wizard-level">
+              Wizard Level
+            </label>
+
+            <input
+              id="wizard-level"
+              min="1"
+              max="20"
+              type="number"
+              className="w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
+              value="6"
+            />
+          </div>
         </CardContent>
       </Card>
 
