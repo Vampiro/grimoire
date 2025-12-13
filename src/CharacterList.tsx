@@ -13,9 +13,9 @@ export function CharacterList() {
         {
           className: CharacterClass.WIZARD,
           level: 1,
-          preparedSpells: [],
+          preparedSpells: {},
           spellbooks: [],
-          spellSlots: [],
+          spellSlotModifiers: [],
         },
       ],
       revision: 1,

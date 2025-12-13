@@ -20,6 +20,7 @@ import {
   WizardClassProgression,
   CharacterClass,
 } from "@/types/ClassProgression";
+import { getPreparedSpellSlots } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
@@ -43,7 +44,8 @@ export function PreparedSpells({
   onViewSpell,
 }: PreparedSpellsProps) {
   const spells = progression.preparedSpells[spellLevel] || [];
-  const maxSlots = progression.spellSlots[spellLevel] || 0;
+  const slotMap = getPreparedSpellSlots(progression);
+  const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
 
   // Check if this is a wizard progression for showing spellbooks

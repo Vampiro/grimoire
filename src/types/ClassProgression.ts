@@ -15,6 +15,18 @@ export interface PreparedSpell {
   used: boolean;
 }
 
+/** Additional slots applied on top of base spell tables. */
+export interface SpellSlotModifier {
+  /** Target spell level; use "all" to apply to every spell level. */
+  spellLevel: number | "all";
+  /** When true, add the base slots again (effectively doubling base for that level). */
+  addBase: boolean;
+  /** Flat bonus (can be negative) applied after base and optional extra base. */
+  bonus: number;
+  /** When true (default), only applies to spell levels the caster can actually cast. */
+  requiresSpellLevelAccess?: boolean;
+}
+
 /** A wizard's spellbook containing learned spells. */
 export interface WizardSpellbook {
   id: string;
@@ -28,8 +40,8 @@ export interface WizardSpellbook {
 export interface PreparedCasterProgression extends ClassProgression {
   /** The prepared spells for each level. `<level, prepared spell list for that level>` */
   preparedSpells: Record<number, PreparedSpell[]>;
-  /** Max number of prepared spell slots per spell level. `<level, numer of prepared spell slots>` */
-  spellSlots: Record<number, number>;
+  /** Optional modifiers applied to base spell slot tables. */
+  spellSlotModifiers?: SpellSlotModifier[];
 }
 
 export interface WizardClassProgression extends PreparedCasterProgression {

@@ -21,6 +21,7 @@ import {
   CharacterClass,
   WizardClassProgression,
   WizardSpellbook,
+  SpellSlotModifier,
 } from "../types/ClassProgression";
 import { getCurrentUserId } from "./auth";
 import { charactersAtom, store } from "../globalState";
@@ -330,6 +331,65 @@ export async function addSpellToWizardSpellbook(
   );
 
   return updatedSpellbook;
+}
+
+/** Update wizard level and/or spell slot modifiers. */
+export async function updateWizardProgression(
+  characterId: string,
+  changes: {
+    level?: number;
+    spellSlotModifiers?: SpellSlotModifier[];
+  },
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.classes.find(
+    (c) => c.className === CharacterClass.WIZARD,
+  ) as WizardClassProgression | undefined;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const updatedWizard: WizardClassProgression = {
+    ...wizard,
+    level: changes.level ?? wizard.level,
+    spellSlotModifiers:
+      changes.spellSlotModifiers ?? wizard.spellSlotModifiers ?? [],
+  };
+
+  const updatedClasses = existing.classes.map((c) =>
+    c.className === CharacterClass.WIZARD ? updatedWizard : c,
+  );
+
+  const revision = existing.revision + 1;
+  const updatedAt = Date.now();
+
+  const result = await updateCharacterWithRevisionCheck(characterId, {
+    classes: updatedClasses as Character["classes"],
+    revision,
+    updatedAt,
+  });
+
+  if (result.ok === false) {
+    throw new Error("Failed to update wizard progression");
+  }
+
+  const updatedChar: Character = {
+    ...existing,
+    classes: updatedClasses as Character["classes"],
+    revision,
+    updatedAt,
+  };
+
+  store.set(
+    charactersAtom,
+    chars.map((c) => (c.id === characterId ? updatedChar : c)),
+  );
+
+  return updatedWizard;
 }
 
 /**
