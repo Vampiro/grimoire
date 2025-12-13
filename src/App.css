@@ -1,5 +1,17 @@
 #root {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #root {
+    padding: 1.5rem;
+  }
 }
