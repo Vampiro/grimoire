@@ -135,7 +135,7 @@ function WizardEditor({
         <CardHeader>
           <CardTitle>Level</CardTitle>
           <CardDescription>
-            Set the wizard level to drive spell slots.
+            Set the wizard level to update spell slots.
           </CardDescription>
         </CardHeader>
 
