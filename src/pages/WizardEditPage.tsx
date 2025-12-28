@@ -162,8 +162,7 @@ function WizardEditor({
         <CardHeader>
           <CardTitle>Spell Slots & Modifiers</CardTitle>
           <CardDescription>
-            Base table preview plus custom adjustments. Modifiers apply after
-            base slots.
+            Base table preview plus custom modifications.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
