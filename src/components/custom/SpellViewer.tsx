@@ -1,4 +1,4 @@
-import { fetchSpell, WikiPageJson } from "@/data/wikiFetch";
+import { fetchSpell, WikiPageJson } from "@/wikiFetch";
 import { Spell } from "@/types/Spell";
 import { useState, useEffect, Fragment } from "react";
 
