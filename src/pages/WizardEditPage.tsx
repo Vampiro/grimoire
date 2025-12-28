@@ -145,15 +145,18 @@ function WizardEditor({
               Wizard Level
             </label>
 
-            <input
+            <select
               id={levelInputId}
-              min={1}
-              max={20}
-              type="number"
-              className="w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
+              className="w-16 rounded-md border border-input bg-background px-3 py-2 text-sm"
               value={level}
               onChange={(e) => setLevel(Number(e.target.value))}
-            />
+            >
+              {Array.from({ length: 20 }, (_, idx) => idx + 1).map((lvl) => (
+                <option key={lvl} value={lvl}>
+                  {lvl}
+                </option>
+              ))}
+            </select>
           </div>
         </CardContent>
       </Card>
