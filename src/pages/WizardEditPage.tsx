@@ -14,9 +14,13 @@ import {
   SpellSlotModifier,
   WizardClassProgression,
 } from "@/types/ClassProgression";
-import { getSlotsForCaster } from "@/lib/spellSlots";
+import { getWizardSpellSlots } from "@/lib/spellSlots";
 import { updateWizardProgression } from "@/firebase/characters";
 
+/**
+ * Page wrapper for editing a wizard's progression and spell slots.
+ * @returns Rendered wizard edit page content.
+ */
 export function WizardEditPage() {
   const { characterId } = useParams();
   const { character, isLoading } = useCharacterById(characterId);
@@ -46,6 +50,13 @@ export function WizardEditPage() {
   );
 }
 
+/**
+ * Form controller for editing wizard level and spell slot modifiers.
+ * @param characterId Character document id.
+ * @param wizard Wizard progression record to edit.
+ * @param characterName Display name of the character.
+ * @returns Wizard editor layout.
+ */
 function WizardEditor({
   characterId,
   wizard,
@@ -63,13 +74,10 @@ function WizardEditor({
   const [error, setError] = useState<string | null>(null);
   const levelInputId = useId();
 
-  const baseSlots = useMemo(
-    () => getSlotsForCaster(CharacterClass.WIZARD, level, []),
-    [level],
-  );
+  const baseSlots = useMemo(() => getWizardSpellSlots(level, []), [level]);
 
   const totalSlots = useMemo(
-    () => getSlotsForCaster(CharacterClass.WIZARD, level, modifiers),
+    () => getWizardSpellSlots(level, modifiers),
     [level, modifiers],
   );
 
@@ -183,6 +191,12 @@ function WizardEditor({
   );
 }
 
+/**
+ * Display a comparison of base versus modified spell slots.
+ * @param baseSlots Base slot counts by spell level.
+ * @param totalSlots Modified slot counts by spell level.
+ * @returns Spell slot comparison table.
+ */
 function SpellSlotsPreview({
   baseSlots,
   totalSlots,
@@ -223,6 +237,14 @@ function SpellSlotsPreview({
   );
 }
 
+/**
+ * Table UI for adding, editing, and removing slot modifiers.
+ * @param modifiers Current list of slot modifiers.
+ * @param onAddModifier Handler to add a new modifier row.
+ * @param onChangeModifier Handler to update a modifier row.
+ * @param onRemoveModifier Handler to remove a modifier row.
+ * @returns Modifier table UI.
+ */
 function SpellSlotModifiersEditor({
   modifiers,
   onAddModifier,

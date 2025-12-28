@@ -18,9 +18,13 @@ import { findSpellById } from "@/lib/spellLookup";
 import {
   PreparedCasterProgression,
   WizardClassProgression,
+  PriestClassProgression,
   CharacterClass,
 } from "@/types/ClassProgression";
-import { getPreparedSpellSlots } from "@/lib/spellSlots";
+import {
+  getPreparedPriestSpellSlots,
+  getPreparedWizardSpellSlots,
+} from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
@@ -34,6 +38,17 @@ interface PreparedSpellsProps {
   onViewSpell?: (spell: Spell) => void;
 }
 
+/**
+ * Renders prepared spells for a given spell level, including slot counts and wizard spellbook selection.
+ * @param spellLevel Spell level to display.
+ * @param progression Prepared caster progression containing slots and spells.
+ * @param characterId Character id for navigation.
+ * @param onToggleSpellUsed Optional toggle handler for marking spells as used.
+ * @param onRemoveSpell Optional removal handler for removing a prepared spell.
+ * @param onAddSpell Optional add handler when picking a spell from a spellbook.
+ * @param onViewSpell Optional handler to open spell details.
+ * @returns Prepared spells UI for the specified level.
+ */
 export function PreparedSpells({
   spellLevel,
   progression,
@@ -44,7 +59,10 @@ export function PreparedSpells({
   onViewSpell,
 }: PreparedSpellsProps) {
   const spells = progression.preparedSpells[spellLevel] || [];
-  const slotMap = getPreparedSpellSlots(progression);
+  const slotMap =
+    progression.className === CharacterClass.WIZARD
+      ? getPreparedWizardSpellSlots(progression as WizardClassProgression)
+      : getPreparedPriestSpellSlots(progression as PriestClassProgression);
   const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
 
