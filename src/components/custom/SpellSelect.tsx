@@ -1,5 +1,5 @@
 import { Combobox } from "@/components/custom/Combobox";
-import { Spell } from "./types/Spell";
+import { Spell } from "../../types/Spell";
 
 interface SpellSelectProps {
   spells: Spell[];

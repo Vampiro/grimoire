@@ -1,7 +1,7 @@
-import { createCharacter, deleteCharacter } from "./firebase/characters";
+import { createCharacter, deleteCharacter } from "../../firebase/characters";
 import { useAtomValue } from "jotai";
-import { charactersAtom } from "./globalState";
-import { CharacterClass } from "./types/ClassProgression";
+import { charactersAtom } from "../../globalState";
+import { CharacterClass } from "../../types/ClassProgression";
 import { Link } from "react-router-dom";
 
 export function CharacterList() {

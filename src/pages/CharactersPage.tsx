@@ -1,4 +1,4 @@
-import { CharacterList } from "@/CharacterList";
+import { CharacterList } from "@/components/custom/CharacterList";
 
 export function CharactersPage() {
   return (
