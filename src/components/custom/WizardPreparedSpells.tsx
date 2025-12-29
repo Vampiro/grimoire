@@ -10,17 +10,14 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
-import { Link } from "react-router-dom";
-import { Plus, Info, Trash2, Minus } from "lucide-react";
+import { Plus, Trash2, Minus } from "lucide-react";
 import { findSpellById } from "@/lib/spellLookup";
 import {
   WizardClassProgression,
   PreparedSpell,
 } from "@/types/ClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
-import { PageRoute } from "@/pages/PageRoute";
 import { updateWizardPreparedSpells } from "@/firebase/characters";
 import type { Spell } from "@/types/Spell";
 
@@ -46,6 +43,7 @@ export function WizardPreparedSpells({
   const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
   const totalPrepared = spells.length;
+  const preparedIds = new Set(spells.map((s) => s.spellId));
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -152,85 +150,50 @@ export function WizardPreparedSpells({
           )}
         </div>
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" variant="ghost">
-            <Link to={PageRoute.WIZARD_SPELLBOOKS(characterId)}>
-              Spellbooks
-            </Link>
-          </Button>
+          <Select
+            disabled={isUpdating}
+            onValueChange={(spellId) => {
+              if (!spellId || spellId === "__none__") return;
+              handleAddSpell(spellId);
+            }}
+          >
+            <SelectTrigger
+              className="h-9 w-9 justify-center p-0 [&_svg:last-child]:hidden"
+              aria-label="Add prepared spell"
+            >
+              <Plus className="h-4 w-4" />
+            </SelectTrigger>
+            <SelectContent className="max-h-72">
+              {(() => {
+                const availableMap = new Map<string, Spell>();
+                progression.spellbooks.forEach((book) => {
+                  book.spells.forEach((spellId) => {
+                    const spell = findSpellById(spellId);
+                    if (!spell || spell.level !== spellLevel) return;
+                    if (preparedIds.has(spellId)) return;
+                    if (!availableMap.has(spellId))
+                      availableMap.set(spellId, spell);
+                  });
+                });
 
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button size="sm" variant="outline" disabled={isUpdating}>
-                <Plus className="h-4 w-4" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-96">
-              <div className="space-y-4">
-                <p className="text-sm font-semibold">
-                  Add Spell from Spellbook
-                </p>
-                <div className="space-y-3">
-                  {progression.spellbooks.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">
-                      No spellbooks available
-                    </p>
-                  ) : (
-                    progression.spellbooks.map((spellbook) => {
-                      // Get all spells of this level from this spellbook
-                      const availableSpells = spellbook.spells
-                        .map((spellId) => findSpellById(spellId))
-                        .filter(
-                          (spell): spell is Spell =>
-                            spell !== null && spell.level === spellLevel,
-                        );
+                if (availableMap.size === 0) {
+                  return (
+                    <SelectItem value="__none__" disabled>
+                      No spells of this level remaining
+                    </SelectItem>
+                  );
+                }
 
-                      if (availableSpells.length === 0) {
-                        return (
-                          <div key={spellbook.id}>
-                            <p className="text-xs text-muted-foreground">
-                              {spellbook.name}: No spells at this level
-                            </p>
-                          </div>
-                        );
-                      }
-
-                      return (
-                        <div key={spellbook.id}>
-                          <p className="text-xs font-semibold text-muted-foreground mb-1">
-                            {spellbook.name}
-                          </p>
-                          <Select
-                            disabled={isUpdating}
-                            onValueChange={(spellName) => {
-                              const selectedSpell = availableSpells.find(
-                                (s) => s.name === spellName,
-                              );
-                              if (selectedSpell) {
-                                handleAddSpell(
-                                  `${selectedSpell.class} - ${selectedSpell.name}`,
-                                );
-                              }
-                            }}
-                          >
-                            <SelectTrigger className="h-8">
-                              <SelectValue placeholder="Select spell..." />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {availableSpells.map((spell) => (
-                                <SelectItem key={spell.name} value={spell.name}>
-                                  {spell.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
+                return Array.from(availableMap.entries())
+                  .sort((a, b) => a[1].name.localeCompare(b[1].name))
+                  .map(([id, spell]) => (
+                    <SelectItem key={id} value={id}>
+                      {spell.name}
+                    </SelectItem>
+                  ));
+              })()}
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -344,28 +307,14 @@ export function WizardPreparedSpells({
                   </PopoverContent>
                 </Popover>
 
-                <div className="flex-1 text-sm">{spellName}</div>
-                {spell && (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="h-6 w-6 p-0"
-                    onClick={() => onViewSpell && onViewSpell(spell)}
-                    title="View spell details"
-                  >
-                    <Info className="h-4 w-4" />
-                  </Button>
-                )}
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="h-6 w-6 p-0"
-                  onClick={() => deleteSpellGroup(spellId)}
-                  title="Remove spell from prepared list"
-                  disabled={isUpdating}
+                <button
+                  type="button"
+                  className="flex-1 text-left text-sm text-primary hover:underline disabled:text-muted-foreground"
+                  onClick={() => spell && onViewSpell && onViewSpell(spell)}
+                  disabled={!spell}
                 >
-                  <Trash2 className="h-3 w-3" />
-                </Button>
+                  {spellName}
+                </button>
               </div>
             );
           })}

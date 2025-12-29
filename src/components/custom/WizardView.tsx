@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -40,12 +40,19 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
             <CardTitle>Wizard Level {wizardProgression.level}</CardTitle>
             <CardDescription>Prepared Spells</CardDescription>
           </div>
-          <Button
-            variant="outline"
-            onClick={() => navigate(PageRoute.WIZARD_EDIT(character.id))}
-          >
-            Edit Wizard
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline">
+              <Link to={PageRoute.WIZARD_SPELLBOOKS(character.id)}>
+                Spellbooks
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate(PageRoute.WIZARD_EDIT(character.id))}
+            >
+              Edit Wizard
+            </Button>
+          </div>
         </CardHeader>
 
         <CardContent className="space-y-6">
