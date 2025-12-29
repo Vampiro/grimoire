@@ -334,7 +334,7 @@ function SpellSlotModifiersEditor({
                 <td className="px-2 py-1 text-left">
                   <input
                     type="checkbox"
-                    checked={mod.requiresSpellLevelAccess !== false}
+                    checked={mod.requiresSpellLevelAccess}
                     onChange={(e) =>
                       onChangeModifier(idx, {
                         requiresSpellLevelAccess: e.target.checked,

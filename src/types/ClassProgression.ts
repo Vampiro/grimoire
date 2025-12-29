@@ -23,8 +23,8 @@ export interface SpellSlotModifier {
   addBase: boolean;
   /** Flat bonus (can be negative) applied after base and optional extra base. */
   bonus: number;
-  /** When true (default), only applies to spell levels the caster can actually cast. */
-  requiresSpellLevelAccess?: boolean;
+  /** When true, only applies to spell levels the caster can actually cast. */
+  requiresSpellLevelAccess: boolean;
 }
 
 /** A wizard's spellbook containing learned spells. */

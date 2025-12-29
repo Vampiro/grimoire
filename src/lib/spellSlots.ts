@@ -77,8 +77,7 @@ function applySpellSlotModifiers(
 
     targets.forEach((lvl) => {
       const baseSlots = base[lvl] ?? 0;
-      const shouldApply =
-        mod.requiresSpellLevelAccess !== false ? baseSlots > 0 : true;
+      const shouldApply = mod.requiresSpellLevelAccess ? baseSlots > 0 : true;
       if (!shouldApply) return;
       const extraBase = mod.addBase ? baseSlots : 0;
       result[lvl] = Math.max(
@@ -124,7 +123,7 @@ export function getPriestSpellSlots(
  * @param progression Wizard progression data including modifiers.
  * @returns Wizard spell slots keyed by spell level.
  */
-export function getPreparedWizardSpellSlots(
+export function getWizardProgressionSpellSlots(
   progression: WizardClassProgression,
 ): Record<number, number> {
   return getWizardSpellSlots(
@@ -138,7 +137,7 @@ export function getPreparedWizardSpellSlots(
  * @param progression Priest progression data including modifiers.
  * @returns Priest spell slots keyed by spell level.
  */
-export function getPreparedPriestSpellSlots(
+export function getPriestProgressionSpellSlots(
   progression: PriestClassProgression,
 ): Record<number, number> {
   return getPriestSpellSlots(

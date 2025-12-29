@@ -22,8 +22,8 @@ import {
   CharacterClass,
 } from "@/types/ClassProgression";
 import {
-  getPreparedPriestSpellSlots,
-  getPreparedWizardSpellSlots,
+  getPriestProgressionSpellSlots,
+  getWizardProgressionSpellSlots,
 } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
@@ -61,8 +61,8 @@ export function PreparedSpells({
   const spells = progression.preparedSpells[spellLevel] || [];
   const slotMap =
     progression.className === CharacterClass.WIZARD
-      ? getPreparedWizardSpellSlots(progression as WizardClassProgression)
-      : getPreparedPriestSpellSlots(progression as PriestClassProgression);
+      ? getWizardProgressionSpellSlots(progression as WizardClassProgression)
+      : getPriestProgressionSpellSlots(progression as PriestClassProgression);
   const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
 
