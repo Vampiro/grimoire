@@ -192,7 +192,7 @@ export function WizardPreparedSpells({
                             className="underline"
                             to={PageRoute.WIZARD_SPELLBOOKS(characterId)}
                           >
-                            Spellbooks
+                            Spellbook
                           </Link>{" "}
                           to add level {spellLevel} spells.
                         </p>
@@ -219,7 +219,7 @@ export function WizardPreparedSpells({
         {spells.length === 0 && (
           <div className="rounded-md border border-dashed bg-muted/40 p-3 text-sm">
             <p className="font-semibold text-foreground">
-              No prepared spells for level {spellLevel} yet.
+              No level {spellLevel} prepared spells yet.
             </p>
             <p className="text-muted-foreground">
               Use the add button above to add spells of this level.
