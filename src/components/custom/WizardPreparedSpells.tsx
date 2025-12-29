@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -19,6 +20,7 @@ import {
 } from "@/types/ClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { updateWizardPreparedSpells } from "@/firebase/characters";
+import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
 interface WizardPreparedSpellsProps {
@@ -178,9 +180,23 @@ export function WizardPreparedSpells({
 
                 if (availableMap.size === 0) {
                   return (
-                    <SelectItem value="__none__" disabled>
-                      No spells of this level remaining
-                    </SelectItem>
+                    <>
+                      <div className="space-y-1 px-3 pb-3 pt-3 text-sm ">
+                        <p className="text-muted-foreground">
+                          No spells of this level remaining.
+                        </p>
+                        <p>
+                          Update your{" "}
+                          <Link
+                            className="underline"
+                            to={PageRoute.WIZARD_SPELLBOOKS(characterId)}
+                          >
+                            Spellbooks
+                          </Link>{" "}
+                          to add level {spellLevel} spells.
+                        </p>
+                      </div>
+                    </>
                   );
                 }
 
