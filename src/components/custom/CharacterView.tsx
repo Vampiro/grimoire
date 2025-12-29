@@ -31,6 +31,7 @@ export function CharacterView({ character }: CharacterViewProps) {
         {/* Edit button */}
         <Button
           variant="outline"
+          className="cursor-pointer disabled:cursor-not-allowed"
           onClick={() => navigate(PageRoute.CHARACTER_EDIT(character.id))}
         >
           Edit Character

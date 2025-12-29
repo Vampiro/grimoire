@@ -160,7 +160,7 @@ export function WizardPreparedSpells({
             }}
           >
             <SelectTrigger
-              className="w-7 justify-center p-0 [&_svg:last-child]:hidden"
+              className="w-7 justify-center p-0 cursor-pointer disabled:cursor-not-allowed [&_svg:last-child]:hidden"
               aria-label="Add prepared spell"
               size="sm"
             >
@@ -251,7 +251,7 @@ export function WizardPreparedSpells({
                     <Button
                       size="sm"
                       variant="outline"
-                      className="relative h-10 w-20 p-0"
+                      className="relative h-10 w-20 p-0 cursor-pointer disabled:cursor-not-allowed"
                       disabled={isUpdating}
                       title="Adjust prepared/remaining copies"
                     >
@@ -277,6 +277,7 @@ export function WizardPreparedSpells({
                           <Button
                             size="icon"
                             variant="outline"
+                            className="cursor-pointer disabled:cursor-not-allowed"
                             disabled={isUpdating || remaining <= 0}
                             onClick={() => adjustRemaining(spellId, -1, total)}
                             title="Mark one as cast"
@@ -286,6 +287,7 @@ export function WizardPreparedSpells({
                           <Button
                             size="icon"
                             variant="outline"
+                            className="cursor-pointer disabled:cursor-not-allowed"
                             disabled={isUpdating || remaining >= total}
                             onClick={() => adjustRemaining(spellId, 1, total)}
                             title="Restore one use"
@@ -299,6 +301,7 @@ export function WizardPreparedSpells({
                             <Button
                               size="icon"
                               variant="outline"
+                              className="cursor-pointer disabled:cursor-not-allowed"
                               disabled={isUpdating || total === 0}
                               onClick={() => deleteSpellGroup(spellId)}
                               title="Remove this spell from prepared"
@@ -309,6 +312,7 @@ export function WizardPreparedSpells({
                             <Button
                               size="icon"
                               variant="outline"
+                              className="cursor-pointer disabled:cursor-not-allowed"
                               disabled={isUpdating || total === 0}
                               onClick={() => adjustTotal(spellId, -1)}
                               title="Decrease prepared copies"
@@ -319,6 +323,7 @@ export function WizardPreparedSpells({
                           <Button
                             size="icon"
                             variant="outline"
+                            className="cursor-pointer disabled:cursor-not-allowed"
                             disabled={isUpdating}
                             onClick={() => adjustTotal(spellId, 1)}
                             title="Increase prepared copies"
@@ -337,7 +342,7 @@ export function WizardPreparedSpells({
 
                 <button
                   type="button"
-                  className="flex-1 text-left text-sm text-primary hover:underline disabled:text-muted-foreground"
+                  className="flex-1 cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
                   onClick={() => spell && onViewSpell && onViewSpell(spell)}
                   disabled={!spell}
                 >
