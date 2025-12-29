@@ -2,11 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -143,11 +138,11 @@ export function WizardPreparedSpells({
                   : "text-foreground"
             }`}
           >
-            ({totalPrepared}/{maxSlots})
+            ({totalPrepared}/{maxSlots} rested slots)
           </span>
           {totalPrepared > maxSlots && (
             <span className="text-xs text-destructive">
-              Too many memorized spells.
+              Too many rested spell slots used.
             </span>
           )}
         </div>
@@ -246,114 +241,87 @@ export function WizardPreparedSpells({
 
             return (
               <div key={spellId} className="flex items-center gap-2">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="relative h-10 w-14 p-0 cursor-pointer disabled:cursor-not-allowed"
-                      disabled={isUpdating}
-                      title="Adjust prepared/remaining copies"
-                    >
-                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                        <div className="h-full border-l border-muted-foreground origin-center rotate-45" />
-                      </div>
-                      <div className="pointer-events-none absolute inset-0 grid grid-cols-2 grid-rows-2 z-[1]">
-                        <div className="col-start-1 row-start-1 flex items-center justify-end">
-                          <span className="text-sm font-semibold leading-none pr-[2px]">
-                            {remaining}
-                          </span>
-                        </div>
-                        <div className="col-start-2 row-start-2 flex items-center justify-start">
-                          <span className="text-sm font-semibold leading-none pl-[2px]">
-                            {total}
-                          </span>
-                        </div>
-                      </div>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80">
-                    <div className="space-y-3">
-                      <div className="relative h-28 rounded-md border p-4">
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <div className="h-full border-l border-muted-foreground origin-center rotate-45" />
-                        </div>
+                {/* Remaining controls */}
+                <div className="flex items-center">
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                    disabled={isUpdating || remaining <= 0}
+                    onClick={() => adjustRemaining(spellId, -1, total)}
+                    title="Decrease remaining casts"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
+                    {remaining}
+                  </div>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                    disabled={isUpdating || remaining >= total}
+                    onClick={() => adjustRemaining(spellId, 1, total)}
+                    title="Increase remaining casts"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
 
-                        <div className="absolute top-3 left-3 flex items-center gap-2">
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="cursor-pointer disabled:cursor-not-allowed"
-                            disabled={isUpdating || remaining <= 0}
-                            onClick={() => adjustRemaining(spellId, -1, total)}
-                            title="Mark one as cast"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="cursor-pointer disabled:cursor-not-allowed"
-                            disabled={isUpdating || remaining >= total}
-                            onClick={() => adjustRemaining(spellId, 1, total)}
-                            title="Restore one use"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </div>
+                <div className="flex flex-1 items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
+                    onClick={() => spell && onViewSpell && onViewSpell(spell)}
+                    disabled={!spell}
+                  >
+                    {spellName}
+                  </button>
 
-                        <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                          {total <= 1 ? (
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              className="cursor-pointer disabled:cursor-not-allowed"
-                              disabled={isUpdating || total === 0}
-                              onClick={() => deleteSpellGroup(spellId)}
-                              title="Remove this spell from prepared"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          ) : (
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              className="cursor-pointer disabled:cursor-not-allowed"
-                              disabled={isUpdating || total === 0}
-                              onClick={() => adjustTotal(spellId, -1)}
-                              title="Decrease prepared copies"
-                            >
-                              <Minus className="h-4 w-4" />
-                            </Button>
-                          )}
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="cursor-pointer disabled:cursor-not-allowed"
-                            disabled={isUpdating}
-                            onClick={() => adjustTotal(spellId, 1)}
-                            title="Increase prepared copies"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        <div className="absolute top-2 right-3 text-xs text-muted-foreground">
-                          Remaining / Prepared
-                        </div>
+                  {/* Copies controls */}
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <span>(</span>
+                    <div className="flex items-center">
+                      {total <= 1 ? (
+                        <Button
+                          size="icon"
+                          variant="outline"
+                          className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                          disabled={isUpdating || total === 0}
+                          onClick={() => deleteSpellGroup(spellId)}
+                          title="Remove this spell from prepared"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      ) : (
+                        <Button
+                          size="icon"
+                          variant="outline"
+                          className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                          disabled={isUpdating || total === 0}
+                          onClick={() => adjustTotal(spellId, -1)}
+                          title="Decrease prepared copies"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      )}
+                      <div className="h-7 min-w-9 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
+                        {total} total copies
                       </div>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="h-7 w-7 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                        disabled={isUpdating}
+                        onClick={() => adjustTotal(spellId, 1)}
+                        title="Increase prepared copies"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
                     </div>
-                  </PopoverContent>
-                </Popover>
-
-                <button
-                  type="button"
-                  className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
-                  onClick={() => spell && onViewSpell && onViewSpell(spell)}
-                  disabled={!spell}
-                >
-                  {spellName}
-                </button>
+                    <span>)</span>
+                  </div>
+                </div>
               </div>
             );
           })}
