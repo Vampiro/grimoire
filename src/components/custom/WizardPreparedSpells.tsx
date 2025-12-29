@@ -215,6 +215,17 @@ export function WizardPreparedSpells({
 
       {/* Spells for this level */}
       <div className="space-y-2 pl-4">
+        {spells.length === 0 && (
+          <div className="rounded-md border border-dashed bg-muted/40 p-3 text-sm">
+            <p className="font-semibold text-foreground">
+              No prepared spells for level {spellLevel} yet.
+            </p>
+            <p className="text-muted-foreground">
+              Use the add button above to add spells of this level.
+            </p>
+          </div>
+        )}
+
         {Object.entries(
           spells.reduce<Record<string, PreparedSpell[]>>((acc, s) => {
             acc[s.spellId] = acc[s.spellId] ? [...acc[s.spellId], s] : [s];
