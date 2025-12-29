@@ -342,7 +342,7 @@ export function WizardPreparedSpells({
 
                 <button
                   type="button"
-                  className="flex-1 cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
+                  className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
                   onClick={() => spell && onViewSpell && onViewSpell(spell)}
                   disabled={!spell}
                 >
