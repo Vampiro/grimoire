@@ -127,7 +127,7 @@ export function WizardPreparedSpells({
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-semibold">Level {spellLevel}</h3>
           <span className="text-sm text-muted-foreground">
-            ({castable} remaining)
+            ({castable} casts remaining)
           </span>
           <span
             className={`text-sm font-medium ${
@@ -179,7 +179,7 @@ export function WizardPreparedSpells({
                     <>
                       <div className="space-y-1 px-3 pb-3 pt-3 text-sm ">
                         <p className="text-muted-foreground">
-                          No spells of this level remaining.
+                          No remaining spells of this level.
                         </p>
                         <p>
                           Update your{" "}
@@ -222,109 +222,140 @@ export function WizardPreparedSpells({
           </div>
         )}
 
-        {Object.entries(
-          spells.reduce<Record<string, PreparedSpell[]>>((acc, s) => {
-            acc[s.spellId] = acc[s.spellId] ? [...acc[s.spellId], s] : [s];
-            return acc;
-          }, {}),
-        )
-          .sort((a, b) =>
-            (findSpellById(a[0])?.name || a[0]).localeCompare(
-              findSpellById(b[0])?.name || b[0],
-            ),
-          )
-          .map(([spellId, group]) => {
-            const spell = findSpellById(spellId);
-            const spellName = spell?.name || spellId;
-            const remaining = group.filter((s) => !s.used).length;
-            const total = group.length;
-
-            return (
-              <div key={spellId} className="flex items-center gap-2">
-                {/* Remaining controls */}
-                <div className="flex items-center">
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                    disabled={isUpdating || remaining <= 0}
-                    onClick={() => adjustRemaining(spellId, -1, total)}
-                    title="Decrease remaining casts"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
-                    {remaining}
-                  </div>
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                    disabled={isUpdating || remaining >= total}
-                    onClick={() => adjustRemaining(spellId, 1, total)}
-                    title="Increase remaining casts"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                <div className="flex flex-1 items-center justify-between gap-2">
-                  <button
-                    type="button"
-                    className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
-                    onClick={() => spell && onViewSpell && onViewSpell(spell)}
-                    disabled={!spell}
-                  >
-                    {spellName}
-                  </button>
-
-                  {/* Copies controls */}
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <span>(</span>
-                    <div className="flex items-center">
-                      {total <= 1 ? (
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                          disabled={isUpdating || total === 0}
-                          onClick={() => deleteSpellGroup(spellId)}
-                          title="Remove this spell from prepared"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      ) : (
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                          disabled={isUpdating || total === 0}
-                          onClick={() => adjustTotal(spellId, -1)}
-                          title="Decrease prepared copies"
-                        >
-                          <Minus className="h-4 w-4" />
-                        </Button>
-                      )}
-                      <div className="h-7 min-w-9 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
-                        {total} total copies
-                      </div>
-                      <Button
-                        size="icon"
-                        variant="outline"
-                        className="h-7 w-7 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                        disabled={isUpdating}
-                        onClick={() => adjustTotal(spellId, 1)}
-                        title="Increase prepared copies"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
+        {spells.length > 0 && (
+          <div className="overflow-x-auto">
+            <table className="w-auto table-auto text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="py-1 pr-3 text-xs font-semibold text-muted-foreground whitespace-nowrap">
+                    Remaining
+                    <div className="text-[10px] font-normal">
+                      − cast / + restore
                     </div>
-                    <span>)</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                  </th>
+                  <th className="py-1 pr-3 text-xs font-semibold text-muted-foreground whitespace-nowrap">
+                    Spell
+                  </th>
+                  <th className="py-1 text-right text-xs font-semibold text-muted-foreground whitespace-nowrap">
+                    Rested Copies
+                    <div className="text-[10px] font-normal">
+                      − remove / + add
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(
+                  spells.reduce<Record<string, PreparedSpell[]>>((acc, s) => {
+                    acc[s.spellId] = acc[s.spellId]
+                      ? [...acc[s.spellId], s]
+                      : [s];
+                    return acc;
+                  }, {}),
+                )
+                  .sort((a, b) =>
+                    (findSpellById(a[0])?.name || a[0]).localeCompare(
+                      findSpellById(b[0])?.name || b[0],
+                    ),
+                  )
+                  .map(([spellId, group]) => {
+                    const spell = findSpellById(spellId);
+                    const spellName = spell?.name || spellId;
+                    const remaining = group.filter((s) => !s.used).length;
+                    const total = group.length;
+
+                    return (
+                      <tr key={spellId} className="border-b last:border-0">
+                        <td className="py-2 pr-3 align-middle whitespace-nowrap">
+                          <div className="flex items-center">
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                              disabled={isUpdating || remaining <= 0}
+                              onClick={() =>
+                                adjustRemaining(spellId, -1, total)
+                              }
+                              title="Decrease remaining casts"
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                            <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
+                              {remaining}
+                            </div>
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                              disabled={isUpdating || remaining >= total}
+                              onClick={() => adjustRemaining(spellId, 1, total)}
+                              title="Increase remaining casts"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+
+                        <td className="py-2 pr-3 align-middle">
+                          <button
+                            type="button"
+                            className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
+                            onClick={() =>
+                              spell && onViewSpell && onViewSpell(spell)
+                            }
+                            disabled={!spell}
+                          >
+                            {spellName}
+                          </button>
+                        </td>
+
+                        <td className="py-2 align-middle whitespace-nowrap">
+                          <div className="flex items-center justify-end">
+                            {total <= 1 ? (
+                              <Button
+                                size="icon"
+                                variant="outline"
+                                className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                disabled={isUpdating || total === 0}
+                                onClick={() => deleteSpellGroup(spellId)}
+                                title="Remove this spell from prepared"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            ) : (
+                              <Button
+                                size="icon"
+                                variant="outline"
+                                className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                disabled={isUpdating || total === 0}
+                                onClick={() => adjustTotal(spellId, -1)}
+                                title="Decrease prepared copies"
+                              >
+                                <Minus className="h-4 w-4" />
+                              </Button>
+                            )}
+                            <div className="h-7 min-w-9 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
+                              {total}
+                            </div>
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              className="h-7 w-7 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                              disabled={isUpdating}
+                              onClick={() => adjustTotal(spellId, 1)}
+                              title="Increase prepared copies"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {error && <p className="text-xs text-destructive">{error}</p>}
       </div>
