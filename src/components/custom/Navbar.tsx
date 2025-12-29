@@ -32,7 +32,7 @@ export function Navbar() {
             open={searchOpen}
             onOpenChange={(open) => setSearchOpen(open)}
           />
-          <PopoverTrigger className="p-2 rounded-full hover:bg-accent">
+          <PopoverTrigger className="p-2 rounded-full hover:bg-accent cursor-pointer">
             <User className="h-5 w-5" />
           </PopoverTrigger>
           <PopoverContent align="end" className="w-48 p-2">
@@ -41,13 +41,13 @@ export function Navbar() {
                 <>
                   <Link
                     to={PageRoute.CHARACTERS}
-                    className="px-2 py-2 rounded hover:bg-accent"
+                    className="px-2 py-2 rounded hover:bg-accent cursor-pointer"
                     onClick={closeMenu}
                   >
                     Characters
                   </Link>
                   <button
-                    className="text-left px-2 py-2 rounded hover:bg-accent"
+                    className="text-left px-2 py-2 rounded hover:bg-accent cursor-pointer"
                     onClick={() => {
                       closeMenu();
                       logout();
@@ -61,7 +61,7 @@ export function Navbar() {
 
               {!user && (
                 <button
-                  className="text-left px-2 py-2 rounded hover:bg-accent"
+                  className="text-left px-2 py-2 rounded hover:bg-accent cursor-pointer"
                   onClick={async () => {
                     closeMenu();
                     await signInWithGoogle();

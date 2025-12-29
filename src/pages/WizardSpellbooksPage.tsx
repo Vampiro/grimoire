@@ -194,12 +194,16 @@ function SpellbookCard({
               onValueChange={(val) => setSelectedLevel(Number(val))}
               defaultValue={String(selectedLevel)}
             >
-              <SelectTrigger className="w-24 h-8">
+              <SelectTrigger className="w-24 h-8 cursor-pointer">
                 <SelectValue placeholder="Level" />
               </SelectTrigger>
               <SelectContent>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((lvl) => (
-                  <SelectItem key={lvl} value={String(lvl)}>
+                  <SelectItem
+                    key={lvl}
+                    value={String(lvl)}
+                    className="cursor-pointer"
+                  >
                     Level {lvl}
                   </SelectItem>
                 ))}
@@ -210,7 +214,7 @@ function SpellbookCard({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8"
+                  className="h-8 cursor-pointer disabled:cursor-not-allowed"
                   disabled={adding}
                 >
                   {adding ? "Adding..." : "Add spell"}
@@ -229,6 +233,7 @@ function SpellbookCard({
                         <CommandItem
                           key={spell.name}
                           value={spell.name}
+                          className="cursor-pointer"
                           onSelect={() => handleSelectSpell(spell.name)}
                         >
                           {spell.name}
@@ -263,7 +268,7 @@ function SpellbookCard({
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="h-6 w-6 p-0"
+                        className="h-6 w-6 p-0 cursor-pointer"
                         onClick={() => onViewSpell(spell)}
                         title="View spell details"
                       >
@@ -365,7 +370,11 @@ function AddSpellbookForm({ characterId }: { characterId: string }) {
 
           {error && <p className="text-sm text-destructive">{error}</p>}
 
-          <Button type="submit" disabled={saving}>
+          <Button
+            type="submit"
+            disabled={saving}
+            className="cursor-pointer disabled:cursor-not-allowed"
+          >
             {saving ? "Saving..." : "Create Spellbook"}
           </Button>
         </form>

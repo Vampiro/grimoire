@@ -132,7 +132,11 @@ function WizardEditor({
           <h1 className="text-3xl font-bold">Edit Wizard</h1>
           <p className="text-muted-foreground">{characterName}</p>
         </div>
-        <Button onClick={handleSave} disabled={saving}>
+        <Button
+          className="cursor-pointer"
+          onClick={handleSave}
+          disabled={saving}
+        >
           {saving ? "Saving..." : "Save"}
         </Button>
       </div>
@@ -155,7 +159,7 @@ function WizardEditor({
 
             <select
               id={levelInputId}
-              className="w-16 rounded-md border border-input bg-background px-3 py-2 text-sm"
+              className="w-16 rounded-md border border-input bg-background px-3 py-2 text-sm cursor-pointer"
               value={level}
               onChange={(e) => setLevel(Number(e.target.value))}
             >
@@ -298,7 +302,7 @@ function SpellSlotModifiersEditor({
                             : Number(e.target.value),
                       })
                     }
-                    className="rounded-md border border-input bg-background px-2 py-1 text-sm"
+                    className="rounded-md border border-input bg-background px-2 py-1 text-sm cursor-pointer"
                   >
                     <option value="all">All</option>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((lvl) => (
@@ -317,6 +321,7 @@ function SpellSlotModifiersEditor({
                         addBase: e.target.checked,
                       })
                     }
+                    className="cursor-pointer"
                   />
                 </td>
                 <td className="px-2 py-1 text-left">
@@ -340,12 +345,14 @@ function SpellSlotModifiersEditor({
                         requiresSpellLevelAccess: e.target.checked,
                       })
                     }
+                    className="cursor-pointer"
                   />
                 </td>
                 <td className="px-2 py-1 text-right">
                   <Button
                     size="sm"
                     variant="ghost"
+                    className="cursor-pointer"
                     onClick={() => onRemoveModifier(idx)}
                   >
                     Remove
@@ -357,7 +364,12 @@ function SpellSlotModifiersEditor({
         </table>
       </div>
 
-      <Button variant="outline" size="sm" onClick={onAddModifier}>
+      <Button
+        variant="outline"
+        size="sm"
+        className="cursor-pointer"
+        onClick={onAddModifier}
+      >
         Add Modifier
       </Button>
     </div>

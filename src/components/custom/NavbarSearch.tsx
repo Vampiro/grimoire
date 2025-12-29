@@ -14,7 +14,7 @@ interface DndWikiSearchProps {
 export function DndWikiSearch(props: DndWikiSearchProps) {
   return (
     <Popover open={props.open} onOpenChange={props.onOpenChange}>
-      <PopoverTrigger className="p-2 rounded-full hover:bg-accent">
+      <PopoverTrigger className="p-2 rounded-full hover:bg-accent cursor-pointer">
         <Search className="h-5 w-5" onClick={() => props.onOpenChange(true)} />
       </PopoverTrigger>
 

@@ -44,6 +44,7 @@ export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
             <CommandItem
               key={spell.name}
               value={spell.name}
+              className="cursor-pointer"
               onSelect={handleSelect}
             >
               {spell.name}
@@ -57,6 +58,7 @@ export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
             <CommandItem
               key={spell.name}
               value={spell.name}
+              className="cursor-pointer"
               onSelect={handleSelect}
             >
               {spell.name}

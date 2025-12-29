@@ -39,7 +39,7 @@ export function CharacterList() {
             </span>
             <button
               onClick={() => handleDelete(c.id)}
-              className="bg-red-500 text-white px-2 py-1 rounded"
+              className="bg-red-500 text-white px-2 py-1 rounded cursor-pointer"
             >
               Delete
             </button>
