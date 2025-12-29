@@ -19,7 +19,7 @@ import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
 import { WizardClassProgression } from "@/types/ClassProgression";
 import { SpellViewer } from "./SpellViewer";
-import { WizardPreparedSpells } from "./PreparedSpells";
+import { WizardPreparedSpells } from "./WizardPreparedSpells";
 import type { Spell } from "@/types/Spell";
 
 interface WizardViewProps {
