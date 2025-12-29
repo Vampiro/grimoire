@@ -19,7 +19,7 @@ import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
 import { WizardClassProgression } from "@/types/ClassProgression";
 import { SpellViewer } from "./SpellViewer";
-import { PreparedSpells } from "./PreparedSpells";
+import { WizardPreparedSpells } from "./PreparedSpells";
 import type { Spell } from "@/types/Spell";
 
 interface WizardViewProps {
@@ -31,21 +31,6 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
   const navigate = useNavigate();
   const [selectedSpellForViewer, setSelectedSpellForViewer] =
     useState<Spell | null>(null);
-
-  const handleToggleSpellUsed = (spellId: string, used: boolean) => {
-    // TODO: Update spell used status in Firestore
-    console.log("Toggle spell used:", spellId, used);
-  };
-
-  const handleRemoveSpell = (spellId: string) => {
-    // TODO: Remove spell from prepared spells in Firestore
-    console.log("Remove spell:", spellId);
-  };
-
-  const handleAddSpell = (spellId: string) => {
-    // TODO: Add spell to prepared spells in Firestore
-    console.log("Add spell:", spellId);
-  };
 
   return (
     <>
@@ -67,14 +52,11 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
           <div className="space-y-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((spellLevel) => {
               return (
-                <PreparedSpells
+                <WizardPreparedSpells
                   key={spellLevel}
                   spellLevel={spellLevel}
                   progression={wizardProgression}
                   characterId={character.id}
-                  onToggleSpellUsed={handleToggleSpellUsed}
-                  onRemoveSpell={handleRemoveSpell}
-                  onAddSpell={handleAddSpell}
                   onViewSpell={setSelectedSpellForViewer}
                 />
               );

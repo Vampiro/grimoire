@@ -19,6 +19,7 @@ import {
 import type { Character } from "../types/Character";
 import {
   CharacterClass,
+  PreparedSpell,
   WizardClassProgression,
   WizardSpellbook,
   SpellSlotModifier,
@@ -375,6 +376,62 @@ export async function updateWizardProgression(
 
   if (result.ok === false) {
     throw new Error("Failed to update wizard progression");
+  }
+
+  const updatedChar: Character = {
+    ...existing,
+    classes: updatedClasses as Character["classes"],
+    revision,
+    updatedAt,
+  };
+
+  store.set(
+    charactersAtom,
+    chars.map((c) => (c.id === characterId ? updatedChar : c)),
+  );
+
+  return updatedWizard;
+}
+
+/**
+ * Replace a wizard's prepared spells map and persist to Firestore.
+ */
+export async function updateWizardPreparedSpells(
+  characterId: string,
+  preparedSpells: Record<number, PreparedSpell[]>,
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.classes.find(
+    (c) => c.className === CharacterClass.WIZARD,
+  ) as WizardClassProgression | undefined;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const updatedWizard: WizardClassProgression = {
+    ...wizard,
+    preparedSpells,
+  };
+
+  const updatedClasses = existing.classes.map((c) =>
+    c.className === CharacterClass.WIZARD ? updatedWizard : c,
+  );
+
+  const revision = existing.revision + 1;
+  const updatedAt = Date.now();
+
+  const result = await updateCharacterWithRevisionCheck(characterId, {
+    classes: updatedClasses as Character["classes"],
+    revision,
+    updatedAt,
+  });
+
+  if (result.ok === false) {
+    throw new Error("Failed to update wizard prepared spells");
   }
 
   const updatedChar: Character = {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -16,61 +17,73 @@ import { Link } from "react-router-dom";
 import { Plus, Info, Trash2 } from "lucide-react";
 import { findSpellById } from "@/lib/spellLookup";
 import {
-  PreparedCasterProgression,
   WizardClassProgression,
-  PriestClassProgression,
-  CharacterClass,
+  PreparedSpell,
 } from "@/types/ClassProgression";
-import {
-  getPriestProgressionSpellSlots,
-  getWizardProgressionSpellSlots,
-} from "@/lib/spellSlots";
+import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
+import { updateWizardPreparedSpells } from "@/firebase/characters";
 import type { Spell } from "@/types/Spell";
 
-interface PreparedSpellsProps {
+interface WizardPreparedSpellsProps {
   spellLevel: number;
-  progression: PreparedCasterProgression;
+  progression: WizardClassProgression;
   characterId: string;
-  onToggleSpellUsed?: (spellId: string, used: boolean) => void;
-  onRemoveSpell?: (spellId: string) => void;
-  onAddSpell?: (spellId: string) => void;
   onViewSpell?: (spell: Spell) => void;
 }
 
 /**
- * Renders prepared spells for a given spell level, including slot counts and wizard spellbook selection.
- * @param spellLevel Spell level to display.
- * @param progression Prepared caster progression containing slots and spells.
- * @param characterId Character id for navigation.
- * @param onToggleSpellUsed Optional toggle handler for marking spells as used.
- * @param onRemoveSpell Optional removal handler for removing a prepared spell.
- * @param onAddSpell Optional add handler when picking a spell from a spellbook.
- * @param onViewSpell Optional handler to open spell details.
- * @returns Prepared spells UI for the specified level.
+ * Renders prepared wizard spells for a given spell level, including slot counts and spellbook selection.
+ * Mutations are persisted directly to the wizard progression.
  */
-export function PreparedSpells({
+export function WizardPreparedSpells({
   spellLevel,
   progression,
   characterId,
-  onToggleSpellUsed,
-  onRemoveSpell,
-  onAddSpell,
   onViewSpell,
-}: PreparedSpellsProps) {
+}: WizardPreparedSpellsProps) {
   const spells = progression.preparedSpells[spellLevel] || [];
-  const slotMap =
-    progression.className === CharacterClass.WIZARD
-      ? getWizardProgressionSpellSlots(progression as WizardClassProgression)
-      : getPriestProgressionSpellSlots(progression as PriestClassProgression);
+  const slotMap = getWizardProgressionSpellSlots(progression);
   const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
 
-  // Check if this is a wizard progression for showing spellbooks
-  const isWizard = progression.className === CharacterClass.WIZARD;
-  const wizardProgression = isWizard
-    ? (progression as WizardClassProgression)
-    : null;
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const updateLevelSpells = async (
+    mutate: (current: PreparedSpell[]) => PreparedSpell[],
+  ) => {
+    setIsUpdating(true);
+    setError(null);
+    try {
+      const current = progression.preparedSpells[spellLevel] ?? [];
+      const nextLevel = mutate(current);
+      const nextPrepared = {
+        ...progression.preparedSpells,
+        [spellLevel]: nextLevel,
+      };
+      await updateWizardPreparedSpells(characterId, nextPrepared);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to update prepared spells",
+      );
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handleToggleSpellUsed = (spellId: string, used: boolean) =>
+    updateLevelSpells((current) =>
+      current.map((s) => (s.spellId === spellId ? { ...s, used } : s)),
+    );
+
+  const handleRemoveSpell = (spellId: string) =>
+    updateLevelSpells((current) =>
+      current.filter((s) => s.spellId !== spellId),
+    );
+
+  const handleAddSpell = (spellId: string) =>
+    updateLevelSpells((current) => [...current, { spellId, used: false }]);
 
   return (
     <div className="space-y-2">
@@ -79,17 +92,15 @@ export function PreparedSpells({
           Level {spellLevel} ({castable}/{maxSlots})
         </h3>
         <div className="flex items-center gap-2">
-          {isWizard && (
-            <Button asChild size="sm" variant="ghost">
-              <Link to={PageRoute.WIZARD_SPELLBOOKS(characterId)}>
-                Spellbooks
-              </Link>
-            </Button>
-          )}
+          <Button asChild size="sm" variant="ghost">
+            <Link to={PageRoute.WIZARD_SPELLBOOKS(characterId)}>
+              Spellbooks
+            </Link>
+          </Button>
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button size="sm" variant="outline">
+              <Button size="sm" variant="outline" disabled={isUpdating}>
                 <Plus className="h-4 w-4" />
               </Button>
             </PopoverTrigger>
@@ -99,13 +110,12 @@ export function PreparedSpells({
                   Add Spell from Spellbook
                 </p>
                 <div className="space-y-3">
-                  {!wizardProgression ||
-                  wizardProgression.spellbooks.length === 0 ? (
+                  {progression.spellbooks.length === 0 ? (
                     <p className="text-sm text-muted-foreground">
                       No spellbooks available
                     </p>
                   ) : (
-                    wizardProgression.spellbooks.map((spellbook) => {
+                    progression.spellbooks.map((spellbook) => {
                       // Get all spells of this level from this spellbook
                       const availableSpells = spellbook.spells
                         .map((spellId) => findSpellById(spellId))
@@ -130,12 +140,13 @@ export function PreparedSpells({
                             {spellbook.name}
                           </p>
                           <Select
+                            disabled={isUpdating}
                             onValueChange={(spellName) => {
                               const selectedSpell = availableSpells.find(
                                 (s) => s.name === spellName,
                               );
-                              if (selectedSpell && onAddSpell) {
-                                onAddSpell(
+                              if (selectedSpell) {
+                                handleAddSpell(
                                   `${selectedSpell.class} - ${selectedSpell.name}`,
                                 );
                               }
@@ -174,11 +185,13 @@ export function PreparedSpells({
               <Checkbox
                 checked={preparedSpell.used}
                 onCheckedChange={(checked) => {
-                  if (onToggleSpellUsed) {
-                    onToggleSpellUsed(preparedSpell.spellId, checked === true);
-                  }
+                  handleToggleSpellUsed(
+                    preparedSpell.spellId,
+                    checked === true,
+                  );
                 }}
                 title="Mark as cast"
+                disabled={isUpdating}
               />
               <div className="flex-1 text-sm">{spellName}</div>
               {spell && (
@@ -196,18 +209,17 @@ export function PreparedSpells({
                 size="sm"
                 variant="ghost"
                 className="h-6 w-6 p-0"
-                onClick={() => {
-                  if (onRemoveSpell) {
-                    onRemoveSpell(preparedSpell.spellId);
-                  }
-                }}
+                onClick={() => handleRemoveSpell(preparedSpell.spellId)}
                 title="Remove spell"
+                disabled={isUpdating}
               >
                 <Trash2 className="h-3 w-3" />
               </Button>
             </div>
           );
         })}
+
+        {error && <p className="text-xs text-destructive">{error}</p>}
       </div>
     </div>
   );
