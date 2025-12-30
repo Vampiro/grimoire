@@ -347,7 +347,7 @@ export function WizardPreparedSpells({
                               <Button
                                 size="icon"
                                 variant="outline"
-                                className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
                                 disabled={total === 0}
                                 onClick={() => deleteSpellGroup(spellName)}
                                 title="Remove this spell from prepared"
@@ -358,7 +358,7 @@ export function WizardPreparedSpells({
                               <Button
                                 size="icon"
                                 variant="outline"
-                                className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
                                 disabled={total === 0}
                                 onClick={() => adjustTotal(spellName, -1)}
                                 title="Decrease prepared copies"
@@ -366,13 +366,13 @@ export function WizardPreparedSpells({
                                 <Minus className="h-4 w-4" />
                               </Button>
                             )}
-                            <div className="h-7 min-w-9 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
+                            <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
                               {total}
                             </div>
                             <Button
                               size="icon"
                               variant="outline"
-                              className="h-7 w-7 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
                               onClick={() => handleIncreaseCopies(spellName)}
                               title="Increase prepared copies"
                             >
