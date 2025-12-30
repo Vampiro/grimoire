@@ -1,12 +1,16 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  // Load env file based on `mode` (development, production, etc.)
-  const env = loadEnv(mode, process.cwd(), "VITE_");
+  const githubRepo = process.env.GITHUB_REPOSITORY;
+  const repoName = githubRepo?.includes("/")
+    ? githubRepo.split("/")[1]
+    : undefined;
+  const inferredBase = repoName ? `/${repoName}/` : "/";
+  const base = mode === "production" ? inferredBase : "/";
 
   return {
     plugins: [react(), tailwindcss()],
@@ -15,6 +19,6 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
-    base: env.VITE_BASE_URL || "/", // fallback to "/"
+    base,
   };
 });

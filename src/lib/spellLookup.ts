@@ -24,16 +24,26 @@ export function loadSpellData(): Promise<void> {
   spellDataLoadPromise = (async () => {
     const versions = LATEST_RESOURCE_VERSIONS;
 
+    const wizardUrl = new URL(
+      `resources/wizardSpells.json?v=${versions.wizardSpells}`,
+      import.meta.env.BASE_URL,
+    ).toString();
+
+    const priestUrl = new URL(
+      `resources/priestSpells.json?v=${versions.priestSpells}`,
+      import.meta.env.BASE_URL,
+    ).toString();
+
     const [wizard, priest] = await Promise.all([
       getResourceCached<SpellJson[]>({
         name: "wizardSpells",
         version: versions.wizardSpells,
-        url: `/resources/wizardSpells.json?v=${versions.wizardSpells}`,
+        url: wizardUrl,
       }),
       getResourceCached<SpellJson[]>({
         name: "priestSpells",
         version: versions.priestSpells,
-        url: `/resources/priestSpells.json?v=${versions.priestSpells}`,
+        url: priestUrl,
       }),
     ]);
 
