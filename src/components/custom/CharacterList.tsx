@@ -9,15 +9,15 @@ export function CharacterList() {
   async function onCreate() {
     await createCharacter({
       name: `New Wizard`,
-      classes: [
-        {
+      class: {
+        wizard: {
           className: CharacterClass.WIZARD,
           level: 1,
           preparedSpells: {},
           spellbooks: [],
           spellSlotModifiers: [],
         },
-      ],
+      },
     });
   }
 
@@ -34,7 +34,9 @@ export function CharacterList() {
           <li key={c.id}>
             <span>
               {`${c.name} - ${c.id}`} —{" "}
-              {c.classes.map((classProgression) => classProgression.className)}
+              {[c.class.wizard?.className, c.class.priest?.className]
+                .filter(Boolean)
+                .join(" / ")}
             </span>
             <button
               onClick={() => handleDelete(c.id)}

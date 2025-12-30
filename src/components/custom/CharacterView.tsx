@@ -2,10 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
-import {
-  WizardClassProgression,
-  CharacterClass,
-} from "@/types/ClassProgression";
+import { WizardClassProgression } from "@/types/ClassProgression";
 import { WizardView } from "./WizardView";
 
 interface CharacterViewProps {
@@ -22,8 +19,15 @@ export function CharacterView({ character }: CharacterViewProps) {
         <div>
           <h1 className="text-4xl font-bold">{character.name}</h1>
           <p className="text-muted-foreground">
-            {character.classes
-              .map((cls) => `${cls.className} (Level ${cls.level})`)
+            {[
+              character.class.wizard
+                ? `${character.class.wizard.className} (Level ${character.class.wizard.level})`
+                : null,
+              character.class.priest
+                ? `${character.class.priest.className} (Level ${character.class.priest.level})`
+                : null,
+            ]
+              .filter(Boolean)
               .join(" / ")}
           </p>
         </div>
@@ -40,19 +44,12 @@ export function CharacterView({ character }: CharacterViewProps) {
 
       {/* Display sections for each class */}
       <div className="space-y-8">
-        {character.classes.map((classProgression) => {
-          if (classProgression.className === CharacterClass.WIZARD) {
-            return (
-              <WizardView
-                key={classProgression.className}
-                character={character}
-                wizardProgression={classProgression as WizardClassProgression}
-              />
-            );
-          }
-          // TODO: Add PriestView and other classes as needed
-          return null;
-        })}
+        {character.class.wizard && (
+          <WizardView
+            character={character}
+            wizardProgression={character.class.wizard as WizardClassProgression}
+          />
+        )}
       </div>
     </div>
   );

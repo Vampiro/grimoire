@@ -9,7 +9,10 @@ import {
 export interface Character {
   id: string; // Firestore doc ID
   name: string; // Character name
-  classes: (WizardClassProgression | PriestClassProgression)[]; // e.g., [{ className: "Wizard", ...wizard_details }]
+  class: {
+    priest?: PriestClassProgression;
+    wizard?: WizardClassProgression;
+  };
   createdAt: number; // timestamp
   updatedAt: number; // timestamp
 }

@@ -59,9 +59,8 @@ export function WizardSpellbooksPage() {
   if (isLoading) return <div>Loading spellbooks...</div>;
   if (!character) return <div>No character with id {characterId}</div>;
 
-  const wizardProgression = character.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizardProgression =
+    character.class.wizard as WizardClassProgression | undefined;
 
   if (!wizardProgression) {
     return <div>This character has no wizard progression.</div>;

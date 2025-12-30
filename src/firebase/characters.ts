@@ -19,7 +19,6 @@ import {
 } from "firebase/firestore";
 import type { Character } from "../types/Character";
 import {
-  CharacterClass,
   PreparedSpell,
   WizardClassProgression,
   WizardSpellbook,
@@ -199,9 +198,7 @@ export async function addWizardSpellbook(
   const existing = chars.find((c) => c.id === characterId);
   if (!existing) throw new Error("Character not found");
 
-  const wizard = existing.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = existing.class.wizard as WizardClassProgression | undefined;
   if (!wizard) throw new Error("Character has no wizard progression");
 
   const newSpellbook: WizardSpellbook = {
@@ -216,12 +213,11 @@ export async function addWizardSpellbook(
     spellbooks: [...wizard.spellbooks, newSpellbook],
   };
 
-  const updatedClasses = existing.classes.map((c) =>
-    c.className === CharacterClass.WIZARD ? updatedWizard : c,
-  );
-
   await updateCharacterDoc(characterId, {
-    classes: updatedClasses as Character["classes"],
+    class: {
+      ...existing.class,
+      wizard: updatedWizard,
+    },
   });
 
   return newSpellbook;
@@ -242,9 +238,7 @@ export async function addSpellToWizardSpellbook(
   const existing = chars.find((c) => c.id === characterId);
   if (!existing) throw new Error("Character not found");
 
-  const wizard = existing.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = existing.class.wizard as WizardClassProgression | undefined;
   if (!wizard) throw new Error("Character has no wizard progression");
 
   const spellbook = wizard.spellbooks.find((sb) => sb.id === spellbookId);
@@ -266,12 +260,11 @@ export async function addSpellToWizardSpellbook(
     ),
   };
 
-  const updatedClasses = existing.classes.map((c) =>
-    c.className === CharacterClass.WIZARD ? updatedWizard : c,
-  );
-
   await updateCharacterDoc(characterId, {
-    classes: updatedClasses as Character["classes"],
+    class: {
+      ...existing.class,
+      wizard: updatedWizard,
+    },
   });
 
   return updatedSpellbook;
@@ -292,9 +285,7 @@ export async function updateWizardProgression(
   const existing = chars.find((c) => c.id === characterId);
   if (!existing) throw new Error("Character not found");
 
-  const wizard = existing.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = existing.class.wizard as WizardClassProgression | undefined;
   if (!wizard) throw new Error("Character has no wizard progression");
 
   const updatedWizard: WizardClassProgression = {
@@ -304,12 +295,11 @@ export async function updateWizardProgression(
       changes.spellSlotModifiers ?? wizard.spellSlotModifiers ?? [],
   };
 
-  const updatedClasses = existing.classes.map((c) =>
-    c.className === CharacterClass.WIZARD ? updatedWizard : c,
-  );
-
   await updateCharacterDoc(characterId, {
-    classes: updatedClasses as Character["classes"],
+    class: {
+      ...existing.class,
+      wizard: updatedWizard,
+    },
   });
 
   return updatedWizard;
@@ -329,9 +319,7 @@ export async function updateWizardPreparedSpells(
   const existing = chars.find((c) => c.id === characterId);
   if (!existing) throw new Error("Character not found");
 
-  const wizard = existing.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = existing.class.wizard as WizardClassProgression | undefined;
   if (!wizard) throw new Error("Character has no wizard progression");
 
   const updatedWizard: WizardClassProgression = {
@@ -339,12 +327,11 @@ export async function updateWizardPreparedSpells(
     preparedSpells,
   };
 
-  const updatedClasses = existing.classes.map((c) =>
-    c.className === CharacterClass.WIZARD ? updatedWizard : c,
-  );
-
   await updateCharacterDoc(characterId, {
-    classes: updatedClasses as Character["classes"],
+    class: {
+      ...existing.class,
+      wizard: updatedWizard,
+    },
   });
 
   return updatedWizard;
@@ -364,9 +351,7 @@ export async function updateWizardPreparedSpellsLevel(
   const existing = chars.find((c) => c.id === characterId);
   if (!existing) throw new Error("Character not found");
 
-  const wizard = existing.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = existing.class.wizard as WizardClassProgression | undefined;
   if (!wizard) throw new Error("Character has no wizard progression");
 
   const preparedSpells = {

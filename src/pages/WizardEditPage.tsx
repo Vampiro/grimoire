@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  CharacterClass,
   SpellSlotModifier,
   WizardClassProgression,
 } from "@/types/ClassProgression";
@@ -33,9 +32,7 @@ export function WizardEditPage() {
     return <div>No Character with id {characterId}</div>;
   }
 
-  const wizard = character.classes.find(
-    (c) => c.className === CharacterClass.WIZARD,
-  ) as WizardClassProgression | undefined;
+  const wizard = character.class.wizard as WizardClassProgression | undefined;
 
   if (!wizard) {
     return <div>This character has no wizard progression.</div>;
