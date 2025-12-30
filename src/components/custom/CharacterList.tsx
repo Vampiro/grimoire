@@ -18,7 +18,6 @@ export function CharacterList() {
           spellSlotModifiers: [],
         },
       ],
-      revision: 1,
     });
   }
 

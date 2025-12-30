@@ -14,7 +14,6 @@ import {
   deleteDoc,
   CollectionReference,
   DocumentReference,
-  getDoc,
   onSnapshot,
   type Unsubscribe,
 } from "firebase/firestore";
@@ -72,26 +71,18 @@ export function stopCharactersRealtimeSync() {
   }
 }
 
-/** Serializes writes per-character to avoid revision races during rapid UI updates. */
-const characterWriteQueue = new Map<string, Promise<unknown>>();
+async function updateCharacterDoc(
+  characterId: string,
+  update: Partial<Character>,
+): Promise<void> {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
 
-function enqueueCharacterWrite<T>(characterId: string, task: () => Promise<T>) {
-  const prev = characterWriteQueue.get(characterId) ?? Promise.resolve();
-  const next = prev
-    .catch(() => {
-      // Keep the queue alive even if a previous write failed.
-    })
-    .then(task);
-
-  characterWriteQueue.set(characterId, next);
-
-  next.finally(() => {
-    if (characterWriteQueue.get(characterId) === next) {
-      characterWriteQueue.delete(characterId);
-    }
+  const ref = characterDoc(uid, characterId);
+  await updateDoc(ref, {
+    ...update,
+    updatedAt: Date.now(),
   });
-
-  return next;
 }
 
 /**
@@ -134,15 +125,11 @@ export async function createCharacter(
   const char: Character = {
     ...data,
     id,
-    revision: 1,
     createdAt: Date.now(),
     updatedAt: Date.now(),
   };
 
   await setDoc(doc(col, id), char);
-
-  const chars = store.get(charactersAtom);
-  store.set(charactersAtom, [...chars, char]);
 }
 
 /**
@@ -191,76 +178,8 @@ export function refreshCharacters(): Promise<void> {
  * @param id ID of the character.
  * @param data Attributes to update.
  */
-export async function updateCharacter(
-  id: string,
-  data: Partial<Character> & { revision: number },
-) {
-  updateCharacterWithRevisionCheck(id, data);
-  // const uid = getCurrentUserId();
-  // if (!uid) {
-  //   throw new Error("Not logged in");
-  // }
-
-  // const ref = doc(db, "users", uid, "characters", id);
-  // const updatedAt = Date.now();
-  // await updateDoc(ref, {
-  //   ...data,
-  //   updatedAt,
-  // });
-
-  // const chars = store.get(charactersAtom);
-  // const char = chars.find((c) => c.id === id);
-  // if (char) {
-  //   const newChars = chars.filter((c) => c.id !== id);
-  //   const updatedChar: Character = {
-  //     ...char,
-  //     ...data,
-  //     updatedAt,
-  //   };
-  //   newChars.push(updatedChar);
-  //   store.set(
-  //     charactersAtom,
-  //     chars.filter((c) => c.id !== id),
-  //   );
-  // }
-}
-
-async function updateCharacterWithRevisionCheck(
-  id: string,
-  update: Partial<Character> & { revision: number },
-) {
-  const uid = getCurrentUserId();
-  if (!uid) throw new Error("Not logged in");
-
-  const ref = characterDoc(uid, id);
-
-  try {
-    await updateDoc(ref, update);
-    return { ok: true };
-  } catch (err: any) {
-    if (err.code === "permission-denied") {
-      // Fetch server state to see WHY it was denied
-      const snap = await getDoc(ref);
-
-      if (!snap.exists()) {
-        return { ok: false, deleted: true };
-      }
-
-      const serverRevision = snap.data().revision;
-
-      if (update.revision !== serverRevision + 1) {
-        return {
-          ok: false,
-          conflict: true,
-          serverRevision,
-          expectedRevision: serverRevision + 1,
-        };
-      }
-    }
-
-    // Unknown or network error
-    return { ok: false, error: err };
-  }
+export async function updateCharacter(id: string, data: Partial<Character>) {
+  await updateCharacterDoc(id, data);
 }
 
 /**
@@ -301,37 +220,9 @@ export async function addWizardSpellbook(
     c.className === CharacterClass.WIZARD ? updatedWizard : c,
   );
 
-  const revision = existing.revision + 1;
-  const updatedAt = Date.now();
-
-  // Update local state immediately for responsive UI
-  const updatedChar: Character = {
-    ...existing,
+  await updateCharacterDoc(characterId, {
     classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  };
-  store.set(
-    charactersAtom,
-    chars.map((c) => (c.id === characterId ? updatedChar : c)),
-  );
-
-  const result = await enqueueCharacterWrite(characterId, () =>
-    updateCharacterWithRevisionCheck(characterId, {
-      classes: updatedClasses as Character["classes"],
-      revision,
-      updatedAt,
-    }),
-  );
-
-  if (result.ok === false) {
-    // Roll back local state if the write was rejected.
-    store.set(
-      charactersAtom,
-      chars.map((c) => (c.id === characterId ? existing : c)),
-    );
-    throw new Error("Failed to update character with new spellbook");
-  }
+  });
 
   return newSpellbook;
 }
@@ -379,35 +270,9 @@ export async function addSpellToWizardSpellbook(
     c.className === CharacterClass.WIZARD ? updatedWizard : c,
   );
 
-  const revision = existing.revision + 1;
-  const updatedAt = Date.now();
-
-  const updatedChar: Character = {
-    ...existing,
+  await updateCharacterDoc(characterId, {
     classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  };
-  store.set(
-    charactersAtom,
-    chars.map((c) => (c.id === characterId ? updatedChar : c)),
-  );
-
-  const result = await enqueueCharacterWrite(characterId, () =>
-    updateCharacterWithRevisionCheck(characterId, {
-      classes: updatedClasses as Character["classes"],
-      revision,
-      updatedAt,
-    }),
-  );
-
-  if (result.ok === false) {
-    store.set(
-      charactersAtom,
-      chars.map((c) => (c.id === characterId ? existing : c)),
-    );
-    throw new Error("Failed to add spell to spellbook");
-  }
+  });
 
   return updatedSpellbook;
 }
@@ -443,35 +308,9 @@ export async function updateWizardProgression(
     c.className === CharacterClass.WIZARD ? updatedWizard : c,
   );
 
-  const revision = existing.revision + 1;
-  const updatedAt = Date.now();
-
-  const updatedChar: Character = {
-    ...existing,
+  await updateCharacterDoc(characterId, {
     classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  };
-  store.set(
-    charactersAtom,
-    chars.map((c) => (c.id === characterId ? updatedChar : c)),
-  );
-
-  const result = await enqueueCharacterWrite(characterId, () =>
-    updateCharacterWithRevisionCheck(characterId, {
-      classes: updatedClasses as Character["classes"],
-      revision,
-      updatedAt,
-    }),
-  );
-
-  if (result.ok === false) {
-    store.set(
-      charactersAtom,
-      chars.map((c) => (c.id === characterId ? existing : c)),
-    );
-    throw new Error("Failed to update wizard progression");
-  }
+  });
 
   return updatedWizard;
 }
@@ -504,35 +343,9 @@ export async function updateWizardPreparedSpells(
     c.className === CharacterClass.WIZARD ? updatedWizard : c,
   );
 
-  const revision = existing.revision + 1;
-  const updatedAt = Date.now();
-
-  const updatedChar: Character = {
-    ...existing,
+  await updateCharacterDoc(characterId, {
     classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  };
-  store.set(
-    charactersAtom,
-    chars.map((c) => (c.id === characterId ? updatedChar : c)),
-  );
-
-  const result = await enqueueCharacterWrite(characterId, () =>
-    updateCharacterWithRevisionCheck(characterId, {
-      classes: updatedClasses as Character["classes"],
-      revision,
-      updatedAt,
-    }),
-  );
-
-  if (result.ok === false) {
-    store.set(
-      charactersAtom,
-      chars.map((c) => (c.id === characterId ? existing : c)),
-    );
-    throw new Error("Failed to update wizard prepared spells");
-  }
+  });
 
   return updatedWizard;
 }
@@ -577,12 +390,6 @@ export async function deleteCharacter(id: string): Promise<void> {
 
   const ref = characterDoc(uid, id);
   await deleteDoc(ref);
-
-  const chars = store.get(charactersAtom);
-  store.set(
-    charactersAtom,
-    chars.filter((c) => c.id !== id),
-  );
 }
 
 function shortId(length = 6): string {
