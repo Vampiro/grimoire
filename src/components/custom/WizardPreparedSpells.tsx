@@ -70,14 +70,17 @@ export function WizardPreparedSpells({
 
       // Persist in the background. Firestore offline persistence will queue
       // writes when offline; UI should update immediately.
-      void updateWizardPreparedSpellsLevel(characterId, spellLevel, nextLevel)
-        .catch((err) => {
-          setError(
-            err instanceof Error
-              ? err.message
-              : "Failed to update prepared spells",
-          );
-        });
+      void updateWizardPreparedSpellsLevel(
+        characterId,
+        spellLevel,
+        nextLevel,
+      ).catch((err) => {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to update prepared spells",
+        );
+      });
 
       return nextLevel;
     });
