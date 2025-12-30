@@ -27,6 +27,28 @@ import {
 import { getCurrentUserId } from "./auth";
 import { charactersAtom, store } from "../globalState";
 
+/** Serializes writes per-character to avoid revision races during rapid UI updates. */
+const characterWriteQueue = new Map<string, Promise<unknown>>();
+
+function enqueueCharacterWrite<T>(characterId: string, task: () => Promise<T>) {
+  const prev = characterWriteQueue.get(characterId) ?? Promise.resolve();
+  const next = prev
+    .catch(() => {
+      // Keep the queue alive even if a previous write failed.
+    })
+    .then(task);
+
+  characterWriteQueue.set(characterId, next);
+
+  next.finally(() => {
+    if (characterWriteQueue.get(characterId) === next) {
+      characterWriteQueue.delete(characterId);
+    }
+  });
+
+  return next;
+}
+
 /**
  * Returns the collection reference for a user's characters
  */
@@ -237,28 +259,34 @@ export async function addWizardSpellbook(
   const revision = existing.revision + 1;
   const updatedAt = Date.now();
 
-  const result = await updateCharacterWithRevisionCheck(characterId, {
-    classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  });
-
-  if (result.ok === false) {
-    throw new Error("Failed to update character with new spellbook");
-  }
-
-  // Update local state to reflect the new spellbook immediately
+  // Update local state immediately for responsive UI
   const updatedChar: Character = {
     ...existing,
     classes: updatedClasses as Character["classes"],
     revision,
     updatedAt,
   };
-
   store.set(
     charactersAtom,
     chars.map((c) => (c.id === characterId ? updatedChar : c)),
   );
+
+  const result = await enqueueCharacterWrite(characterId, () =>
+    updateCharacterWithRevisionCheck(characterId, {
+      classes: updatedClasses as Character["classes"],
+      revision,
+      updatedAt,
+    }),
+  );
+
+  if (result.ok === false) {
+    // Roll back local state if the write was rejected.
+    store.set(
+      charactersAtom,
+      chars.map((c) => (c.id === characterId ? existing : c)),
+    );
+    throw new Error("Failed to update character with new spellbook");
+  }
 
   return newSpellbook;
 }
@@ -309,27 +337,32 @@ export async function addSpellToWizardSpellbook(
   const revision = existing.revision + 1;
   const updatedAt = Date.now();
 
-  const result = await updateCharacterWithRevisionCheck(characterId, {
-    classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  });
-
-  if (result.ok === false) {
-    throw new Error("Failed to add spell to spellbook");
-  }
-
   const updatedChar: Character = {
     ...existing,
     classes: updatedClasses as Character["classes"],
     revision,
     updatedAt,
   };
-
   store.set(
     charactersAtom,
     chars.map((c) => (c.id === characterId ? updatedChar : c)),
   );
+
+  const result = await enqueueCharacterWrite(characterId, () =>
+    updateCharacterWithRevisionCheck(characterId, {
+      classes: updatedClasses as Character["classes"],
+      revision,
+      updatedAt,
+    }),
+  );
+
+  if (result.ok === false) {
+    store.set(
+      charactersAtom,
+      chars.map((c) => (c.id === characterId ? existing : c)),
+    );
+    throw new Error("Failed to add spell to spellbook");
+  }
 
   return updatedSpellbook;
 }
@@ -368,27 +401,32 @@ export async function updateWizardProgression(
   const revision = existing.revision + 1;
   const updatedAt = Date.now();
 
-  const result = await updateCharacterWithRevisionCheck(characterId, {
-    classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  });
-
-  if (result.ok === false) {
-    throw new Error("Failed to update wizard progression");
-  }
-
   const updatedChar: Character = {
     ...existing,
     classes: updatedClasses as Character["classes"],
     revision,
     updatedAt,
   };
-
   store.set(
     charactersAtom,
     chars.map((c) => (c.id === characterId ? updatedChar : c)),
   );
+
+  const result = await enqueueCharacterWrite(characterId, () =>
+    updateCharacterWithRevisionCheck(characterId, {
+      classes: updatedClasses as Character["classes"],
+      revision,
+      updatedAt,
+    }),
+  );
+
+  if (result.ok === false) {
+    store.set(
+      charactersAtom,
+      chars.map((c) => (c.id === characterId ? existing : c)),
+    );
+    throw new Error("Failed to update wizard progression");
+  }
 
   return updatedWizard;
 }
@@ -424,29 +462,61 @@ export async function updateWizardPreparedSpells(
   const revision = existing.revision + 1;
   const updatedAt = Date.now();
 
-  const result = await updateCharacterWithRevisionCheck(characterId, {
-    classes: updatedClasses as Character["classes"],
-    revision,
-    updatedAt,
-  });
-
-  if (result.ok === false) {
-    throw new Error("Failed to update wizard prepared spells");
-  }
-
   const updatedChar: Character = {
     ...existing,
     classes: updatedClasses as Character["classes"],
     revision,
     updatedAt,
   };
-
   store.set(
     charactersAtom,
     chars.map((c) => (c.id === characterId ? updatedChar : c)),
   );
 
+  const result = await enqueueCharacterWrite(characterId, () =>
+    updateCharacterWithRevisionCheck(characterId, {
+      classes: updatedClasses as Character["classes"],
+      revision,
+      updatedAt,
+    }),
+  );
+
+  if (result.ok === false) {
+    store.set(
+      charactersAtom,
+      chars.map((c) => (c.id === characterId ? existing : c)),
+    );
+    throw new Error("Failed to update wizard prepared spells");
+  }
+
   return updatedWizard;
+}
+
+/**
+ * Update prepared spells for a single spell level.
+ * Uses the latest character state from the jotai store to avoid stale props
+ * during rapid UI interactions.
+ */
+export async function updateWizardPreparedSpellsLevel(
+  characterId: string,
+  spellLevel: number,
+  levelSpells: PreparedSpell[],
+) {
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.classes.find(
+    (c) => c.className === CharacterClass.WIZARD,
+  ) as WizardClassProgression | undefined;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const preparedSpells = {
+    ...(wizard.preparedSpells ?? {}),
+    [spellLevel]: levelSpells,
+  } as Record<number, PreparedSpell[]>;
+
+  return updateWizardPreparedSpells(characterId, preparedSpells);
 }
 
 /**

@@ -4,7 +4,13 @@
 
 import { initializeApp, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
-import { getFirestore, Firestore } from "firebase/firestore";
+import {
+  type Firestore,
+  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+} from "firebase/firestore";
 
 /**
  * Firebase project configuration.
@@ -29,4 +35,22 @@ export const app: FirebaseApp = initializeApp(firebaseConfig);
 export const auth: Auth = getAuth(app);
 
 /** Firestore database instance */
-export const db: Firestore = getFirestore(app);
+export const db: Firestore = (() => {
+  try {
+    // Enables IndexedDB-backed persistence so the app can read/write while offline
+    // and sync changes when connectivity returns.
+    // Falls back to in-memory cache if persistence is not available (e.g. some
+    // private browsing modes or older browsers).
+    return initializeFirestore(app, {
+      localCache: persistentLocalCache({
+        tabManager: persistentMultipleTabManager(),
+      }),
+    });
+  } catch (err) {
+    console.warn(
+      "Firestore persistence unavailable; falling back to in-memory cache:",
+      err,
+    );
+    return getFirestore(app);
+  }
+})();

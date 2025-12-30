@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +14,7 @@ import {
   PreparedSpell,
 } from "@/types/ClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
-import { updateWizardPreparedSpells } from "@/firebase/characters";
+import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
@@ -35,14 +35,21 @@ export function WizardPreparedSpells({
   characterId,
   onViewSpell,
 }: WizardPreparedSpellsProps) {
-  const spells = progression.preparedSpells[spellLevel] || [];
+  const [localSpells, setLocalSpells] = useState<PreparedSpell[]>(
+    progression.preparedSpells[spellLevel] || [],
+  );
+
+  useEffect(() => {
+    setLocalSpells(progression.preparedSpells[spellLevel] || []);
+  }, [progression.preparedSpells, spellLevel]);
+
+  const spells = localSpells;
   const slotMap = getWizardProgressionSpellSlots(progression);
   const maxSlots = slotMap[spellLevel] || 0;
   const castable = spells.filter((s) => !s.used).length;
   const totalPrepared = spells.length;
   const preparedIds = new Set(spells.map((s) => s.spellId));
 
-  const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [flashSpellId, setFlashSpellId] = useState<string | null>(null);
 
@@ -53,26 +60,27 @@ export function WizardPreparedSpells({
     }, 700);
   };
 
-  const updateLevelSpells = async (
+  const updateLevelSpells = (
     mutate: (current: PreparedSpell[]) => PreparedSpell[],
   ) => {
-    setIsUpdating(true);
     setError(null);
-    try {
-      const current = progression.preparedSpells[spellLevel] ?? [];
-      const nextLevel = mutate(current);
-      const nextPrepared = {
-        ...progression.preparedSpells,
-        [spellLevel]: nextLevel,
-      };
-      await updateWizardPreparedSpells(characterId, nextPrepared);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to update prepared spells",
-      );
-    } finally {
-      setIsUpdating(false);
-    }
+
+    setLocalSpells((currentLevel) => {
+      const nextLevel = mutate(currentLevel);
+
+      // Persist in the background. Firestore offline persistence will queue
+      // writes when offline; UI should update immediately.
+      void updateWizardPreparedSpellsLevel(characterId, spellLevel, nextLevel)
+        .catch((err) => {
+          setError(
+            err instanceof Error
+              ? err.message
+              : "Failed to update prepared spells",
+          );
+        });
+
+      return nextLevel;
+    });
   };
 
   const updateSpellGroup = (
@@ -161,7 +169,6 @@ export function WizardPreparedSpells({
         </div>
         <div className="flex items-center gap-2">
           <Select
-            disabled={isUpdating}
             onValueChange={(spellId) => {
               if (!spellId || spellId === "__none__") return;
               handleAddSpell(spellId);
@@ -292,7 +299,7 @@ export function WizardPreparedSpells({
                               size="icon"
                               variant="outline"
                               className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                              disabled={isUpdating || remaining <= 0}
+                              disabled={remaining <= 0}
                               onClick={() =>
                                 adjustRemaining(spellId, -1, total)
                               }
@@ -307,7 +314,7 @@ export function WizardPreparedSpells({
                               size="icon"
                               variant="outline"
                               className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                              disabled={isUpdating || remaining >= total}
+                              disabled={remaining >= total}
                               onClick={() => adjustRemaining(spellId, 1, total)}
                               title="Increase remaining casts"
                             >
@@ -336,7 +343,7 @@ export function WizardPreparedSpells({
                                 size="icon"
                                 variant="outline"
                                 className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                                disabled={isUpdating || total === 0}
+                                disabled={total === 0}
                                 onClick={() => deleteSpellGroup(spellId)}
                                 title="Remove this spell from prepared"
                               >
@@ -347,7 +354,7 @@ export function WizardPreparedSpells({
                                 size="icon"
                                 variant="outline"
                                 className="h-7 w-7 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                                disabled={isUpdating || total === 0}
+                                disabled={total === 0}
                                 onClick={() => adjustTotal(spellId, -1)}
                                 title="Decrease prepared copies"
                               >
@@ -361,7 +368,6 @@ export function WizardPreparedSpells({
                               size="icon"
                               variant="outline"
                               className="h-7 w-7 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                              disabled={isUpdating}
                               onClick={() => handleIncreaseCopies(spellId)}
                               title="Increase prepared copies"
                             >
