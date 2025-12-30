@@ -11,7 +11,7 @@ export function SpellSelect(props: SpellSelectProps) {
   return (
     <Combobox<Spell>
       items={props.spells}
-      getKey={(s) => `${s.class}:${s.name}`}
+      getKey={(s) => s.link}
       getLabel={(s) => s.name}
       value={props.value}
       onChange={props.onChange}

@@ -90,8 +90,7 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
           <DialogHeader>
             <DialogTitle>{selectedSpellForViewer?.name}</DialogTitle>
             <DialogDescription>
-              Level {selectedSpellForViewer?.level}{" "}
-              {selectedSpellForViewer?.class} Spell
+              Level {selectedSpellForViewer?.level} Spell
             </DialogDescription>
           </DialogHeader>
           {selectedSpellForViewer && (

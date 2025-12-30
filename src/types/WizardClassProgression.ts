@@ -6,10 +6,10 @@ export interface WizardSpellbook {
   name: string;
   numberOfPages: number;
   /**
-   * Map of spell IDs in format "SpellId - true".
+   * Set-like map of learned spell names.
    * Stored as a set-like map to reduce cross-device conflicts.
    */
-  spellsById: Record<string, true>;
+  spellsByName: Record<string, true>;
 }
 
 export interface WizardClassProgression extends PreparedCasterProgression {

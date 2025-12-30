@@ -1,41 +1,91 @@
 import { Spell } from "@/types/Spell";
-import { wizardSpells } from "@/data/wizardSpells";
-import { priestSpells } from "@/data/priestSpells";
-import { parseSpellId } from "./spellId";
-import { CharacterClass } from "@/types/ClassProgression";
+import { getResourceCached } from "./resourceCache";
+import { LATEST_RESOURCE_VERSIONS } from "@/resources/latestResourceVersions";
+import { priestSpellsAtom, store, wizardSpellsAtom } from "@/globalState";
 
-/** All available spells indexed by class */
-const allSpells: Record<string, Spell[]> = {
-  [CharacterClass.WIZARD]: wizardSpells,
-  [CharacterClass.PRIEST]: priestSpells,
+type SpellJson = {
+  level: number;
+  name: string;
+  link: string;
 };
 
+let spellDataLoadPromise: Promise<void> | null = null;
+
 /**
- * Finds a spell by its ID string (format: "ClassName - Spell Name")
- * @param spellId The spell ID to look up
- * @returns The spell object, or null if not found
+ * Loads the runtime spell lists into Jotai atoms.
+ *
+ * @remarks
+ * This is intentionally idempotent: concurrent calls share the same promise.
+ * After this resolves, the synchronous getters in this module will return data.
  */
-export function findSpellById(spellId: string): Spell | null {
-  const parsed = parseSpellId(spellId);
-  if (!parsed) return null;
+export function loadSpellData(): Promise<void> {
+  if (spellDataLoadPromise) return spellDataLoadPromise;
 
-  const spells = allSpells[parsed.class];
-  if (!spells) return null;
+  spellDataLoadPromise = (async () => {
+    const versions = LATEST_RESOURCE_VERSIONS;
 
-  return spells.find((s) => s.name === parsed.name) || null;
+    const [wizard, priest] = await Promise.all([
+      getResourceCached<SpellJson[]>({
+        name: "wizardSpells",
+        version: versions.wizardSpells,
+        url: `/resources/wizardSpells.json?v=${versions.wizardSpells}`,
+      }),
+      getResourceCached<SpellJson[]>({
+        name: "priestSpells",
+        version: versions.priestSpells,
+        url: `/resources/priestSpells.json?v=${versions.priestSpells}`,
+      }),
+    ]);
+
+    const wizardSpells: Spell[] = wizard.map((s) => ({
+      level: s.level,
+      name: s.name,
+      link: s.link,
+    }));
+
+    const priestSpells: Spell[] = priest.map((s) => ({
+      level: s.level,
+      name: s.name,
+      link: s.link,
+    }));
+
+    store.set(wizardSpellsAtom, wizardSpells);
+    store.set(priestSpellsAtom, priestSpells);
+  })();
+
+  return spellDataLoadPromise;
 }
 
 /**
- * Gets all spells of a specific level from a character class
- * @param characterClass The class to get spells for
- * @param level The spell level
- * @returns Array of spells matching the criteria
+ * Finds a wizard spell by name.
+ *
+ * @remarks
+ * Names are assumed unique within the wizard spell list.
  */
-export function getSpellsByLevel(
-  characterClass: CharacterClass,
-  level: number,
-): Spell[] {
-  const spells = allSpells[characterClass];
-  if (!spells) return [];
-  return spells.filter((s) => s.level === level);
+export function findWizardSpellByName(name: string): Spell | null {
+  return store.get(wizardSpellsAtom).find((s) => s.name === name) ?? null;
+}
+
+/**
+ * Finds a priest spell by name.
+ *
+ * @remarks
+ * Names are assumed unique within the priest spell list.
+ */
+export function findPriestSpellByName(name: string): Spell | null {
+  return store.get(priestSpellsAtom).find((s) => s.name === name) ?? null;
+}
+
+/**
+ * Returns all wizard spells of a given level.
+ */
+export function getWizardSpellsByLevel(level: number): Spell[] {
+  return store.get(wizardSpellsAtom).filter((s) => s.level === level);
+}
+
+/**
+ * Returns all priest spells of a given level.
+ */
+export function getPriestSpellsByLevel(level: number): Spell[] {
+  return store.get(priestSpellsAtom).filter((s) => s.level === level);
 }

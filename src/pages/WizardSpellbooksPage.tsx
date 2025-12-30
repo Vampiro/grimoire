@@ -37,13 +37,11 @@ import {
 } from "@/components/ui/command";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { PageRoute } from "@/pages/PageRoute";
-import { CharacterClass } from "@/types/ClassProgression";
 import {
   WizardClassProgression,
   WizardSpellbook,
 } from "@/types/WizardClassProgression";
-import { getSpellId } from "@/lib/spellId";
-import { findSpellById, getSpellsByLevel } from "@/lib/spellLookup";
+import { findWizardSpellByName, getWizardSpellsByLevel } from "@/lib/spellLookup";
 import type { Spell } from "@/types/Spell";
 import { Info } from "lucide-react";
 import {
@@ -116,7 +114,7 @@ export function WizardSpellbooksPage() {
           <DialogHeader>
             <DialogTitle>{selectedSpell?.name}</DialogTitle>
             <DialogDescription>
-              Level {selectedSpell?.level} {selectedSpell?.class} Spell
+              Level {selectedSpell?.level} Spell
             </DialogDescription>
           </DialogHeader>
           {selectedSpell && (
@@ -143,22 +141,22 @@ function SpellbookCard({
 }) {
   const spellsByLevel = useMemo(() => {
     const grouped: Record<number, Spell[]> = {};
-    Object.keys(spellbook.spellsById).forEach((id) => {
-      const spell = findSpellById(id);
+    Object.keys(spellbook.spellsByName).forEach((name) => {
+      const spell = findWizardSpellByName(name);
       if (spell) {
         grouped[spell.level] = grouped[spell.level] || [];
         grouped[spell.level].push(spell);
       }
     });
     return grouped;
-  }, [spellbook.spellsById]);
+  }, [spellbook.spellsByName]);
 
   const [selectedLevel, setSelectedLevel] = useState<number | undefined>(1);
   const [spellPopoverOpen, setSpellPopoverOpen] = useState(false);
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState<string | null>(null);
   const availableSpells = selectedLevel
-    ? getSpellsByLevel(CharacterClass.WIZARD, selectedLevel)
+    ? getWizardSpellsByLevel(selectedLevel)
     : [];
 
   const handleSelectSpell = async (spellName: string) => {
@@ -170,7 +168,7 @@ function SpellbookCard({
       await addSpellToWizardSpellbook(
         characterId,
         spellbook.id,
-        getSpellId(spell),
+        spell.name,
       );
       setSpellPopoverOpen(false);
     } catch (err) {

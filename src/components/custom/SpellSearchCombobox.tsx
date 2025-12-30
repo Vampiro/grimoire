@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useAtomValue } from "jotai";
 import {
   Command,
   CommandEmpty,
@@ -7,21 +8,25 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-
-import { priestSpells } from "@/data/priestSpells";
-import { wizardSpells } from "@/data/wizardSpells";
+import { priestSpellsAtom, wizardSpellsAtom } from "@/globalState";
 
 export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const wizardSpells = useAtomValue(wizardSpellsAtom);
+  const priestSpells = useAtomValue(priestSpellsAtom);
 
   // Autofocus when opened
   useEffect(() => {
     setTimeout(() => inputRef.current?.focus(), 10);
   }, []);
 
+  const allSpells = useMemo(
+    () => [...wizardSpells, ...priestSpells],
+    [wizardSpells, priestSpells],
+  );
+
   const handleSelect = (name: string) => {
-    const all = [...wizardSpells, ...priestSpells];
-    const spell = all.find((s) => s.name === name);
+    const spell = allSpells.find((s) => s.name === name);
     if (!spell) return;
     closeMenu();
     window.open(spell.link, "_blank"); // ← open in new tab/window

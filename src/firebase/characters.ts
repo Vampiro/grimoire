@@ -189,7 +189,7 @@ export async function updateCharacter(id: string, data: Partial<Character>) {
  */
 export async function addWizardSpellbook(
   characterId: string,
-  spellbook: Omit<WizardSpellbook, "id" | "spellsById"> & { id?: string },
+  spellbook: Omit<WizardSpellbook, "id" | "spellsByName"> & { id?: string },
 ) {
   const uid = getCurrentUserId();
   if (!uid) throw new Error("Not logged in");
@@ -205,7 +205,7 @@ export async function addWizardSpellbook(
     id: spellbook.id ?? shortId(),
     name: spellbook.name,
     numberOfPages: spellbook.numberOfPages,
-    spellsById: {},
+    spellsByName: {},
   };
 
   const ref = characterDoc(uid, characterId);
@@ -226,7 +226,7 @@ export async function addWizardSpellbook(
 export async function addSpellToWizardSpellbook(
   characterId: string,
   spellbookId: string,
-  spellId: string,
+  spellName: string,
 ) {
   const uid = getCurrentUserId();
   if (!uid) throw new Error("Not logged in");
@@ -249,8 +249,8 @@ export async function addSpellToWizardSpellbook(
       "wizard",
       "spellbooksById",
       spellbookId,
-      "spellsById",
-      spellId,
+      "spellsByName",
+      spellName,
     ),
     true,
     "updatedAt",
