@@ -250,7 +250,7 @@ export function WizardPreparedSpells({
                     Spell
                   </th>
                   <th className="w-px py-1 text-right text-xs font-semibold text-muted-foreground whitespace-nowrap">
-                    Rested Copies
+                    Rested Slots
                     <div className="text-[10px] font-normal">
                       − remove / + add
                     </div>
