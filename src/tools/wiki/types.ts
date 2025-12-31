@@ -19,6 +19,7 @@ export interface MediaWikiRevisionsResponse {
         pageid?: number;
         ns?: number;
         title?: string;
+        missing?: boolean;
         revisions?: Array<{
           slots?: {
             main?: {
@@ -32,6 +33,31 @@ export interface MediaWikiRevisionsResponse {
     >;
   };
 }
+
+/**
+ * Minimal representation of a fetched spell page wikitext.
+ */
+export type SpellWikitextPage = {
+  pageid: number;
+  title: string | null;
+  wikitext: string;
+};
+
+/**
+ * Output file format for cached spell pages fetched in batches by pageid.
+ */
+export type SpellWikitextBatchFile = {
+  generatedAt: string;
+  source: "https://adnd2e.fandom.com";
+  categoryName: string;
+  requestedPageIds: number[];
+  pages: SpellWikitextPage[];
+  errors: Array<{
+    pageid: number;
+    title?: string;
+    message: string;
+  }>;
+};
 
 /**
  * Result of extracting the first page's wikitext from a MediaWiki revisions response.
@@ -72,4 +98,35 @@ export type WizardSpellDescriptionsFile = {
   generatedAt: string;
   source: "https://adnd2e.fandom.com";
   spellsByName: Record<string, SpellDescriptionJson>;
+};
+
+/**
+ * Raw MediaWiki API response shape for the `action=query&list=categorymembers` call.
+ */
+export interface MediaWikiCategoryMembersResponse {
+  batchcomplete?: string;
+  continue?: {
+    cmcontinue?: string;
+    continue?: string;
+  };
+  query?: {
+    categorymembers?: MediaWikiCategoryMember[];
+  };
+}
+
+/**
+ * Single member entry in a MediaWiki category listing.
+ */
+export interface MediaWikiCategoryMember {
+  pageid: number;
+  ns: number;
+  title: string;
+}
+
+/**
+ * Output file format for cached category members.
+ */
+export type CategoryMembersFile = {
+  categoryName: string;
+  categoryMembers: MediaWikiCategoryMember[];
 };
