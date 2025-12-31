@@ -33,5 +33,7 @@ describe("buildWizardDescriptionsForFireball", () => {
     expect(Object.keys(out.spellsByName)).toEqual(["Fireball"]);
     expect(out.spellsByName.Fireball.title).toBe("Fireball");
     expect(out.spellsByName.Fireball.infobox.school).toBe("Evocation");
+    expect(out.spellsByName.Fireball.html.length).toBeGreaterThan(0);
+    expect(out.spellsByName.Fireball.sectionsHtml.Introduction.length).toBeGreaterThan(0);
   });
 });

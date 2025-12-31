@@ -1,5 +1,10 @@
 import type { SpellDescriptionJson } from "./types";
 import wtf from "wtf_wikipedia";
+import htmlPlugin from "wtf-plugin-html";
+import { cleanupWtfHtml } from "./htmlCleanup";
+
+// Enable HTML output on wtf_wikipedia documents/sections.
+wtf.extend(htmlPlugin);
 
 /**
  * Parses wikitext from the AD&D 2e wiki into a structured spell description.
@@ -29,8 +34,12 @@ export function parseSpellWikitextToJson(opts: {
   return {
     title: opts.title,
     wikitext: opts.wikitext,
+    html: plaintextToHtml(bodyAfterInfobox),
     infobox,
     sections,
+    sectionsHtml: Object.fromEntries(
+      Object.entries(sections).map(([k, v]) => [k, plaintextToHtml(v)]),
+    ),
   };
 }
 
@@ -64,27 +73,59 @@ function tryParseWithWtfWikipedia(opts: {
     }
 
     const sections: Record<string, string> = {};
+    const sectionsHtml: Record<string, string> = {};
     for (const section of doc.sections?.() ?? []) {
       const heading = (section.title?.() ?? "").trim() || "Introduction";
       const content = (section.text?.() ?? "").trim();
       if (!content) continue;
 
+      const html = (section.html?.() ?? "").trim();
+      const cleanedHtml = html ? cleanupWtfHtml(html) : "";
+
       if (!sections[heading]) {
         sections[heading] = content;
+        if (cleanedHtml) sectionsHtml[heading] = cleanedHtml;
       } else {
         sections[heading] = `${sections[heading]}\n\n${content}`;
+        if (cleanedHtml) {
+          sectionsHtml[heading] = sectionsHtml[heading]
+            ? `${sectionsHtml[heading]}\n${cleanedHtml}`
+            : cleanedHtml;
+        }
       }
     }
 
     return {
       title: opts.title,
       wikitext: opts.wikitext,
+      html: cleanupWtfHtml((doc.html?.() ?? "").trim()),
       infobox,
       sections,
+      sectionsHtml,
     };
   } catch {
     return null;
   }
+}
+
+function plaintextToHtml(text: string): string {
+  // Very small fallback used only if wtf_wikipedia parsing fails.
+  // We keep it conservative: escape and treat blank lines as paragraphs.
+  const escaped = escapeHtml(text);
+  const paragraphs = escaped.split(/\n\n+/).map((p) => p.trim());
+  return paragraphs
+    .filter(Boolean)
+    .map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`)
+    .join("\n");
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function extractWtfValueText(value: unknown): string {

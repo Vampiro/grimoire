@@ -26,5 +26,12 @@ describe("parseSpellWikitextToJson", () => {
 
     expect(parsed.sections.Introduction).not.toContain("Category:");
     expect(parsed.sections["Combat & Tactics"]).not.toContain("Category:");
+
+    // HTML output (via wtf-plugin-html) should be present and usable.
+    expect(parsed.html.length).toBeGreaterThan(0);
+    expect(parsed.sectionsHtml.Introduction.length).toBeGreaterThan(0);
+    expect(parsed.sectionsHtml["Combat & Tactics"]).toContain(
+      "<h1>Combat & Tactics</h1>",
+    );
   });
 });
