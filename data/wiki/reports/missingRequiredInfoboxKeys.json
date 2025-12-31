@@ -1,0 +1,886 @@
+{
+  "requiredKeys": [
+    "name",
+    "source",
+    "range",
+    "castingtime",
+    "aoe",
+    "class",
+    "school",
+    "level"
+  ],
+  "generatedAt": "2025-12-31T20:36:25.366Z",
+  "totalIssues": 115,
+  "issues": [
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Animal (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Animal Command (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Anneal Clan Spirit (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Ashen Steed (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Bellows Breath (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Bird Call (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Bloodiron (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Break the Streets (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Candle (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Canticle (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Cause Rash (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Chill (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Clean (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Cure Blindness (Priest Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Dark Alloy (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Disguise Scent (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Disinfect (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Dry (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Drywood (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Edible Plant (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Elemental Shield (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Eversharp (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Find a Stray (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Fire on the Mountain (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Flamefinger (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Forewarning (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Guidance (Priest Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Handfire (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Heal Rash (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Holly Dart (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Humidity (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Hurd's Obligation (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Incense (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Judgement (Orison)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Karsus's Avatar (Priest Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Kolin's Undead Legion (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Kreb's Flaming Dragon (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Kreb's Stately Veil (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Lava Tunnel (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Liven (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Mark Path (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Masterwork (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Meditation (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Moradin's Metal (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Mouse (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Nazzer's Nullification (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Neja's Irresistible Plea (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Neja's Toadstool (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Neja's Unfailing Contempt (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Passage (Priest Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Pech Chant (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Pet (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Polish (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Prod (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Purifying Fire (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Pyroclastic Surge (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Rapport (Priest Spell)",
+      "missing": [
+        "name",
+        "source",
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school",
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Ratecliffe's Deadly Finger (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Red Skies Warning (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Remove Pain (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Renew Earth (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Repel Insects (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Restful Sleep (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Ripen (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Secrets of Stone (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Seismic Trigger (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Shine (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Smokeball (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Steelskin - Chant (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Stoker's Chant (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Stone (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Tempering (Priest Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Tenser's Telling Blow (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Test Soil (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Tweak (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Warding (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Warm (Orison)",
+      "missing": [
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Wulf's Erasure (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Wulf's Rectification (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/priestSpellDescriptions.json",
+      "title": "Yunni's Herald (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Avissar's Bane (Wizard Spell)",
+      "missing": [
+        "aoe"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Bargain (Wizard Spell)",
+      "missing": [
+        "castingtime"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Become Bones (Wizard Spell)",
+      "missing": [
+        "castingtime"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Create Mythal (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Disarm (Wizard Spell)",
+      "missing": [
+        "aoe"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Drenal's Dry Ink (Wizard Spell)",
+      "missing": [
+        "source",
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Fisheye (Wizard Spell)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Flamedouse (Wizard Spell)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Gripdeck (Wizard Spell)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Helmsman (Wizard Spell)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Hurd's Obligation (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Inscribe (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Karsus's Avatar (Wizard Spell)",
+      "missing": [
+        "name",
+        "source",
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school",
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Kolin's Undead Legion (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Kreb's Flaming Dragon (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Kreb's Stately Veil (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Locate Object - Rhabdomancer (Wizard Spell)",
+      "missing": [
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Nazzer's Nullification (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Neja's Irresistible Plea (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Neja's Toadstool (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Neja's Unfailing Contempt (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Omen (Wizard Spell)",
+      "missing": [
+        "range"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Ratecliffe's Deadly Finger (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Ritual of Twaining (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Salamander's Seismic Seizure (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Seduction (Wizard Spell)",
+      "missing": [
+        "name",
+        "source",
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school",
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Silence, 15' Radius - Red Wizard (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Slaying Wind (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "class",
+        "school"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Stonecase (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe",
+        "school",
+        "level"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Tarnish (Cantrip)",
+      "missing": [
+        "range"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Tenser's Telling Blow (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Tymessul's Improved Planar Pacifier (Wizard Spell)",
+      "missing": [
+        "range",
+        "castingtime",
+        "aoe"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Wulf's Erasure (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Wulf's Rectification (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    },
+    {
+      "file": "public/resources/wizardSpellDescriptions.json",
+      "title": "Yunni's Herald (True Dweomer)",
+      "missing": [
+        "class"
+      ]
+    }
+  ]
+}

@@ -125,16 +125,10 @@ export interface MediaWikiWikitextPage {
 export interface SpellDescriptionJson {
   /** MediaWiki page title, if available. */
   title: string | null;
-  /** Raw wikitext as returned by the API. */
-  wikitext: string;
-  /** HTML rendered from the wikitext (best-effort). */
-  html: string;
   /** Key/value fields parsed from `{{Infobox Spells ...}}`. */
   infobox: Record<string, string>;
   /** Section bodies keyed by heading (e.g. `Combat & Tactics`). */
   sections: Record<string, string>;
-  /** Section HTML keyed by heading (e.g. `Combat & Tactics`). */
-  sectionsHtml: Record<string, string>;
 }
 
 /**
