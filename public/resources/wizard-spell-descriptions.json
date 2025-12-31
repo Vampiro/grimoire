@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2025-12-31T14:10:09.364Z",
+  "source": "https://adnd2e.fandom.com",
+  "spellsByName": {
+    "Absolute Location": {
+      "pageName": "Absolute_Location_(Wizard_Spell)",
+      "pageId": 41711,
+      "title": "Absolute Location (Wizard Spell)",
+      "wikitext": "{{Infobox Spells\n| name = Absolute Location\n| class = Wizard\n| school = Divination\n| level = 1\n| range =  0\n| duration = Instant\n| aoe = Caster\n| verbal = 1\n| somatic = 1\n| material = 1\n| castingTime = 1\n| save = None\n| source = [[Mage on Deck! (Article)|Dragon Magazine #235]]\n}}\n\nTired of being blown off-course and having no idea where you are? This spell provides the mage with a navigational fix (the distance and direction) to a known landmark. The mage must be very familiar with the site. Suitable landmarks include the home port, an often-visited island, or a distinctive mountain. The navigational fix is accurate to within 200 yards. This is not accurate enough to navigate through shoals or reefs, but it is good enough to determine which way is “home.” The spell works over worldwide distances but only on the “home planet” of the mage casting the spell.\n\nThe material component of the spell (not consumed) is a map of the world worth at least 50 gp. The map does not have to be accurate.\n\n[[Category:Wizard Spells]]\n[[Category:Dragon Magazine Spells]]\n[[Category:Spells]]",
+      "infobox": {
+        "name": "Absolute Location",
+        "class": "Wizard",
+        "school": "Divination",
+        "level": "1",
+        "range": "0",
+        "duration": "Instant",
+        "aoe": "Caster",
+        "verbal": "1",
+        "somatic": "1",
+        "material": "1",
+        "castingTime": "1",
+        "save": "None",
+        "source": "[[Mage on Deck! (Article)|Dragon Magazine #235]]"
+      },
+      "categories": [
+        "Wizard Spells",
+        "Dragon Magazine Spells",
+        "Spells"
+      ],
+      "sections": {
+        "Introduction": "Tired of being blown off-course and having no idea where you are? This spell provides the mage with a navigational fix (the distance and direction) to a known landmark. The mage must be very familiar with the site. Suitable landmarks include the home port, an often-visited island, or a distinctive mountain. The navigational fix is accurate to within 200 yards. This is not accurate enough to navigate through shoals or reefs, but it is good enough to determine which way is “home.” The spell works over worldwide distances but only on the “home planet” of the mage casting the spell.\n\nThe material component of the spell (not consumed) is a map of the world worth at least 50 gp. The map does not have to be accurate."
+      }
+    }
+  }
+}
