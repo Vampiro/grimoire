@@ -1,4 +1,5 @@
 import type { SpellDescriptionJson } from "./types";
+import wtf from "wtf_wikipedia";
 
 /**
  * Parses wikitext from the AD&D 2e wiki into a structured spell description.
@@ -13,7 +14,16 @@ export function parseSpellWikitextToJson(opts: {
   title: string | null;
   wikitext: string;
 }): SpellDescriptionJson {
-  const { infobox, bodyAfterInfobox } = parseInfoboxSpells(opts.wikitext);
+  const normalizedWikitext = preprocessWikitextForParsing(opts.wikitext);
+
+  // Prefer a real wikitext parser; fall back to the legacy pragmatic parser.
+  const parsedViaWtf = tryParseWithWtfWikipedia({
+    title: opts.title,
+    wikitext: normalizedWikitext,
+  });
+  if (parsedViaWtf) return parsedViaWtf;
+
+  const { infobox, bodyAfterInfobox } = parseInfoboxSpells(normalizedWikitext);
   const sections = parseSections(bodyAfterInfobox);
 
   return {
@@ -22,6 +32,70 @@ export function parseSpellWikitextToJson(opts: {
     infobox,
     sections,
   };
+}
+
+function preprocessWikitextForParsing(wikitext: string): string {
+  // Normalize common line-break conventions. This improves both the structured
+  // parser and the fallback line-based parser.
+  return wikitext
+    .replace(/\{\{\s*br\s*\}\}/gi, "\n")
+    .replace(/<\s*br\s*\/?>/gi, "\n");
+}
+
+function tryParseWithWtfWikipedia(opts: {
+  title: string | null;
+  wikitext: string;
+}): SpellDescriptionJson | null {
+  try {
+    const doc = wtf(opts.wikitext);
+
+    const infobox: Record<string, string> = {};
+    const firstInfobox = doc.infoboxes()?.[0];
+    if (firstInfobox) {
+      const raw = firstInfobox.json?.() as unknown;
+      if (raw && typeof raw === "object") {
+        for (const [key, value] of Object.entries(
+          raw as Record<string, unknown>,
+        )) {
+          const text = extractWtfValueText(value);
+          if (key && text) infobox[key] = text;
+        }
+      }
+    }
+
+    const sections: Record<string, string> = {};
+    for (const section of doc.sections?.() ?? []) {
+      const heading = (section.title?.() ?? "").trim() || "Introduction";
+      const content = (section.text?.() ?? "").trim();
+      if (!content) continue;
+
+      if (!sections[heading]) {
+        sections[heading] = content;
+      } else {
+        sections[heading] = `${sections[heading]}\n\n${content}`;
+      }
+    }
+
+    return {
+      title: opts.title,
+      wikitext: opts.wikitext,
+      infobox,
+      sections,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function extractWtfValueText(value: unknown): string {
+  if (value == null) return "";
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number") return String(value);
+  if (typeof value === "object") {
+    const maybeText = (value as { text?: unknown }).text;
+    if (typeof maybeText === "string") return maybeText.trim();
+  }
+  return String(value).trim();
 }
 
 function parseInfoboxSpells(wikitext: string): {
