@@ -50,7 +50,7 @@ export async function fetchAdnd2eWikiWikitext(
 /**
  * Extracts the first page's wikitext (`revisions[0].slots.main['*']`) from the API response.
  */
-function extractFirstPageWikitext(
+export function extractFirstPageWikitext(
   json: MediaWikiRevisionsResponse,
 ): MediaWikiWikitextPage {
   const pages = json.query?.pages;

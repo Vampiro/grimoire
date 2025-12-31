@@ -60,3 +60,12 @@ export interface SpellDescriptionJson {
   /** Section bodies keyed by heading (e.g. `Combat & Tactics`). */
   sections: Record<string, string>;
 }
+
+/**
+ * Output file format for generated wizard spell descriptions.
+ */
+export type WizardSpellDescriptionsFile = {
+  generatedAt: string;
+  source: "https://adnd2e.fandom.com";
+  spellsByName: Record<string, SpellDescriptionJson>;
+};

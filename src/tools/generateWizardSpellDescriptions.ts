@@ -1,24 +1,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { fetchAdnd2eWikiWikitext } from "./wiki/mediaWikiApi";
-import { parseSpellWikitextToJson } from "./wiki/wikitextParser";
-import { getPageNameFromWikiLink } from "./wiki/wikiLink";
-import type { SpellDescriptionJson } from "./wiki/types";
+import { buildWizardDescriptionsForFireball } from "./wiki/wizardDescriptionsCore";
+import type { WizardSpellDescriptionsFile } from "./wiki/types";
+
+export type { WizardSpellDescriptionsFile } from "./wiki/types";
 
 type WizardSpellListEntry = {
   level: number;
   name: string;
   link: string;
-};
-
-/**
- * Output file format for generated wizard spell descriptions.
- */
-export type WizardSpellDescriptionsFile = {
-  generatedAt: string;
-  source: "https://adnd2e.fandom.com";
-  spellsByName: Record<string, SpellDescriptionJson>;
 };
 
 function getRepoRootDir(): string {
@@ -62,34 +53,12 @@ async function main() {
     throw new Error("wizardSpells.json is empty");
   }
 
-  // Start small: the Fireball spell.
-  const spell = spells.find((s) => s.name === "Fireball");
-  if (!spell) {
-    throw new Error('Could not find "Fireball" in wizardSpells.json');
-  }
-
-  const pageName = getPageNameFromWikiLink(spell.link);
-
-  const page = await fetchAdnd2eWikiWikitext(pageName);
-  const parsed = parseSpellWikitextToJson({
-    title: page.title,
-    wikitext: page.wikitext,
-  });
-
-  const out: WizardSpellDescriptionsFile = {
-    generatedAt: new Date().toISOString(),
-    source: "https://adnd2e.fandom.com",
-    spellsByName: {
-      [spell.name]: parsed,
-    },
-  };
+  const out: WizardSpellDescriptionsFile = await buildWizardDescriptionsForFireball(spells);
 
   await writeWizardDescriptions(repoRoot, out);
 
   // Minimal CLI output for npm scripts.
-  console.log(
-    `Wrote wizard-spell-descriptions.json for: ${spell.name} (${pageName})`,
-  );
+  console.log(`Wrote wizard-spell-descriptions.json for: Fireball`);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
