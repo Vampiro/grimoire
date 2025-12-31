@@ -1,3 +1,9 @@
+/**
+ * Minimal local typings for `wtf_wikipedia` used by the build-time wiki tooling.
+ *
+ * @remarks
+ * This repo only depends on a small subset of the library's surface area.
+ */
 declare module "wtf_wikipedia" {
   export type WtfOptions = {
     /** Optional language code. */
@@ -27,7 +33,9 @@ declare module "wtf_wikipedia" {
   }
 
   export interface WtfDocument {
+    /** Returns parsed infoboxes found in the document. */
     infoboxes(): WtfInfobox[];
+    /** Returns parsed sections in document order (lead section included). */
     sections(): WtfSection[];
     /** HTML output for the whole document (requires `wtf-plugin-html`). */
     html(): string;

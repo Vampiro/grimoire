@@ -19,14 +19,25 @@ export type FetchCategoryMembersOptions = {
   cmNamespace?: number;
 };
 
+/** Sleeps for the given duration (used for request rate-limiting). */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/**
+ * Builds a MediaWiki `categorymembers` query URL.
+ *
+ * @remarks
+ * When `continuation` is provided, the returned URL fetches the next page.
+ */
 function buildCategoryMembersUrl(opts: {
+  /** MediaWiki category title, e.g. `Category:Wizard_Spells`. */
   categoryTitle: string;
+  /** Per-request max items to return. */
   cmLimit: number;
+  /** Namespace filter (0 = main/article namespace). */
   cmNamespace: number;
+  /** Continuation token payload from a previous response, if any. */
   continuation?: { cmcontinue?: string; continue?: string };
 }): string {
   const params = new URLSearchParams({
@@ -48,6 +59,13 @@ function buildCategoryMembersUrl(opts: {
   return `${ADND2E_API}?${params.toString()}`;
 }
 
+/**
+ * Fetches all members in a MediaWiki category, automatically paging until complete.
+ *
+ * @remarks
+ * Uses the MediaWiki `continue.cmcontinue` mechanism and enforces a caller-configurable
+ * request rate limit.
+ */
 export async function fetchAllCategoryMembers(
   opts: FetchCategoryMembersOptions,
   fetchFn: typeof fetch = fetch,

@@ -9,8 +9,17 @@ import type {
   SpellWikitextBatchFile,
 } from "./wiki/types";
 
-type ErrorEntry = { scope: string; message: string; details?: unknown };
+/** A non-page-specific error encountered while generating output files. */
+type ErrorEntry = {
+  /** Category-qualified scope used for grouping in the final report. */
+  scope: string;
+  /** Human-readable error message. */
+  message: string;
+  /** Optional structured details (serialized as JSON when possible). */
+  details?: unknown;
+};
 
+/** Indents each non-empty line by the given number of spaces. */
 function indentLines(text: string, spaces: number): string {
   const prefix = " ".repeat(spaces);
   return text
@@ -19,16 +28,19 @@ function indentLines(text: string, spaces: number): string {
     .join("\n");
 }
 
+/** Resolves the repository root directory from the current script path. */
 function getRepoRootDir(): string {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   return path.resolve(__dirname, "..", "..");
 }
 
+/** Sleeps for the given duration (used for request rate-limiting). */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/** Formats a list of generation errors as a single printable block. */
 function formatErrors(errors: ErrorEntry[]): string {
   const lines: string[] = [];
   lines.push("\n====================");
@@ -50,16 +62,24 @@ function formatErrors(errors: ErrorEntry[]): string {
   return lines.join("\n");
 }
 
-function pickFirstPageIds(
-  members: MediaWikiCategoryMember[],
-  max: number,
-): number[] {
+/** Extracts numeric page ids from a category member list. */
+function pickAllPageIds(members: MediaWikiCategoryMember[]): number[] {
   return members
     .filter((m) => typeof m.pageid === "number")
-    .slice(0, max)
     .map((m) => m.pageid);
 }
 
+/** Splits an array into fixed-size chunks (final chunk may be smaller). */
+function chunkArray<T>(items: T[], chunkSize: number): T[][] {
+  if (chunkSize <= 0) return [items];
+  const chunks: T[][] = [];
+  for (let i = 0; i < items.length; i += chunkSize) {
+    chunks.push(items.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
+/** Reads and parses a cached category members JSON file. */
 async function readCategoryFile(
   filePath: string,
 ): Promise<CategoryMembersFile> {
@@ -67,6 +87,13 @@ async function readCategoryFile(
   return JSON.parse(raw) as CategoryMembersFile;
 }
 
+/**
+ * Writes a spell wikitext cache file with stable note-worthy formatting.
+ *
+ * @remarks
+ * `requestedPageIds` is intentionally written as a single long line to avoid
+ * any formatter involvement and keep generator output stable.
+ */
 async function writeSpellWikitextBatchFile(
   filePath: string,
   out: SpellWikitextBatchFile,
@@ -102,15 +129,32 @@ async function writeSpellWikitextBatchFile(
   await fs.writeFile(filePath, text, "utf8");
 }
 
-async function generateForCategory(opts: {
+/** Options for generating one category's wikitext cache file. */
+type GenerateForCategoryOptions = {
+  /** Path to the cached category members file. */
   categoryFilePath: string;
+  /** Output path for the generated wikitext batch file. */
   outFilePath: string;
+  /** Used if the category file does not include a category name. */
   categoryNameFallback: string;
-  maxPageIds: number;
+  /** MediaWiki limit: max page ids allowed per request (typically 50). */
+  maxPageIdsPerRequest: number;
+  /** Hard cap to keep requests polite (no more than N requests/second). */
   maxRequestsPerSecond: number;
+  /** Optional fetch implementation for testing/mocking. */
   fetchFn?: typeof fetch;
+  /** Shared rate-limit state so multiple categories share the same throttle. */
   rateLimitState: { lastRequestAt: number };
-}): Promise<{ out: SpellWikitextBatchFile; hadNetworkRequest: boolean }> {
+};
+
+/**
+ * Generates a wikitext cache file for a single category.
+ *
+ * @returns The output payload and any non-page-specific errors.
+ */
+async function generateForCategory(
+  opts: GenerateForCategoryOptions,
+): Promise<{ out: SpellWikitextBatchFile; errors: ErrorEntry[] }> {
   const errors: ErrorEntry[] = [];
 
   let category: CategoryMembersFile;
@@ -122,46 +166,56 @@ async function generateForCategory(opts: {
     );
   }
 
-  const requestedPageIds = pickFirstPageIds(
-    category.categoryMembers,
-    opts.maxPageIds,
-  );
+  const requestedPageIds = pickAllPageIds(category.categoryMembers);
+  const batches = chunkArray(requestedPageIds, opts.maxPageIdsPerRequest);
 
   const maxRps = opts.maxRequestsPerSecond;
   const minIntervalMs = Math.ceil(1000 / maxRps);
 
-  const waitMs = opts.rateLimitState.lastRequestAt
-    ? Math.max(
-        0,
-        minIntervalMs - (Date.now() - opts.rateLimitState.lastRequestAt),
-      )
-    : 0;
-  if (waitMs > 0) {
-    await sleep(waitMs);
+  const pages: SpellWikitextBatchFile["pages"] = [];
+  const pageErrors: SpellWikitextBatchFile["errors"] = [];
+
+  for (let i = 0; i < batches.length; i++) {
+    const batch = batches[i];
+    if (batch.length === 0) continue;
+
+    const waitMs = opts.rateLimitState.lastRequestAt
+      ? Math.max(
+          0,
+          minIntervalMs - (Date.now() - opts.rateLimitState.lastRequestAt),
+        )
+      : 0;
+    if (waitMs > 0) {
+      await sleep(waitMs);
+    }
+
+    try {
+      opts.rateLimitState.lastRequestAt = Date.now();
+      const res = await fetchAdnd2eWikiWikitextByPageIds(
+        batch,
+        opts.fetchFn ?? fetch,
+      );
+
+      pages.push(...res.pages);
+      pageErrors.push(...res.errors);
+
+      console.log(
+        `  fetched batch ${i + 1}/${batches.length} (${batch.length} pageids)`,
+      );
+    } catch (e) {
+      errors.push({
+        scope: "network",
+        message: `Failed fetching batch ${i + 1}/${batches.length} (${batch.length} pageids)`,
+        details: {
+          error: String(e),
+          pageids: batch,
+        },
+      });
+    }
   }
 
-  let hadNetworkRequest = false;
-  let pages: SpellWikitextBatchFile["pages"] = [];
-  let pageErrors: SpellWikitextBatchFile["errors"] = [];
-
-  try {
-    opts.rateLimitState.lastRequestAt = Date.now();
-    hadNetworkRequest = true;
-
-    const res = await fetchAdnd2eWikiWikitextByPageIds(
-      requestedPageIds,
-      opts.fetchFn ?? fetch,
-    );
-
-    pages = res.pages;
-    pageErrors = res.errors;
-  } catch (e) {
-    errors.push({
-      scope: "network",
-      message: "Failed fetching revisions by pageids",
-      details: String(e),
-    });
-  }
+  pages.sort((a, b) => a.pageid - b.pageid);
+  pageErrors.sort((a, b) => a.pageid - b.pageid);
 
   const out: SpellWikitextBatchFile = {
     generatedAt: new Date().toISOString(),
@@ -182,13 +236,16 @@ async function generateForCategory(opts: {
     });
   }
 
-  if (errors.length > 0) {
-    console.log(formatErrors(errors));
-  }
-
-  return { out, hadNetworkRequest };
+  return { out, errors };
 }
 
+/**
+ * CLI entry point for generating wikitext caches for wizard + priest spells.
+ *
+ * @remarks
+ * Fetches wizard spells first, then priest spells, using a shared global request
+ * throttle to enforce an overall max requests/second.
+ */
 async function main() {
   const repoRoot = getRepoRootDir();
   const errors: ErrorEntry[] = [];
@@ -221,18 +278,23 @@ async function main() {
     "priestSpells.json",
   );
 
-  const maxPageIds = 50;
+  const maxPageIdsPerRequest = 50;
   const maxRequestsPerSecond = 3;
 
   try {
-    const { out } = await generateForCategory({
+    console.log("Fetching all Wizard spells...");
+    const { out, errors: wizardErrors } = await generateForCategory({
       categoryFilePath: wizardCategoryPath,
       outFilePath: wizardOutPath,
       categoryNameFallback: "Wizard Spells",
-      maxPageIds,
+      maxPageIdsPerRequest,
       maxRequestsPerSecond,
       rateLimitState,
     });
+
+    errors.push(
+      ...wizardErrors.map((e) => ({ ...e, scope: `wizard:${e.scope}` })),
+    );
 
     console.log(
       `Wrote wizardSpells.json (requested ${out.requestedPageIds.length}, got ${out.pages.length} pages, ${out.errors.length} page errors)`,
@@ -246,14 +308,19 @@ async function main() {
   }
 
   try {
-    const { out } = await generateForCategory({
+    console.log("Fetching all Priest spells...");
+    const { out, errors: priestErrors } = await generateForCategory({
       categoryFilePath: priestCategoryPath,
       outFilePath: priestOutPath,
       categoryNameFallback: "Priest Spells",
-      maxPageIds,
+      maxPageIdsPerRequest,
       maxRequestsPerSecond,
       rateLimitState,
     });
+
+    errors.push(
+      ...priestErrors.map((e) => ({ ...e, scope: `priest:${e.scope}` })),
+    );
 
     console.log(
       `Wrote priestSpells.json (requested ${out.requestedPageIds.length}, got ${out.pages.length} pages, ${out.errors.length} page errors)`,

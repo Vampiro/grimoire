@@ -15,6 +15,12 @@ export function cleanupWtfHtml(html: string): string {
   return out;
 }
 
+/**
+ * Collapses redundant nested tags for a single tag name.
+ *
+ * @example
+ * Input: `<i><i>text</i></i>` -> Output: `<i>text</i>`
+ */
 function collapseRedundantNesting(html: string, tag: string): string {
   // Repeatedly collapse:
   //   <tag>\s*<tag>  -> <tag>

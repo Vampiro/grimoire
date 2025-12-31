@@ -49,6 +49,8 @@ export async function fetchAdnd2eWikiWikitext(
 
 /**
  * Extracts the first page's wikitext (`revisions[0].slots.main['*']`) from the API response.
+ *
+ * @throws If the response does not contain wikitext content.
  */
 export function extractFirstPageWikitext(
   json: MediaWikiRevisionsResponse,

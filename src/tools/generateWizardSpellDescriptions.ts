@@ -7,17 +7,22 @@ import type { WizardSpellDescriptionsFile } from "./wiki/types";
 export type { WizardSpellDescriptionsFile } from "./wiki/types";
 
 type WizardSpellListEntry = {
+  /** Spell level (1-9). */
   level: number;
+  /** Spell name. */
   name: string;
+  /** Full wiki URL to the spell page. */
   link: string;
 };
 
+/** Resolves the repository root directory from the current script path. */
 function getRepoRootDir(): string {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   return path.resolve(__dirname, "..", "..");
 }
 
+/** Reads the static wizard spell list used by this legacy generator. */
 async function readWizardSpellList(
   repoRoot: string,
 ): Promise<WizardSpellListEntry[]> {
@@ -32,6 +37,7 @@ async function readWizardSpellList(
   return data;
 }
 
+/** Writes the generated spell description JSON file into `public/resources`. */
 async function writeWizardDescriptions(
   repoRoot: string,
   out: WizardSpellDescriptionsFile,
@@ -46,6 +52,7 @@ async function writeWizardDescriptions(
 }
 
 async function main() {
+  /** CLI entry point for the legacy wizard descriptions generator. */
   const repoRoot = getRepoRootDir();
 
   const spells = await readWizardSpellList(repoRoot);

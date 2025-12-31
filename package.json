@@ -11,7 +11,7 @@
     "generate:wizard-spell-descriptions": "tsx src/tools/generateWizardSpellDescriptions.ts",
     "generate:wiki:category:wizard-spells": "tsx src/tools/generateCategoryWizardSpells.ts",
     "generate:wiki:category:priest-spells": "tsx src/tools/generateCategoryPriestSpells.ts",
-    "generate:wiki:spell-pages:first-50": "tsx src/tools/generateFirst50SpellPages.ts",
+    "generate:wiki:spell-pages:all": "tsx src/tools/generateAllSpellPages.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },

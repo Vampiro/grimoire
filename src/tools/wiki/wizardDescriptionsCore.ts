@@ -4,8 +4,11 @@ import { parseSpellWikitextToJson } from "./wikitextParser";
 import { getPageNameFromWikiLink } from "./wikiLink";
 
 export type WizardSpellListEntry = {
+  /** Spell level (1-9). */
   level: number;
+  /** Spell name. */
   name: string;
+  /** Full wiki URL for the spell page. */
   link: string;
 };
 
@@ -19,6 +22,7 @@ export type WizardSpellListEntry = {
 export async function buildWizardDescriptionsForFireball(
   spells: WizardSpellListEntry[],
   fetchWikitext: (
+    /** MediaWiki page title, e.g. `Fireball_(Wizard_Spell)`. */
     pageName: string,
   ) => Promise<{ title: string | null; wikitext: string }> = async (
     pageName,

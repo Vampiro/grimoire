@@ -5,12 +5,14 @@ import { fileURLToPath } from "node:url";
 import { fetchAllCategoryMembers } from "./wiki/categoryMembersApi";
 import type { CategoryMembersFile } from "./wiki/types";
 
+/** Resolves the repository root directory from the current script path. */
 function getRepoRootDir(): string {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   return path.resolve(__dirname, "..", "..");
 }
 
+/** Writes the priest category members cache JSON into `data/wiki`. */
 async function writeCategoryMembersFile(
   repoRoot: string,
   out: CategoryMembersFile,
@@ -26,6 +28,7 @@ async function writeCategoryMembersFile(
 }
 
 async function main() {
+  /** CLI entry point for generating the priest category cache. */
   const repoRoot = getRepoRootDir();
 
   const out = await fetchAllCategoryMembers({

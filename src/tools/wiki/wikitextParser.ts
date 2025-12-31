@@ -16,7 +16,9 @@ wtf.extend(htmlPlugin);
  * - `[[Category:...]]` tags
  */
 export function parseSpellWikitextToJson(opts: {
+  /** Optional page title (used for traceability/metadata). */
   title: string | null;
+  /** Raw wikitext as returned by MediaWiki. */
   wikitext: string;
 }): SpellDescriptionJson {
   const normalizedWikitext = preprocessWikitextForParsing(opts.wikitext);
@@ -43,6 +45,13 @@ export function parseSpellWikitextToJson(opts: {
   };
 }
 
+/**
+ * Normalizes wikitext prior to parsing.
+ *
+ * @remarks
+ * Replaces common wiki line-break templates/tags with real newlines so both
+ * the wtf_wikipedia parser and the fallback parser behave more consistently.
+ */
 function preprocessWikitextForParsing(wikitext: string): string {
   // Normalize common line-break conventions. This improves both the structured
   // parser and the fallback line-based parser.
@@ -51,8 +60,15 @@ function preprocessWikitextForParsing(wikitext: string): string {
     .replace(/<\s*br\s*\/?>/gi, "\n");
 }
 
+/**
+ * Attempts to parse wikitext using `wtf_wikipedia` + HTML plugin.
+ *
+ * @returns Parsed JSON if successful; otherwise `null` to trigger the fallback parser.
+ */
 function tryParseWithWtfWikipedia(opts: {
+  /** Optional page title (not required by the parser). */
   title: string | null;
+  /** Normalized wikitext to parse. */
   wikitext: string;
 }): SpellDescriptionJson | null {
   try {
@@ -108,6 +124,13 @@ function tryParseWithWtfWikipedia(opts: {
   }
 }
 
+/**
+ * Minimal plaintext-to-HTML fallback.
+ *
+ * @remarks
+ * Only used if `wtf_wikipedia` fails; it escapes HTML and converts paragraphs
+ * to `<p>` tags, with single newlines rendered as `<br>`.
+ */
 function plaintextToHtml(text: string): string {
   // Very small fallback used only if wtf_wikipedia parsing fails.
   // We keep it conservative: escape and treat blank lines as paragraphs.
@@ -119,6 +142,7 @@ function plaintextToHtml(text: string): string {
     .join("\n");
 }
 
+/** Escapes characters that have special meaning in HTML. */
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, "&amp;")
@@ -128,6 +152,9 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#39;");
 }
 
+/**
+ * Extracts a readable string from values returned by `wtf_wikipedia` infobox JSON.
+ */
 function extractWtfValueText(value: unknown): string {
   if (value == null) return "";
   if (typeof value === "string") return value.trim();
@@ -139,8 +166,13 @@ function extractWtfValueText(value: unknown): string {
   return String(value).trim();
 }
 
+/**
+ * Extracts `{{Infobox Spells ...}}` key/value pairs using a simple line-based heuristic.
+ */
 function parseInfoboxSpells(wikitext: string): {
+  /** Key/value fields parsed from the infobox. */
   infobox: Record<string, string>;
+  /** Remaining wikitext after the infobox block (best-effort). */
   bodyAfterInfobox: string;
 } {
   const lines = wikitext.split(/\r?\n/);
@@ -180,6 +212,13 @@ function parseInfoboxSpells(wikitext: string): {
   return { infobox, bodyAfterInfobox };
 }
 
+/**
+ * Parses `==Heading==` sections into a map.
+ *
+ * @remarks
+ * This is only used by the fallback parser; the preferred path uses
+ * `doc.sections()` from wtf_wikipedia.
+ */
 function parseSections(wikitext: string): Record<string, string> {
   const lines = wikitext.split(/\r?\n/);
 
