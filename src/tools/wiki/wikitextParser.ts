@@ -6,7 +6,7 @@ import wtf from "wtf_wikipedia";
  *
  * @remarks
  * This is a pragmatic parser (not a full MediaWiki AST parser). It focuses on:
- * - `{{Infobox Spells ...}}` key/value fields
+ * - `{{Infobox Spells ...}}` key/value fields (metadata)
  * - `==Section==` headings
  * - `[[Category:...]]` tags
  */
@@ -29,8 +29,7 @@ export function parseSpellWikitextToJson(opts: {
   const sections = parseSections(bodyAfterInfobox);
 
   return {
-    title: opts.title,
-    infobox,
+    metadata: infobox,
     sections,
   };
 }
@@ -92,8 +91,7 @@ function tryParseWithWtfWikipedia(opts: {
     }
 
     return {
-      title: opts.title,
-      infobox,
+      metadata: infobox,
       sections,
     };
   } catch {

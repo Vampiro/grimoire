@@ -123,10 +123,8 @@ export interface MediaWikiWikitextPage {
  * Parsed spell description data extracted from wiki wikitext.
  */
 export interface SpellDescriptionJson {
-  /** MediaWiki page title, if available. */
-  title: string | null;
   /** Key/value fields parsed from `{{Infobox Spells ...}}`. */
-  infobox: Record<string, string>;
+  metadata: Record<string, string>;
   /** Section bodies keyed by heading (e.g. `Combat & Tactics`). */
   sections: Record<string, string>;
 }
@@ -139,8 +137,8 @@ export interface SpellDescriptionJson {
  * editing the upstream wiki or cached wikitext files.
  */
 export interface SpellDescriptionOverride {
-  /** Infobox fields to add/overwrite. */
-  infobox?: Record<string, string>;
+  /** Metadata fields (formerly infobox) to add/overwrite. */
+  metadata?: Record<string, string>;
   /** Sections to add/overwrite (by heading). */
   sections?: Record<string, string>;
 }

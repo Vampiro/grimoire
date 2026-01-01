@@ -2,7 +2,7 @@
   "excludeTitles": ["Seduction (Wizard Spell)"],
   "spellsByTitle": {
     "Karsus's Avatar (Wizard Spell)": {
-      "infobox": {
+      "metadata": {
         "name": "Karsus's Avatar",
         "class": "Wizard",
         "level": "12",
@@ -18,7 +18,7 @@
       }
     },
     "Karsus's Avatar (Priest Spell)": {
-      "infobox": {
+      "metadata": {
         "name": "Karsus's Avatar",
         "class": "Priest",
         "level": "12",

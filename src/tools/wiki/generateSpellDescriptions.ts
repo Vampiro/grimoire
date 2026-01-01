@@ -17,8 +17,8 @@ export type SpellDescriptionsFile = {
   source: "https://adnd2e.fandom.com";
   /** Category name for traceability. */
   categoryName: string;
-  /** Descriptions keyed by MediaWiki page title (includes class suffix). */
-  spellsByTitle: Record<string, SpellDescriptionJson>;
+  /** Descriptions keyed by spell name (from metadata.name when present). */
+  spellsByName: Record<string, SpellDescriptionJson>;
   /** Parsing errors encountered by this generator (not page fetch errors). */
   errors: Array<{ title: string; message: string }>;
 };
@@ -79,17 +79,28 @@ function mergeCaseInsensitiveRecord(
   return out;
 }
 
-/** Parses a batch file into a `spellsByTitle` map. */
+/** Parses a batch file into a `spellsByName` map. */
 function parseBatchFileToDescriptions(opts: {
   batch: SpellWikitextBatchFile;
   overridesByTitle?: Record<string, SpellDescriptionOverride>;
   excludeTitles?: Set<string>;
 }): {
-  spellsByTitle: Record<string, SpellDescriptionJson>;
+  spellsByName: Record<string, SpellDescriptionJson>;
   errors: Array<{ title: string; message: string }>;
 } {
-  const spellsByTitle: Record<string, SpellDescriptionJson> = {};
+  const spellsByName: Record<string, SpellDescriptionJson> = {};
   const errors: Array<{ title: string; message: string }> = [];
+
+  const getNameFromMetadata = (
+    metadata: Record<string, string>,
+    fallback: string,
+  ): string => {
+    const nameKey = Object.keys(metadata).find(
+      (k) => k.trim().toLowerCase() === "name",
+    );
+    const nameValue = nameKey ? metadata[nameKey]?.trim() : "";
+    return nameValue || fallback;
+  };
 
   for (const page of opts.batch.pages) {
     const title = page.title ?? `pageid:${page.pageid}`;
@@ -103,32 +114,41 @@ function parseBatchFileToDescriptions(opts: {
       wikitext: page.wikitext,
     });
 
-    if (spellsByTitle[title]) {
+    const override = opts.overridesByTitle?.[title];
+    const merged: SpellDescriptionJson = {
+      ...parsed,
+      metadata: override?.metadata
+        ? mergeCaseInsensitiveRecord(parsed.metadata, override.metadata)
+        : parsed.metadata,
+      sections: override?.sections
+        ? { ...parsed.sections, ...override.sections }
+        : parsed.sections,
+    };
+
+    const baseName = getNameFromMetadata(
+      merged.metadata,
+      page.title ?? `pageid:${page.pageid}`,
+    );
+
+    let spellKey = baseName;
+    if (spellsByName[spellKey]) {
+      const fallbackKey = `${baseName} (${page.title ?? `pageid:${page.pageid}`})`;
+      spellKey = spellsByName[fallbackKey] ? `${baseName} (${page.pageid})` : fallbackKey;
+    }
+
+    if (spellsByName[spellKey]) {
       errors.push({
-        title,
+        title: spellKey,
         message:
-          "Duplicate title encountered while building spell descriptions",
+          "Duplicate spell name encountered after overrides (even after suffixing)",
       });
       continue;
     }
 
-    const override = opts.overridesByTitle?.[title];
-    if (override) {
-      spellsByTitle[title] = {
-        ...parsed,
-        infobox: override.infobox
-          ? mergeCaseInsensitiveRecord(parsed.infobox, override.infobox)
-          : parsed.infobox,
-        sections: override.sections
-          ? { ...parsed.sections, ...override.sections }
-          : parsed.sections,
-      };
-    } else {
-      spellsByTitle[title] = parsed;
-    }
+    spellsByName[spellKey] = merged;
   }
 
-  return { spellsByTitle, errors };
+  return { spellsByName, errors };
 }
 
 /**
@@ -192,14 +212,14 @@ async function main() {
     generatedAt: new Date().toISOString(),
     source: "https://adnd2e.fandom.com",
     categoryName: wizard.categoryName,
-    spellsByTitle: wizardParsed.spellsByTitle,
+    spellsByName: wizardParsed.spellsByName,
     errors: wizardParsed.errors,
   };
   const priestOut: SpellDescriptionsFile = {
     generatedAt: new Date().toISOString(),
     source: "https://adnd2e.fandom.com",
     categoryName: priest.categoryName,
-    spellsByTitle: priestParsed.spellsByTitle,
+    spellsByName: priestParsed.spellsByName,
     errors: priestParsed.errors,
   };
 
@@ -216,10 +236,10 @@ async function main() {
   );
 
   console.log(
-    `Wrote wizardSpellDescriptions.json (${Object.keys(wizardOut.spellsByTitle).length} spells; ${wizardOut.errors.length} parse errors)`,
+    `Wrote wizardSpellDescriptions.json (${Object.keys(wizardOut.spellsByName).length} spells; ${wizardOut.errors.length} parse errors)`,
   );
   console.log(
-    `Wrote priestSpellDescriptions.json (${Object.keys(priestOut.spellsByTitle).length} spells; ${priestOut.errors.length} parse errors)`,
+    `Wrote priestSpellDescriptions.json (${Object.keys(priestOut.spellsByName).length} spells; ${priestOut.errors.length} parse errors)`,
   );
 }
 

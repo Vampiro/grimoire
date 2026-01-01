@@ -17,9 +17,8 @@ describe("parseSpellWikitextToJson", () => {
 
     const parsed = parseSpellWikitextToJson({ title: "Fireball", wikitext });
 
-    expect(parsed.title).toBe("Fireball");
-    expect(parsed.infobox.school).toBe("Evocation");
-    expect(parsed.infobox.level).toBe("3");
+    expect(parsed.metadata.school).toBe("Evocation");
+    expect(parsed.metadata.level).toBe("3");
 
     expect(parsed.sections.Introduction).toContain("This is the introduction.");
     expect(parsed.sections["Combat & Tactics"]).toContain("Use it carefully.");
