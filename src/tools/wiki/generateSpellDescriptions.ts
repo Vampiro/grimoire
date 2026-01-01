@@ -79,6 +79,13 @@ function mergeCaseInsensitiveRecord(
   return out;
 }
 
+const stripTemplateArtifacts = (html: string): string =>
+  html
+    .replace(/\{\{\s*Highlight:\s*/gi, "")
+    .replace(/\{\{\s*/g, "")
+    .replace(/\}\}/g, "")
+    .trim();
+
 /** Parses a batch file into a `spellsByName` map. */
 function parseBatchFileToDescriptions(opts: {
   batch: SpellWikitextBatchFile;
@@ -90,6 +97,9 @@ function parseBatchFileToDescriptions(opts: {
 } {
   const spellsByName: Record<string, SpellDescriptionJson> = {};
   const errors: Array<{ title: string; message: string }> = [];
+
+  const toTextValue = (v: string) => v.replace(/\r?\n/g, " ").trim();
+  const toHtmlValue = (v: string) => v.replace(/\r?\n/g, "<br>").trim();
 
   const getNameFromMetadata = (
     metadata: Record<string, string>,
@@ -115,14 +125,40 @@ function parseBatchFileToDescriptions(opts: {
     });
 
     const override = opts.overridesByTitle?.[title];
+    const mergedMetadata = override?.metadata
+      ? mergeCaseInsensitiveRecord(
+          parsed.metadata,
+          Object.fromEntries(
+            Object.entries(override.metadata).map(([k, v]) => [
+              k,
+              toTextValue(v),
+            ]),
+          ),
+        )
+      : parsed.metadata;
+
+    const mergedSectionsRaw = override?.sections
+      ? {
+          ...parsed.sections,
+          ...Object.fromEntries(
+            Object.entries(override.sections).map(([k, v]) => [
+              k,
+              toHtmlValue(v),
+            ]),
+          ),
+        }
+      : parsed.sections;
+
+    const mergedSections = Object.fromEntries(
+      Object.entries(mergedSectionsRaw).map(([k, v]) => [
+        k,
+        stripTemplateArtifacts(v),
+      ]),
+    );
+
     const merged: SpellDescriptionJson = {
-      ...parsed,
-      metadata: override?.metadata
-        ? mergeCaseInsensitiveRecord(parsed.metadata, override.metadata)
-        : parsed.metadata,
-      sections: override?.sections
-        ? { ...parsed.sections, ...override.sections }
-        : parsed.sections,
+      metadata: mergedMetadata,
+      sections: mergedSections,
     };
 
     const baseName = getNameFromMetadata(
@@ -148,6 +184,16 @@ function parseBatchFileToDescriptions(opts: {
     }
 
     spellsByName[spellKey] = merged;
+  }
+
+  for (const [spellKey, spell] of Object.entries(spellsByName)) {
+    spell.sections = Object.fromEntries(
+      Object.entries(spell.sections).map(([k, v]) => [
+        k,
+        stripTemplateArtifacts(v),
+      ]),
+    );
+    spellsByName[spellKey] = spell;
   }
 
   return { spellsByName, errors };

@@ -1,5 +1,42 @@
-import type { SpellDescriptionJson } from "./types";
 import wtf from "wtf_wikipedia";
+import wtfHtml from "wtf-plugin-html";
+import type { SpellDescriptionJson } from "./types";
+
+let htmlPluginApplied = false;
+function ensureWtfHtmlPlugin(): void {
+  if (!htmlPluginApplied) {
+    // Enable the HTML plugin once so section.html() works.
+    wtf.extend(wtfHtml);
+    htmlPluginApplied = true;
+  }
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function textToSimpleHtml(value: string): string {
+  const escaped = escapeHtml(value);
+  return normalizeHtml(escaped.replace(/\n/g, "<br>"));
+}
+
+function normalizeHtml(html: string): string {
+  return html.replace(/\r?\n\s*/g, "").trim();
+}
+
+function sanitizeSectionHtml(html: string): string {
+  // Drop template artifacts like {{Highlight: ...}} that leak through (even when unclosed).
+  const withoutTemplates = html
+    .replace(/\{\{\s*Highlight:\s*/gi, "")
+    .replace(/\{\{\s*/g, "")
+    .replace(/\}\}/g, "");
+  return normalizeHtml(withoutTemplates);
+}
 
 /**
  * Parses wikitext from the AD&D 2e wiki into a structured spell description.
@@ -17,6 +54,7 @@ export function parseSpellWikitextToJson(opts: {
   wikitext: string;
 }): SpellDescriptionJson {
   const normalizedWikitext = preprocessWikitextForParsing(opts.wikitext);
+  ensureWtfHtmlPlugin();
 
   // Prefer a real wikitext parser; fall back to the legacy pragmatic parser.
   const parsedViaWtf = tryParseWithWtfWikipedia({
@@ -25,12 +63,13 @@ export function parseSpellWikitextToJson(opts: {
   });
   if (parsedViaWtf) return parsedViaWtf;
 
-  const { infobox, bodyAfterInfobox } = parseInfoboxSpells(normalizedWikitext);
-  const sections = parseSections(bodyAfterInfobox);
+  const { infoboxText, bodyAfterInfobox } =
+    parseInfoboxSpells(normalizedWikitext);
+  const { sectionsHtml } = parseSections(bodyAfterInfobox);
 
   return {
-    metadata: infobox,
-    sections,
+    metadata: infoboxText,
+    sections: sectionsHtml,
   };
 }
 
@@ -46,7 +85,7 @@ function preprocessWikitextForParsing(wikitext: string): string {
   // parser and the fallback line-based parser.
   return wikitext
     .replace(/\{\{\s*br\s*\}\}/gi, "\n")
-    .replace(/<\s*br\s*\/?>/gi, "\n");
+    .replace(/<br\s*\/?>/gi, "\n");
 }
 
 /**
@@ -63,7 +102,7 @@ function tryParseWithWtfWikipedia(opts: {
   try {
     const doc = wtf(opts.wikitext);
 
-    const infobox: Record<string, string> = {};
+    const infoboxText: Record<string, string> = {};
     const firstInfobox = doc.infoboxes()?.[0];
     if (firstInfobox) {
       const raw = firstInfobox.json?.() as unknown;
@@ -72,27 +111,32 @@ function tryParseWithWtfWikipedia(opts: {
           raw as Record<string, unknown>,
         )) {
           const text = normalizeInfoboxValue(key, extractWtfValueText(value));
-          if (key && text) infobox[key] = text;
+          if (key && text) {
+            infoboxText[key] = text;
+          }
         }
       }
     }
 
-    const sections: Record<string, string> = {};
+    const sectionsHtml: Record<string, string> = {};
     for (const section of doc.sections?.() ?? []) {
       const heading = (section.title?.() ?? "").trim() || "Introduction";
       const content = normalizeSectionText(section.text?.() ?? "");
       if (!content) continue;
 
-      if (!sections[heading]) {
-        sections[heading] = content;
+      const html = sanitizeSectionHtml(
+        section.html?.() ?? textToSimpleHtml(content),
+      );
+      if (!sectionsHtml[heading]) {
+        sectionsHtml[heading] = html;
       } else {
-        sections[heading] = `${sections[heading]}\n\n${content}`;
+        sectionsHtml[heading] = `${sectionsHtml[heading]}<br><br>${html}`;
       }
     }
 
     return {
-      metadata: infobox,
-      sections,
+      metadata: infoboxText,
+      sections: sectionsHtml,
     };
   } catch {
     return null;
@@ -163,8 +207,8 @@ function normalizeSectionText(value: string): string {
  * Extracts `{{Infobox Spells ...}}` key/value pairs using a simple line-based heuristic.
  */
 function parseInfoboxSpells(wikitext: string): {
-  /** Key/value fields parsed from the infobox. */
-  infobox: Record<string, string>;
+  /** Plain-text values parsed from the infobox. */
+  infoboxText: Record<string, string>;
   /** Remaining wikitext after the infobox block (best-effort). */
   bodyAfterInfobox: string;
 } {
@@ -173,10 +217,10 @@ function parseInfoboxSpells(wikitext: string): {
     l.trim().startsWith("{{Infobox Spells"),
   );
   if (startIndex === -1) {
-    return { infobox: {}, bodyAfterInfobox: wikitext };
+    return { infoboxText: {}, bodyAfterInfobox: wikitext };
   }
 
-  const infobox: Record<string, string> = {};
+  const infoboxText: Record<string, string> = {};
   let endIndex = startIndex;
 
   for (let i = startIndex + 1; i < lines.length; i++) {
@@ -197,12 +241,13 @@ function parseInfoboxSpells(wikitext: string): {
     const value = withoutPipe.slice(eq + 1).trim();
 
     if (key && value) {
-      infobox[key] = normalizeInfoboxValue(key, value);
+      const normalized = normalizeInfoboxValue(key, value);
+      infoboxText[key] = normalized;
     }
   }
 
   const bodyAfterInfobox = lines.slice(endIndex + 1).join("\n");
-  return { infobox, bodyAfterInfobox };
+  return { infoboxText, bodyAfterInfobox };
 }
 
 /**
@@ -212,10 +257,12 @@ function parseInfoboxSpells(wikitext: string): {
  * This is only used by the fallback parser; the preferred path uses
  * `doc.sections()` from wtf_wikipedia.
  */
-function parseSections(wikitext: string): Record<string, string> {
+function parseSections(wikitext: string): {
+  sectionsHtml: Record<string, string>;
+} {
   const lines = wikitext.split(/\r?\n/);
 
-  const sections: Record<string, string> = {};
+  const sectionsHtml: Record<string, string> = {};
   let currentHeading: string | null = null;
   let currentLines: string[] = [];
 
@@ -224,11 +271,11 @@ function parseSections(wikitext: string): Record<string, string> {
     if (!content) return;
 
     const key = currentHeading ?? "Introduction";
-    if (!sections[key]) {
-      sections[key] = content;
+    if (!sectionsHtml[key]) {
+      sectionsHtml[key] = sanitizeSectionHtml(textToSimpleHtml(content));
     } else {
-      // If duplicate headings occur, append.
-      sections[key] = `${sections[key]}\n\n${content}`;
+      sectionsHtml[key] =
+        `${sectionsHtml[key]}<br><br>${sanitizeSectionHtml(textToSimpleHtml(content))}`;
     }
   };
 
@@ -249,5 +296,5 @@ function parseSections(wikitext: string): Record<string, string> {
   }
 
   flush();
-  return sections;
+  return { sectionsHtml };
 }
