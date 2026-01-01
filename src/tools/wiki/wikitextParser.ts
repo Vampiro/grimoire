@@ -72,7 +72,7 @@ function tryParseWithWtfWikipedia(opts: {
         for (const [key, value] of Object.entries(
           raw as Record<string, unknown>,
         )) {
-          const text = normalizeInfoboxValue(extractWtfValueText(value));
+          const text = normalizeInfoboxValue(key, extractWtfValueText(value));
           if (key && text) infobox[key] = text;
         }
       }
@@ -122,14 +122,22 @@ function extractWtfValueText(value: unknown): string {
  * Requirements:
  * - Replace NBSP with normal spaces.
  * - Replace newlines inside infobox values with spaces.
+ * - For the `source` field specifically, replace newlines with `, `.
  */
-function normalizeInfoboxValue(value: string): string {
+function normalizeInfoboxValue(key: string, value: string): string {
+  const normalizedKey = key.trim().toLowerCase();
+
+  const newlineReplacement = normalizedKey === "source" ? ", " : " ";
+
   return value
     .replace(/\u00A0/g, " ")
     .replace(/\r\n?/g, "\n")
-    .replace(/\n+/g, " ")
+    .replace(/\n+/g, newlineReplacement)
+    .replace(/\s*,\s*/g, ", ")
     .replace(/\s+/g, " ")
-    .trim();
+    .replace(/(?:,\s*){2,}/g, ", ")
+    .trim()
+    .replace(/,$/, "");
 }
 
 /**
@@ -191,7 +199,7 @@ function parseInfoboxSpells(wikitext: string): {
     const value = withoutPipe.slice(eq + 1).trim();
 
     if (key && value) {
-      infobox[key] = normalizeInfoboxValue(value);
+      infobox[key] = normalizeInfoboxValue(key, value);
     }
   }
 
