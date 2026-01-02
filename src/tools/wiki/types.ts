@@ -120,16 +120,6 @@ export interface MediaWikiWikitextPage {
 }
 
 /**
- * Parsed spell description data extracted from wiki wikitext.
- */
-export interface SpellDescriptionJson {
-  /** Key/value fields parsed from `{{Infobox Spells ...}}`. */
-  metadata: Record<string, string>;
-  /** Section bodies keyed by heading (e.g. `Combat & Tactics`). */
-  sections: Record<string, string>;
-}
-
-/**
  * User-provided overrides applied on top of parsed spell descriptions.
  *
  * @remarks
@@ -142,18 +132,6 @@ export interface SpellDescriptionOverride {
   /** Sections to add/overwrite (by heading). */
   sections?: Record<string, string>;
 }
-
-/**
- * Output file format for generated wizard spell descriptions.
- */
-export type WizardSpellDescriptionsFile = {
-  /** ISO timestamp of when the generator produced this file. */
-  generatedAt: string;
-  /** Base wiki origin used for fetches. */
-  source: "https://adnd2e.fandom.com";
-  /** Map keyed by spell name; values contain parsed/derived content. */
-  spellsByName: Record<string, SpellDescriptionJson>;
-};
 
 /**
  * Raw MediaWiki API response shape for the `action=query&list=categorymembers` call.

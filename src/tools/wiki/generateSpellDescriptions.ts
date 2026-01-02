@@ -3,25 +3,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { parseSpellWikitextToJson } from "./wikitextParser";
+import type { SpellDescriptionOverride, SpellWikitextBatchFile } from "./types";
 import type {
   SpellDescriptionJson,
-  SpellDescriptionOverride,
-  SpellWikitextBatchFile,
-} from "./types";
-
-/** Output file format for parsed spell descriptions derived from cached wikitext. */
-export type SpellDescriptionsFile = {
-  /** ISO timestamp of when the generator produced this file. */
-  generatedAt: string;
-  /** Base wiki origin used for fetches that produced the inputs. */
-  source: "https://adnd2e.fandom.com";
-  /** Category name for traceability. */
-  categoryName: string;
-  /** Descriptions keyed by spell name (from metadata.name when present). */
-  spellsByName: Record<string, SpellDescriptionJson>;
-  /** Parsing errors encountered by this generator (not page fetch errors). */
-  errors: Array<{ title: string; message: string }>;
-};
+  SpellDescriptionsFile,
+  SpellDescriptionMetadata,
+} from "../../types/Resources";
 
 /** Resolves the repository root directory from the current script path. */
 function getRepoRootDir(): string {
@@ -61,21 +48,70 @@ async function readSpellDescriptionOverridesFile(
   }
 }
 
-function mergeCaseInsensitiveRecord(
-  base: Record<string, string>,
-  overrides: Record<string, string>,
-): Record<string, string> {
-  const out: Record<string, string> = { ...base };
-  const baseKeysByLower = new Map<string, string>();
-  for (const k of Object.keys(out)) baseKeysByLower.set(k.toLowerCase(), k);
+const allowedMetadataKeys: Array<keyof SpellDescriptionMetadata> = [
+  "name",
+  "source",
+  "class",
+  "level",
+  "school",
+  "sphere",
+  "verbal",
+  "somatic",
+  "material",
+  "range",
+  "duration",
+  "aoe",
+  "preparationTime",
+  "castingTime",
+  "save",
+  "requirements",
+  "subtlety",
+  "knockdown",
+  "sensory",
+  "critical",
+  "quest",
+];
 
-  for (const [k, v] of Object.entries(overrides)) {
-    const existingKey = baseKeysByLower.get(k.toLowerCase());
-    if (existingKey && existingKey !== k) delete out[existingKey];
-    out[k] = v;
-    baseKeysByLower.set(k.toLowerCase(), k);
+const allowedKeysByLower = new Map<string, keyof SpellDescriptionMetadata>(
+  allowedMetadataKeys.map((k) => [k.toLowerCase(), k]),
+);
+
+function mergeCaseInsensitiveRecord(
+  base: SpellDescriptionMetadata,
+  overrides: Record<string, string | undefined>,
+): SpellDescriptionMetadata {
+  const out: SpellDescriptionMetadata = { ...base };
+  const existingKeysByLower = new Map<string, keyof SpellDescriptionMetadata>();
+  for (const k of Object.keys(out) as Array<keyof SpellDescriptionMetadata>) {
+    existingKeysByLower.set(k.toLowerCase(), k);
   }
 
+  for (const [rawKey, v] of Object.entries(overrides)) {
+    if (v === undefined) continue;
+    const normalizedKey = allowedKeysByLower.get(rawKey.toLowerCase());
+    if (!normalizedKey) continue;
+    const lower = normalizedKey.toLowerCase();
+    const existingKey = existingKeysByLower.get(lower);
+    if (existingKey && existingKey !== normalizedKey) {
+      delete out[existingKey];
+    }
+    out[normalizedKey] = v;
+    existingKeysByLower.set(lower, normalizedKey);
+  }
+
+  return out;
+}
+
+function filterKnownMetadata(
+  metadata: SpellDescriptionMetadata,
+): SpellDescriptionMetadata {
+  const out: SpellDescriptionMetadata = {};
+  for (const key of allowedMetadataKeys) {
+    const val = metadata[key];
+    if (val !== undefined) {
+      out[key] = val;
+    }
+  }
   return out;
 }
 
@@ -102,13 +138,13 @@ function parseBatchFileToDescriptions(opts: {
   const toHtmlValue = (v: string) => v.replace(/\r?\n/g, "<br>").trim();
 
   const getNameFromMetadata = (
-    metadata: Record<string, string>,
+    metadata: SpellDescriptionJson["metadata"],
     fallback: string,
   ): string => {
     const nameKey = Object.keys(metadata).find(
       (k) => k.trim().toLowerCase() === "name",
-    );
-    const nameValue = nameKey ? metadata[nameKey]?.trim() : "";
+    ) as keyof SpellDescriptionMetadata | undefined;
+    const nameValue = nameKey ? metadata[nameKey]?.trim() ?? "" : "";
     return nameValue || fallback;
   };
 
@@ -157,7 +193,7 @@ function parseBatchFileToDescriptions(opts: {
     );
 
     const merged: SpellDescriptionJson = {
-      metadata: mergedMetadata,
+      metadata: filterKnownMetadata(mergedMetadata),
       sections: mergedSections,
     };
 

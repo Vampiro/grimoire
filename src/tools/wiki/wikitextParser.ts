@@ -1,6 +1,6 @@
 import wtf from "wtf_wikipedia";
 import wtfHtml from "wtf-plugin-html";
-import type { SpellDescriptionJson } from "./types";
+import type { SpellDescriptionJson } from "../../types/Resources";
 
 let htmlPluginApplied = false;
 function ensureWtfHtmlPlugin(): void {

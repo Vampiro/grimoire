@@ -73,6 +73,7 @@ type SpellDescriptionsFile = {
   - `verbal`, `somatic`, `material` (stored as text, typically "1"/"0")
   - `range`, `duration`, `aoe`, `preparationTime`, `castingTime`, `save`, `requirements`
   - PO: Spells & Magic extras: `subtlety`, `knockdown`, `sensory`, `critical`
+  - Ignored metadata fields (dropped going forward): `category`, `damage`, `materials`, `type`, `difficulty`, `finalDifficulty`, `adjustedDifficulty` (wtf_wikipedia lowercases incoming keys; we normalize but do not persist these)
 
 - Metadata normalization (applied after overrides):
   - Trim values; replace NBSP with space; collapse newlines to a single space (`source` uses `, `); collapse repeated commas/whitespace; drop trailing commas.
