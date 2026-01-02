@@ -144,7 +144,7 @@ function parseBatchFileToDescriptions(opts: {
     const nameKey = Object.keys(metadata).find(
       (k) => k.trim().toLowerCase() === "name",
     ) as keyof SpellDescriptionMetadata | undefined;
-    const nameValue = nameKey ? metadata[nameKey]?.trim() ?? "" : "";
+    const nameValue = nameKey ? (metadata[nameKey]?.trim() ?? "") : "";
     return nameValue || fallback;
   };
 
