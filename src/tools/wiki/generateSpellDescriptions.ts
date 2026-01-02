@@ -76,6 +76,8 @@ const allowedKeysByLower = new Map<string, keyof SpellDescriptionMetadata>(
   allowedMetadataKeys.map((k) => [k.toLowerCase(), k]),
 );
 
+const WIKI_BASE_URL = "https://adnd2e.fandom.com/wiki";
+
 function mergeCaseInsensitiveRecord(
   base: SpellDescriptionMetadata,
   overrides: Record<string, string | undefined>,
@@ -95,7 +97,7 @@ function mergeCaseInsensitiveRecord(
     if (existingKey && existingKey !== normalizedKey) {
       delete out[existingKey];
     }
-    out[normalizedKey] = v;
+    (out as Record<string, string | boolean | undefined>)[normalizedKey] = v;
     existingKeysByLower.set(lower, normalizedKey);
   }
 
@@ -109,9 +111,33 @@ function filterKnownMetadata(
   for (const key of allowedMetadataKeys) {
     const val = metadata[key];
     if (val !== undefined) {
-      out[key] = val;
+      (out as Record<string, string | boolean | undefined>)[key] = val;
     }
   }
+  return out;
+}
+
+function normalizeComponentFlags(
+  metadata: SpellDescriptionMetadata,
+): SpellDescriptionMetadata {
+  const out: SpellDescriptionMetadata = { ...metadata };
+  const componentKeys: Array<keyof SpellDescriptionMetadata> = [
+    "verbal",
+    "somatic",
+    "material",
+  ];
+
+  for (const key of componentKeys) {
+    const raw = out[key];
+    if (raw === undefined) continue;
+    const value = String(raw).trim().toLowerCase();
+    if (value === "1" || value === "true") {
+      (out as Record<string, boolean>)[key] = true;
+    } else {
+      delete out[key];
+    }
+  }
+
   return out;
 }
 
@@ -127,10 +153,12 @@ function parseBatchFileToDescriptions(opts: {
   batch: SpellWikitextBatchFile;
   overridesByTitle?: Record<string, SpellDescriptionOverride>;
   excludeTitles?: Set<string>;
+  wikiBaseUrl?: string;
 }): {
   spellsByWikiPageId: Record<string, SpellDescriptionJson>;
   errors: Array<{ title: string; message: string }>;
 } {
+  const wikiBaseUrl = opts.wikiBaseUrl ?? WIKI_BASE_URL;
   const spellsByWikiPageId: Record<string, SpellDescriptionJson> = {};
   const errors: Array<{ title: string; message: string }> = [];
 
@@ -144,7 +172,8 @@ function parseBatchFileToDescriptions(opts: {
     const nameKey = Object.keys(metadata).find(
       (k) => k.trim().toLowerCase() === "name",
     ) as keyof SpellDescriptionMetadata | undefined;
-    const nameValue = nameKey ? (metadata[nameKey]?.trim() ?? "") : "";
+    const rawName = nameKey ? metadata[nameKey] : undefined;
+    const nameValue = typeof rawName === "string" ? rawName.trim() : "";
     return nameValue || fallback;
   };
 
@@ -173,6 +202,9 @@ function parseBatchFileToDescriptions(opts: {
         )
       : parsed.metadata;
 
+    const mergedMetadataWithComponents =
+      normalizeComponentFlags(mergedMetadata);
+
     const mergedSectionsRaw = override?.sections
       ? {
           ...parsed.sections,
@@ -194,7 +226,10 @@ function parseBatchFileToDescriptions(opts: {
 
     const merged: SpellDescriptionJson = {
       wikiPageId: page.pageid,
-      metadata: filterKnownMetadata(mergedMetadata),
+      wikiLink: page.pageid
+        ? `${wikiBaseUrl}/?curid=${page.pageid}`
+        : undefined,
+      metadata: filterKnownMetadata(mergedMetadataWithComponents),
       sections: mergedSections,
     };
 
@@ -289,11 +324,13 @@ async function main() {
     batch: wizard,
     overridesByTitle,
     excludeTitles,
+    wikiBaseUrl: WIKI_BASE_URL,
   });
   const priestParsed = parseBatchFileToDescriptions({
     batch: priest,
     overridesByTitle,
     excludeTitles,
+    wikiBaseUrl: WIKI_BASE_URL,
   });
 
   const wizardOut: SpellDescriptionsFile = {

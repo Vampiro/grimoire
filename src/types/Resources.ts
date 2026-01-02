@@ -16,9 +16,9 @@ export interface SpellDescriptionMetadata {
   level?: string;
   school?: string;
   sphere?: string;
-  verbal?: string;
-  somatic?: string;
-  material?: string;
+  verbal?: boolean;
+  somatic?: boolean;
+  material?: boolean;
   range?: string;
   duration?: string;
   aoe?: string;
@@ -43,6 +43,8 @@ export interface SpellDescriptionJson {
   sections: Record<string, string>;
   /** MediaWiki page id the spell was sourced from. */
   wikiPageId?: number;
+  /** Direct link to the originating wiki page (curid-based for stability). */
+  wikiLink?: string;
 }
 
 /**

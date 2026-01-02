@@ -56,7 +56,7 @@ This repo includes Node-based generator scripts that cache spell data from the A
 
 ```ts
 type SpellDescription = {
-  metadata: Record<string, string>; // plain text, infobox-derived (post overrides)
+  metadata: Record<string, string | boolean>; // plain text (booleans for components), infobox-derived (post overrides)
   sections: Record<string, string>; // HTML, keyed by heading (Introduction fallback)
   wikiPageId?: number; // MediaWiki page id for traceability
 };
@@ -71,7 +71,7 @@ type SpellDescriptionsFile = {
 
 - Infobox fields we expect (all optional; others are preserved as-is):
   - `name`, `source`, `class`, `level`, `school`, `sphere`
-  - `verbal`, `somatic`, `material` (stored as text, typically "1"/"0")
+  - `verbal`, `somatic`, `material` (booleans; `true` when present, omitted when "0"/falsey)
   - `range`, `duration`, `aoe`, `preparationTime`, `castingTime`, `save`, `requirements`
   - PO: Spells & Magic extras: `subtlety`, `knockdown`, `sensory`, `critical`
   - Ignored metadata fields (dropped going forward): `category`, `damage`, `materials`, `type`, `difficulty`, `finalDifficulty`, `adjustedDifficulty` (wtf_wikipedia lowercases incoming keys; we normalize but do not persist these)
