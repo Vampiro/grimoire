@@ -50,6 +50,44 @@ This repo includes Node-based generator scripts that cache spell data from the A
 
 - Generator output strips Unicode format characters (category \p{Cf}) from titles and wikitext (e.g. soft hyphen U+00AD, BOM U+FEFF) to avoid VS Code “invisible unicode characters” warnings and reduce subtle string-matching issues.
 
+### Spell Description Schema and Normalization
+
+- Outputs live at `public/resources/{wizard,priest}SpellDescriptions.json` with shape:
+
+```ts
+type SpellDescription = {
+  metadata: Record<string, string>; // plain text, infobox-derived (post overrides)
+  sections: Record<string, string>; // HTML, keyed by heading (Introduction fallback)
+};
+type SpellDescriptionsFile = {
+  generatedAt: string;
+  source: "https://adnd2e.fandom.com";
+  categoryName: string;
+  spellsByName: Record<string, SpellDescription>;
+  errors: Array<{ title: string; message: string }>;
+};
+```
+
+- Infobox fields we expect (all optional; others are preserved as-is):
+  - `name`, `source`, `class`, `level`, `school`, `sphere`
+  - `verbal`, `somatic`, `material` (stored as text, typically "1"/"0")
+  - `range`, `duration`, `aoe`, `preparationTime`, `castingTime`, `save`, `requirements`
+  - PO: Spells & Magic extras: `subtlety`, `knockdown`, `sensory`, `critical`
+
+- Metadata normalization (applied after overrides):
+  - Trim values; replace NBSP with space; collapse newlines to a single space (`source` uses `, `); collapse repeated commas/whitespace; drop trailing commas.
+  - Case-insensitive merge for overrides; override keys replace existing, keeping only one casing.
+
+- Sections (HTML) normalization:
+  - Headings from wiki sections; default heading `Introduction` when none.
+  - Strip `[[Category:...]]` lines; remove simple `{{...}}` template artifacts (e.g., `{{Highlight: ...}}`).
+  - Normalize HTML via `wtf_wikipedia` with HTML plugin; fallback parser uses escaped text + `<br>`; duplicate headings append with `<br><br>`.
+
+- Overrides file: `data/wiki/spellDescriptionOverrides.json`
+  - `excludeTitles`: exact page titles to drop.
+  - `spellsByTitle`: per-page overrides for `metadata` (text) and `sections` (HTML string or plain text with newlines → `<br>`).
+  - Applied after parsing and before disambiguating duplicate spell names.
+
 ## Admin
 
 (Admin-only links)
