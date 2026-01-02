@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,20 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
 import { WizardClassProgression } from "@/types/WizardClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
-import { SpellViewer } from "./SpellViewer";
 import { WizardPreparedSpells } from "./WizardPreparedSpells";
-import type { Spell } from "@/types/Spell";
 
 interface WizardViewProps {
   character: Character;
@@ -30,8 +20,6 @@ interface WizardViewProps {
 
 export function WizardView({ character, wizardProgression }: WizardViewProps) {
   const navigate = useNavigate();
-  const [selectedSpellForViewer, setSelectedSpellForViewer] =
-    useState<Spell | null>(null);
   const slotMap = getWizardProgressionSpellSlots(wizardProgression);
   const availableLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(
     (lvl) => (slotMap[lvl] ?? 0) > 0,
@@ -74,30 +62,12 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
                   spellLevel={spellLevel}
                   progression={wizardProgression}
                   characterId={character.id}
-                  onViewSpell={setSelectedSpellForViewer}
                 />
               );
             })}
           </div>
         </CardContent>
       </Card>
-
-      <Dialog
-        open={!!selectedSpellForViewer}
-        onOpenChange={(open) => !open && setSelectedSpellForViewer(null)}
-      >
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>{selectedSpellForViewer?.name}</DialogTitle>
-            <DialogDescription>
-              Level {selectedSpellForViewer?.level} Spell
-            </DialogDescription>
-          </DialogHeader>
-          {selectedSpellForViewer && (
-            <SpellViewer spell={selectedSpellForViewer} />
-          )}
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

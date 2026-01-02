@@ -18,7 +18,7 @@ export function SpellViewerDialog() {
 
   return (
     <Dialog open={!!activeSpell} onOpenChange={(open) => !open && close()}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="w-[96vw] max-w-none sm:max-w-none md:max-w-6xl lg:max-w-7xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{activeSpell?.name ?? "Spell"}</DialogTitle>
           {activeSpell && (

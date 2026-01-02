@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +15,7 @@ import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
+import { SpellViewer } from "@/components/custom/SpellViewer";
 
 interface WizardPreparedSpellsProps {
   spellLevel: number;
@@ -57,6 +58,7 @@ export function WizardPreparedSpells({
 
   const [error, setError] = useState<string | null>(null);
   const [flashSpellId, setFlashSpellId] = useState<string | null>(null);
+  const [expandedSpellId, setExpandedSpellId] = useState<string | null>(null);
 
   const flashRow = (spellId: string) => {
     setFlashSpellId(spellId);
@@ -133,6 +135,13 @@ export function WizardPreparedSpells({
       const { [spellId]: _removed, ...rest } = current;
       return rest;
     });
+
+  // Collapse expansion when a spell is removed from the current level.
+  useEffect(() => {
+    if (expandedSpellId && !spells[expandedSpellId]) {
+      setExpandedSpellId(null);
+    }
+  }, [expandedSpellId, spells]);
 
   const handleAddSpell = (spellId: string) =>
     updateLevelSpells((current) => {
@@ -301,93 +310,105 @@ export function WizardPreparedSpells({
                     const isFlashing = flashSpellId === spellId;
 
                     return (
-                      <tr
-                        key={spellId}
-                        className={`border-b last:border-0 transition-colors hover:bg-muted/30 ${
-                          isFlashing ? "flash-added-row" : ""
-                        }`}
-                      >
-                        <td className="w-px py-2 pr-4 align-middle whitespace-nowrap">
-                          <div className="flex items-center">
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                              disabled={remaining <= 0}
-                              onClick={() => adjustRemaining(spellId, -1)}
-                              title="Decrease remaining casts"
-                            >
-                              <Minus className="h-4 w-4" />
-                            </Button>
-                            <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
-                              {remaining}
-                            </div>
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                              disabled={remaining >= total}
-                              onClick={() => adjustRemaining(spellId, 1)}
-                              title="Increase remaining casts"
-                            >
-                              <Plus className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </td>
-
-                        <td className="py-2 pl-0 pr-2 align-middle">
-                          <button
-                            type="button"
-                            className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
-                            onClick={() =>
-                              spell && onViewSpell && onViewSpell(spell)
-                            }
-                            disabled={!spell}
-                          >
-                            {spell?.name ?? spellId}
-                          </button>
-                        </td>
-
-                        <td className="w-px py-2 align-middle whitespace-nowrap">
-                          <div className="flex items-center justify-end">
-                            {total <= 1 ? (
+                      <Fragment key={spellId}>
+                        <tr
+                          className={`border-b last:border-0 transition-colors hover:bg-muted/30 ${
+                            isFlashing ? "flash-added-row" : ""
+                          }`}
+                        >
+                          <td className="w-px py-2 pr-4 align-middle whitespace-nowrap">
+                            <div className="flex items-center">
                               <Button
                                 size="icon"
                                 variant="outline"
                                 className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                                disabled={total === 0}
-                                onClick={() => deleteSpellGroup(spellId)}
-                                title="Remove this spell from prepared"
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            ) : (
-                              <Button
-                                size="icon"
-                                variant="outline"
-                                className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
-                                disabled={total === 0}
-                                onClick={() => adjustTotal(spellId, -1)}
-                                title="Decrease prepared copies"
+                                disabled={remaining <= 0}
+                                onClick={() => adjustRemaining(spellId, -1)}
+                                title="Decrease remaining casts"
                               >
                                 <Minus className="h-4 w-4" />
                               </Button>
-                            )}
-                            <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
-                              {total}
+                              <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
+                                {remaining}
+                              </div>
+                              <Button
+                                size="icon"
+                                variant="outline"
+                                className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                                disabled={remaining >= total}
+                                onClick={() => adjustRemaining(spellId, 1)}
+                                title="Increase remaining casts"
+                              >
+                                <Plus className="h-4 w-4" />
+                              </Button>
                             </div>
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
-                              onClick={() => handleIncreaseCopies(spellId)}
-                              title="Increase prepared copies"
+                          </td>
+
+                          <td className="py-2 pl-0 pr-2 align-middle">
+                            <button
+                              type="button"
+                              className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
+                              onClick={() => {
+                                if (!spell) return;
+                                setExpandedSpellId((current) =>
+                                  current === spellId ? null : spellId,
+                                );
+                                if (onViewSpell) onViewSpell(spell);
+                              }}
+                              disabled={!spell}
                             >
-                              <Plus className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
+                              {spell?.name ?? spellId}
+                            </button>
+                          </td>
+
+                          <td className="w-px py-2 align-middle whitespace-nowrap">
+                            <div className="flex items-center justify-end">
+                              {total <= 1 ? (
+                                <Button
+                                  size="icon"
+                                  variant="outline"
+                                  className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                  disabled={total === 0}
+                                  onClick={() => deleteSpellGroup(spellId)}
+                                  title="Remove this spell from prepared"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              ) : (
+                                <Button
+                                  size="icon"
+                                  variant="outline"
+                                  className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                  disabled={total === 0}
+                                  onClick={() => adjustTotal(spellId, -1)}
+                                  title="Decrease prepared copies"
+                                >
+                                  <Minus className="h-4 w-4" />
+                                </Button>
+                              )}
+                              <div className="h-8 min-w-10 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold text-foreground">
+                                {total}
+                              </div>
+                              <Button
+                                size="icon"
+                                variant="outline"
+                                className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                                onClick={() => handleIncreaseCopies(spellId)}
+                                title="Increase prepared copies"
+                              >
+                                <Plus className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                        {expandedSpellId === spellId && spell && (
+                          <tr className="bg-muted/20">
+                            <td colSpan={3} className="p-3 align-top">
+                              <SpellViewer spell={spell} />
+                            </td>
+                          </tr>
+                        )}
+                      </Fragment>
                     );
                   })}
               </tbody>
