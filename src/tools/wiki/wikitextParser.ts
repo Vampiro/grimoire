@@ -110,9 +110,13 @@ function tryParseWithWtfWikipedia(opts: {
         for (const [key, value] of Object.entries(
           raw as Record<string, unknown>,
         )) {
-          const text = normalizeInfoboxValue(key, extractWtfValueText(value));
-          if (key && text) {
-            infoboxText[key] = text;
+          const normalizedKey = normalizeInfoboxKey(key);
+          const text = normalizeInfoboxValue(
+            normalizedKey,
+            extractWtfValueText(value),
+          );
+          if (normalizedKey && text) {
+            infoboxText[normalizedKey] = text;
           }
         }
       }
@@ -182,6 +186,19 @@ function normalizeInfoboxValue(key: string, value: string): string {
     .replace(/,$/, "");
 }
 
+function normalizeInfoboxKey(key: string): string {
+  const trimmed = key.trim();
+  const lower = trimmed.toLowerCase();
+  switch (lower) {
+    case "castingtime":
+      return "castingTime";
+    case "preparationtime":
+      return "preparationTime";
+    default:
+      return trimmed;
+  }
+}
+
 /**
  * Normalizes section text for UI rendering.
  *
@@ -239,8 +256,9 @@ function parseInfoboxSpells(wikitext: string): {
     const value = withoutPipe.slice(eq + 1).trim();
 
     if (key && value) {
-      const normalized = normalizeInfoboxValue(key, value);
-      infoboxText[key] = normalized;
+      const normalizedKey = normalizeInfoboxKey(key);
+      const normalized = normalizeInfoboxValue(normalizedKey, value);
+      infoboxText[normalizedKey] = normalized;
     }
   }
 
