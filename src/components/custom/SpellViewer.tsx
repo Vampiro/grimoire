@@ -1,5 +1,4 @@
 import { Spell } from "@/types/Spell";
-import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useMemo } from "react";
 import { useAtomValue } from "jotai";
@@ -76,60 +75,58 @@ export function SpellViewer(props: SpellViewerProps) {
   }
 
   return (
-    <Card>
-      <CardContent className="space-y-6 p-4">
-        <div className="space-y-1">
-          <div className="text-lg font-semibold leading-tight">
-            {description.metadata.name}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            {spell.spellClass.toUpperCase()} · Level {spell.level} · page{" "}
-            {spell.id}
-          </div>
-          {description.wikiLink && (
-            <div className="text-xs text-muted-foreground">
-              Source: {description.wikiLink}
-            </div>
-          )}
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <div className="text-lg font-semibold leading-tight">
+          {description.metadata.name}
         </div>
-
-        {metadataEntries.length > 0 && (
-          <div className="space-y-2">
-            <div className="text-sm font-semibold">Details</div>
-            <Table>
-              <TableBody>
-                {metadataEntries.map(([k, v]) => (
-                  <TableRow key={k}>
-                    <TableCell className="w-px pr-4 font-medium text-muted-foreground whitespace-nowrap">
-                      {k}
-                    </TableCell>
-                    <TableCell className="whitespace-pre-wrap break-words">
-                      {formatValue(v)}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+        <div className="text-xs text-muted-foreground">
+          {spell.spellClass.toUpperCase()} · Level {spell.level} · page{" "}
+          {spell.id}
+        </div>
+        {description.wikiLink && (
+          <div className="text-xs text-muted-foreground">
+            Source: {description.wikiLink}
           </div>
         )}
+      </div>
 
-        {sectionEntries.length > 0 ? (
-          <div className="space-y-6">
-            {sectionEntries.map(([heading, content], index) => (
-              <section key={`${heading}-${index}`} className="space-y-2">
-                <div
-                  className="prose prose-sm max-w-none text-sm leading-relaxed break-words"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-              </section>
-            ))}
-          </div>
-        ) : (
-          <div className="text-sm text-muted-foreground">
-            No page sections available.
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      {metadataEntries.length > 0 && (
+        <div className="space-y-2">
+          <div className="text-sm font-semibold">Details</div>
+          <Table>
+            <TableBody>
+              {metadataEntries.map(([k, v]) => (
+                <TableRow key={k}>
+                  <TableCell className="w-px pr-4 font-medium text-muted-foreground whitespace-nowrap">
+                    {k}
+                  </TableCell>
+                  <TableCell className="whitespace-pre-wrap break-words">
+                    {formatValue(v)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+
+      {sectionEntries.length > 0 ? (
+        <div className="space-y-6">
+          {sectionEntries.map(([heading, content], index) => (
+            <section key={`${heading}-${index}`} className="space-y-2">
+              <div
+                className="prose prose-sm max-w-none text-sm leading-relaxed break-words"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div className="text-sm text-muted-foreground">
+          No page sections available.
+        </div>
+      )}
+    </div>
   );
 }

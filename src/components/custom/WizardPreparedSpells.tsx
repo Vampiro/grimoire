@@ -16,6 +16,7 @@ import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 import { SpellViewer } from "@/components/custom/SpellViewer";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface WizardPreparedSpellsProps {
   spellLevel: number;
@@ -404,7 +405,11 @@ export function WizardPreparedSpells({
                         {expandedSpellId === spellId && spell && (
                           <tr className="bg-muted/20">
                             <td colSpan={3} className="p-3 align-top">
-                              <SpellViewer spell={spell} />
+                              <Card>
+                                <CardContent className="p-4">
+                                  <SpellViewer spell={spell} />
+                                </CardContent>
+                              </Card>
                             </td>
                           </tr>
                         )}
