@@ -68,39 +68,9 @@ export function SpellViewer(props: SpellViewerProps) {
       requirementParts.push("Quest");
     }
 
-    if (m.verbal) {
-      requirementParts.push(
-        <abbr
-          key="v"
-          title="Verbal"
-          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
-        >
-          V
-        </abbr>,
-      );
-    }
-    if (m.somatic) {
-      requirementParts.push(
-        <abbr
-          key="s"
-          title="Somatic"
-          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
-        >
-          S
-        </abbr>,
-      );
-    }
-    if (m.material) {
-      requirementParts.push(
-        <abbr
-          key="m"
-          title="Material"
-          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
-        >
-          M
-        </abbr>,
-      );
-    }
+    if (m.verbal) requirementParts.push("V");
+    if (m.somatic) requirementParts.push("S");
+    if (m.material) requirementParts.push("M");
 
     const explicitRequirements = String(m.requirements ?? "").trim();
     if (explicitRequirements.length > 0) {
