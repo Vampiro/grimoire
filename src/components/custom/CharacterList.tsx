@@ -55,7 +55,7 @@ export function CharacterList() {
 
           return (
             <Card key={c.id}>
-              <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                   <Link
                     to={PageRoute.CHARACTER_VIEW(c.id)}

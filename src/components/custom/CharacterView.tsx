@@ -17,7 +17,7 @@ export function CharacterView({ character }: CharacterViewProps) {
       {/* Header */}
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-4xl font-bold">{character.name}</h1>
+          <h1 className="text-3xl font-bold">{character.name}</h1>
           <p className="text-muted-foreground">
             {[
               character.class.wizard
