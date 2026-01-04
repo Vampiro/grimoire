@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,21 +8,18 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Plus, Trash2, Minus } from "lucide-react";
-import { findWizardSpellById } from "@/lib/spellLookup";
+import { findWizardSpellById, openSpellViewer } from "@/lib/spellLookup";
 import { PreparedSpellCounts } from "@/types/ClassProgression";
 import { WizardClassProgression } from "@/types/WizardClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
-import { SpellViewer } from "@/components/custom/SpellViewer";
-import { Card, CardContent } from "@/components/ui/card";
 
 interface WizardPreparedSpellsProps {
   spellLevel: number;
   progression: WizardClassProgression;
   characterId: string;
-  onViewSpell?: (spell: Spell) => void;
 }
 
 /**
@@ -33,7 +30,6 @@ export function WizardPreparedSpells({
   spellLevel,
   progression,
   characterId,
-  onViewSpell,
 }: WizardPreparedSpellsProps) {
   const [localSpells, setLocalSpells] = useState<
     Record<string, PreparedSpellCounts>
@@ -59,7 +55,6 @@ export function WizardPreparedSpells({
 
   const [error, setError] = useState<string | null>(null);
   const [flashSpellId, setFlashSpellId] = useState<string | null>(null);
-  const [expandedSpellId, setExpandedSpellId] = useState<string | null>(null);
 
   const flashRow = (spellId: string) => {
     setFlashSpellId(spellId);
@@ -137,13 +132,6 @@ export function WizardPreparedSpells({
       return rest;
     });
 
-  // Collapse expansion when a spell is removed from the current level.
-  useEffect(() => {
-    if (expandedSpellId && !spells[expandedSpellId]) {
-      setExpandedSpellId(null);
-    }
-  }, [expandedSpellId, spells]);
-
   const handleAddSpell = (spellId: string) =>
     updateLevelSpells((current) => {
       const prev = current[spellId];
@@ -205,6 +193,7 @@ export function WizardPreparedSpells({
             >
               <Plus className="h-3 w-3" />
             </SelectTrigger>
+
             <SelectContent className="max-h-72">
               {(() => {
                 const availableMap = new Map<string, Spell>();
@@ -218,8 +207,7 @@ export function WizardPreparedSpells({
                     if (!spell || spell.level !== spellLevel) return;
                     const idKey = String(spell.id);
                     if (preparedIds.has(idKey)) return;
-                    if (!availableMap.has(idKey))
-                      availableMap.set(idKey, spell);
+                    if (!availableMap.has(idKey)) availableMap.set(idKey, spell);
                   });
                 });
 
@@ -311,12 +299,12 @@ export function WizardPreparedSpells({
                     const isFlashing = flashSpellId === spellId;
 
                     return (
-                      <Fragment key={spellId}>
-                        <tr
-                          className={`border-b last:border-0 transition-colors hover:bg-muted/30 ${
-                            isFlashing ? "flash-added-row" : ""
-                          }`}
-                        >
+                      <tr
+                        key={spellId}
+                        className={`border-b last:border-0 transition-colors hover:bg-muted/30 ${
+                          isFlashing ? "flash-added-row" : ""
+                        }`}
+                      >
                           <td className="w-px py-2 pr-4 align-middle whitespace-nowrap">
                             <div className="flex items-center">
                               <Button
@@ -351,10 +339,7 @@ export function WizardPreparedSpells({
                               className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
                               onClick={() => {
                                 if (!spell) return;
-                                setExpandedSpellId((current) =>
-                                  current === spellId ? null : spellId,
-                                );
-                                if (onViewSpell) onViewSpell(spell);
+                                openSpellViewer(spell);
                               }}
                               disabled={!spell}
                             >
@@ -402,18 +387,6 @@ export function WizardPreparedSpells({
                             </div>
                           </td>
                         </tr>
-                        {expandedSpellId === spellId && spell && (
-                          <tr className="bg-muted/20">
-                            <td colSpan={3} className="p-3 align-top">
-                              <Card>
-                                <CardContent className="p-4">
-                                  <SpellViewer spell={spell} />
-                                </CardContent>
-                              </Card>
-                            </td>
-                          </tr>
-                        )}
-                      </Fragment>
                     );
                   })}
               </tbody>
