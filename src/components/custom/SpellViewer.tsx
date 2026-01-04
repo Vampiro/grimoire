@@ -34,11 +34,95 @@ export function SpellViewer(props: SpellViewerProps) {
 
   const metadataEntries = useMemo(() => {
     if (!description) return [] as Array<[string, string]>;
-    return Object.entries(description.metadata)
-      .filter(([, v]) => v !== undefined && String(v).trim().length > 0)
-      .map(([k, v]) => [k.trim(), String(v ?? "").trim()] as [string, string])
-      .filter(([k, v]) => k.length > 0 && v.length > 0 && k !== "name")
-      .sort((a, b) => a[0].localeCompare(b[0]));
+
+    const m = description.metadata;
+    const entries: Array<[string, string | React.ReactNode]> = [];
+
+    const add = (label: string, value: unknown) => {
+      if (value === undefined || value === null) return;
+      const text = String(value).trim();
+      if (text.length === 0) return;
+      entries.push([label, text]);
+    };
+
+    const addNode = (label: string, node: React.ReactNode) => {
+      entries.push([label, node]);
+    };
+
+    // Known metadata fields (ordered).
+    // Note: name/class/level are shown elsewhere (title/subtitle), so we omit them here.
+
+    add("School", m.school);
+    add("Sphere", m.sphere);
+    add("Range", m.range);
+    add("Duration", m.duration);
+    add("AOE", m.aoe);
+    add("Save", m.save);
+    add("Preparation Time", m.preparationTime);
+    add("Casting Time", m.castingTime);
+
+    // Requirements row: includes V/S/M and any additional notes.
+    const requirementParts: React.ReactNode[] = [];
+    if (String(m.quest ?? "").trim() === "1") {
+      // Some pages flag spells as "Quest".
+      requirementParts.push("Quest");
+    }
+
+    if (m.verbal) {
+      requirementParts.push(
+        <abbr
+          key="v"
+          title="Verbal"
+          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
+        >
+          V
+        </abbr>,
+      );
+    }
+    if (m.somatic) {
+      requirementParts.push(
+        <abbr
+          key="s"
+          title="Somatic"
+          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
+        >
+          S
+        </abbr>,
+      );
+    }
+    if (m.material) {
+      requirementParts.push(
+        <abbr
+          key="m"
+          title="Material"
+          className="cursor-help no-underline underline decoration-dotted underline-offset-2"
+        >
+          M
+        </abbr>,
+      );
+    }
+
+    const explicitRequirements = String(m.requirements ?? "").trim();
+    if (explicitRequirements.length > 0) {
+      requirementParts.push(explicitRequirements);
+    }
+
+    if (requirementParts.length > 0) {
+      const formatted = requirementParts.flatMap((part, index) =>
+        index === 0 ? [part] : [", ", part],
+      );
+      addNode("Requirements", <span>{formatted}</span>);
+    }
+
+    add("Source", m.source);
+
+    // PO: Spells & Magic
+    add("Subtlety", m.subtlety);
+    add("Knockdown", m.knockdown);
+    add("Sensory", m.sensory);
+    add("Critical", m.critical);
+
+    return entries;
   }, [description]);
 
   const sectionEntries = useMemo(() => {
@@ -94,7 +178,7 @@ export function SpellViewer(props: SpellViewerProps) {
                     {k}
                   </TableCell>
                   <TableCell className="whitespace-pre-wrap break-words">
-                    {formatValue(v)}
+                    {typeof v === "string" ? formatValue(v) : v}
                   </TableCell>
                 </TableRow>
               ))}
