@@ -1,17 +1,21 @@
 import { Spell } from "@/types/Spell";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useMemo } from "react";
-import { useAtomValue } from "jotai";
-import {
-  priestSpellDescriptionsAtom,
-  spellDataStatusAtom,
-  wizardSpellDescriptionsAtom,
-} from "@/globalState";
-import type { SpellDescriptionJson } from "@/types/Resources";
+import { useSpellDescription } from "@/hooks/useSpellDescription";
 import "./SpellViewer.css";
 
 interface SpellViewerProps {
+  /** The spell to render. */
   spell: Spell;
+
+  /**
+   * Whether to show the viewer's internal title block.
+   *
+   * @remarks
+   * Some callers (like the global dialog) render the title in a `DialogHeader`
+   * and want the body content to omit it to avoid duplication.
+   */
+  showTitle?: boolean;
 }
 
 /**
@@ -22,21 +26,11 @@ interface SpellViewerProps {
  * @returns The SpellViewer component
  */
 export function SpellViewer(props: SpellViewerProps) {
-  const { spell } = props;
-  const wizardDescriptions = useAtomValue(wizardSpellDescriptionsAtom);
-  const priestDescriptions = useAtomValue(priestSpellDescriptionsAtom);
-  const spellStatus = useAtomValue(spellDataStatusAtom);
+  const { spell, showTitle = true } = props;
 
-  const description: SpellDescriptionJson | undefined = useMemo(() => {
-    const key = String(spell.id);
-    if (spell.spellClass === "wizard") {
-      return wizardDescriptions[key] ?? priestDescriptions[key];
-    }
-    if (spell.spellClass === "priest") {
-      return priestDescriptions[key] ?? wizardDescriptions[key];
-    }
-    return wizardDescriptions[key] ?? priestDescriptions[key];
-  }, [priestDescriptions, spell.id, spell.spellClass, wizardDescriptions]);
+  // Centralized description lookup + "ready" status (avoids duplicating
+  // wizard/priest map fallback logic in multiple components).
+  const { ready, description } = useSpellDescription(spell);
 
   const metadataEntries = useMemo(() => {
     if (!description) return [] as Array<[string, string]>;
@@ -58,7 +52,7 @@ export function SpellViewer(props: SpellViewerProps) {
   const formatValue = (value: string) =>
     value.replace(/<br\s*\/?>(\s*)/gi, "\n").trim();
 
-  if (!spellStatus.ready) {
+  if (!ready) {
     return (
       <div className="text-sm text-muted-foreground">
         Loading spell descriptions...
@@ -77,17 +71,17 @@ export function SpellViewer(props: SpellViewerProps) {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <div className="text-lg font-semibold leading-tight">
-          {description.metadata.name}
-        </div>
-        <div className="text-xs text-muted-foreground">
-          {spell.spellClass.toUpperCase()} · Level {spell.level} · page{" "}
-          {spell.id}
-        </div>
-        {description.wikiLink && (
-          <div className="text-xs text-muted-foreground">
-            Source: {description.wikiLink}
-          </div>
+        {/* Optional header area; can be suppressed when the caller provides a title. */}
+        {showTitle && (
+          <>
+            <div className="text-lg font-semibold leading-tight">
+              {description.metadata.name}
+            </div>
+            {/* Small subtitle line requested for both dialog + inline viewer. */}
+            <div className="text-xs text-muted-foreground capitalize">
+              {spell.spellClass} Spell Level: {spell.level}
+            </div>
+          </>
         )}
       </div>
 

@@ -1,30 +1,42 @@
 import { useAtom } from "jotai";
-import { activeSpellForViewerAtom, spellDataStatusAtom } from "@/globalState";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { activeSpellForViewerAtom } from "@/globalState";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { SpellViewer } from "./SpellViewer";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useSpellDescription } from "@/hooks/useSpellDescription";
 
 /** Global spell viewer dialog driven by atoms. */
 export function SpellViewerDialog() {
   const [activeSpell, setActiveSpell] = useAtom(activeSpellForViewerAtom);
-  const [spellStatus] = useAtom(spellDataStatusAtom);
+
+  // Centralized description lookup so the dialog and the viewer body don't
+  // duplicate the wizard/priest fallback logic.
+  const { description } = useSpellDescription(activeSpell);
 
   const close = () => setActiveSpell(null);
 
   return (
     <Dialog open={!!activeSpell} onOpenChange={(open) => !open && close()}>
-      <DialogContent className="w-[96vw] max-w-none sm:max-w-none md:max-w-6xl lg:max-w-7xl h-[80vh] overflow-hidden grid-rows-[auto,1fr]">
-        <ScrollArea type="always" className="h-full min-h-0 mt-6">
+      <DialogContent className="h-[80vh] w-[90vw] max-w-none sm:max-w-none xl:max-w-[80vw] 2xl:max-w-[70vw] gap-4">
+        {activeSpell && description && (
+          <DialogHeader>
+            <DialogTitle>{description.metadata.name}</DialogTitle>
+            {/* Subtitle shown directly under the title in the dialog header. */}
+            <div className="text-xs text-muted-foreground capitalize">
+              {activeSpell.spellClass} Spell Level: {activeSpell.level}
+            </div>
+          </DialogHeader>
+        )}
+        <ScrollArea type="always">
           {activeSpell ? (
-            spellStatus.ready ? (
-              <div className="p-4">
-                <SpellViewer spell={activeSpell} />
-              </div>
-            ) : (
-              <div className="text-sm text-muted-foreground">
-                Loading spell descriptions...
-              </div>
-            )
+            <div className="p-4 pt-0">
+              <SpellViewer spell={activeSpell} showTitle={false} />
+            </div>
           ) : null}
         </ScrollArea>
       </DialogContent>
