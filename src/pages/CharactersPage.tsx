@@ -176,7 +176,11 @@ export function CharactersPage() {
                             </div>
                           ) : (
                             remainingClasses.map((c) => (
-                              <SelectItem key={c.key} value={c.key}>
+                              <SelectItem
+                                key={c.key}
+                                value={c.key}
+                                className="cursor-pointer"
+                              >
                                 {c.label}
                               </SelectItem>
                             ))
