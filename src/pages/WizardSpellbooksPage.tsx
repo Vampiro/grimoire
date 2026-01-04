@@ -165,7 +165,7 @@ function SpellbookCard({
               onValueChange={(val) => setSelectedLevel(Number(val))}
               defaultValue={String(selectedLevel)}
             >
-              <SelectTrigger className="w-24 h-8 cursor-pointer">
+              <SelectTrigger size="sm" className="w-24 cursor-pointer">
                 <SelectValue placeholder="Level" />
               </SelectTrigger>
               <SelectContent>
@@ -188,7 +188,7 @@ function SpellbookCard({
                   className="h-8 cursor-pointer disabled:cursor-not-allowed"
                   disabled={adding}
                 >
-                  {adding ? "Adding..." : "Add spell"}
+                  {adding ? "Adding..." : "Add Spell"}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="p-0 w-72">
