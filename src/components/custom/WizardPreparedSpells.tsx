@@ -159,25 +159,6 @@ export function WizardPreparedSpells({
       <div className="flex items-center gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-semibold">Level {spellLevel}</h3>
-          <span className="text-sm text-muted-foreground">
-            ({castable} casts remaining)
-          </span>
-          <span
-            className={`text-sm font-medium ${
-              totalPrepared > maxSlots
-                ? "text-destructive"
-                : totalPrepared < maxSlots
-                  ? "text-amber-500"
-                  : "text-foreground"
-            }`}
-          >
-            ({totalPrepared}/{maxSlots} rested slots)
-          </span>
-          {totalPrepared > maxSlots && (
-            <span className="text-xs text-destructive">
-              Too many rested spell slots used.
-            </span>
-          )}
         </div>
         <div className="flex items-center gap-2">
           <Select
@@ -266,7 +247,7 @@ export function WizardPreparedSpells({
               <thead>
                 <tr>
                   <th className="w-px py-1 pr-0 text-xs font-semibold text-muted-foreground whitespace-nowrap">
-                    Remaining
+                    Remaining ({castable})
                     <div className="text-[10px] font-normal">
                       − cast / + restore
                     </div>
@@ -274,8 +255,20 @@ export function WizardPreparedSpells({
                   <th className="py-1 pl-0 pr-2 text-xs font-semibold text-muted-foreground">
                     Spell
                   </th>
-                  <th className="w-px py-1 text-right text-xs font-semibold text-muted-foreground whitespace-nowrap">
-                    Rested Slots
+                  <th
+                    className={`w-px py-1 text-right text-xs font-semibold whitespace-nowrap ${
+                      totalPrepared > maxSlots
+                        ? "text-destructive"
+                        : totalPrepared < maxSlots
+                          ? "text-amber-500"
+                          : "text-muted-foreground"
+                    }`}
+                  >
+                    <div className="flex items-baseline justify-end gap-2">
+                      <span>
+                        Rested Slots ({totalPrepared}/{maxSlots})
+                      </span>
+                    </div>
                     <div className="text-[10px] font-normal">
                       − remove / + add
                     </div>
