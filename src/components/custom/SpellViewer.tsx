@@ -153,7 +153,7 @@ export function SpellViewer(props: SpellViewerProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Optional header area; can be suppressed when the caller provides a title. */}
       {showTitle && (
         <div className="space-y-1">
@@ -170,7 +170,7 @@ export function SpellViewer(props: SpellViewerProps) {
       {metadataEntries.length > 0 && (
         <div className="space-y-2">
           <Table>
-            <TableBody>
+            <TableBody className="[&_tr:last-child]:border-b">
               {metadataEntries.map(([k, v]) => (
                 <TableRow key={k}>
                   <TableCell className="w-px pr-4 font-medium text-muted-foreground whitespace-nowrap">
