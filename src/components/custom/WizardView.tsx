@@ -34,18 +34,13 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
             <CardDescription>Prepared Spells</CardDescription>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              asChild
-              variant="outline"
-              className="disabled:cursor-not-allowed"
-            >
+            <Button asChild variant="outline">
               <Link to={PageRoute.WIZARD_SPELLBOOKS(character.id)}>
                 Spellbooks
               </Link>
             </Button>
             <Button
               variant="outline"
-              className="disabled:cursor-not-allowed"
               onClick={() => navigate(PageRoute.WIZARD_EDIT(character.id))}
             >
               Edit Wizard

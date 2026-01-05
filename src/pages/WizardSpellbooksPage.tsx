@@ -176,7 +176,7 @@ function SpellbookCard({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 disabled:cursor-not-allowed"
+                  className="h-8"
                   disabled={adding}
                 >
                   {adding ? "Adding..." : "Add Spell"}
@@ -227,7 +227,7 @@ function SpellbookCard({
                     >
                       <Button
                         variant="link"
-                        className="h-auto p-0 text-left text-primary hover:underline"
+                        className="h-auto p-0 text-left"
                         onClick={() => openSpellViewer(spell)}
                       >
                         {spell.name}
@@ -327,11 +327,7 @@ function AddSpellbookForm({ characterId }: { characterId: string }) {
 
           {error && <p className="text-sm text-destructive">{error}</p>}
 
-          <Button
-            type="submit"
-            disabled={saving}
-            className="disabled:cursor-not-allowed"
-          >
+          <Button type="submit" disabled={saving}>
             {saving ? "Saving..." : "Create Spellbook"}
           </Button>
         </form>

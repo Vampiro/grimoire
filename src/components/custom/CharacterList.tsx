@@ -69,17 +69,10 @@ export function CharacterList() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                  >
+                  <Button asChild variant="outline" size="sm">
                     <Link to={PageRoute.CHARACTER_VIEW(c.id)}>View</Link>
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                  >
+                  <Button variant="outline" size="sm">
                     <Link to={PageRoute.CHARACTER_EDIT(c.id)}>Edit</Link>
                   </Button>
                   <Popover

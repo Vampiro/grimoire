@@ -281,7 +281,7 @@ export function CharacterEditPage() {
               }}
             >
               <SelectTrigger
-                className="h-7 w-7 justify-center p-0 disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                className="h-7 w-7 justify-center p-0 data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
                 aria-label="Add class"
                 size="sm"
                 disabled={remainingClasses.length === 0}
@@ -297,10 +297,7 @@ export function CharacterEditPage() {
                   </div>
                 ) : (
                   remainingClasses.map((c) => (
-                    <SelectItem
-                      key={c.key}
-                      value={c.key}
-                    >
+                    <SelectItem key={c.key} value={c.key}>
                       {c.label}
                     </SelectItem>
                   ))
@@ -330,10 +327,7 @@ export function CharacterEditPage() {
                     </SelectTrigger>
                     <SelectContent className="w-max min-w-max">
                       {levelOptions.map((lvl) => (
-                        <SelectItem
-                          key={lvl}
-                          value={lvl}
-                        >
+                        <SelectItem key={lvl} value={lvl}>
                           {lvl}
                         </SelectItem>
                       ))}
@@ -409,10 +403,7 @@ export function CharacterEditPage() {
                     </SelectTrigger>
                     <SelectContent className="w-max min-w-max">
                       {levelOptions.map((lvl) => (
-                        <SelectItem
-                          key={lvl}
-                          value={lvl}
-                        >
+                        <SelectItem key={lvl} value={lvl}>
                           {lvl}
                         </SelectItem>
                       ))}

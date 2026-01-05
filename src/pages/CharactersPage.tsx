@@ -188,7 +188,7 @@ export function CharactersPage() {
                         }}
                       >
                         <SelectTrigger
-                          className="h-7 w-7 justify-center p-0 disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                          className="h-7 w-7 justify-center p-0 data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
                           aria-label="Add class"
                           size="sm"
                           disabled={remainingClasses.length === 0}
@@ -204,10 +204,7 @@ export function CharactersPage() {
                             </div>
                           ) : (
                             remainingClasses.map((c) => (
-                              <SelectItem
-                                key={c.key}
-                                value={c.key}
-                              >
+                              <SelectItem key={c.key} value={c.key}>
                                 {c.label}
                               </SelectItem>
                             ))
@@ -315,10 +312,7 @@ export function CharactersPage() {
                 </div>
 
                 <DialogFooter>
-                  <Button
-                    onClick={handleCreate}
-                    disabled={creating}
-                  >
+                  <Button onClick={handleCreate} disabled={creating}>
                     {creating ? "Creating..." : "Create"}
                   </Button>
                 </DialogFooter>
