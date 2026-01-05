@@ -281,7 +281,7 @@ export function CharacterEditPage() {
               }}
             >
               <SelectTrigger
-                className="h-7 w-7 justify-center p-0 cursor-pointer disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                className="h-7 w-7 justify-center p-0 disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
                 aria-label="Add class"
                 size="sm"
                 disabled={remainingClasses.length === 0}
@@ -300,7 +300,6 @@ export function CharacterEditPage() {
                     <SelectItem
                       key={c.key}
                       value={c.key}
-                      className="cursor-pointer"
                     >
                       {c.label}
                     </SelectItem>
@@ -321,7 +320,7 @@ export function CharacterEditPage() {
                       handleSetClassLevel("wizard", Number(v))
                     }
                   >
-                    <SelectTrigger className="w-24 cursor-pointer">
+                    <SelectTrigger className="w-24">
                       <span className="text-sm">
                         {classLevels.wizard
                           ? `Level ${classLevels.wizard}`
@@ -334,7 +333,6 @@ export function CharacterEditPage() {
                         <SelectItem
                           key={lvl}
                           value={lvl}
-                          className="cursor-pointer"
                         >
                           {lvl}
                         </SelectItem>
@@ -352,7 +350,6 @@ export function CharacterEditPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="cursor-pointer"
                         aria-label="Remove wizard class"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -374,7 +371,6 @@ export function CharacterEditPage() {
                             type="button"
                             variant="outline"
                             size="sm"
-                            className="cursor-pointer"
                             onClick={() => setConfirmRemove(null)}
                           >
                             Cancel
@@ -383,7 +379,6 @@ export function CharacterEditPage() {
                             type="button"
                             variant="destructive"
                             size="sm"
-                            className="cursor-pointer"
                             onClick={() => handleConfirmRemoveClass("wizard")}
                           >
                             Remove
@@ -404,7 +399,7 @@ export function CharacterEditPage() {
                       handleSetClassLevel("priest", Number(v))
                     }
                   >
-                    <SelectTrigger className="w-24 cursor-pointer">
+                    <SelectTrigger className="w-24">
                       <span className="text-sm">
                         {classLevels.priest
                           ? `Level ${classLevels.priest}`
@@ -417,7 +412,6 @@ export function CharacterEditPage() {
                         <SelectItem
                           key={lvl}
                           value={lvl}
-                          className="cursor-pointer"
                         >
                           {lvl}
                         </SelectItem>
@@ -435,7 +429,6 @@ export function CharacterEditPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="cursor-pointer"
                         aria-label="Remove priest class"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -457,7 +450,6 @@ export function CharacterEditPage() {
                             type="button"
                             variant="outline"
                             size="sm"
-                            className="cursor-pointer"
                             onClick={() => setConfirmRemove(null)}
                           >
                             Cancel
@@ -466,7 +458,6 @@ export function CharacterEditPage() {
                             type="button"
                             variant="destructive"
                             size="sm"
-                            className="cursor-pointer"
                             onClick={() => handleConfirmRemoveClass("priest")}
                           >
                             Remove

@@ -68,14 +68,15 @@ function WizardEditor({
   wizard: WizardClassProgression;
   characterName: string;
 }) {
-  const [level, setLevel] = useState<number>(wizard.level);
+  const levelInputId = useId();
+  const saveRequestIdRef = useRef(0);
+
+  const [level, setLevel] = useState(wizard.level);
   const [modifiers, setModifiers] = useState<SpellSlotModifier[]>(
     wizard.spellSlotModifiers ?? [],
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const levelInputId = useId();
-  const saveRequestIdRef = useRef(0);
 
   const baseSlots = useMemo(() => getWizardSpellSlots(level, []), [level]);
 
@@ -175,7 +176,7 @@ function WizardEditor({
                 saveWizard({ level: nextLevel });
               }}
             >
-              <SelectTrigger id={levelInputId} className="w-16 cursor-pointer">
+              <SelectTrigger id={levelInputId} className="w-16">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="w-max min-w-max">
@@ -317,7 +318,7 @@ function SpellSlotModifiersEditor({
                       })
                     }
                   >
-                    <SelectTrigger className="w-max cursor-pointer">
+                    <SelectTrigger className="w-max">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="w-max min-w-max">
@@ -339,7 +340,6 @@ function SpellSlotModifiersEditor({
                         addBase: e.target.checked,
                       })
                     }
-                    className="cursor-pointer"
                   />
                 </td>
                 <td className="px-2 py-1 text-left">
@@ -363,14 +363,12 @@ function SpellSlotModifiersEditor({
                         requiresSpellLevelAccess: e.target.checked,
                       })
                     }
-                    className="cursor-pointer"
                   />
                 </td>
                 <td className="px-2 py-1 text-right">
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="cursor-pointer"
                     onClick={() => onRemoveModifier(idx)}
                   >
                     Remove
@@ -382,12 +380,7 @@ function SpellSlotModifiersEditor({
         </table>
       </div>
 
-      <Button
-        variant="outline"
-        size="sm"
-        className="cursor-pointer"
-        onClick={onAddModifier}
-      >
+      <Button variant="outline" size="sm" onClick={onAddModifier}>
         Add Modifier
       </Button>
     </div>

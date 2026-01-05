@@ -160,16 +160,12 @@ function SpellbookCard({
               onValueChange={(val) => setSelectedLevel(Number(val))}
               defaultValue={String(selectedLevel)}
             >
-              <SelectTrigger size="sm" className="w-24 cursor-pointer">
+              <SelectTrigger size="sm" className="w-24">
                 <SelectValue placeholder="Level" />
               </SelectTrigger>
               <SelectContent className="w-max min-w-max">
                 {SPELL_LEVELS.map((lvl) => (
-                  <SelectItem
-                    key={lvl}
-                    value={String(lvl)}
-                    className="cursor-pointer"
-                  >
+                  <SelectItem key={lvl} value={String(lvl)}>
                     Level {lvl}
                   </SelectItem>
                 ))}
@@ -180,7 +176,7 @@ function SpellbookCard({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 cursor-pointer disabled:cursor-not-allowed"
+                  className="h-8 disabled:cursor-not-allowed"
                   disabled={adding}
                 >
                   {adding ? "Adding..." : "Add Spell"}
@@ -199,7 +195,6 @@ function SpellbookCard({
                         <CommandItem
                           key={spell.id}
                           value={spell.name}
-                          className="cursor-pointer"
                           onSelect={() => handleSelectSpell(String(spell.id))}
                         >
                           {spell.name}
@@ -232,7 +227,7 @@ function SpellbookCard({
                     >
                       <button
                         type="button"
-                        className="cursor-pointer text-left text-primary hover:underline"
+                        className="text-left text-primary hover:underline"
                         onClick={() => openSpellViewer(spell)}
                       >
                         {spell.name}
@@ -335,7 +330,7 @@ function AddSpellbookForm({ characterId }: { characterId: string }) {
           <Button
             type="submit"
             disabled={saving}
-            className="cursor-pointer disabled:cursor-not-allowed"
+            className="disabled:cursor-not-allowed"
           >
             {saving ? "Saving..." : "Create Spellbook"}
           </Button>

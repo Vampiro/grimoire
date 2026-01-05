@@ -73,15 +73,12 @@ export function CharacterList() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer"
                   >
                     <Link to={PageRoute.CHARACTER_VIEW(c.id)}>View</Link>
                   </Button>
                   <Button
-                    asChild
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer"
                   >
                     <Link to={PageRoute.CHARACTER_EDIT(c.id)}>Edit</Link>
                   </Button>
@@ -95,7 +92,6 @@ export function CharacterList() {
                       <Button
                         variant="destructive"
                         size="sm"
-                        className="cursor-pointer"
                         disabled={deletingId === c.id}
                       >
                         {deletingId === c.id ? "Deleting..." : "Delete"}
@@ -118,7 +114,6 @@ export function CharacterList() {
                             type="button"
                             variant="outline"
                             size="sm"
-                            className="cursor-pointer"
                             disabled={deletingId === c.id}
                             onClick={() => setConfirmDeleteId(null)}
                           >
@@ -126,9 +121,7 @@ export function CharacterList() {
                           </Button>
                           <Button
                             type="button"
-                            variant="destructive"
                             size="sm"
-                            className="cursor-pointer"
                             disabled={deletingId === c.id}
                             onClick={() => {
                               setConfirmDeleteId(null);

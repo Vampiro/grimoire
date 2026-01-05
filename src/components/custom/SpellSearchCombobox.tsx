@@ -101,7 +101,6 @@ export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
                   <CommandItem
                     key={spell.id}
                     value={`${spell.name} ${spell.meta}`}
-                    className="cursor-pointer"
                     onSelect={() => handleSelect(spell.id)}
                   >
                     <div className="flex w-full items-start gap-3">

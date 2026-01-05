@@ -141,7 +141,6 @@ export function CharactersPage() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="cursor-pointer"
                   aria-label="Create character"
                 >
                   <Plus className="h-4 w-4" />
@@ -189,7 +188,7 @@ export function CharactersPage() {
                         }}
                       >
                         <SelectTrigger
-                          className="h-7 w-7 justify-center p-0 cursor-pointer disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                          className="h-7 w-7 justify-center p-0 disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
                           aria-label="Add class"
                           size="sm"
                           disabled={remainingClasses.length === 0}
@@ -208,7 +207,6 @@ export function CharactersPage() {
                               <SelectItem
                                 key={c.key}
                                 value={c.key}
-                                className="cursor-pointer"
                               >
                                 {c.label}
                               </SelectItem>
@@ -240,7 +238,7 @@ export function CharactersPage() {
                                 }))
                               }
                             >
-                              <SelectTrigger className="w-24 cursor-pointer">
+                              <SelectTrigger className="w-24">
                                 <span className="text-sm">
                                   {classLevels.wizard
                                     ? `Level ${classLevels.wizard}`
@@ -259,7 +257,6 @@ export function CharactersPage() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="cursor-pointer"
                               onClick={() => handleRemoveClass("wizard")}
                               aria-label="Remove wizard class"
                             >
@@ -280,7 +277,7 @@ export function CharactersPage() {
                                 }))
                               }
                             >
-                              <SelectTrigger className="w-24 cursor-pointer">
+                              <SelectTrigger className="w-24">
                                 <span className="text-sm">
                                   {classLevels.priest
                                     ? `Level ${classLevels.priest}`
@@ -299,7 +296,6 @@ export function CharactersPage() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="cursor-pointer"
                               onClick={() => handleRemoveClass("priest")}
                               aria-label="Remove priest class"
                             >
@@ -322,7 +318,6 @@ export function CharactersPage() {
                   <Button
                     onClick={handleCreate}
                     disabled={creating}
-                    className="cursor-pointer"
                   >
                     {creating ? "Creating..." : "Create"}
                   </Button>

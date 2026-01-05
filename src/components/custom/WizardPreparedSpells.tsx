@@ -168,7 +168,7 @@ export function WizardPreparedSpells({
             }}
           >
             <SelectTrigger
-              className="h-7 w-7 justify-center p-0 cursor-pointer disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                className="h-7 w-7 justify-center p-0 disabled:cursor-not-allowed data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
               aria-label="Add prepared spell"
               size="sm"
             >
@@ -302,7 +302,7 @@ export function WizardPreparedSpells({
                             <Button
                               size="icon"
                               variant="outline"
-                              className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                              className="h-8 w-8 rounded-r-none disabled:cursor-not-allowed"
                               disabled={remaining <= 0}
                               onClick={() => adjustRemaining(spellId, -1)}
                               title="Decrease remaining casts"
@@ -315,7 +315,7 @@ export function WizardPreparedSpells({
                             <Button
                               size="icon"
                               variant="outline"
-                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                              className="h-8 w-8 rounded-l-none disabled:cursor-not-allowed"
                               disabled={remaining >= total}
                               onClick={() => adjustRemaining(spellId, 1)}
                               title="Increase remaining casts"
@@ -328,7 +328,7 @@ export function WizardPreparedSpells({
                         <td className="py-2 pl-0 pr-2 align-middle">
                           <button
                             type="button"
-                            className="cursor-pointer text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
+                            className="text-left text-sm text-primary hover:underline disabled:cursor-default disabled:text-muted-foreground"
                             onClick={() => {
                               if (!spell) return;
                               openSpellViewer(spell);
@@ -345,7 +345,7 @@ export function WizardPreparedSpells({
                               <Button
                                 size="icon"
                                 variant="outline"
-                                className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                className="h-8 w-8 rounded-r-none disabled:cursor-not-allowed"
                                 disabled={total === 0}
                                 onClick={() => deleteSpellGroup(spellId)}
                                 title="Remove this spell from prepared"
@@ -356,7 +356,7 @@ export function WizardPreparedSpells({
                               <Button
                                 size="icon"
                                 variant="outline"
-                                className="h-8 w-8 rounded-r-none cursor-pointer disabled:cursor-not-allowed"
+                                className="h-8 w-8 rounded-r-none disabled:cursor-not-allowed"
                                 disabled={total === 0}
                                 onClick={() => adjustTotal(spellId, -1)}
                                 title="Decrease prepared copies"
@@ -370,7 +370,7 @@ export function WizardPreparedSpells({
                             <Button
                               size="icon"
                               variant="outline"
-                              className="h-8 w-8 rounded-l-none cursor-pointer disabled:cursor-not-allowed"
+                              className="h-8 w-8 rounded-l-none disabled:cursor-not-allowed"
                               onClick={() => handleIncreaseCopies(spellId)}
                               title="Increase prepared copies"
                             >

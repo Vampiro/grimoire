@@ -37,7 +37,7 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
             <Button
               asChild
               variant="outline"
-              className="cursor-pointer disabled:cursor-not-allowed"
+              className="disabled:cursor-not-allowed"
             >
               <Link to={PageRoute.WIZARD_SPELLBOOKS(character.id)}>
                 Spellbooks
@@ -45,7 +45,7 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
             </Button>
             <Button
               variant="outline"
-              className="cursor-pointer disabled:cursor-not-allowed"
+              className="disabled:cursor-not-allowed"
               onClick={() => navigate(PageRoute.WIZARD_EDIT(character.id))}
             >
               Edit Wizard
