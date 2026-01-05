@@ -1,12 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
 import { WizardClassProgression } from "@/types/WizardClassProgression";
