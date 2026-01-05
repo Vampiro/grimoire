@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CharacterList } from "@/components/custom/CharacterList";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +30,19 @@ export function CharactersPage() {
   const [addClassSelectKey, setAddClassSelectKey] = useState(0);
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
+  const [classHintError, setClassHintError] = useState(false);
+  const [nameError, setNameError] = useState<string | null>(null);
+
+  // When the modal closes, reset the form state so reopening starts fresh.
+  useEffect(() => {
+    if (createOpen) return;
+    setName("");
+    setClassLevels({});
+    setCreateError(null);
+    setClassHintError(false);
+    setNameError(null);
+    setAddClassSelectKey((k) => k + 1);
+  }, [createOpen]);
 
   const levelOptions = useMemo(
     () => Array.from({ length: 20 }, (_, idx) => String(idx + 1)),
@@ -44,6 +57,8 @@ export function CharactersPage() {
   }, [classLevels.priest, classLevels.wizard]);
 
   const handleAddClass = (klass: "wizard" | "priest") => {
+    setCreateError(null);
+    setClassHintError(false);
     setClassLevels((prev) => ({ ...prev, [klass]: prev[klass] ?? 1 }));
     // Reset the add-class dropdown back to its "Add class" state.
     setAddClassSelectKey((k) => k + 1);
@@ -60,12 +75,14 @@ export function CharactersPage() {
   const handleCreate = async () => {
     const trimmed = name.trim();
     if (!trimmed) {
-      setCreateError("Name is required.");
+      setNameError("Name is required.");
       return;
     }
+    setNameError(null);
 
     if (!classLevels.wizard && !classLevels.priest) {
-      setCreateError("Add at least one class.");
+      setCreateError(null);
+      setClassHintError(true);
       return;
     }
 
@@ -102,6 +119,8 @@ export function CharactersPage() {
       setCreateOpen(false);
       setName("");
       setClassLevels({});
+      setClassHintError(false);
+      setNameError(null);
     } catch (err) {
       setCreateError(
         err instanceof Error ? err.message : "Failed to create character",
@@ -133,16 +152,26 @@ export function CharactersPage() {
                 <DialogHeader>
                   <DialogTitle>Create Character</DialogTitle>
                   <DialogDescription>
-                    Choose a name and add class levels.
+                    Choose a name and add classes and class levels.
                   </DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <div className="text-sm font-medium">Name</div>
+                    <div className="flex w-full items-center gap-2 text-sm font-medium">
+                      <span>Name</span>
+                      {nameError && (
+                        <span className="text-xs text-destructive">
+                          {nameError}
+                        </span>
+                      )}
+                    </div>
                     <input
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        if (nameError) setNameError(null);
+                      }}
                       placeholder="e.g. Elminster"
                       className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
                     />
@@ -189,14 +218,19 @@ export function CharactersPage() {
                       </Select>
                     </div>
 
+                    {!classLevels.wizard && !classLevels.priest && (
+                      <div
+                        className={`text-xs ${classHintError ? "text-destructive" : "text-muted-foreground"}`}
+                      >
+                        Add at least one class to continue.
+                      </div>
+                    )}
+
                     {(classLevels.wizard || classLevels.priest) && (
                       <div className="space-y-2">
                         {classLevels.wizard && (
                           <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
                             <div className="text-sm font-medium">Wizard</div>
-                            <span className="ml-auto text-xs text-muted-foreground">
-                              Level
-                            </span>
                             <Select
                               value={String(classLevels.wizard)}
                               onValueChange={(v) =>
@@ -206,8 +240,13 @@ export function CharactersPage() {
                                 }))
                               }
                             >
-                              <SelectTrigger className="w-20 cursor-pointer">
-                                <SelectValue />
+                              <SelectTrigger className="w-24 cursor-pointer">
+                                <span className="text-sm">
+                                  {classLevels.wizard
+                                    ? `Level ${classLevels.wizard}`
+                                    : "Level"}
+                                </span>
+                                <SelectValue className="sr-only" />
                               </SelectTrigger>
                               <SelectContent className="w-max min-w-max">
                                 {levelOptions.map((lvl) => (
@@ -232,9 +271,6 @@ export function CharactersPage() {
                         {classLevels.priest && (
                           <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
                             <div className="text-sm font-medium">Priest</div>
-                            <span className="ml-auto text-xs text-muted-foreground">
-                              Level
-                            </span>
                             <Select
                               value={String(classLevels.priest)}
                               onValueChange={(v) =>
@@ -244,8 +280,13 @@ export function CharactersPage() {
                                 }))
                               }
                             >
-                              <SelectTrigger className="w-20 cursor-pointer">
-                                <SelectValue />
+                              <SelectTrigger className="w-24 cursor-pointer">
+                                <span className="text-sm">
+                                  {classLevels.priest
+                                    ? `Level ${classLevels.priest}`
+                                    : "Level"}
+                                </span>
+                                <SelectValue className="sr-only" />
                               </SelectTrigger>
                               <SelectContent className="w-max min-w-max">
                                 {levelOptions.map((lvl) => (

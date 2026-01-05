@@ -206,7 +206,7 @@ export function WizardPreparedSpells({
                             className="underline"
                             to={PageRoute.WIZARD_SPELLBOOKS(characterId)}
                           >
-                            Spellbook
+                            Spellbooks
                           </Link>{" "}
                           to add level {spellLevel} spells.
                         </p>

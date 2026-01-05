@@ -30,10 +30,7 @@ import {
 } from "@/components/ui/command";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { PageRoute } from "@/pages/PageRoute";
-import {
-  WizardClassProgression,
-  WizardSpellbook,
-} from "@/types/WizardClassProgression";
+import { WizardSpellbook } from "@/types/WizardClassProgression";
 import {
   findWizardSpellById,
   getWizardSpellsByLevel,
@@ -54,9 +51,7 @@ export function WizardSpellbooksPage() {
   if (isLoading) return <div>Loading spellbooks...</div>;
   if (!character) return <div>No character with id {characterId}</div>;
 
-  const wizardProgression = character.class.wizard as
-    | WizardClassProgression
-    | undefined;
+  const wizardProgression = character.class.wizard;
 
   if (!wizardProgression) {
     return <div>This character has no wizard progression.</div>;

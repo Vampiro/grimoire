@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { useParams } from "react-router-dom";
 import {
@@ -37,7 +37,7 @@ export function WizardEditPage() {
     return <div>No Character with id {characterId}</div>;
   }
 
-  const wizard = character.class.wizard as WizardClassProgression | undefined;
+  const wizard = character.class.wizard;
 
   if (!wizard) {
     return <div>This character has no wizard progression.</div>;
@@ -75,13 +75,6 @@ function WizardEditor({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const levelInputId = useId();
-  const isFirstRenderRef = useRef(true);
-  const lastSavedRef = useRef<string>(
-    JSON.stringify({
-      level: wizard.level,
-      modifiers: wizard.spellSlotModifiers ?? [],
-    }),
-  );
   const saveRequestIdRef = useRef(0);
 
   const baseSlots = useMemo(() => getWizardSpellSlots(level, []), [level]);
@@ -91,43 +84,26 @@ function WizardEditor({
     [level, modifiers],
   );
 
-  useEffect(() => {
-    if (isFirstRenderRef.current) {
-      isFirstRenderRef.current = false;
-      return;
-    }
+  const saveWizard = (changes: {
+    level?: number;
+    spellSlotModifiers?: SpellSlotModifier[];
+  }) => {
+    const requestId = ++saveRequestIdRef.current;
+    setSaving(true);
+    setError(null);
 
-    const nextSerialized = JSON.stringify({ level, modifiers });
-    if (nextSerialized === lastSavedRef.current) return;
-
-    const timeout = setTimeout(() => {
-      const requestId = ++saveRequestIdRef.current;
-      setSaving(true);
-      setError(null);
-
-      updateWizardProgression(characterId, {
-        level,
-        spellSlotModifiers: modifiers,
+    updateWizardProgression(characterId, changes)
+      .catch((err) => {
+        if (requestId !== saveRequestIdRef.current) return;
+        setError(
+          err instanceof Error ? err.message : "Failed to save wizard settings",
+        );
       })
-        .then(() => {
-          lastSavedRef.current = nextSerialized;
-        })
-        .catch((err) => {
-          if (requestId !== saveRequestIdRef.current) return;
-          setError(
-            err instanceof Error
-              ? err.message
-              : "Failed to save wizard settings",
-          );
-        })
-        .finally(() => {
-          if (requestId !== saveRequestIdRef.current) return;
-          setSaving(false);
-        });
-    }, 400);
-
-    return () => clearTimeout(timeout);
-  }, [characterId, level, modifiers]);
+      .finally(() => {
+        if (requestId !== saveRequestIdRef.current) return;
+        setSaving(false);
+      });
+  };
 
   const handleAddModifier = () => {
     // Prefer first unused level, otherwise fall back to "all" if free.
@@ -135,25 +111,32 @@ function WizardEditor({
     const nextLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9].find(
       (lvl) => !usedLevels.includes(lvl),
     );
-    const spellLevel = nextLevel ?? (usedLevels.includes("all") ? 1 : "all");
+    const spellLevel: SpellSlotModifier["spellLevel"] =
+      nextLevel ?? (usedLevels.includes("all") ? 1 : "all");
 
-    setModifiers((prev) => [
-      ...prev,
+    const nextModifiers = [
+      ...modifiers,
       { spellLevel, addBase: false, bonus: 0, requiresSpellLevelAccess: true },
-    ]);
+    ];
+    setModifiers(nextModifiers);
+    saveWizard({ spellSlotModifiers: nextModifiers });
   };
 
   const handleModifierChange = (
     idx: number,
     updated: Partial<SpellSlotModifier>,
   ) => {
-    setModifiers((prev) =>
-      prev.map((mod, i) => (i === idx ? { ...mod, ...updated } : mod)),
+    const nextModifiers = modifiers.map((mod, i) =>
+      i === idx ? { ...mod, ...updated } : mod,
     );
+    setModifiers(nextModifiers);
+    saveWizard({ spellSlotModifiers: nextModifiers });
   };
 
   const handleRemoveModifier = (idx: number) => {
-    setModifiers((prev) => prev.filter((_, i) => i !== idx));
+    const nextModifiers = modifiers.filter((_, i) => i !== idx);
+    setModifiers(nextModifiers);
+    saveWizard({ spellSlotModifiers: nextModifiers });
   };
 
   return (
@@ -186,7 +169,11 @@ function WizardEditor({
 
             <Select
               value={String(level)}
-              onValueChange={(val) => setLevel(Number(val))}
+              onValueChange={(val) => {
+                const nextLevel = Number(val);
+                setLevel(nextLevel);
+                saveWizard({ level: nextLevel });
+              }}
             >
               <SelectTrigger id={levelInputId} className="w-16 cursor-pointer">
                 <SelectValue />

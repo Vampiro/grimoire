@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
-import { WizardClassProgression } from "@/types/WizardClassProgression";
 import { WizardView } from "./WizardView";
 
 interface CharacterViewProps {
@@ -47,7 +46,7 @@ export function CharacterView({ character }: CharacterViewProps) {
         {character.class.wizard && (
           <WizardView
             character={character}
-            wizardProgression={character.class.wizard as WizardClassProgression}
+            wizardProgression={character.class.wizard}
           />
         )}
       </div>
