@@ -18,7 +18,6 @@ import { Route, Routes } from "react-router-dom";
 import { CharactersPage } from "./pages/CharactersPage";
 import { CharacterPage } from "./pages/CharacterPage";
 import { CharacterEditPage } from "./pages/CharacterEditPage";
-import { WizardPage } from "./pages/WizardPage";
 import { WizardSpellSlotsPage } from "./pages/WizardSpellSlotsPage";
 import { WizardSpellbooksPage } from "./pages/WizardSpellbooksPage";
 import { Navbar } from "./components/custom/Navbar";
@@ -139,10 +138,6 @@ function App() {
             <Route
               path="/characters/:characterId/edit"
               element={<CharacterEditPage />}
-            />
-            <Route
-              path="/characters/:characterId/wizard"
-              element={<WizardPage />}
             />
             <Route
               path="/characters/:characterId/wizard/edit"

@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useMemo, useState, useId } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -47,6 +47,7 @@ const SPELL_LEVELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 export function WizardSpellbooksPage() {
   const { characterId } = useParams();
   const { character, isLoading } = useCharacterById(characterId);
+  const navigate = useNavigate();
 
   if (isLoading) return <div>Loading spellbooks...</div>;
   if (!character) return <div>No character with id {characterId}</div>;
@@ -66,12 +67,12 @@ export function WizardSpellbooksPage() {
             Manage spellbooks for {character.name}
           </p>
         </div>
-        <Link
-          to={PageRoute.WIZARD(character.id)}
-          className="text-sm text-primary underline"
+        <Button
+          variant="outline"
+          onClick={() => navigate(PageRoute.CHARACTER_VIEW(character.id))}
         >
-          Back to Wizard
-        </Link>
+          Character View
+        </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
