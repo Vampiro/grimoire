@@ -17,3 +17,16 @@ Random notes for things learned while coding this project.
     - A rule to check that the revision being sent is the same as what is already saved + 1
     - The client can ensure it stays in sync by querying this revision number
     - This app does not have revision (tried it, didn't want it)
+
+## Longest Spell Names
+
+"Mordenkainen's Disjunction"
+"Draw Upon Holy Might"
+"Mordenkainen's Lucubration"
+"Mordenkainen's Sword"
+"Mordenkainen's Faithful Hound"
+"Mordenkainen's Celerity"
+"Mordenkainen's Private Sanctum"
+"Mordenkainen's Protection from Evil"
+"Mordenkainen's Force Missiles"
+"Mordenkainen's Magnificent Mansion"
