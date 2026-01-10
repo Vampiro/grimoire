@@ -1,5 +1,5 @@
 import { useCharacterById } from "@/hooks/useCharacterById";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PageRoute } from "./PageRoute";
 import {
   Card,
@@ -15,7 +15,6 @@ import { ArrowUpRight, Menu } from "lucide-react";
 export function CharacterPage() {
   const { id } = useParams();
   const { character, isLoading } = useCharacterById(id);
-  const navigate = useNavigate();
 
   if (isLoading) {
     return <div>Loading character...</div>;
