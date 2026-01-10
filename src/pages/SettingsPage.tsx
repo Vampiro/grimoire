@@ -43,7 +43,7 @@ export function SettingsPage() {
   if (!user) return null;
 
   return (
-    <div className="py-6">
+    <div>
       <Card>
         <CardHeader>
           <CardTitle>Settings</CardTitle>
