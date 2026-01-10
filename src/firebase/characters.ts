@@ -194,7 +194,7 @@ export function firestoreDeleteField() {
 
 /**
  * Update a character document by field path(s) (dot-path keys) without sending the full object.
- * Example: { "class.wizard.level": 2, "name": "Elminster" }
+ * Example: { "class.wizard.level": 2, "name": "Aragorn" }
  */
 export async function updateCharacterFields(
   characterId: string,

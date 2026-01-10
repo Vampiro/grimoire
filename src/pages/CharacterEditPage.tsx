@@ -264,7 +264,7 @@ export function CharacterEditPage() {
                 e.currentTarget.blur();
               }
             }}
-            placeholder="e.g. Elminster"
+            placeholder="e.g. Aragorn"
             className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
           />
         </div>
