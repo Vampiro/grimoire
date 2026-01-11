@@ -16,7 +16,7 @@ import { charactersAtom, userAtom } from "@/globalState";
 import { PageRoute } from "@/pages/PageRoute";
 import { useAtomValue } from "jotai";
 import { Menu, User, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useMatch, useNavigate } from "react-router-dom";
 import { DndWikiSearch } from "./NavbarSearch";
 import {
@@ -45,6 +45,19 @@ export function Navbar() {
   const [persistedCharacterId, setPersistedCharacterId] = useState<
     string | null
   >(null);
+  const drawerTriggerRef = useRef<HTMLButtonElement | null>(null);
+  // Blur the trigger before Vaul sets aria-hidden so the focused element isn't hidden.
+  const blurDrawerTrigger = () => {
+    drawerTriggerRef.current?.blur();
+  };
+  const handleDrawerTriggerPointerDown = () => {
+    blurDrawerTrigger();
+  };
+  const handleDrawerTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+      blurDrawerTrigger();
+    }
+  };
 
   // Resolve current character from any character-scoped route.
   const matchCharacterIdDeep = useMatch("/characters/:characterId/*");
@@ -93,12 +106,20 @@ export function Navbar() {
   return (
     <nav className="w-full h-14 bg-background border-b flex items-center justify-between">
       {/* Left side (nav trigger + title) */}
-      <div className="flex items-center gap-2">
-        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="left">
+        <div className="flex items-center gap-2">
+          <Drawer
+            open={drawerOpen}
+            onOpenChange={setDrawerOpen}
+            direction="left"
+            autoFocus
+          >
           <DrawerTrigger asChild>
             <button
               className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-background hover:bg-accent cursor-pointer"
               aria-label="Open navigation"
+              ref={drawerTriggerRef}
+              onPointerDown={handleDrawerTriggerPointerDown}
+              onKeyDown={handleDrawerTriggerKeyDown}
             >
               <Menu className="h-5 w-5" />
             </button>
