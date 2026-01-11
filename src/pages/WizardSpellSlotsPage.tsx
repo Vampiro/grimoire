@@ -43,30 +43,21 @@ export function WizardSpellSlotsPage() {
     return <div>This character has no wizard progression.</div>;
   }
 
-  return (
-    <WizardEditor
-      characterId={character.id}
-      wizard={wizard}
-      characterName={character.name}
-    />
-  );
+  return <WizardEditor characterId={character.id} wizard={wizard} />;
 }
 
 /**
  * Form controller for editing wizard spell slots and modifiers.
  * @param characterId Character document id.
  * @param wizard Wizard progression record to edit.
- * @param characterName Display name of the character.
  * @returns Wizard editor layout.
  */
 function WizardEditor({
   characterId,
   wizard,
-  characterName,
 }: {
   characterId: string;
   wizard: WizardClassProgression;
-  characterName: string;
 }) {
   const saveRequestIdRef = useRef(0);
 
@@ -145,7 +136,9 @@ function WizardEditor({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Wizard Spell Slots</h1>
-          <p className="text-muted-foreground">{characterName}</p>
+          <p className="text-muted-foreground text-sm">
+            See spell slots per level and make any modifications.
+          </p>
         </div>
         {saving && (
           <div className="text-sm text-muted-foreground">Saving...</div>

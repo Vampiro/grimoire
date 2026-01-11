@@ -231,11 +231,13 @@ export function CharacterEditPage() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold">Edit Character</h1>
-          <p className="text-muted-foreground">Update name and classes.</p>
+          <p className="text-muted-foreground text-sm">
+            Update name and classes.
+          </p>
         </div>
 
         {saving && (

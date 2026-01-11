@@ -101,8 +101,8 @@ export function WizardSpellbooksPage() {
               </DialogContent>
             </Dialog>
           </div>
-          <p className="text-muted-foreground">
-            Manage wizard spellbooks for {character.name}
+          <p className="text-muted-foreground text-xs">
+            Manage wizard spellbooks.
           </p>
         </div>
       </div>

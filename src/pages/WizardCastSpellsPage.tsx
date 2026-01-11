@@ -1,12 +1,6 @@
 import { CastWizardSpells } from "@/components/custom/CastWizardSpells";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
@@ -76,71 +70,13 @@ export function WizardCastSpellsPage() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold">Cast Spells</h1>
-          <p className="text-muted-foreground">
-            Prepared spells for {character.name}
-          </p>
-        </div>
+    <div className="space-y-3">
+      <div>
+        <h1 className="text-3xl font-bold">Cast Spells</h1>
+        <div className="text-muted-foreground text-sm">Cast wizard spells.</div>
       </div>
 
       <Card>
-        <CardHeader className="flex flex-row items-start justify-between">
-          <div>
-            <CardTitle>Prepared Spells</CardTitle>
-            <CardDescription>
-              Track remaining casts during this rest period.
-            </CardDescription>
-          </div>
-          <div className="flex items-center gap-0">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={handleRestAll}
-              disabled={resting}
-              className="rounded-r-none"
-            >
-              <RotateCcw className="h-4 w-4 mr-1" />
-              {resting ? "Resting..." : "Rest"}
-            </Button>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  aria-label="Wizard pages"
-                  className="rounded-l-none border-l-0"
-                >
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent align="end" className="w-48 p-2">
-                <div className="flex flex-col gap-1 text-sm">
-                  <Link
-                    to={PageRoute.WIZARD_PREPARE(character.id)}
-                    className="rounded px-2 py-1 hover:bg-accent"
-                  >
-                    Prepare Spells
-                  </Link>
-                  <Link
-                    to={PageRoute.WIZARD_SPELLBOOKS(character.id)}
-                    className="rounded px-2 py-1 hover:bg-accent"
-                  >
-                    Spellbooks
-                  </Link>
-                  <Link
-                    to={PageRoute.WIZARD_SPELL_SLOTS(character.id)}
-                    className="rounded px-2 py-1 hover:bg-accent"
-                  >
-                    Manage Spell Slots
-                  </Link>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </CardHeader>
         <CardContent className="space-y-4">
           {availableLevels.length === 0 ? (
             <div className="rounded-md border border-dashed bg-muted/40 p-3 text-sm">
@@ -153,14 +89,70 @@ export function WizardCastSpellsPage() {
               </p>
             </div>
           ) : (
-            availableLevels.map((spellLevel) => (
+            <>
               <CastWizardSpells
-                key={spellLevel}
-                spellLevel={spellLevel}
+                spellLevel={availableLevels[0]}
                 progression={wizard}
                 characterId={character.id}
+                headerRight={
+                  <div className="flex items-center gap-0">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleRestAll}
+                      disabled={resting}
+                      className="rounded-r-none"
+                    >
+                      <RotateCcw className="h-4 w-4 mr-1" />
+                      {resting ? "Resting..." : "Rest"}
+                    </Button>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          aria-label="Wizard pages"
+                          className="rounded-l-none border-l-0"
+                        >
+                          <ChevronDown className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent align="end" className="w-48 p-2">
+                        <div className="flex flex-col gap-1 text-sm">
+                          <Link
+                            to={PageRoute.WIZARD_PREPARE(character.id)}
+                            className="rounded px-2 py-1 hover:bg-accent"
+                          >
+                            Prepare Spells
+                          </Link>
+                          <Link
+                            to={PageRoute.WIZARD_SPELLBOOKS(character.id)}
+                            className="rounded px-2 py-1 hover:bg-accent"
+                          >
+                            Spellbooks
+                          </Link>
+                          <Link
+                            to={PageRoute.WIZARD_SPELL_SLOTS(character.id)}
+                            className="rounded px-2 py-1 hover:bg-accent"
+                          >
+                            Manage Spell Slots
+                          </Link>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                }
               />
-            ))
+
+              {availableLevels.slice(1).map((spellLevel) => (
+                <CastWizardSpells
+                  key={spellLevel}
+                  spellLevel={spellLevel}
+                  progression={wizard}
+                  characterId={character.id}
+                />
+              ))}
+            </>
           )}
         </CardContent>
       </Card>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 
@@ -10,13 +11,18 @@ import {
   WizardPreparedSpellsProps,
 } from "./wizardPreparedSpellsState";
 
+export interface CastWizardSpellsProps extends WizardPreparedSpellsProps {
+  /** Optional content rendered on the right side of the level header row. */
+  headerRight?: ReactNode;
+}
+
 /**
  * Wizard spell casting view for a single spell level.
  *
  * Displays each prepared spell with remaining casts (based on `total - used`),
  * and provides `-1/+1` controls to cast/restore.
  */
-export function CastWizardSpells(props: WizardPreparedSpellsProps) {
+export function CastWizardSpells(props: CastWizardSpellsProps) {
   const {
     sortedSpells,
     maxSlots,
@@ -37,10 +43,11 @@ export function CastWizardSpells(props: WizardPreparedSpellsProps) {
 
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-semibold">Level {props.spellLevel}</h3>
         </div>
+        {props.headerRight ?? null}
       </div>
 
       <div className="space-y-2">
