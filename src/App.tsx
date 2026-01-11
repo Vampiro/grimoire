@@ -19,6 +19,7 @@ import { CharactersPage } from "./pages/CharactersPage";
 import { CharacterPage } from "./pages/CharacterPage";
 import { CharacterEditPage } from "./pages/CharacterEditPage";
 import { WizardCastSpellsPage } from "./pages/WizardCastSpellsPage";
+import { WizardPrepareSpellsPage } from "./pages/WizardPrepareSpellsPage";
 import { WizardSpellSlotsPage } from "./pages/WizardSpellSlotsPage";
 import { WizardSpellbooksPage } from "./pages/WizardSpellbooksPage";
 import { Navbar } from "./components/custom/Navbar";
@@ -143,6 +144,10 @@ function App() {
             <Route
               path="/characters/:characterId/wizard/cast"
               element={<WizardCastSpellsPage />}
+            />
+            <Route
+              path="/characters/:characterId/wizard/prepare"
+              element={<WizardPrepareSpellsPage />}
             />
             <Route
               path="/characters/:characterId/wizard/edit"

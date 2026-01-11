@@ -5,13 +5,22 @@ import { PageRoute } from "@/pages/PageRoute";
 import { Character } from "@/types/Character";
 import { WizardClassProgression } from "@/types/WizardClassProgression";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
-import { WizardPreparedSpells } from "./WizardPreparedSpells";
+import { PrepareWizardSpells } from "./PrepareWizardSpells";
 
+/** Props for the wizard panel on the character view. */
 interface WizardViewProps {
+  /** Character being displayed. */
   character: Character;
+  /** Wizard progression for the character. */
   wizardProgression: WizardClassProgression;
 }
 
+/**
+ * Character-page wizard panel.
+ *
+ * Shows prepared spells by level (using the preparation UI) and links to
+ * other wizard tools (spellbooks and slot management).
+ */
 export function WizardView({ character, wizardProgression }: WizardViewProps) {
   const navigate = useNavigate();
   const slotMap = getWizardProgressionSpellSlots(wizardProgression);
@@ -49,7 +58,7 @@ export function WizardView({ character, wizardProgression }: WizardViewProps) {
           <div className="space-y-4">
             {availableLevels.map((spellLevel) => {
               return (
-                <WizardPreparedSpells
+                <PrepareWizardSpells
                   key={spellLevel}
                   spellLevel={spellLevel}
                   progression={wizardProgression}

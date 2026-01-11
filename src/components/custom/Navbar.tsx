@@ -27,6 +27,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+/**
+ * Top navigation bar.
+ *
+ * Provides character-scoped navigation via a left drawer (including wizard pages
+ * when applicable) plus wiki search and account actions.
+ */
 export function Navbar() {
   const user = useAtomValue(userAtom);
   const characters = useAtomValue(charactersAtom);
@@ -74,6 +80,7 @@ export function Navbar() {
     [characters],
   );
 
+  /** Returns true when the current location matches the given path/prefix. */
   const isActivePath = (path: string | undefined, exact = false) => {
     if (!path) return false;
     return exact
@@ -258,6 +265,28 @@ export function Navbar() {
                             />
                           )}
                           Cast Spells
+                        </Link>
+                      </DrawerClose>
+                      <DrawerClose asChild>
+                        <Link
+                          to={PageRoute.WIZARD_PREPARE(selectedCharacter.id)}
+                          className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                            isActivePath(
+                              PageRoute.WIZARD_PREPARE(selectedCharacter.id),
+                            )
+                              ? "font-semibold bg-accent text-foreground"
+                              : ""
+                          }`}
+                        >
+                          {isActivePath(
+                            PageRoute.WIZARD_PREPARE(selectedCharacter.id),
+                          ) && (
+                            <span
+                              className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                              aria-hidden
+                            />
+                          )}
+                          Prepare Spells
                         </Link>
                       </DrawerClose>
                       <DrawerClose asChild>

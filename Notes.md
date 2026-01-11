@@ -29,4 +29,4 @@ Random notes for things learned while coding this project.
 "Mordenkainen's Private Sanctum"
 "Mordenkainen's Protection from Evil"
 "Mordenkainen's Force Missiles"
-"Mordenkainen's Magnificent Mansion"
+"Mordenkainen's Magnificent Mansion" (level 7)

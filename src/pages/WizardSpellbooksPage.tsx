@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useMemo, useState, useId } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -38,7 +38,6 @@ import {
 } from "@/components/ui/command";
 import { Plus } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
-import { PageRoute } from "@/pages/PageRoute";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
 import {
   findWizardSpellById,
@@ -53,10 +52,14 @@ import {
 
 const SPELL_LEVELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+/**
+ * Wizard spellbooks management page.
+ *
+ * Allows creating spellbooks and adding/removing spells within them.
+ */
 export function WizardSpellbooksPage() {
   const { characterId } = useParams();
   const { character, isLoading } = useCharacterById(characterId);
-  const navigate = useNavigate();
   const [createOpen, setCreateOpen] = useState(false);
 
   if (isLoading) return <div>Loading spellbooks...</div>;
@@ -102,12 +105,6 @@ export function WizardSpellbooksPage() {
             Manage wizard spellbooks for {character.name}
           </p>
         </div>
-        <Button
-          variant="outline"
-          onClick={() => navigate(PageRoute.CHARACTER_VIEW(character.id))}
-        >
-          Character View
-        </Button>
       </div>
 
       <div className="space-y-4">

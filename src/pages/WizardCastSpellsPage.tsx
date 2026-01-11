@@ -1,4 +1,4 @@
-import { WizardPreparedSpells } from "@/components/custom/WizardPreparedSpells";
+import { CastWizardSpells } from "@/components/custom/CastWizardSpells";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,16 +10,26 @@ import {
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { getWizardProgressionSpellSlots } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ChevronDown, RotateCcw } from "lucide-react";
+import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
+import { useState } from "react";
 
 /**
- * Page for casting/preparing wizard spells.
- * Surfaces prepared spells grouped by level with remaining cast tracking.
+ * Wizard "Cast Spells" page.
+ *
+ * Shows prepared spells grouped by level and tracks remaining casts during the
+ * current rest period.
  */
 export function WizardCastSpellsPage() {
   const { characterId } = useParams();
   const { character, isLoading } = useCharacterById(characterId);
-  const navigate = useNavigate();
+  const [resting, setResting] = useState(false);
 
   if (isLoading) {
     return <div>Loading prepared spells...</div>;
@@ -40,6 +50,31 @@ export function WizardCastSpellsPage() {
     (lvl) => (slotMap[lvl] ?? 0) > 0,
   );
 
+  const handleRestAll = async () => {
+    const ok = window.confirm(
+      "Rest? This will restore remaining casts to their rested slot counts.",
+    );
+    if (!ok) return;
+
+    if (resting) return;
+    setResting(true);
+    try {
+      const levelEntries = Object.entries(wizard.preparedSpells);
+      for (const [levelKey, spells] of levelEntries) {
+        const level = Number(levelKey);
+        const resetLevel = Object.fromEntries(
+          Object.entries(spells).map(([spellId, counts]) => [
+            spellId,
+            { total: counts.total ?? 0, used: 0 },
+          ]),
+        );
+        await updateWizardPreparedSpellsLevel(character.id, level, resetLevel);
+      }
+    } finally {
+      setResting(false);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -52,11 +87,59 @@ export function WizardCastSpellsPage() {
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Prepared Spells</CardTitle>
-          <CardDescription>
-            Track remaining casts and adjust prepared copies by spell level.
-          </CardDescription>
+        <CardHeader className="flex flex-row items-start justify-between">
+          <div>
+            <CardTitle>Prepared Spells</CardTitle>
+            <CardDescription>
+              Track remaining casts during this rest period.
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-0">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleRestAll}
+              disabled={resting}
+              className="rounded-r-none"
+            >
+              <RotateCcw className="h-4 w-4 mr-1" />
+              {resting ? "Resting..." : "Rest"}
+            </Button>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  aria-label="Wizard pages"
+                  className="rounded-l-none border-l-0"
+                >
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="end" className="w-48 p-2">
+                <div className="flex flex-col gap-1 text-sm">
+                  <Link
+                    to={PageRoute.WIZARD_PREPARE(character.id)}
+                    className="rounded px-2 py-1 hover:bg-accent"
+                  >
+                    Prepare Spells
+                  </Link>
+                  <Link
+                    to={PageRoute.WIZARD_SPELLBOOKS(character.id)}
+                    className="rounded px-2 py-1 hover:bg-accent"
+                  >
+                    Spellbooks
+                  </Link>
+                  <Link
+                    to={PageRoute.WIZARD_SPELL_SLOTS(character.id)}
+                    className="rounded px-2 py-1 hover:bg-accent"
+                  >
+                    Manage Spell Slots
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {availableLevels.length === 0 ? (
@@ -71,7 +154,7 @@ export function WizardCastSpellsPage() {
             </div>
           ) : (
             availableLevels.map((spellLevel) => (
-              <WizardPreparedSpells
+              <CastWizardSpells
                 key={spellLevel}
                 spellLevel={spellLevel}
                 progression={wizard}
