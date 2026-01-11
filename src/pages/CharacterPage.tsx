@@ -82,6 +82,12 @@ export function CharacterPage() {
             />
             <div className="h-px w-full bg-border" />
             <PageLink
+              title="Prepare Spells"
+              description="Pick which spells are prepared in each slot, by level."
+              href={PageRoute.WIZARD_PREPARE(character.id)}
+            />
+            <div className="h-px w-full bg-border" />
+            <PageLink
               title="Spellbooks"
               description="Manage learned spells by spellbook, add/remove spells, and organize pages."
               href={PageRoute.WIZARD_SPELLBOOKS(character.id)}
