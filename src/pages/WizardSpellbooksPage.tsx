@@ -23,19 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { SelectWithSearch } from "@/components/custom/SelectWithSearch";
 import { Plus } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
@@ -152,7 +140,6 @@ function SpellbookCard({
   }, [spellbook.spellsById]);
 
   const [selectedLevel, setSelectedLevel] = useState<number | undefined>(1);
-  const [spellPopoverOpen, setSpellPopoverOpen] = useState(false);
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState<string | null>(null);
   const availableSpells =
@@ -161,15 +148,12 @@ function SpellbookCard({
     a.name.localeCompare(b.name),
   );
 
-  const handleSelectSpell = async (spellId: string) => {
-    const numericId = Number(spellId);
-    const spell = availableSpells.find((s) => s.id === numericId);
+  const handleSelectSpell = async (spell: Spell | undefined) => {
     if (!spell) return;
     setAdding(true);
     setAddError(null);
     try {
       await addSpellToWizardSpellbook(characterId, spellbook.id, spell.id);
-      setSpellPopoverOpen(false);
     } catch (err) {
       setAddError(err instanceof Error ? err.message : "Failed to add spell");
     } finally {
@@ -202,40 +186,16 @@ function SpellbookCard({
                 ))}
               </SelectContent>
             </Select>
-            <Popover open={spellPopoverOpen} onOpenChange={setSpellPopoverOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8"
-                  disabled={adding}
-                >
-                  {adding ? "Adding..." : "Add Spell"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="p-0 w-72">
-                <Command>
-                  <CommandInput
-                    placeholder="Search spells..."
-                    className="h-9"
-                  />
-                  <CommandList>
-                    <CommandEmpty>No spells found.</CommandEmpty>
-                    <CommandGroup heading={`Level ${selectedLevel ?? ""}`}>
-                      {availableSpellsSorted.map((spell) => (
-                        <CommandItem
-                          key={spell.id}
-                          value={spell.name}
-                          onSelect={() => handleSelectSpell(String(spell.id))}
-                        >
-                          {spell.name}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
+            <SelectWithSearch<Spell>
+              items={availableSpellsSorted}
+              getKey={(spell) => String(spell.id)}
+              getLabel={(spell) => spell.name}
+              value={undefined}
+              onChange={handleSelectSpell}
+              placeholder={adding ? "Adding..." : "Add Spell"}
+              emptyText="No spells found."
+              className="h-8 px-3 text-sm"
+            />
           </div>
           {addError && <p className="text-sm text-destructive">{addError}</p>}
         </div>
