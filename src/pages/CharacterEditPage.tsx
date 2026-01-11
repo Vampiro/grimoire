@@ -250,222 +250,222 @@ export function CharacterEditPage() {
 
       <Card>
         <CardContent className="space-y-4">
-        <div className="space-y-1">
-          <div className="flex w-full items-center gap-2 text-sm font-medium">
-            <span>Name</span>
-            {validationError && (
-              <span className="text-xs text-destructive">
-                {validationError}
-              </span>
-            )}
-          </div>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onBlur={handleNameCommit}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.currentTarget.blur();
-              }
-            }}
-            placeholder="e.g. Aragorn"
-            className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <div className="text-sm font-medium">Classes</div>
-
-            <Select
-              key={addClassSelectKey}
-              onValueChange={(val) => {
-                if (val === "__none__") return;
-                handleAddClass(val as "wizard" | "priest");
-              }}
-            >
-              <SelectTrigger
-                className="h-7 w-7 justify-center p-0 data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
-                aria-label="Add class"
-                size="sm"
-                disabled={remainingClasses.length === 0}
-              >
-                <Plus className="h-3 w-3" />
-              </SelectTrigger>
-              <SelectContent className="w-max min-w-max">
-                {remainingClasses.length === 0 ? (
-                  <div className="space-y-1 px-3 py-3 text-sm">
-                    <div className="text-muted-foreground">
-                      All classes already added.
-                    </div>
-                  </div>
-                ) : (
-                  remainingClasses.map((c) => (
-                    <SelectItem key={c.key} value={c.key}>
-                      {c.label}
-                    </SelectItem>
-                  ))
-                )}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {(classLevels.wizard || classLevels.priest) && (
-            <div className="space-y-2">
-              {classLevels.wizard && (
-                <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
-                  <div className="text-sm font-medium">Wizard</div>
-                  <Select
-                    value={String(classLevels.wizard)}
-                    onValueChange={(v) =>
-                      handleSetClassLevel("wizard", Number(v))
-                    }
-                  >
-                    <SelectTrigger className="w-24">
-                      <span className="text-sm">
-                        {classLevels.wizard
-                          ? `Level ${classLevels.wizard}`
-                          : "Level"}
-                      </span>
-                      <SelectValue className="sr-only" />
-                    </SelectTrigger>
-                    <SelectContent className="w-max min-w-max">
-                      {levelOptions.map((lvl) => (
-                        <SelectItem key={lvl} value={lvl}>
-                          {lvl}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  <Popover
-                    open={confirmRemove === "wizard"}
-                    onOpenChange={(open) =>
-                      setConfirmRemove(open ? "wizard" : null)
-                    }
-                  >
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        aria-label="Remove wizard class"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent align="end" className="w-64">
-                      <div className="space-y-3">
-                        <div className="space-y-1">
-                          <div className="text-sm font-medium">
-                            Remove Wizard?
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            This will remove the Wizard class from this
-                            character.
-                          </div>
-                        </div>
-                        <div className="flex justify-end gap-2">
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setConfirmRemove(null)}
-                          >
-                            Cancel
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="destructive"
-                            size="sm"
-                            onClick={() => handleConfirmRemoveClass("wizard")}
-                          >
-                            Remove
-                          </Button>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              )}
-
-              {classLevels.priest && (
-                <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
-                  <div className="text-sm font-medium">Priest</div>
-                  <Select
-                    value={String(classLevels.priest)}
-                    onValueChange={(v) =>
-                      handleSetClassLevel("priest", Number(v))
-                    }
-                  >
-                    <SelectTrigger className="w-24">
-                      <span className="text-sm">
-                        {classLevels.priest
-                          ? `Level ${classLevels.priest}`
-                          : "Level"}
-                      </span>
-                      <SelectValue className="sr-only" />
-                    </SelectTrigger>
-                    <SelectContent className="w-max min-w-max">
-                      {levelOptions.map((lvl) => (
-                        <SelectItem key={lvl} value={lvl}>
-                          {lvl}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  <Popover
-                    open={confirmRemove === "priest"}
-                    onOpenChange={(open) =>
-                      setConfirmRemove(open ? "priest" : null)
-                    }
-                  >
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        aria-label="Remove priest class"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent align="end" className="w-64">
-                      <div className="space-y-3">
-                        <div className="space-y-1">
-                          <div className="text-sm font-medium">
-                            Remove Priest?
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            This will remove the Priest class from this
-                            character.
-                          </div>
-                        </div>
-                        <div className="flex justify-end gap-2">
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setConfirmRemove(null)}
-                          >
-                            Cancel
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="destructive"
-                            size="sm"
-                            onClick={() => handleConfirmRemoveClass("priest")}
-                          >
-                            Remove
-                          </Button>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
+          <div className="space-y-1">
+            <div className="flex w-full items-center gap-2 text-sm font-medium">
+              <span>Name</span>
+              {validationError && (
+                <span className="text-xs text-destructive">
+                  {validationError}
+                </span>
               )}
             </div>
-          )}
-        </div>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={handleNameCommit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.currentTarget.blur();
+                }
+              }}
+              placeholder="e.g. Aragorn"
+              className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="text-sm font-medium">Classes</div>
+
+              <Select
+                key={addClassSelectKey}
+                onValueChange={(val) => {
+                  if (val === "__none__") return;
+                  handleAddClass(val as "wizard" | "priest");
+                }}
+              >
+                <SelectTrigger
+                  className="h-7 w-7 justify-center p-0 data-[size=sm]:h-7 data-[size=sm]:min-h-7 [&_svg:last-child]:hidden"
+                  aria-label="Add class"
+                  size="sm"
+                  disabled={remainingClasses.length === 0}
+                >
+                  <Plus className="h-3 w-3" />
+                </SelectTrigger>
+                <SelectContent className="w-max min-w-max">
+                  {remainingClasses.length === 0 ? (
+                    <div className="space-y-1 px-3 py-3 text-sm">
+                      <div className="text-muted-foreground">
+                        All classes already added.
+                      </div>
+                    </div>
+                  ) : (
+                    remainingClasses.map((c) => (
+                      <SelectItem key={c.key} value={c.key}>
+                        {c.label}
+                      </SelectItem>
+                    ))
+                  )}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {(classLevels.wizard || classLevels.priest) && (
+              <div className="space-y-2">
+                {classLevels.wizard && (
+                  <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
+                    <div className="text-sm font-medium">Wizard</div>
+                    <Select
+                      value={String(classLevels.wizard)}
+                      onValueChange={(v) =>
+                        handleSetClassLevel("wizard", Number(v))
+                      }
+                    >
+                      <SelectTrigger className="w-24">
+                        <span className="text-sm">
+                          {classLevels.wizard
+                            ? `Level ${classLevels.wizard}`
+                            : "Level"}
+                        </span>
+                        <SelectValue className="sr-only" />
+                      </SelectTrigger>
+                      <SelectContent className="w-max min-w-max">
+                        {levelOptions.map((lvl) => (
+                          <SelectItem key={lvl} value={lvl}>
+                            {lvl}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                    <Popover
+                      open={confirmRemove === "wizard"}
+                      onOpenChange={(open) =>
+                        setConfirmRemove(open ? "wizard" : null)
+                      }
+                    >
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          aria-label="Remove wizard class"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent align="end" className="w-64">
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <div className="text-sm font-medium">
+                              Remove Wizard?
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              This will remove the Wizard class from this
+                              character.
+                            </div>
+                          </div>
+                          <div className="flex justify-end gap-2">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setConfirmRemove(null)}
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => handleConfirmRemoveClass("wizard")}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                )}
+
+                {classLevels.priest && (
+                  <div className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-muted/50">
+                    <div className="text-sm font-medium">Priest</div>
+                    <Select
+                      value={String(classLevels.priest)}
+                      onValueChange={(v) =>
+                        handleSetClassLevel("priest", Number(v))
+                      }
+                    >
+                      <SelectTrigger className="w-24">
+                        <span className="text-sm">
+                          {classLevels.priest
+                            ? `Level ${classLevels.priest}`
+                            : "Level"}
+                        </span>
+                        <SelectValue className="sr-only" />
+                      </SelectTrigger>
+                      <SelectContent className="w-max min-w-max">
+                        {levelOptions.map((lvl) => (
+                          <SelectItem key={lvl} value={lvl}>
+                            {lvl}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                    <Popover
+                      open={confirmRemove === "priest"}
+                      onOpenChange={(open) =>
+                        setConfirmRemove(open ? "priest" : null)
+                      }
+                    >
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          aria-label="Remove priest class"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent align="end" className="w-64">
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <div className="text-sm font-medium">
+                              Remove Priest?
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              This will remove the Priest class from this
+                              character.
+                            </div>
+                          </div>
+                          <div className="flex justify-end gap-2">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setConfirmRemove(null)}
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => handleConfirmRemoveClass("priest")}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

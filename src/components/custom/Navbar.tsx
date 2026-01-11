@@ -80,6 +80,8 @@ export function Navbar() {
     [characters],
   );
 
+  const scrollQuillNoBgSrc = `${import.meta.env.BASE_URL}scroll-quill-no-bg.png`;
+
   /** Returns true when the current location matches the given path/prefix. */
   const isActivePath = (path: string | undefined, exact = false) => {
     if (!path) return false;
@@ -102,7 +104,7 @@ export function Navbar() {
             </button>
           </DrawerTrigger>
           <img
-            src="/scroll-quill-no-bg.png"
+            src={scrollQuillNoBgSrc}
             alt="Grimoire scroll"
             className="h-6 w-6 object-contain"
           />
@@ -120,7 +122,7 @@ export function Navbar() {
                 <DrawerTitle className="text-base font-semibold flex items-center gap-2">
                   {/* Icon from: https://www.svgrepo.com/svg/307026/quill */}
                   <img
-                    src="/scroll-quill-no-bg.png"
+                    src={scrollQuillNoBgSrc}
                     alt="Grimoire scroll"
                     className="h-8 w-8 object-contain"
                   />
