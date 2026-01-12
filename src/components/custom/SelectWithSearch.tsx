@@ -65,7 +65,6 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const isMobile = useIsMobile();
-  const hasValue = value !== undefined && value !== null;
 
   const normalized = query.trim().toLowerCase();
   const filtered = useMemo(() => {
