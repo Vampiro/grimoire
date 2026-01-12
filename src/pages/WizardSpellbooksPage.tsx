@@ -148,6 +148,15 @@ function SpellbookCard({
     return grouped;
   }, [spellbook.spellsById]);
 
+  const spellIdsInBook = useMemo(() => {
+    const ids = spellbook.spellsById ?? {};
+    return new Set(
+      Object.keys(ids)
+        .map((id) => Number(id))
+        .filter((n) => Number.isFinite(n))
+    );
+  }, [spellbook.spellsById]);
+
   const [selectedLevel, setSelectedLevel] = useState<number | undefined>(1);
   const [addError, setAddError] = useState<string | null>(null);
   const availableSpells =
@@ -195,7 +204,12 @@ function SpellbookCard({
               title={`Add spell to Spellbook`}
               items={availableSpellsSorted}
               getKey={(spell) => String(spell.id)}
-              getLabel={(spell) => spell.name}
+              getLabel={(spell) =>
+                spellIdsInBook.has(spell.id)
+                  ? `${spell.name} (in spellbook)`
+                  : spell.name
+              }
+              isItemDisabled={(spell) => spellIdsInBook.has(spell.id)}
               value={undefined}
               onChange={handleSelectSpell}
               placeholder="Add Spell"

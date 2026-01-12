@@ -24,6 +24,7 @@ type BaseProps<T> = {
   getKey(item: T): string;
   value?: T;
   onChange?(item?: T): void;
+  isItemDisabled?(item: T): boolean;
   placeholder?: string;
   emptyText?: string;
   limit?: number;
@@ -55,6 +56,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
     getKey,
     value,
     onChange,
+    isItemDisabled,
     placeholder = "Select…",
     emptyText = "No results found.",
     limit = DEFAULT_LIMIT,
@@ -83,6 +85,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
 
   const handleSelect = (key: string) => {
     const item = items.find((it) => getKey(it) === key);
+    if (item && isItemDisabled?.(item)) return;
     onChange?.(item);
     setOpen(false);
   };
@@ -108,8 +111,14 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
           ) : (
             limited.map((item) => {
               const key = getKey(item);
+              const disabled = isItemDisabled?.(item);
               return (
-                <CommandItem key={key} value={key} onSelect={handleSelect}>
+                <CommandItem
+                  key={key}
+                  value={key}
+                  onSelect={handleSelect}
+                  disabled={disabled}
+                >
                   {getLabel(item)}
                 </CommandItem>
               );
@@ -158,6 +167,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
           onChange={(item) => onChange?.(item)}
           getLabel={getLabel}
           getKey={getKey}
+          isItemDisabled={isItemDisabled}
           title={title}
           emptyText={emptyText}
           limit={limit}

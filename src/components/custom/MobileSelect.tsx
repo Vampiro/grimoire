@@ -21,6 +21,7 @@ type MobileSelectProps<T> = {
 
   getLabel(item: T): string;
   getKey(item: T): string;
+  isItemDisabled?(item: T): boolean;
 
   title?: string;
   placeholder?: string;
@@ -38,6 +39,7 @@ export function MobileSelect<T>({
   onChange,
   getLabel,
   getKey,
+  isItemDisabled,
   title,
   placeholder = "Search…",
   emptyText = "No results found.",
@@ -66,6 +68,7 @@ export function MobileSelect<T>({
 
   const handleSelect = (key: string) => {
     const item = items.find((it) => getKey(it) === key);
+    if (item && isItemDisabled?.(item)) return;
     onChange(item);
     onOpenChange(false);
     setQuery("");
@@ -103,13 +106,19 @@ export function MobileSelect<T>({
                 const key = getKey(item);
                 const label = getLabel(item);
                 const selected = value && getKey(value) === key;
+                const disabled = isItemDisabled?.(item);
 
                 return (
                   <CommandItem
                     key={key}
                     value={key}
                     onSelect={handleSelect}
-                    className={cn("min-h-[44px]", selected && "bg-accent")}
+                    disabled={disabled}
+                    className={cn(
+                      "min-h-[44px]",
+                      selected && "bg-accent",
+                      disabled && "opacity-60"
+                    )}
                   >
                     {label}
                   </CommandItem>
