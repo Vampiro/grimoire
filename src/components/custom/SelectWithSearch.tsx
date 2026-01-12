@@ -7,7 +7,6 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Popover,
   PopoverContent,
@@ -16,7 +15,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { useEffect, useMemo, useState } from "react";
-import { XIcon } from "lucide-react";
+import { MobileSelect } from "./MobileSelect";
 
 type BaseProps<T> = {
   items: T[];
@@ -145,74 +144,22 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
   );
 
   if (isMobile) {
-    const mobileContent = (
-      <Command
-        className="flex h-full flex-col bg-background"
-        shouldFilter={false}
-      >
-        {title && (
-          <div className="border-b px-4 py-3 text-sm font-semibold text-foreground">
-            {title}
-          </div>
-        )}
-
-        <CommandList className="flex-1 overflow-y-auto p-2 max-h-full">
-          {limited.length === 0 ? (
-            <CommandEmpty>{emptyText}</CommandEmpty>
-          ) : (
-            limited.map((item) => {
-              const key = getKey(item);
-              return (
-                <CommandItem key={key} value={key} onSelect={handleSelect}>
-                  {getLabel(item)}
-                </CommandItem>
-              );
-            })
-          )}
-        </CommandList>
-
-        {isCapped && (
-          <div className="border-t px-3 py-2 text-xs text-muted-foreground">
-            Showing first {limit} results. Type to narrow further.
-          </div>
-        )}
-        <div className="border-t px-3 py-2">
-          <div className="flex items-center w-full justify-between">
-            <div className="flex-1 pr-3">
-              <CommandInput
-                autoFocus
-                value={query}
-                onValueChange={setQuery}
-                placeholder="Search..."
-                className="h-11"
-              />
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                setQuery("");
-                setOpen(false);
-              }}
-              className="flex h-11 w-11 items-center justify-center rounded-md border border-input bg-background hover:bg-accent/50"
-              aria-label="Close"
-            >
-              <XIcon />
-            </button>
-          </div>
-        </div>
-      </Command>
-    );
-
     return (
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild>{trigger}</SheetTrigger>
-        <SheetContent
-          side="bottom"
-          className="h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 p-0"
-        >
-          {mobileContent}
-        </SheetContent>
-      </Sheet>
+      <>
+        {trigger}
+        <MobileSelect
+          open={open}
+          onOpenChange={setOpen}
+          items={items}
+          value={value}
+          onChange={(item) => onChange?.(item)}
+          getLabel={getLabel}
+          getKey={getKey}
+          title={title}
+          emptyText={emptyText}
+          limit={limit}
+        />
+      </>
     );
   }
 
