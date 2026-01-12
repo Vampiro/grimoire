@@ -187,6 +187,7 @@ function SpellbookCard({
               </SelectContent>
             </Select>
             <SelectWithSearch<Spell>
+              title={`Add spell to Spellbook`}
               items={availableSpellsSorted}
               getKey={(spell) => String(spell.id)}
               getLabel={(spell) => spell.name}

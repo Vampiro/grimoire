@@ -31,6 +31,7 @@ type BaseProps<T> = {
   emptyText?: string;
   limit?: number;
   className?: string;
+  title?: string;
 };
 
 const DEFAULT_LIMIT = 200;
@@ -60,6 +61,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
     emptyText = "No results found.",
     limit = DEFAULT_LIMIT,
     className,
+    title,
   } = props;
 
   const [open, setOpen] = useState(false);
@@ -124,8 +126,8 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
     <button
       type="button"
       className={cn(
-        "flex w-full items-center justify-between gap-2 rounded-md border bg-background px-3 py-2 text-left text-sm",
-        "hover:bg-accent/50",
+        "inline-flex items-center justify-between gap-2 rounded-md border border-input bg-background px-3 py-2 text-left text-sm",
+        "hover:bg-accent/50 cursor-pointer",
         className,
       )}
       onClick={() => setOpen((v) => !v)}
@@ -138,14 +140,67 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
   );
 
   if (isMobile) {
+    const mobileContent = (
+      <Command className="flex h-full flex-col bg-background" shouldFilter={false}>
+        {title && (
+          <div className="border-b px-4 py-3 text-sm font-semibold text-foreground">
+            {title}
+          </div>
+        )}
+        <ScrollArea className="flex-1 min-h-0 h-full">
+          <CommandList className="p-2 max-h-none h-full">
+            {limited.length === 0 ? (
+              <CommandEmpty>{emptyText}</CommandEmpty>
+            ) : (
+              limited.map((item) => {
+                const key = getKey(item);
+                return (
+                  <CommandItem key={key} value={key} onSelect={handleSelect}>
+                    {getLabel(item)}
+                  </CommandItem>
+                );
+              })
+            )}
+          </CommandList>
+        </ScrollArea>
+        {isCapped && (
+          <div className="border-t px-3 py-2 text-xs text-muted-foreground">
+            Showing first {limit} results. Type to narrow further.
+          </div>
+        )}
+        <div className="border-t px-3 py-2">
+          <div className="flex items-center gap-2">
+            <CommandInput
+              autoFocus
+              value={query}
+              onValueChange={setQuery}
+              placeholder="Search..."
+              className="h-11 flex-1"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setOpen(false);
+              }}
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-input bg-background text-lg text-muted-foreground hover:bg-accent/50"
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      </Command>
+    );
+
     return (
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>{trigger}</SheetTrigger>
         <SheetContent
-          side="top"
+          side="bottom"
           className="h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 p-0"
         >
-          {content}
+          {mobileContent}
         </SheetContent>
       </Sheet>
     );
