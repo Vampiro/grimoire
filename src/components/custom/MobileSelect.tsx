@@ -89,17 +89,6 @@ export function MobileSelect<T>({
           {/* Header */}
           <div className="flex items-center justify-between border-b px-4 py-3">
             <div className="text-sm font-semibold">{title ?? "Select"}</div>
-            <button
-              type="button"
-              onClick={() => {
-                setQuery("");
-                onOpenChange(false);
-              }}
-              className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-accent"
-              aria-label="Close"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
           </div>
 
           {/* Search */}
@@ -115,7 +104,7 @@ export function MobileSelect<T>({
 
           {/* List */}
           <div className="flex-1 overflow-y-auto overscroll-contain">
-            <CommandList className="p-2">
+            <CommandList className="p-2 max-h-full">
               {limited.length === 0 ? (
                 <CommandEmpty>{emptyText}</CommandEmpty>
               ) : (

@@ -18,6 +18,8 @@ export function MobileDialog({
   const [viewportSize, setViewportSize] = useState<{
     height: number;
     width: number;
+    offsetTop: number;
+    offsetLeft: number;
   } | null>(null);
 
   useEffect(() => {
@@ -27,7 +29,9 @@ export function MobileDialog({
       const vv = window.visualViewport;
       const height = vv?.height ?? window.innerHeight;
       const width = vv?.width ?? window.innerWidth;
-      setViewportSize({ height, width });
+      const offsetTop = vv?.offsetTop ?? 0;
+      const offsetLeft = vv?.offsetLeft ?? 0;
+      setViewportSize({ height, width, offsetTop, offsetLeft });
     };
 
     computeSize();
@@ -48,6 +52,8 @@ export function MobileDialog({
         maxHeight: `${viewportSize.height}px`,
         width: `${viewportSize.width}px`,
         maxWidth: `${viewportSize.width}px`,
+        top: `${viewportSize.offsetTop}px`,
+        left: `${viewportSize.offsetLeft}px`,
       }
     : undefined;
 
@@ -59,6 +65,7 @@ export function MobileDialog({
           "h-[100dvh] max-h-[100dvh] w-full",
           "rounded-none",
           "animate-none", // 🚫 critical
+          "left-0 top-0 translate-x-0 translate-y-0 max-w-none",
           className
         )}
         style={sizeStyle}
