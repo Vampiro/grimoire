@@ -55,7 +55,7 @@ export function WizardSpellbooksPage() {
       ? Object.values(character.class.wizard.spellbooksById)
       : [];
     return [...list].sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
     );
   }, [character?.class.wizard?.spellbooksById]);
 
@@ -153,16 +153,33 @@ function SpellbookCard({
     return new Set(
       Object.keys(ids)
         .map((id) => Number(id))
-        .filter((n) => Number.isFinite(n))
+        .filter((n) => Number.isFinite(n)),
     );
   }, [spellbook.spellsById]);
+
+  const pageUsage = useMemo(() => {
+    let used = 0;
+    const spellsById = spellbook.spellsById ?? {};
+    Object.keys(spellsById).forEach((idKey) => {
+      const spellId = Number(idKey);
+      const spell = Number.isNaN(spellId) ? null : findWizardSpellById(spellId);
+      if (spell) {
+        used += spell.level;
+      }
+    });
+    return {
+      used,
+      total: spellbook.numberOfPages,
+      isOver: used > spellbook.numberOfPages,
+    };
+  }, [spellbook.spellsById, spellbook.numberOfPages]);
 
   const [selectedLevel, setSelectedLevel] = useState<number | undefined>(1);
   const [addError, setAddError] = useState<string | null>(null);
   const availableSpells =
     selectedLevel !== undefined ? getWizardSpellsByLevel(selectedLevel) : [];
   const availableSpellsSorted = [...availableSpells].sort((a, b) =>
-    a.name.localeCompare(b.name)
+    a.name.localeCompare(b.name),
   );
 
   const handleSelectSpell = async (spell: Spell | undefined) => {
@@ -179,7 +196,13 @@ function SpellbookCard({
     <Card>
       <CardHeader>
         <CardTitle>{spellbook.name}</CardTitle>
-        <CardDescription>{spellbook.numberOfPages} pages</CardDescription>
+        <CardDescription className="flex items-center">
+          <span
+            className={pageUsage.isOver ? "text-destructive font-bold" : ""}
+          >
+            {pageUsage.used} / {pageUsage.total} pages
+          </span>
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Add spell */}
