@@ -82,13 +82,13 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                     <div className="space-y-1 px-3 py-2 text-sm text-muted-foreground">
                       <p>No remaining spells of this level.</p>
                       <p>
-                        Update your
+                        Update your{" "}
                         <Link
                           className="underline"
                           to={PageRoute.WIZARD_SPELLBOOKS(props.characterId)}
                         >
                           Spellbooks
-                        </Link>
+                        </Link>{" "}
                         to add level {props.spellLevel} spells.
                       </p>
                     </div>
