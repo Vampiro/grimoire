@@ -25,10 +25,7 @@ import {
 import { Plus } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
-import {
-  findWizardSpellById,
-  openSpellViewer,
-} from "@/lib/spellLookup";
+import { findWizardSpellById, openSpellViewer } from "@/lib/spellLookup";
 import type { Spell } from "@/types/Spell";
 import {
   addSpellToWizardSpellbook,
@@ -183,7 +180,7 @@ function SpellbookCard({
       setAddError(null);
     }
   };
-  
+
   // Filter out spells already in the spellbook and sort
   const availableSpells = useMemo(() => {
     return allWizardSpells
@@ -211,54 +208,57 @@ function SpellbookCard({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{spellbook.name}</CardTitle>
-        <CardDescription className="flex items-center">
-          <span
-            className={pageUsage.isOver ? "text-destructive font-bold" : ""}
-          >
-            {pageUsage.used} / {pageUsage.total} pages
-          </span>
-        </CardDescription>
+        <div className="flex justify-between gap-4">
+          <div>
+            <CardTitle>{spellbook.name}</CardTitle>
+            <CardDescription className="flex items-center">
+              <span
+                className={pageUsage.isOver ? "text-destructive font-bold" : ""}
+              >
+                {pageUsage.used} / {pageUsage.total} pages
+              </span>
+            </CardDescription>
+          </div>
+          {/* Add spell */}
+          <div>
+            <Popover open={addSpellOpen} onOpenChange={handleOpenChange}>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="gap-2"
+                  aria-label="Add spell to spellbook"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add Spell
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="p-0 w-80" align="start" sideOffset={8}>
+                <SelectWithSearch<Spell>
+                  title="Add spell to Spellbook"
+                  items={availableSpells}
+                  getKey={(spell) => String(spell.id)}
+                  getLabel={(spell) => spell.name}
+                  isItemDisabled={(spell) => spellIdsInBook.has(spell.id)}
+                  value={undefined}
+                  onChange={handleSelectSpell}
+                  placeholder="Search spells..."
+                  emptyText="No spells found."
+                  getCategory={(spell) => `Level ${spell.level}`}
+                  categoryLabel={(cat) => cat}
+                  open={addSpellOpen}
+                  onOpenChange={setAddSpellOpen}
+                  contentOnly={true}
+                />
+              </PopoverContent>
+            </Popover>
+            {addError && (
+              <p className="text-sm text-destructive mt-2">{addError}</p>
+            )}
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* Add spell */}
-        <div>
-          <Popover open={addSpellOpen} onOpenChange={handleOpenChange}>
-            <PopoverTrigger asChild>
-              <Button
-                size="sm"
-                variant="outline"
-                className="gap-2"
-                aria-label="Add spell to spellbook"
-              >
-                <Plus className="h-4 w-4" />
-                Add Spell
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-0 w-80" align="start" sideOffset={8}>
-              <SelectWithSearch<Spell>
-                title="Add spell to Spellbook"
-                items={availableSpells}
-                getKey={(spell) => String(spell.id)}
-                getLabel={(spell) => spell.name}
-                isItemDisabled={(spell) => spellIdsInBook.has(spell.id)}
-                value={undefined}
-                onChange={handleSelectSpell}
-                placeholder="Search spells..."
-                emptyText="No spells found."
-                getCategory={(spell) => `Level ${spell.level}`}
-                categoryLabel={(cat) => cat}
-                open={addSpellOpen}
-                onOpenChange={setAddSpellOpen}
-                contentOnly={true}
-              />
-            </PopoverContent>
-          </Popover>
-          {addError && (
-            <p className="text-sm text-destructive mt-2">{addError}</p>
-          )}
-        </div>
-
         {/* Spells grouped by level */}
         <div className="space-y-6">
           {SPELL_LEVELS.map((lvl) => {
