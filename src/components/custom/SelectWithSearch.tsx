@@ -89,7 +89,10 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
         )
       : items;
     return [...base].sort((a, b) =>
-      getLabel(a).localeCompare(getLabel(b), undefined, { sensitivity: "base" })
+      getLabel(a).localeCompare(getLabel(b), undefined, {
+        sensitivity: "base",
+        numeric: true,
+      })
     );
   }, [getLabel, items, normalized]);
 

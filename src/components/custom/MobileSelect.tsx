@@ -64,6 +64,7 @@ export function MobileSelect<T>({
     return base.slice().sort((a, b) =>
       getLabel(a).localeCompare(getLabel(b), undefined, {
         sensitivity: "base",
+        numeric: true,
       })
     );
   }, [items, getLabel, normalized]);
