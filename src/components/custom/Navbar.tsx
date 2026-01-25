@@ -37,6 +37,7 @@ export function Navbar() {
   const user = useAtomValue(userAtom);
   const characters = useAtomValue(charactersAtom);
   const [open, setOpen] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
   const closeMenu = () => setOpen(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,8 +54,14 @@ export function Navbar() {
   const handleDrawerTriggerPointerDown = () => {
     blurDrawerTrigger();
   };
-  const handleDrawerTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+  const handleDrawerTriggerKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+  ) => {
+    if (
+      event.key === "Enter" ||
+      event.key === " " ||
+      event.key === "Spacebar"
+    ) {
       blurDrawerTrigger();
     }
   };
@@ -76,6 +83,12 @@ export function Navbar() {
       setPersistedCharacterId(selectedCharacterId);
     }
   }, [selectedCharacterId]);
+
+  const avatarUrl = user?.photoURL ?? user?.providerData?.[0]?.photoURL ?? null;
+
+  useEffect(() => {
+    setAvatarError(false);
+  }, [avatarUrl]);
 
   const activeCharacterId = useMemo(() => {
     const hasPersisted =
@@ -106,13 +119,13 @@ export function Navbar() {
   return (
     <nav className="w-full h-14 bg-background border-b flex items-center justify-between">
       {/* Left side (nav trigger + title) */}
-        <div className="flex items-center gap-2">
-          <Drawer
-            open={drawerOpen}
-            onOpenChange={setDrawerOpen}
-            direction="left"
-            autoFocus
-          >
+      <div className="flex items-center gap-2">
+        <Drawer
+          open={drawerOpen}
+          onOpenChange={setDrawerOpen}
+          direction="left"
+          autoFocus
+        >
           <DrawerTrigger asChild>
             <button
               className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-background hover:bg-accent cursor-pointer"
@@ -394,13 +407,29 @@ export function Navbar() {
       {/* Right side icons */}
       <div className="flex items-center">
         {/* Account menu */}
+        <DndWikiSearch
+          open={searchOpen}
+          onOpenChange={(open) => setSearchOpen(open)}
+        />
         <Popover open={open} onOpenChange={setOpen}>
-          <DndWikiSearch
-            open={searchOpen}
-            onOpenChange={(open) => setSearchOpen(open)}
-          />
-          <PopoverTrigger className="p-2 rounded-full hover:bg-accent cursor-pointer">
-            <User className="h-5 w-5" />
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className="p-2 rounded-full hover:bg-accent cursor-pointer"
+              aria-label="Account menu"
+            >
+              {avatarUrl && !avatarError ? (
+                <img
+                  src={avatarUrl}
+                  alt={user?.displayName ?? "User avatar"}
+                  className="h-6 w-6 rounded-full object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={() => setAvatarError(true)}
+                />
+              ) : (
+                <User className="h-5 w-5" />
+              )}
+            </button>
           </PopoverTrigger>
           <PopoverContent align="end" className="w-48 p-2">
             <div className="flex flex-col gap-1">
