@@ -238,7 +238,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
         "disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
-      onClick={() => setOpen((v) => !v)}
+      onClick={() => setOpen(!open)}
       aria-haspopup="dialog"
       aria-expanded={open}
     >
