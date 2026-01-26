@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Plus } from "lucide-react";
+import { ChevronDown, Plus, Trash2 } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
 import { findWizardSpellById, openSpellViewer } from "@/lib/spellLookup";
@@ -30,6 +31,7 @@ import type { Spell } from "@/types/Spell";
 import {
   addSpellToWizardSpellbook,
   addWizardSpellbook,
+  removeSpellFromWizardSpellbook,
 } from "@/firebase/characters";
 import { useAtomValue } from "jotai";
 import { wizardSpellsAtom } from "@/globalState";
@@ -171,7 +173,9 @@ function SpellbookCard({
   }, [spellbook.spellsById, spellbook.numberOfPages]);
 
   const [addError, setAddError] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [addSpellOpen, setAddSpellOpen] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
   const allWizardSpells = useAtomValue(wizardSpellsAtom);
 
   const handleOpenChange = (open: boolean) => {
@@ -205,6 +209,17 @@ function SpellbookCard({
     }
   };
 
+  const handleDeleteSpell = async (spell: Spell) => {
+    setDeleteError(null);
+    try {
+      await removeSpellFromWizardSpellbook(characterId, spellbook.id, spell.id);
+    } catch (err) {
+      setDeleteError(
+        err instanceof Error ? err.message : "Failed to delete spell",
+      );
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -221,39 +236,69 @@ function SpellbookCard({
           </div>
           {/* Add spell */}
           <div>
-            <Popover open={addSpellOpen} onOpenChange={handleOpenChange}>
-              <PopoverTrigger asChild>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="gap-2"
-                  aria-label="Add spell to spellbook"
+            <div className="flex items-center gap-0">
+              <Popover open={addSpellOpen} onOpenChange={handleOpenChange}>
+                <PopoverTrigger asChild>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="gap-2 rounded-r-none"
+                    aria-label="Add spell to spellbook"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Add Spell
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="p-0 w-80"
+                  align="start"
+                  sideOffset={8}
                 >
-                  <Plus className="h-4 w-4" />
-                  Add Spell
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="p-0 w-80" align="start" sideOffset={8}>
-                <SelectWithSearch<Spell>
-                  title="Add spell to Spellbook"
-                  items={availableSpells}
-                  getKey={(spell) => String(spell.id)}
-                  getLabel={(spell) => spell.name}
-                  isItemDisabled={(spell) => spellIdsInBook.has(spell.id)}
-                  value={undefined}
-                  onChange={handleSelectSpell}
-                  placeholder="Search spells..."
-                  emptyText="No spells found."
-                  getCategory={(spell) => `Level ${spell.level}`}
-                  categoryLabel={(cat) => cat}
-                  open={addSpellOpen}
-                  onOpenChange={setAddSpellOpen}
-                  contentOnly={true}
-                />
-              </PopoverContent>
-            </Popover>
+                  <SelectWithSearch<Spell>
+                    title="Add spell to Spellbook"
+                    items={availableSpells}
+                    getKey={(spell) => String(spell.id)}
+                    getLabel={(spell) => spell.name}
+                    isItemDisabled={(spell) => spellIdsInBook.has(spell.id)}
+                    value={undefined}
+                    onChange={handleSelectSpell}
+                    placeholder="Search spells..."
+                    emptyText="No spells found."
+                    getCategory={(spell) => `Level ${spell.level}`}
+                    categoryLabel={(cat) => cat}
+                    open={addSpellOpen}
+                    onOpenChange={setAddSpellOpen}
+                    contentOnly={true}
+                  />
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    aria-label="Spellbook options"
+                    className="rounded-l-none border-l-0"
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="end" className="w-56 p-2">
+                  <div className="flex w-full items-center justify-between rounded px-2 py-2 text-sm hover:bg-accent">
+                    <span>Delete Mode</span>
+                    <Switch
+                      checked={deleteMode}
+                      onCheckedChange={setDeleteMode}
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
             {addError && (
               <p className="text-sm text-destructive mt-2">{addError}</p>
+            )}
+            {deleteError && (
+              <p className="text-sm text-destructive mt-2">{deleteError}</p>
             )}
           </div>
         </div>
@@ -275,13 +320,26 @@ function SpellbookCard({
                       key={spell.id}
                       className="mb-2 break-inside-avoid text-sm"
                     >
-                      <Button
-                        variant="link"
-                        className="h-auto p-0 text-left"
-                        onClick={() => openSpellViewer(spell)}
-                      >
-                        {spell.name}
-                      </Button>
+                      <div className="flex items-center gap-1">
+                        {deleteMode && (
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
+                            className="text-destructive hover:text-destructive"
+                            aria-label={`Delete ${spell.name} from spellbook`}
+                            onClick={() => handleDeleteSpell(spell)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
+                        <Button
+                          variant="link"
+                          className="h-auto p-0 text-left"
+                          onClick={() => openSpellViewer(spell)}
+                        >
+                          {spell.name}
+                        </Button>
+                      </div>
                     </div>
                   ))}
                 </div>

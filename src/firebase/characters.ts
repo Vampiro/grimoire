@@ -286,6 +286,44 @@ export async function addSpellToWizardSpellbook(
   return spellbook;
 }
 
+/**
+ * Remove a spell from a specific wizard spellbook, persisting to Firestore.
+ */
+export async function removeSpellFromWizardSpellbook(
+  characterId: string,
+  spellbookId: string,
+  spellId: number | string,
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.class.wizard;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const spellbook = wizard.spellbooksById[spellbookId];
+  if (!spellbook) throw new Error("Spellbook not found");
+
+  const ref = characterDoc(uid, characterId);
+  await updateDoc(
+    ref,
+    new FieldPath(
+      "class",
+      "wizard",
+      "spellbooksById",
+      spellbookId,
+      "spellsById",
+      String(spellId),
+    ),
+    deleteField(),
+    "updatedAt",
+    Date.now(),
+  );
+}
+
 /** Update wizard level and/or spell slot modifiers. */
 export async function updateWizardProgression(
   characterId: string,
