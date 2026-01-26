@@ -324,6 +324,50 @@ export async function removeSpellFromWizardSpellbook(
   );
 }
 
+/**
+ * Update a wizard spellbook's metadata (name/pages).
+ */
+export async function updateWizardSpellbook(
+  characterId: string,
+  spellbookId: string,
+  changes: {
+    name?: string;
+    numberOfPages?: number;
+  },
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.class.wizard;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const spellbook = wizard.spellbooksById[spellbookId];
+  if (!spellbook) throw new Error("Spellbook not found");
+
+  const updates: Record<string, unknown> = {};
+  if (changes.name !== undefined) {
+    updates[`class.wizard.spellbooksById.${spellbookId}.name`] = changes.name;
+  }
+  if (changes.numberOfPages !== undefined) {
+    updates[
+      `class.wizard.spellbooksById.${spellbookId}.numberOfPages`
+    ] = changes.numberOfPages;
+  }
+
+  if (Object.keys(updates).length === 0) return spellbook;
+
+  await updateCharacterFields(characterId, updates);
+
+  return {
+    ...spellbook,
+    ...changes,
+  };
+}
+
 /** Update wizard level and/or spell slot modifiers. */
 export async function updateWizardProgression(
   characterId: string,

@@ -1,4 +1,11 @@
-import { ChangeEvent, FormEvent, useMemo, useState, useId } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useMemo,
+  useState,
+  useId,
+  useEffect,
+} from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +39,7 @@ import {
   addSpellToWizardSpellbook,
   addWizardSpellbook,
   removeSpellFromWizardSpellbook,
+  updateWizardSpellbook,
 } from "@/firebase/characters";
 import { useAtomValue } from "jotai";
 import { wizardSpellsAtom } from "@/globalState";
@@ -176,6 +184,8 @@ function SpellbookCard({
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [addSpellOpen, setAddSpellOpen] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
+  const [optionsOpen, setOptionsOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const allWizardSpells = useAtomValue(wizardSpellsAtom);
 
   const handleOpenChange = (open: boolean) => {
@@ -272,7 +282,7 @@ function SpellbookCard({
                   />
                 </PopoverContent>
               </Popover>
-              <Popover>
+              <Popover open={optionsOpen} onOpenChange={setOptionsOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     size="sm"
@@ -284,7 +294,17 @@ function SpellbookCard({
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="end" className="w-56 p-2">
-                  <div className="flex w-full items-center justify-between rounded px-2 py-2 text-sm hover:bg-accent">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between px-2 text-sm"
+                    onClick={() => {
+                      setOptionsOpen(false);
+                      setEditOpen(true);
+                    }}
+                  >
+                    Edit Name &amp; Pages
+                  </Button>
+                  <div className="flex w-full items-center justify-between rounded-md px-2 py-2 text-sm hover:bg-accent dark:hover:bg-accent/50 font-medium">
                     <span>Delete Mode</span>
                     <Switch
                       checked={deleteMode}
@@ -294,6 +314,23 @@ function SpellbookCard({
                 </PopoverContent>
               </Popover>
             </div>
+            <Dialog open={editOpen} onOpenChange={setEditOpen}>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Edit Spellbook</DialogTitle>
+                  <DialogDescription>
+                    Update the name and page count for this spellbook.
+                  </DialogDescription>
+                </DialogHeader>
+                <EditSpellbookForm
+                  characterId={characterId}
+                  spellbook={spellbook}
+                  open={editOpen}
+                  onCancel={() => setEditOpen(false)}
+                  onSuccess={() => setEditOpen(false)}
+                />
+              </DialogContent>
+            </Dialog>
             {addError && (
               <p className="text-sm text-destructive mt-2">{addError}</p>
             )}
@@ -439,6 +476,115 @@ function AddSpellbookForm({
       <Button type="submit" disabled={saving} className="w-full">
         {saving ? "Saving..." : "Create Spellbook"}
       </Button>
+    </form>
+  );
+}
+
+function EditSpellbookForm({
+  characterId,
+  spellbook,
+  open,
+  onCancel,
+  onSuccess,
+}: {
+  characterId: string;
+  spellbook: WizardSpellbook;
+  open: boolean;
+  onCancel: () => void;
+  onSuccess: () => void;
+}) {
+  const nameId = useId();
+  const pagesId = useId();
+  const [name, setName] = useState(spellbook.name);
+  const [pages, setPages] = useState(String(spellbook.numberOfPages));
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    setName(spellbook.name);
+    setPages(String(spellbook.numberOfPages));
+    setError(null);
+  }, [open, spellbook.name, spellbook.numberOfPages]);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setError(null);
+
+    try {
+      const trimmedName = name.trim();
+      const numberOfPages = Number(pages);
+
+      if (!trimmedName) {
+        throw new Error("Name is required");
+      }
+
+      if (!Number.isFinite(numberOfPages) || numberOfPages <= 0) {
+        throw new Error("Number of pages must be greater than 0");
+      }
+
+      await updateWizardSpellbook(characterId, spellbook.id, {
+        name: trimmedName,
+        numberOfPages,
+      });
+
+      onSuccess();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to update spellbook",
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <form className="space-y-3" onSubmit={handleSubmit}>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium" htmlFor={nameId}>
+          Name
+        </label>
+        <input
+          id={nameId}
+          value={name}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
+          placeholder="E.g., Grimorium Arcana"
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+          required
+        />
+      </div>
+
+      <div className="grid gap-2">
+        <label className="text-sm font-medium" htmlFor={pagesId}>
+          Pages
+        </label>
+        <input
+          id={pagesId}
+          type="number"
+          min={1}
+          value={pages}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setPages(e.target.value)
+          }
+          placeholder="50"
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+          required
+        />
+      </div>
+
+      {error && <p className="text-sm text-destructive">{error}</p>}
+
+      <div className="flex gap-2 justify-between">
+        <Button type="button" variant="outline" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button type="submit" disabled={saving}>
+          {saving ? "Saving..." : "Save"}
+        </Button>
+      </div>
     </form>
   );
 }
