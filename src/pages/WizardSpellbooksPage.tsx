@@ -24,6 +24,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { SelectWithSearch } from "@/components/custom/SelectWithSearch";
 import {
   Popover,
@@ -38,6 +48,7 @@ import type { Spell } from "@/types/Spell";
 import {
   addSpellToWizardSpellbook,
   addWizardSpellbook,
+  deleteWizardSpellbook,
   removeSpellFromWizardSpellbook,
   updateWizardSpellbook,
 } from "@/firebase/characters";
@@ -186,12 +197,24 @@ function SpellbookCard({
   const [deleteMode, setDeleteMode] = useState(false);
   const [optionsOpen, setOptionsOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [deleteSpellbookOpen, setDeleteSpellbookOpen] = useState(false);
+  const [deleteSpellbookError, setDeleteSpellbookError] = useState<
+    string | null
+  >(null);
+  const [deleteSpellbookSaving, setDeleteSpellbookSaving] = useState(false);
   const allWizardSpells = useAtomValue(wizardSpellsAtom);
 
   const handleOpenChange = (open: boolean) => {
     setAddSpellOpen(open);
     if (!open) {
       setAddError(null);
+    }
+  };
+
+  const handleDeleteSpellbookOpenChange = (open: boolean) => {
+    setDeleteSpellbookOpen(open);
+    if (open) {
+      setDeleteSpellbookError(null);
     }
   };
 
@@ -227,6 +250,21 @@ function SpellbookCard({
       setDeleteError(
         err instanceof Error ? err.message : "Failed to delete spell",
       );
+    }
+  };
+
+  const handleDeleteSpellbook = async () => {
+    setDeleteSpellbookError(null);
+    setDeleteSpellbookSaving(true);
+    try {
+      await deleteWizardSpellbook(characterId, spellbook.id);
+      setDeleteSpellbookOpen(false);
+    } catch (err) {
+      setDeleteSpellbookError(
+        err instanceof Error ? err.message : "Failed to delete spellbook",
+      );
+    } finally {
+      setDeleteSpellbookSaving(false);
     }
   };
 
@@ -311,6 +349,17 @@ function SpellbookCard({
                       onCheckedChange={setDeleteMode}
                     />
                   </div>
+                  <div className="my-1 h-px bg-border" />
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between px-2 text-sm text-destructive hover:text-destructive"
+                    onClick={() => {
+                      setOptionsOpen(false);
+                      setDeleteSpellbookOpen(true);
+                    }}
+                  >
+                    Delete Spellbook
+                  </Button>
                 </PopoverContent>
               </Popover>
             </div>
@@ -331,6 +380,35 @@ function SpellbookCard({
                 />
               </DialogContent>
             </Dialog>
+            <AlertDialog
+              open={deleteSpellbookOpen}
+              onOpenChange={handleDeleteSpellbookOpenChange}
+            >
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete spellbook?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This removes spellbook "{spellbook.name}" and all spells
+                    inside it. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                {deleteSpellbookError && (
+                  <p className="text-sm text-destructive">
+                    {deleteSpellbookError}
+                  </p>
+                )}
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <Button
+                    variant="destructive"
+                    onClick={handleDeleteSpellbook}
+                    disabled={deleteSpellbookSaving}
+                  >
+                    {deleteSpellbookSaving ? "Deleting..." : "Delete Spellbook"}
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             {addError && (
               <p className="text-sm text-destructive mt-2">{addError}</p>
             )}

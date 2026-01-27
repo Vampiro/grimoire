@@ -368,6 +368,38 @@ export async function updateWizardSpellbook(
   };
 }
 
+/**
+ * Delete a wizard spellbook from a character.
+ */
+export async function deleteWizardSpellbook(
+  characterId: string,
+  spellbookId: string,
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const wizard = existing.class.wizard;
+  if (!wizard) throw new Error("Character has no wizard progression");
+
+  const spellbook = wizard.spellbooksById[spellbookId];
+  if (!spellbook) throw new Error("Spellbook not found");
+
+  const ref = characterDoc(uid, characterId);
+  await updateDoc(
+    ref,
+    new FieldPath("class", "wizard", "spellbooksById", spellbookId),
+    deleteField(),
+    "updatedAt",
+    Date.now(),
+  );
+
+  return spellbook;
+}
+
 /** Update wizard level and/or spell slot modifiers. */
 export async function updateWizardProgression(
   characterId: string,
