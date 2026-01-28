@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useMemo, useState } from "react";
 import { Dialog } from "@/components/ui/dialog";
-import { MobileDialogContent } from "./MobileDialogContent";
+import { MobileFullScreenDialogContent } from "./MobileFullScreenDialogContent";
 
 type MobileSelectProps<T> = {
   open: boolean;
@@ -138,7 +138,7 @@ export function MobileSelect<T>({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <MobileDialogContent>
+      <MobileFullScreenDialogContent>
         <Command
           shouldFilter={false}
           className="flex h-full flex-col bg-background"
@@ -233,7 +233,7 @@ export function MobileSelect<T>({
             </div>
           )}
         </Command>
-      </MobileDialogContent>
+      </MobileFullScreenDialogContent>
     </Dialog>
   );
 }

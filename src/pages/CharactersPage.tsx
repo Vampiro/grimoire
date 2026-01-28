@@ -22,6 +22,7 @@ import { createCharacter } from "@/firebase/characters";
 import { CharacterClass } from "@/types/ClassProgression";
 import { useNavigate } from "react-router-dom";
 import { PageRoute } from "./PageRoute";
+import { MobileFullScreenDialogContent } from "@/components/custom/MobileFullScreenDialogContent";
 
 export function CharactersPage() {
   const navigate = useNavigate();
@@ -152,7 +153,7 @@ export function CharactersPage() {
                 </Button>
               </DialogTrigger>
 
-              <DialogContent>
+              <MobileFullScreenDialogContent>
                 <DialogHeader>
                   <DialogTitle>Create Character</DialogTitle>
                   <DialogDescription>
@@ -321,7 +322,7 @@ export function CharactersPage() {
                     {creating ? "Creating..." : "Create"}
                   </Button>
                 </DialogFooter>
-              </DialogContent>
+              </MobileFullScreenDialogContent>
             </Dialog>
           </div>
           <p className="text-muted-foreground">

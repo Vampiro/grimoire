@@ -3,13 +3,15 @@ import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef } from "react";
 import { useEffect, useState } from "react";
 
-type MobileDialogContentProps = ComponentPropsWithoutRef<typeof DialogContent>;
+type MobileFullScreenDialogContentProps = ComponentPropsWithoutRef<
+  typeof DialogContent
+>;
 
-export function MobileDialogContent({
+export function MobileFullScreenDialogContent({
   className,
   style,
   ...props
-}: MobileDialogContentProps) {
+}: MobileFullScreenDialogContentProps) {
   const [viewportSize, setViewportSize] = useState<{
     height: number;
     width: number;
