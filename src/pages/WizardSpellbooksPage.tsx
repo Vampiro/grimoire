@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,7 +27,7 @@ import {
 import { ChevronDown, Plus, Trash2 } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
-import { findWizardSpellById, openSpellViewer } from "@/lib/spellLookup";
+import { findWizardSpellById } from "@/lib/spellLookup";
 import type { Spell } from "@/types/Spell";
 import {
   addSpellToWizardSpellbook,
@@ -120,6 +120,7 @@ function SpellbookCard({
   characterId: string;
   spellbook: WizardSpellbook;
 }) {
+  const navigate = useNavigate();
   const spellsByLevel = useMemo(() => {
     const grouped: Record<number, Spell[]> = {};
     const spellsById = spellbook.spellsById ?? {};
@@ -438,7 +439,7 @@ function SpellbookCard({
                         <Button
                           variant="link"
                           className="h-auto p-0 text-left"
-                          onClick={() => openSpellViewer(spell)}
+                          onClick={() => navigate(PageRoute.SPELL_VIEW(spell.id))}
                         >
                           {spell.name}
                         </Button>

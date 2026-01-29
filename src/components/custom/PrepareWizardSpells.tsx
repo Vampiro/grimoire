@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +18,7 @@ import {
 import { Minus, Plus, Trash2 } from "lucide-react";
 
 import { PageRoute } from "@/pages/PageRoute";
-import { findWizardSpellById, openSpellViewer } from "@/lib/spellLookup";
+import { findWizardSpellById } from "@/lib/spellLookup";
 
 import {
   useWizardPreparedSpellsState,
@@ -32,6 +32,7 @@ import {
  * prepared copy count for each spell.
  */
 export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
+  const navigate = useNavigate();
   const {
     sortedSpells,
     availableSpells,
@@ -217,7 +218,7 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                             className="h-auto p-0 text-left text-sm disabled:text-muted-foreground"
                             onClick={() => {
                               if (!spell) return;
-                              openSpellViewer(spell);
+                              navigate(PageRoute.SPELL_VIEW(spell.id));
                             }}
                             disabled={!spell}
                           >

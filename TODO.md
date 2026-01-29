@@ -1,7 +1,5 @@
 # TODO
 
-- add in ability for the user to save a note to a spell (user-account-wide).
-  - allow them to use something like markdown formatting for this.
 - have a notion of whether a spell is learned or not (so a separate list for the user from spellbooks)
   - user can only prepare learned spells from spellbook
   - allow them to learn/unlearn (in case of mistake)

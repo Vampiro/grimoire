@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAtomValue } from "jotai";
 import {
   Command,
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/command";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { priestSpellsAtom, wizardSpellsAtom } from "@/globalState";
-import { openSpellViewer } from "@/lib/spellLookup";
+import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
 const MAX_RESULTS = 200;
@@ -27,6 +28,7 @@ export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
   const wizardSpells = useAtomValue(wizardSpellsAtom);
   const priestSpells = useAtomValue(priestSpellsAtom);
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   // Autofocus when opened
   useEffect(() => {
@@ -77,7 +79,7 @@ export function SpellSearchCombobox({ closeMenu }: { closeMenu: () => void }) {
     const entry = allSpells.find((s) => s.id === id);
     if (!entry) return;
     closeMenu();
-    openSpellViewer(entry.spell);
+    navigate(PageRoute.SPELL_VIEW(entry.spell.id));
   };
 
   return (

@@ -64,9 +64,6 @@ export const priestSpellDescriptionsAtom = atom<
   Record<string, SpellDescriptionJson>
 >({});
 
-/** Globally selected spell for viewer dialogs. */
-export const activeSpellForViewerAtom = atom<Spell | null>(null);
-
 /** User-authored spell notes keyed by spell id. */
 export const spellNotesAtom = atom<Record<string, SerializedEditorState>>({});
 

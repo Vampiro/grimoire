@@ -2,7 +2,6 @@ import { Spell } from "@/types/Spell";
 import { getResourceCached } from "./resourceCache";
 import { LATEST_RESOURCE_VERSIONS } from "@/resources/latestResourceVersions";
 import {
-  activeSpellForViewerAtom,
   priestSpellDescriptionsAtom,
   priestSpellsAtom,
   store,
@@ -134,14 +133,4 @@ export function findWizardSpellById(id: number): Spell | null {
 
 export function findPriestSpellById(id: number): Spell | null {
   return store.get(priestSpellsAtom).find((s) => s.id === id) ?? null;
-}
-
-/** Opens the global spell viewer dialog for the provided spell. */
-export function openSpellViewer(spell: Spell): void {
-  store.set(activeSpellForViewerAtom, spell);
-}
-
-/** Clears any active spell viewer dialog. */
-export function closeSpellViewer(): void {
-  store.set(activeSpellForViewerAtom, null);
 }
