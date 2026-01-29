@@ -1,7 +1,6 @@
 # TODO
 
 - fix all apple pencil issues
-- add and edit spellbook dialog needs to be mobile friendly
 - temporarily disable/enable a spellbook
 - add in ability for the user to save a note to a spell (user-account-wide).
   - allow them to use something like markdown formatting for thi.
