@@ -5,6 +5,8 @@ export interface WizardSpellbook {
   id: string;
   name: string;
   numberOfPages: number;
+  /** When true, this spellbook is disabled. Defaults to false. */
+  disabled?: boolean;
   /**
    * Set-like map of learned spell ids (MediaWiki page ids).
    * Stored as a set-like map to reduce cross-device conflicts.

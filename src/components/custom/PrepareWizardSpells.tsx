@@ -35,6 +35,7 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
   const {
     sortedSpells,
     availableSpells,
+    missingPreparedSpellIds,
     maxSlots,
     totalPrepared,
     adjustTotal,
@@ -44,6 +45,8 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
     flashSpellId,
     error,
   } = useWizardPreparedSpellsState(props);
+
+  const missingPreparedSet = new Set(missingPreparedSpellIds);
 
   const [addOpen, setAddOpen] = useState(false);
   const spellRowCount = sortedSpells.length;
@@ -141,13 +144,13 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                           Choose {maxSlots - totalPrepared} more to fill slots.
                         </div>
                       )}
-                      {totalPrepared > maxSlots && (
-                        <div className="text-red-500">
-                          Over by {totalPrepared - maxSlots}; remove some.
-                        </div>
-                      )}
+                  {totalPrepared > maxSlots && (
+                    <div className="text-red-500">
+                      Over by {totalPrepared - maxSlots}; remove some.
                     </div>
-                  </th>
+                  )}
+                </div>
+              </th>
                   <th className="py-1 pl-0 pr-2 text-xs font-semibold text-muted-foreground">
                     Spell
                   </th>
@@ -220,6 +223,11 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                           >
                             {spell?.name ?? spellId}
                           </Button>
+                          {missingPreparedSet.has(spellId) && (
+                            <div className="text-xs text-destructive">
+                              Not in any enabled spellbook.
+                            </div>
+                          )}
                         </div>
                       </td>
                     </tr>

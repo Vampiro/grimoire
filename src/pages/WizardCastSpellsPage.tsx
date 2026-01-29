@@ -22,6 +22,7 @@ import {
 import { ChevronDown, RotateCcw } from "lucide-react";
 import { updateWizardPreparedSpellsLevel } from "@/firebase/characters";
 import { useState } from "react";
+import { findWizardSpellById } from "@/lib/spellLookup";
 
 /**
  * Wizard "Cast Spells" page.
@@ -34,6 +35,10 @@ export function WizardCastSpellsPage() {
   const { character, isLoading } = useCharacterById(characterId);
   const [resting, setResting] = useState(false);
   const [confirmRestOpen, setConfirmRestOpen] = useState(false);
+  const [restWarningOpen, setRestWarningOpen] = useState(false);
+  const [restWarnings, setRestWarnings] = useState<
+    Array<{ id: string; name: string; disabledSpellbooks: string[] }>
+  >([]);
 
   if (isLoading) {
     return <div>Loading prepared spells...</div>;
@@ -72,7 +77,71 @@ export function WizardCastSpellsPage() {
     } finally {
       setResting(false);
       setConfirmRestOpen(false);
+      setRestWarningOpen(false);
     }
+  };
+
+  const collectRestWarnings = () => {
+    const spellbooks = Object.values(wizard.spellbooksById ?? {});
+    const enabledSpellIds = new Set<string>();
+    const disabledSpellbooksById = new Map<string, Set<string>>();
+
+    for (const book of spellbooks) {
+      const spellIds = Object.keys(book.spellsById ?? {});
+      if (book.disabled) {
+        for (const spellId of spellIds) {
+          let list = disabledSpellbooksById.get(spellId);
+          if (!list) {
+            list = new Set<string>();
+            disabledSpellbooksById.set(spellId, list);
+          }
+          list.add(book.name);
+        }
+      } else {
+        for (const spellId of spellIds) {
+          enabledSpellIds.add(spellId);
+        }
+      }
+    }
+
+    const warnings = new Map<
+      string,
+      { id: string; name: string; disabledSpellbooks: string[] }
+    >();
+
+    const levelEntries = Object.entries(wizard.preparedSpells ?? {});
+    for (const [, spells] of levelEntries) {
+      for (const [spellId, counts] of Object.entries(spells ?? {})) {
+        const used = counts.used ?? 0;
+        if (used <= 0) continue;
+        if (enabledSpellIds.has(spellId)) continue;
+        if (warnings.has(spellId)) continue;
+        const spellName = findWizardSpellById(Number(spellId))?.name ?? spellId;
+        const disabledSpellbooks = Array.from(
+          disabledSpellbooksById.get(spellId) ?? [],
+        );
+        warnings.set(spellId, {
+          id: spellId,
+          name: spellName,
+          disabledSpellbooks,
+        });
+      }
+    }
+
+    return Array.from(warnings.values()).sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
+  };
+
+  const handleRestClick = () => {
+    if (resting) return;
+    const warnings = collectRestWarnings();
+    if (warnings.length > 0) {
+      setRestWarnings(warnings);
+      setRestWarningOpen(true);
+      return;
+    }
+    setConfirmRestOpen(true);
   };
 
   return (
@@ -109,7 +178,7 @@ export function WizardCastSpellsPage() {
                       <Button
                         size="sm"
                         variant="outline"
-                        onClick={() => setConfirmRestOpen(true)}
+                        onClick={handleRestClick}
                         disabled={resting}
                         className="rounded-r-none"
                       >
@@ -128,6 +197,61 @@ export function WizardCastSpellsPage() {
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
                           <AlertDialogAction onClick={handleRestConfirm}>
                             Rest
+                          </AlertDialogAction>
+                        </div>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                    <AlertDialog
+                      open={restWarningOpen}
+                      onOpenChange={setRestWarningOpen}
+                    >
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Some spells aren't in enabled spellbooks
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            <div className="space-y-2">
+                              <p>
+                                Resting will restore charges for prepared
+                                spells.
+                              </p>
+                              <p className="text-destructive">
+                                The following spells are not in any enabled
+                                spellbook:
+                              </p>
+                              <ul className="list-disc pl-5 space-y-1 text-destructive">
+                                {restWarnings.map((warning) => (
+                                  <li key={warning.id}>
+                                    <span className="font-medium">
+                                      {warning.name}
+                                    </span>
+                                    {warning.disabledSpellbooks.length > 0 ? (
+                                      <span className="text-muted-foreground">
+                                        {" "}
+                                        - only in disabled spellbook
+                                        {warning.disabledSpellbooks.length > 1
+                                          ? "s"
+                                          : ""}
+                                        :{" "}
+                                        {warning.disabledSpellbooks.join(", ")}
+                                      </span>
+                                    ) : (
+                                      <span className="text-muted-foreground">
+                                        {" "}
+                                        - not in any spellbook
+                                      </span>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <div className="flex gap-3 justify-end">
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={handleRestConfirm}>
+                            Rest anyway
                           </AlertDialogAction>
                         </div>
                       </AlertDialogContent>

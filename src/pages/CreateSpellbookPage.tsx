@@ -45,6 +45,7 @@ export function CreateSpellbookPage() {
       await addWizardSpellbook(character.id, {
         name: trimmedName,
         numberOfPages,
+        disabled: false,
       });
 
       navigate(PageRoute.WIZARD_SPELLBOOKS(character.id));

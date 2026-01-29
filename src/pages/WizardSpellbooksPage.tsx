@@ -33,6 +33,7 @@ import {
   addSpellToWizardSpellbook,
   deleteWizardSpellbook,
   removeSpellFromWizardSpellbook,
+  updateWizardSpellbook,
 } from "@/firebase/characters";
 import { useAtomValue } from "jotai";
 import { wizardSpellsAtom } from "@/globalState";
@@ -163,6 +164,7 @@ function SpellbookCard({
   const [addSpellOpen, setAddSpellOpen] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const [toggleError, setToggleError] = useState<string | null>(null);
   const [deleteSpellbookOpen, setDeleteSpellbookOpen] = useState(false);
   const [deleteSpellbookError, setDeleteSpellbookError] = useState<
     string | null
@@ -234,12 +236,34 @@ function SpellbookCard({
     }
   };
 
+  const handleEnabledChange = async (enabled: boolean) => {
+    setToggleError(null);
+    try {
+      await updateWizardSpellbook(characterId, spellbook.id, {
+        disabled: !enabled,
+      });
+    } catch (err) {
+      setToggleError(
+        err instanceof Error
+          ? err.message
+          : "Failed to update spellbook status",
+      );
+    }
+  };
+
+  const isDisabled = spellbook.disabled ?? false;
+
   return (
     <Card>
       <CardHeader>
         <div className="flex justify-between gap-4">
           <div>
-            <CardTitle>{spellbook.name}</CardTitle>
+            <CardTitle>
+              <span className={isDisabled ? "text-muted-foreground" : ""}>
+                {spellbook.name}
+                {isDisabled ? " (disabled)" : ""}
+              </span>
+            </CardTitle>
             <CardDescription className="flex items-center">
               <span
                 className={pageUsage.isOver ? "text-destructive font-bold" : ""}
@@ -314,6 +338,13 @@ function SpellbookCard({
                     </Link>
                   </Button>
                   <div className="flex w-full items-center justify-between rounded-md px-2 py-2 text-sm hover:bg-accent dark:hover:bg-accent/50 font-medium">
+                    <span>Enabled</span>
+                    <Switch
+                      checked={!isDisabled}
+                      onCheckedChange={handleEnabledChange}
+                    />
+                  </div>
+                  <div className="flex w-full items-center justify-between rounded-md px-2 py-2 text-sm hover:bg-accent dark:hover:bg-accent/50 font-medium">
                     <span>Delete Mode</span>
                     <Switch
                       checked={deleteMode}
@@ -368,6 +399,9 @@ function SpellbookCard({
             )}
             {deleteError && (
               <p className="text-sm text-destructive mt-2">{deleteError}</p>
+            )}
+            {toggleError && (
+              <p className="text-sm text-destructive mt-2">{toggleError}</p>
             )}
           </div>
         </div>

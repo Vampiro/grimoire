@@ -26,6 +26,8 @@ interface PreparedSpellsState {
   sortedSpells: PreparedSpellEntries;
   /** Candidate spells from spellbooks not currently prepared at this level. */
   availableSpells: Array<[string, Spell]>;
+  /** Prepared spell ids not present in any enabled spellbook. */
+  missingPreparedSpellIds: string[];
   /** Maximum rested slots available for this level. */
   maxSlots: number;
   /** Remaining casts across all prepared spells at this level. */
@@ -112,9 +114,26 @@ export function useWizardPreparedSpellsState({
 
   const preparedIds = useMemo(() => new Set(Object.keys(spells)), [spells]);
 
+  const enabledSpellIds = useMemo(() => {
+    const enabled = new Set<string>();
+    Object.values(progression.spellbooksById ?? {}).forEach((book) => {
+      if (book.disabled) return;
+      Object.keys(book.spellsById ?? {}).forEach((spellIdKey) => {
+        enabled.add(String(spellIdKey));
+      });
+    });
+    return enabled;
+  }, [progression.spellbooksById]);
+
+  const missingPreparedSpellIds = useMemo(
+    () => Array.from(preparedIds).filter((id) => !enabledSpellIds.has(id)),
+    [preparedIds, enabledSpellIds],
+  );
+
   const availableSpells = useMemo(() => {
     const availableMap = new Map<string, Spell>();
     Object.values(progression.spellbooksById ?? {}).forEach((book) => {
+      if (book.disabled) return;
       const spellsById = book.spellsById ?? {};
       Object.keys(spellsById).forEach((spellIdKey) => {
         const spellId = Number(spellIdKey);
@@ -267,6 +286,7 @@ export function useWizardPreparedSpellsState({
     spells,
     sortedSpells,
     availableSpells,
+    missingPreparedSpellIds,
     maxSlots,
     castable,
     totalPrepared,

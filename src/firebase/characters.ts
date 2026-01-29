@@ -231,6 +231,7 @@ export async function addWizardSpellbook(
     id: spellbook.id ?? shortId(),
     name: spellbook.name,
     numberOfPages: spellbook.numberOfPages,
+    disabled: spellbook.disabled ?? false,
     spellsById: {},
   };
 
@@ -333,6 +334,7 @@ export async function updateWizardSpellbook(
   changes: {
     name?: string;
     numberOfPages?: number;
+    disabled?: boolean;
   },
 ) {
   const uid = getCurrentUserId();
@@ -356,6 +358,10 @@ export async function updateWizardSpellbook(
     updates[
       `class.wizard.spellbooksById.${spellbookId}.numberOfPages`
     ] = changes.numberOfPages;
+  }
+  if (changes.disabled !== undefined) {
+    updates[`class.wizard.spellbooksById.${spellbookId}.disabled`] =
+      changes.disabled;
   }
 
   if (Object.keys(updates).length === 0) return spellbook;
