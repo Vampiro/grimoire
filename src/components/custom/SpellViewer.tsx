@@ -24,6 +24,12 @@ interface SpellViewerProps {
    * and want the body content to omit it to avoid duplication.
    */
   showTitle?: boolean;
+  /** Controls note edit mode when managed by a parent. */
+  noteEditing?: boolean;
+  /** Notifies parent to toggle note edit mode. */
+  onNoteEditingChange?: (editing: boolean) => void;
+  /** Hide the internal Add/Edit Note button. */
+  hideNoteActionButton?: boolean;
 }
 
 /**
@@ -34,12 +40,20 @@ interface SpellViewerProps {
  * @returns The SpellViewer component
  */
 export function SpellViewer(props: SpellViewerProps) {
-  const { spell, showTitle = true } = props;
+  const {
+    spell,
+    showTitle = true,
+    noteEditing,
+    onNoteEditingChange,
+    hideNoteActionButton = false,
+  } = props;
   const user = useAtomValue(userAtom);
   const spellNotes = useAtomValue(spellNotesAtom);
   const note = spellNotes[String(spell.id)];
   const hasNote = !!note && !isSpellNoteEmpty(note);
-  const [isEditingNote, setIsEditingNote] = useState(false);
+  const [internalEditing, setInternalEditing] = useState(false);
+  const isEditingNote = noteEditing ?? internalEditing;
+  const setIsEditingNote = onNoteEditingChange ?? setInternalEditing;
   const [noteState, setNoteState] = useState<SerializedEditorState | undefined>(
     note,
   );
@@ -161,107 +175,110 @@ export function SpellViewer(props: SpellViewerProps) {
         </div>
       )}
 
-      <div className="space-y-2">
-        <div
-          className={
-            hasNote || isEditingNote
-              ? "flex items-center justify-between gap-2"
-              : "flex items-center justify-end"
-          }
-        >
-          {(hasNote || isEditingNote) && (
-            <div className="text-sm font-semibold">User Note</div>
-          )}
-          {!isEditingNote && (
-            <Button
-              type="button"
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                setNoteError(null);
-                setIsEditingNote(true);
-              }}
-            >
-              {hasNote ? "Edit Note" : "Add Note"}
-            </Button>
-          )}
-        </div>
-
-        {isEditingNote && (
-          <div className="space-y-3">
-            <div className="rounded-md border bg-muted/20">
-              <SpellNoteEditor
-                key={note ? JSON.stringify(note) : "empty-note"}
-                initialState={note}
-                onSerializedChange={(next) => setNoteState(next)}
-                onTextChange={setNoteText}
-              />
-            </div>
-
-            {noteError && (
-              <p className="text-sm text-destructive">{noteError}</p>
+      {(hasNote || isEditingNote || !hideNoteActionButton) && (
+        <div className="space-y-2">
+          <div
+            className={
+              hasNote || isEditingNote
+                ? "flex items-center justify-between gap-2"
+                : "flex items-center justify-end"
+            }
+          >
+            {(hasNote || isEditingNote) && (
+              <div className="text-sm font-semibold">User Note</div>
             )}
-
-            <div className="flex justify-end gap-2">
+            {!isEditingNote && !hideNoteActionButton && (
               <Button
                 type="button"
+                size="sm"
                 variant="outline"
                 onClick={() => {
-                  setIsEditingNote(false);
                   setNoteError(null);
-                  setNoteState(note);
-                  setNoteText(getSpellNotePlainText(note));
+                  setIsEditingNote(true);
                 }}
               >
-                Cancel
+                {hasNote ? "Edit Note" : "Add Note"}
               </Button>
-              <Button
-                type="button"
-                onClick={async () => {
-                  if (noteSaving) return;
-                  if (!user) {
-                    setNoteError("You must be logged in to edit spell notes.");
-                    return;
-                  }
+            )}
+          </div>
 
-                  setNoteSaving(true);
-                  setNoteError(null);
+          {isEditingNote && (
+            <div className="space-y-3">
+              <div className="rounded-md border bg-muted/20">
+                <SpellNoteEditor
+                  key={note ? JSON.stringify(note) : "empty-note"}
+                  initialState={note}
+                  autoFocus={true}
+                  onSerializedChange={(next) => setNoteState(next)}
+                  onTextChange={setNoteText}
+                />
+              </div>
 
-                  try {
-                    const trimmed = noteText.trim();
-                    const spellKey = String(spell.id);
+              {noteError && (
+                <p className="text-sm text-destructive">{noteError}</p>
+              )}
 
-                    if (trimmed.length === 0) {
-                      await deleteUserSpellNote(user.uid, spellKey);
-                    } else if (noteState) {
-                      await setUserSpellNote(user.uid, spellKey, noteState);
+              <div className="flex justify-end gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setIsEditingNote(false);
+                    setNoteError(null);
+                    setNoteState(note);
+                    setNoteText(getSpellNotePlainText(note));
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  onClick={async () => {
+                    if (noteSaving) return;
+                    if (!user) {
+                      setNoteError("You must be logged in to edit spell notes.");
+                      return;
                     }
 
-                    setIsEditingNote(false);
-                  } catch (err) {
-                    setNoteError(
-                      err instanceof Error
-                        ? err.message
-                        : "Failed to save spell note",
-                    );
-                  } finally {
-                    setNoteSaving(false);
-                  }
-                }}
-                disabled={noteSaving}
-              >
-                {noteSaving ? "Saving..." : "Save Note"}
-              </Button>
-            </div>
-          </div>
-        )}
+                    setNoteSaving(true);
+                    setNoteError(null);
 
-        {!isEditingNote && hasNote && note && (
-          <div className="rounded-md border bg-muted/20 p-3">
-            <SpellNotePreview note={note} />
-          </div>
-        )}
-      </div>
+                    try {
+                      const trimmed = noteText.trim();
+                      const spellKey = String(spell.id);
+
+                      if (trimmed.length === 0) {
+                        await deleteUserSpellNote(user.uid, spellKey);
+                      } else if (noteState) {
+                        await setUserSpellNote(user.uid, spellKey, noteState);
+                      }
+
+                      setIsEditingNote(false);
+                    } catch (err) {
+                      setNoteError(
+                        err instanceof Error
+                          ? err.message
+                          : "Failed to save spell note",
+                      );
+                    } finally {
+                      setNoteSaving(false);
+                    }
+                  }}
+                  disabled={noteSaving}
+                >
+                  {noteSaving ? "Saving..." : "Save Note"}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {!isEditingNote && hasNote && note && (
+            <div className="rounded-md border bg-muted/20 p-3">
+              <SpellNotePreview note={note} />
+            </div>
+          )}
+        </div>
+      )}
 
       {metadataEntries.length > 0 && (
         <div className="space-y-2">

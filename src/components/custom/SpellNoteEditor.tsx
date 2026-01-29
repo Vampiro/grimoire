@@ -3,6 +3,7 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
@@ -31,12 +32,14 @@ type SpellNoteEditorProps = {
   initialState?: SerializedEditorState;
   onSerializedChange?: (state: SerializedEditorState) => void;
   onTextChange?: (text: string) => void;
+  autoFocus?: boolean;
 };
 
 export function SpellNoteEditor({
   initialState,
   onSerializedChange,
   onTextChange,
+  autoFocus = false,
 }: SpellNoteEditorProps) {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
@@ -86,6 +89,7 @@ export function SpellNoteEditor({
       </div>
 
       <HistoryPlugin />
+      {autoFocus && <AutoFocusPlugin />}
       <ListPlugin />
       <CheckListPlugin />
       <LinkPlugin />
