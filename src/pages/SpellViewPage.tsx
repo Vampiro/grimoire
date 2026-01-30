@@ -4,7 +4,7 @@ import { useAtomValue } from "jotai";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpellViewer } from "@/components/custom/SpellViewer";
-import { spellNotesAtom, userAtom } from "@/globalState";
+import { spellDataStatusAtom, spellNotesAtom, userAtom } from "@/globalState";
 import { findPriestSpellById, findWizardSpellById } from "@/lib/spellLookup";
 import { isSpellNoteEmpty } from "@/lib/spellNotes";
 
@@ -12,13 +12,15 @@ export function SpellViewPage() {
   const { spellId } = useParams();
   const [isEditingNote, setIsEditingNote] = useState(false);
   const user = useAtomValue(userAtom);
+  const spellStatus = useAtomValue(spellDataStatusAtom);
   const spellNotes = useAtomValue(spellNotesAtom);
 
   const spell = useMemo(() => {
+    if (!spellStatus.ready) return null;
     const id = Number(spellId);
     if (!Number.isFinite(id)) return null;
     return findWizardSpellById(id) ?? findPriestSpellById(id);
-  }, [spellId]);
+  }, [spellId, spellStatus.ready]);
 
   const note = spell ? spellNotes[String(spell.id)] : undefined;
   const hasNote = !!note && !isSpellNoteEmpty(note);
@@ -32,6 +34,20 @@ export function SpellViewPage() {
 
   if (!spellId) {
     return <div>Missing spell id.</div>;
+  }
+
+  if (!spellStatus.ready) {
+    return (
+      <div className="text-sm text-muted-foreground">
+        Loading spell data...
+      </div>
+    );
+  }
+
+  if (spellStatus.error) {
+    return (
+      <div className="text-sm text-destructive">{spellStatus.error}</div>
+    );
   }
 
   if (!spell) {
