@@ -20,6 +20,8 @@ import { SpellSlotModifier } from "@/types/ClassProgression";
 import { WizardClassProgression } from "@/types/WizardClassProgression";
 import { getWizardSpellSlots } from "@/lib/spellSlots";
 import { updateWizardProgression } from "@/firebase/characters";
+import { Minus, Plus } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 /**
  * Page wrapper for editing a wizard's spell slots and modifiers.
@@ -288,35 +290,48 @@ function SpellSlotModifiersEditor({
                   </Select>
                 </td>
                 <td className="px-2 py-1 text-left">
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={mod.addBase}
-                    onChange={(e) =>
-                      onChangeModifier(idx, {
-                        addBase: e.target.checked,
-                      })
+                    onCheckedChange={(checked) =>
+                      onChangeModifier(idx, { addBase: checked === true })
                     }
                   />
                 </td>
                 <td className="px-2 py-1 text-left">
-                  <input
-                    type="number"
-                    value={mod.bonus}
-                    onChange={(e) =>
-                      onChangeModifier(idx, {
-                        bonus: Number(e.target.value),
-                      })
-                    }
-                    className="w-24 rounded-md border border-input bg-background px-2 py-1 text-sm"
-                  />
+                  <div className="inline-flex items-center">
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="h-8 w-8 rounded-r-none"
+                      onClick={() =>
+                        onChangeModifier(idx, { bonus: mod.bonus - 1 })
+                      }
+                      title="Decrease bonus"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                    <div className="h-8 min-w-14 px-2 flex items-center justify-center border-y border-input bg-background text-sm font-semibold">
+                      {mod.bonus}
+                    </div>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="h-8 w-8 rounded-l-none"
+                      onClick={() =>
+                        onChangeModifier(idx, { bonus: mod.bonus + 1 })
+                      }
+                      title="Increase bonus"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </td>
                 <td className="px-2 py-1 text-left">
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={mod.requiresSpellLevelAccess}
-                    onChange={(e) =>
+                    onCheckedChange={(checked) =>
                       onChangeModifier(idx, {
-                        requiresSpellLevelAccess: e.target.checked,
+                        requiresSpellLevelAccess: checked === true,
                       })
                     }
                   />
