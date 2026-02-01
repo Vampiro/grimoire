@@ -170,7 +170,7 @@ export function MobileSelect<T>({
         >
           {/* Header */}
           {!isLandscape && (
-            <div className="flex items-center justify-between border-b px-4 py-3">
+            <div className="flex items-center justify-between border-b px-4 py-1">
               <div className="text-sm font-semibold">{title ?? "Select"}</div>
               <DialogClose asChild>
                 <button
@@ -258,22 +258,22 @@ export function MobileSelect<T>({
                   const disabled = isItemDisabled?.(item);
 
                   return (
-                  <CommandItem
-                    key={key}
-                    value={key}
-                    onSelect={handleSelect}
-                    disabled={disabled}
+                    <CommandItem
+                      key={key}
+                      value={key}
+                      onSelect={handleSelect}
+                      disabled={disabled}
                       className={cn(
                         "min-h-[44px]",
                         selected && "bg-accent",
                         disabled && "opacity-60",
                       )}
-                  >
-                    {renderItem ? renderItem(item) : label}
-                  </CommandItem>
-                );
-              })
-            )}
+                    >
+                      {renderItem ? renderItem(item) : label}
+                    </CommandItem>
+                  );
+                })
+              )}
             </CommandList>
           </div>
 
