@@ -81,20 +81,16 @@ export function PreparePriestSpells(props: PriestPreparedSpellsProps) {
                 <CommandList>
                   <CommandEmpty>
                     <div className="space-y-1 px-3 py-2 text-sm text-muted-foreground">
-                      <p>No remaining spells of this level.</p>
-                      <p>
-                        Increase priest level to unlock more slots for level{" "}
-                        {props.spellLevel} spells.
-                      </p>
+                      <p>No remaining spells match your filter.</p>
                     </div>
                   </CommandEmpty>
                   <CommandGroup>
                     {availableSpells.map(([id, spell]) => (
                       <CommandItem
                         key={id}
-                        value={id}
-                        onSelect={(value) => {
-                          handleAddSpell(value);
+                        value={`${spell.name} ${id}`}
+                        onSelect={() => {
+                          handleAddSpell(id);
                           setAddOpen(false);
                         }}
                       >

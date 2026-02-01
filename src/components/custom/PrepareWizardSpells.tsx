@@ -84,7 +84,7 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                 <CommandList>
                   <CommandEmpty>
                     <div className="space-y-1 px-3 py-2 text-sm text-muted-foreground">
-                      <p>No remaining spells of this level.</p>
+                      <p>No remaining spells match your filter.</p>
                       <p>
                         Update your{" "}
                         <Link
@@ -101,9 +101,9 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                     {availableSpells.map(([id, spell]) => (
                       <CommandItem
                         key={id}
-                        value={id}
-                        onSelect={(value) => {
-                          handleAddSpell(value);
+                        value={`${spell.name} ${id}`}
+                        onSelect={() => {
+                          handleAddSpell(id);
                           setAddOpen(false);
                         }}
                       >
@@ -145,13 +145,13 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
                           Choose {maxSlots - totalPrepared} more to fill slots.
                         </div>
                       )}
-                  {totalPrepared > maxSlots && (
-                    <div className="text-red-500">
-                      Over by {totalPrepared - maxSlots}; remove some.
+                      {totalPrepared > maxSlots && (
+                        <div className="text-red-500">
+                          Over by {totalPrepared - maxSlots}; remove some.
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </th>
+                  </th>
                   <th className="py-1 pl-0 pr-2 text-xs font-semibold text-muted-foreground">
                     Spell
                   </th>
