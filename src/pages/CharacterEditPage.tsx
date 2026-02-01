@@ -322,18 +322,13 @@ export function CharacterEditPage() {
                         handleSetClassLevel("wizard", Number(v))
                       }
                     >
-                      <SelectTrigger className="w-24">
-                        <span className="text-sm">
-                          {classLevels.wizard
-                            ? `Level ${classLevels.wizard}`
-                            : "Level"}
-                        </span>
-                        <SelectValue className="sr-only" />
+                      <SelectTrigger className="w-26">
+                        <SelectValue placeholder="Level" />
                       </SelectTrigger>
                       <SelectContent className="w-max min-w-max">
                         {levelOptions.map((lvl) => (
                           <SelectItem key={lvl} value={lvl}>
-                            {lvl}
+                            Level {lvl}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -398,18 +393,13 @@ export function CharacterEditPage() {
                         handleSetClassLevel("priest", Number(v))
                       }
                     >
-                      <SelectTrigger className="w-24">
-                        <span className="text-sm">
-                          {classLevels.priest
-                            ? `Level ${classLevels.priest}`
-                            : "Level"}
-                        </span>
-                        <SelectValue className="sr-only" />
+                      <SelectTrigger className="w-26">
+                        <SelectValue placeholder="Level" />
                       </SelectTrigger>
                       <SelectContent className="w-max min-w-max">
                         {levelOptions.map((lvl) => (
                           <SelectItem key={lvl} value={lvl}>
-                            {lvl}
+                            Level {lvl}
                           </SelectItem>
                         ))}
                       </SelectContent>

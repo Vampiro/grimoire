@@ -101,6 +101,36 @@ export function CharacterPage() {
           </CardContent>
         </Card>
       )}
+
+      {character.class.priest && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Priest Tools</CardTitle>
+            <CardDescription>
+              Quick links and brief guidance for priest-specific pages.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <PageLink
+              title="Cast Spells"
+              description="Track prepared spells by level and mark casts/restores during play."
+              href={PageRoute.PRIEST_CAST(character.id)}
+            />
+            <div className="h-px w-full bg-border" />
+            <PageLink
+              title="Prepare Spells"
+              description="Pick which spells are prepared in each slot, by level."
+              href={PageRoute.PRIEST_PREPARE(character.id)}
+            />
+            <div className="h-px w-full bg-border" />
+            <PageLink
+              title="Manage Spell Slots"
+              description="Adjust slot modifiers and review base vs. modified slot tables."
+              href={PageRoute.PRIEST_SPELL_SLOTS(character.id)}
+            />
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

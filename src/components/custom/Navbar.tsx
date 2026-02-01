@@ -284,6 +284,94 @@ export function Navbar() {
                       )}
                     </div>
 
+                    {selectedCharacter?.class.priest && (
+                      <div className="space-y-2">
+                        <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Priest
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <DrawerClose asChild>
+                            <Link
+                              to={PageRoute.PRIEST_CAST(selectedCharacter.id)}
+                              className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                                isActivePath(
+                                  PageRoute.PRIEST_CAST(selectedCharacter.id),
+                                )
+                                  ? "font-semibold bg-accent text-foreground"
+                                  : ""
+                              }`}
+                            >
+                              {isActivePath(
+                                PageRoute.PRIEST_CAST(selectedCharacter.id),
+                              ) && (
+                                <span
+                                  className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                                  aria-hidden
+                                />
+                              )}
+                              Cast Spells
+                            </Link>
+                          </DrawerClose>
+                          <DrawerClose asChild>
+                            <Link
+                              to={PageRoute.PRIEST_PREPARE(
+                                selectedCharacter.id,
+                              )}
+                              className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                                isActivePath(
+                                  PageRoute.PRIEST_PREPARE(
+                                    selectedCharacter.id,
+                                  ),
+                                )
+                                  ? "font-semibold bg-accent text-foreground"
+                                  : ""
+                              }`}
+                            >
+                              {isActivePath(
+                                PageRoute.PRIEST_PREPARE(
+                                  selectedCharacter.id,
+                                ),
+                              ) && (
+                                <span
+                                  className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                                  aria-hidden
+                                />
+                              )}
+                              Prepare Spells
+                            </Link>
+                          </DrawerClose>
+                          <DrawerClose asChild>
+                            <Link
+                              to={PageRoute.PRIEST_SPELL_SLOTS(
+                                selectedCharacter.id,
+                              )}
+                              className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                                isActivePath(
+                                  PageRoute.PRIEST_SPELL_SLOTS(
+                                    selectedCharacter.id,
+                                  ),
+                                )
+                                  ? "font-semibold bg-accent text-foreground"
+                                  : ""
+                              }`}
+                            >
+                              {isActivePath(
+                                PageRoute.PRIEST_SPELL_SLOTS(
+                                  selectedCharacter.id,
+                                ),
+                              ) && (
+                                <span
+                                  className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                                  aria-hidden
+                                />
+                              )}
+                              Manage Spell Slots
+                            </Link>
+                          </DrawerClose>
+                        </div>
+                      </div>
+                    )}
+
                     {selectedCharacter?.class.wizard && (
                       <div className="space-y-2">
                         <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -453,7 +541,7 @@ export function Navbar() {
                 ) : (
                   <div className="space-y-2 text-sm">
                     <p className="text-muted-foreground">
-                      Sign in to access characters and wizard tools.
+                      Sign in to access characters and class tools.
                     </p>
                     <button
                       className="text-left px-2 py-2 rounded hover:bg-accent cursor-pointer"

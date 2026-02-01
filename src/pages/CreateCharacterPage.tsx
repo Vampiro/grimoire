@@ -159,7 +159,12 @@ export function CreateCharacterPage() {
                 >
                   <Plus className="h-3 w-3" />
                 </SelectTrigger>
-                <SelectContent className="w-max min-w-max">
+                <SelectContent
+                  className="w-max min-w-max"
+                  position="popper"
+                  align="start"
+                  sideOffset={4}
+                >
                   {remainingClasses.length === 0 ? (
                     <div className="space-y-1 px-3 py-3 text-sm">
                       <div className="text-muted-foreground">
@@ -199,18 +204,13 @@ export function CreateCharacterPage() {
                         }))
                       }
                     >
-                      <SelectTrigger className="w-24">
-                        <span className="text-sm">
-                          {classLevels.wizard
-                            ? `Level ${classLevels.wizard}`
-                            : "Level"}
-                        </span>
-                        <SelectValue className="sr-only" />
+                      <SelectTrigger className="w-28">
+                        <SelectValue placeholder="Level" />
                       </SelectTrigger>
                       <SelectContent className="w-max min-w-max">
                         {levelOptions.map((lvl) => (
                           <SelectItem key={lvl} value={lvl}>
-                            {lvl}
+                            Level {lvl}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -238,18 +238,13 @@ export function CreateCharacterPage() {
                         }))
                       }
                     >
-                      <SelectTrigger className="w-24">
-                        <span className="text-sm">
-                          {classLevels.priest
-                            ? `Level ${classLevels.priest}`
-                            : "Level"}
-                        </span>
-                        <SelectValue className="sr-only" />
+                      <SelectTrigger className="w-28">
+                        <SelectValue placeholder="Level" />
                       </SelectTrigger>
                       <SelectContent className="w-max min-w-max">
                         {levelOptions.map((lvl) => (
                           <SelectItem key={lvl} value={lvl}>
-                            {lvl}
+                            Level {lvl}
                           </SelectItem>
                         ))}
                       </SelectContent>

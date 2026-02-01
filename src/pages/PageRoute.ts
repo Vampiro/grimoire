@@ -23,6 +23,15 @@ export const PageRoute = {
   /** Wizard spell slot management page. */
   WIZARD_SPELL_SLOTS: (characterId: string) =>
     `/characters/${characterId}/wizard/edit`,
+  /** Priest "cast" page (tracks remaining casts during a rest). */
+  PRIEST_CAST: (characterId: string) =>
+    `/characters/${characterId}/priest/cast`,
+  /** Priest "prepare" page (choose and adjust prepared spells after resting). */
+  PRIEST_PREPARE: (characterId: string) =>
+    `/characters/${characterId}/priest/prepare`,
+  /** Priest spell slot management page. */
+  PRIEST_SPELL_SLOTS: (characterId: string) =>
+    `/characters/${characterId}/priest/edit`,
   /** Wizard spellbooks page. */
   WIZARD_SPELLBOOKS: (characterId: string) =>
     `/characters/${characterId}/wizard/spellbooks`,

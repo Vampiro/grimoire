@@ -28,6 +28,7 @@ import {
   WizardClassProgression,
   WizardSpellbook,
 } from "../types/WizardClassProgression";
+import { PriestClassProgression } from "../types/PriestClassProgression";
 import { getCurrentUserId } from "./auth";
 import { charactersAtom, store } from "../globalState";
 
@@ -555,6 +556,102 @@ export async function updateWizardPreparedSpellsLevel(
   } as Record<number, Record<string, PreparedSpellCounts>>;
 
   return updateWizardPreparedSpells(characterId, preparedSpells);
+}
+
+/** Update priest level and/or spell slot modifiers. */
+export async function updatePriestProgression(
+  characterId: string,
+  changes: {
+    level?: number;
+    spellSlotModifiers?: SpellSlotModifier[];
+  },
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const priest = existing.class.priest;
+  if (!priest) throw new Error("Character has no priest progression");
+
+  const updatedPriest: PriestClassProgression = {
+    ...priest,
+    level: changes.level ?? priest.level,
+    spellSlotModifiers:
+      changes.spellSlotModifiers ?? priest.spellSlotModifiers ?? [],
+  };
+
+  const updates: Record<string, unknown> = {};
+  if (changes.level !== undefined) {
+    updates["class.priest.level"] = changes.level;
+  }
+  if (changes.spellSlotModifiers !== undefined) {
+    updates["class.priest.spellSlotModifiers"] = changes.spellSlotModifiers;
+  }
+
+  if (Object.keys(updates).length === 0) return updatedPriest;
+
+  await updateCharacterFields(characterId, updates);
+  return updatedPriest;
+}
+
+/**
+ * Replace a priest's prepared spells map and persist to Firestore.
+ */
+export async function updatePriestPreparedSpells(
+  characterId: string,
+  preparedSpells: Record<number, Record<string, PreparedSpellCounts>>,
+) {
+  const uid = getCurrentUserId();
+  if (!uid) throw new Error("Not logged in");
+
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const priest = existing.class.priest;
+  if (!priest) throw new Error("Character has no priest progression");
+
+  const updatedPriest: PriestClassProgression = {
+    ...priest,
+    preparedSpells,
+  };
+
+  await updateCharacterDoc(characterId, {
+    class: {
+      ...existing.class,
+      priest: updatedPriest,
+    },
+  });
+
+  return updatedPriest;
+}
+
+/**
+ * Update prepared spells for a single priest spell level.
+ * Uses the latest character state from the jotai store to avoid stale props
+ * during rapid UI interactions.
+ */
+export async function updatePriestPreparedSpellsLevel(
+  characterId: string,
+  spellLevel: number,
+  levelSpells: Record<string, PreparedSpellCounts>,
+) {
+  const chars = store.get(charactersAtom);
+  const existing = chars.find((c) => c.id === characterId);
+  if (!existing) throw new Error("Character not found");
+
+  const priest = existing.class.priest;
+  if (!priest) throw new Error("Character has no priest progression");
+
+  const preparedSpells = {
+    ...(priest.preparedSpells ?? {}),
+    [spellLevel]: levelSpells,
+  } as Record<number, Record<string, PreparedSpellCounts>>;
+
+  return updatePriestPreparedSpells(characterId, preparedSpells);
 }
 
 /**

@@ -28,6 +28,9 @@ import { WizardPrepareSpellsPage } from "./pages/WizardPrepareSpellsPage";
 import { WizardSpellSlotsPage } from "./pages/WizardSpellSlotsPage";
 import { WizardSpellbooksPage } from "./pages/WizardSpellbooksPage";
 import { WizardKnownSpellsPage } from "./pages/WizardKnownSpellsPage";
+import { PriestCastSpellsPage } from "./pages/PriestCastSpellsPage";
+import { PriestPrepareSpellsPage } from "./pages/PriestPrepareSpellsPage";
+import { PriestSpellSlotsPage } from "./pages/PriestSpellSlotsPage";
 import { Navbar } from "./components/custom/Navbar";
 import { Toaster } from "sonner";
 import { charactersAtom } from "./globalState";
@@ -185,6 +188,18 @@ function App() {
               <Route
                 path="/characters/:characterId/wizard/edit"
                 element={<WizardSpellSlotsPage />}
+              />
+              <Route
+                path="/characters/:characterId/priest/cast"
+                element={<PriestCastSpellsPage />}
+              />
+              <Route
+                path="/characters/:characterId/priest/prepare"
+                element={<PriestPrepareSpellsPage />}
+              />
+              <Route
+                path="/characters/:characterId/priest/edit"
+                element={<PriestSpellSlotsPage />}
               />
               <Route
                 path="/characters/:characterId/wizard/spellbooks"
