@@ -9,7 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dialog } from "@/components/ui/dialog";
 import { MobileFullScreenDialogContent } from "./MobileFullScreenDialogContent";
 
@@ -52,6 +52,28 @@ export function MobileSelect<T>({
   categoryLabel = (cat) => cat,
 }: MobileSelectProps<T>) {
   const [query, setQuery] = useState("");
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const media = window.matchMedia("(orientation: landscape)");
+    const update = () => setIsLandscape(media.matches);
+    update();
+    if (media.addEventListener) {
+      media.addEventListener("change", update);
+    } else {
+      media.addListener(update);
+    }
+    window.addEventListener("resize", update);
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener("change", update);
+      } else {
+        media.removeListener(update);
+      }
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   const normalized = query.trim().toLowerCase();
 
@@ -144,12 +166,19 @@ export function MobileSelect<T>({
           className="flex h-full flex-col bg-background"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b px-4 py-3">
-            <div className="text-sm font-semibold">{title ?? "Select"}</div>
-          </div>
+          {!isLandscape && (
+            <div className="flex items-center justify-between border-b px-4 py-3">
+              <div className="text-sm font-semibold">{title ?? "Select"}</div>
+            </div>
+          )}
 
           {/* Search */}
-          <div className="border-b px-1 md:px-4 py-2">
+          <div
+            className={cn(
+              "border-b px-1 md:px-4 py-2",
+              isLandscape && "pr-12",
+            )}
+          >
             <CommandInput
               autoFocus
               value={query}
