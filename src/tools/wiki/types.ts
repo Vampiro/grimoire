@@ -172,11 +172,21 @@ export interface MediaWikiCategoryMember {
 }
 
 /**
+ * Slimmed-down category member representation stored in cached JSON files.
+ */
+export interface CategoryMemberSummary {
+  /** Numeric MediaWiki page id. */
+  pageid: number;
+  /** Human-readable page title. */
+  title: string;
+}
+
+/**
  * Output file format for cached category members.
  */
 export type CategoryMembersFile = {
   /** Friendly category name (e.g. `Wizard Spells`). */
   categoryName: string;
   /** Complete member list for the category. */
-  categoryMembers: MediaWikiCategoryMember[];
+  categoryMembers: CategoryMemberSummary[];
 };

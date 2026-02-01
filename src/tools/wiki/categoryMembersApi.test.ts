@@ -54,7 +54,10 @@ describe("fetchAllCategoryMembers", () => {
     );
 
     expect(out.categoryName).toBe("Wizard Spells");
-    expect(out.categoryMembers.map((m) => m.title)).toEqual(["A", "B"]);
+    expect(out.categoryMembers).toEqual([
+      { pageid: 1, title: "A" },
+      { pageid: 2, title: "B" },
+    ]);
 
     expect(calls.length).toBe(2);
     expect(calls[0]).toContain("cmtitle=Category%3AWizard_Spells");

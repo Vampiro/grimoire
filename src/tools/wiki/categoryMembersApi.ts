@@ -1,6 +1,6 @@
 import type {
+  CategoryMemberSummary,
   CategoryMembersFile,
-  MediaWikiCategoryMember,
   MediaWikiCategoryMembersResponse,
 } from "./types";
 
@@ -75,7 +75,7 @@ export async function fetchAllCategoryMembers(
   const maxRps = opts.maxRequestsPerSecond ?? 3;
   const minIntervalMs = Math.ceil(1000 / maxRps);
 
-  const members: MediaWikiCategoryMember[] = [];
+  const members: CategoryMemberSummary[] = [];
   let continuation: { cmcontinue?: string; continue?: string } | undefined;
 
   let lastRequestAt = 0;
@@ -114,7 +114,12 @@ export async function fetchAllCategoryMembers(
     const json = (await res.json()) as MediaWikiCategoryMembersResponse;
 
     const pageMembers = json.query?.categorymembers ?? [];
-    members.push(...pageMembers);
+    members.push(
+      ...pageMembers.map(({ pageid, title }) => ({
+        pageid,
+        title,
+      })),
+    );
 
     if (!json.continue?.cmcontinue) {
       break;

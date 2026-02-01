@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 
 import { fetchAdnd2eWikiWikitextByPageIds } from "./pageRevisionsByPageIdApi";
 import type {
+  CategoryMemberSummary,
   CategoryMembersFile,
-  MediaWikiCategoryMember,
   SpellWikitextBatchFile,
 } from "./types";
 
@@ -63,7 +63,7 @@ function formatErrors(errors: ErrorEntry[]): string {
 }
 
 /** Extracts numeric page ids from a category member list. */
-function pickAllPageIds(members: MediaWikiCategoryMember[]): number[] {
+function pickAllPageIds(members: CategoryMemberSummary[]): number[] {
   return members
     .filter((m) => typeof m.pageid === "number")
     .map((m) => m.pageid);
