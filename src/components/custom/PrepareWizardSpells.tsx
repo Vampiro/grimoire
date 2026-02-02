@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,14 @@ import {
  * Allows adding spells from the character's spellbooks and adjusting the rested
  * prepared copy count for each spell.
  */
-export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
+type PrepareWizardSpellsProps = WizardPreparedSpellsProps & {
+  headerRight?: ReactNode;
+};
+
+export function PrepareWizardSpells({
+  headerRight,
+  ...props
+}: PrepareWizardSpellsProps) {
   const navigate = useNavigate();
   const {
     sortedSpells,
@@ -60,11 +67,9 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
 
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-semibold">Level {props.spellLevel}</h3>
-        </div>
-        <div className="flex items-center gap-2">
           <Popover open={addOpen} onOpenChange={setAddOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -116,6 +121,7 @@ export function PrepareWizardSpells(props: WizardPreparedSpellsProps) {
             </PopoverContent>
           </Popover>
         </div>
+        {headerRight && <div className="flex items-center">{headerRight}</div>}
       </div>
 
       <div className="space-y-2">

@@ -282,6 +282,12 @@ export function WizardCastSpellsPage() {
                             Spellbooks
                           </Link>
                           <Link
+                            to={PageRoute.WIZARD_KNOWN_SPELLS(character.id)}
+                            className="rounded px-2 py-1 hover:bg-accent"
+                          >
+                            Known Spells
+                          </Link>
+                          <Link
                             to={PageRoute.WIZARD_SPELL_SLOTS(character.id)}
                             className="rounded px-2 py-1 hover:bg-accent"
                           >

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,7 +31,14 @@ import {
  * Allows adding spells from the priest list and adjusting rested prepared
  * counts for each spell level.
  */
-export function PreparePriestSpells(props: PriestPreparedSpellsProps) {
+type PreparePriestSpellsProps = PriestPreparedSpellsProps & {
+  headerRight?: ReactNode;
+};
+
+export function PreparePriestSpells({
+  headerRight,
+  ...props
+}: PreparePriestSpellsProps) {
   const navigate = useNavigate();
   const {
     sortedSpells,
@@ -57,11 +64,9 @@ export function PreparePriestSpells(props: PriestPreparedSpellsProps) {
 
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-semibold">Level {props.spellLevel}</h3>
-        </div>
-        <div className="flex items-center gap-2">
           <Popover open={addOpen} onOpenChange={setAddOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -103,6 +108,7 @@ export function PreparePriestSpells(props: PriestPreparedSpellsProps) {
             </PopoverContent>
           </Popover>
         </div>
+        {headerRight && <div className="flex items-center">{headerRight}</div>}
       </div>
 
       <div className="space-y-2">
