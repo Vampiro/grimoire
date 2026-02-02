@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAtomValue } from "jotai";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,9 @@ export function SpellViewPage() {
   const user = useAtomValue(userAtom);
   const spellStatus = useAtomValue(spellDataStatusAtom);
   const spellNotes = useAtomValue(spellNotesAtom);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [backTarget, setBackTarget] = useState<string | null>(null);
 
   const spell = useMemo(() => {
     if (!spellStatus.ready) return null;
@@ -31,6 +34,16 @@ export function SpellViewPage() {
       setIsEditingNote(false);
     }
   }, [canEditNotes, isEditingNote]);
+
+  useEffect(() => {
+    const currentPath = `${location.pathname}${location.search}`;
+    const stored = sessionStorage.getItem("lastInternalPath");
+    if (stored && stored !== currentPath) {
+      setBackTarget(stored);
+    } else {
+      setBackTarget(null);
+    }
+  }, [location.pathname, location.search]);
 
   if (!spellId) {
     return <div>Missing spell id.</div>;
@@ -63,16 +76,28 @@ export function SpellViewPage() {
             {spell.spellClass} Spell Level: {spell.level}
           </p>
         </div>
-        {canEditNotes && !isEditingNote && (
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            onClick={() => setIsEditingNote(true)}
-          >
-            {hasNote ? "Edit Note" : "Add Note"}
-          </Button>
-        )}
+        <div className="flex items-center gap-2">
+          {backTarget && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => navigate(backTarget)}
+            >
+              Back
+            </Button>
+          )}
+          {canEditNotes && !isEditingNote && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => setIsEditingNote(true)}
+            >
+              {hasNote ? "Edit Note" : "Add Note"}
+            </Button>
+          )}
+        </div>
       </div>
 
       <Card>
