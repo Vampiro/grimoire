@@ -10,6 +10,7 @@ export const PageRoute = {
   CHARACTERS_NEW: "/characters/new",
   SETTINGS: "/settings",
   TEST: "/test",
+  SPELLS: "/spells",
   /** Character overview page. */
   CHARACTER_VIEW: (characterId: string) => `/characters/${characterId}`,
   /** Character edit page. */

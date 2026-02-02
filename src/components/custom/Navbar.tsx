@@ -582,6 +582,24 @@ export function Navbar() {
                           Characters
                         </Link>
                       </DrawerClose>
+                      <DrawerClose asChild>
+                        <Link
+                          to={PageRoute.SPELLS}
+                          className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                            isActivePath(PageRoute.SPELLS, true)
+                              ? "font-semibold bg-accent text-foreground"
+                              : ""
+                          }`}
+                        >
+                          {isActivePath(PageRoute.SPELLS, true) && (
+                            <span
+                              className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                              aria-hidden
+                            />
+                          )}
+                          Spell Explorer
+                        </Link>
+                      </DrawerClose>
                     </div>
                   </>
                 ) : (
