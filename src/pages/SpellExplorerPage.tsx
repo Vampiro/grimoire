@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAtomValue } from "jotai";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -70,6 +70,8 @@ const SPHERE_SORT = new Map(
   SPHERE_OPTIONS.map((sphere, index) => [sphere, index]),
 );
 
+const DEFAULT_PAGE_SIZE = 20;
+
 type SortKey = "level" | "name" | "class" | "sphere";
 type SortDirection = "asc" | "desc";
 
@@ -84,6 +86,12 @@ const parseLevel = (value: string | null, fallback: number) => {
   if (value === null) return fallback;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? clampLevel(parsed) : fallback;
+};
+
+const parsePositiveInt = (value: string | null, fallback: number) => {
+  if (value === null) return fallback;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
 };
 
 const normalizeSpheres = (values: string[]) =>
@@ -112,6 +120,8 @@ export function SpellExplorerPage() {
     const minParam = searchParams.get("min");
     const maxParam = searchParams.get("max");
     const spheresParam = searchParams.get("spheres");
+    const pageParam = searchParams.get("page");
+    const pageSizeParam = searchParams.get("perPage");
 
     const priest = priestParam ? priestParam !== "0" : true;
     const wizard = wizardParam ? wizardParam !== "0" : true;
@@ -135,6 +145,8 @@ export function SpellExplorerPage() {
       levelMin,
       levelMax,
       spheres,
+      page: parsePositiveInt(pageParam, 1),
+      pageSize: parsePositiveInt(pageSizeParam, DEFAULT_PAGE_SIZE),
     };
   }, [searchParams]);
 
@@ -142,27 +154,52 @@ export function SpellExplorerPage() {
     key: SortKey;
     direction: SortDirection;
   }>({ key: "level", direction: "asc" });
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [levelRange, setLevelRange] = useState<[number, number]>([
     LEVEL_MIN,
     LEVEL_MAX,
   ]);
+  const tableTopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setLevelRange([filters.levelMin, filters.levelMax]);
   }, [filters.levelMin, filters.levelMax]);
 
-  const updateParams = (next: Partial<typeof filters>) => {
+  useEffect(() => {
+    setPage(filters.page);
+    setPageSize(filters.pageSize);
+  }, [filters.page, filters.pageSize]);
+
+  useEffect(() => {
+    const hasPage = searchParams.has("page");
+    const hasPerPage = searchParams.has("perPage");
+    if (hasPage && hasPerPage) return;
+
+    const params = new URLSearchParams(searchParams);
+    if (!hasPage) params.set("page", "1");
+    if (!hasPerPage) params.set("perPage", String(DEFAULT_PAGE_SIZE));
+    setSearchParams(params, { replace: true });
+  }, [searchParams, setSearchParams]);
+
+  const updateParams = (
+    next: Partial<typeof filters> & { page?: number; pageSize?: number },
+  ) => {
     const params = new URLSearchParams(searchParams);
     const priest = next.priest ?? filters.priest;
     const wizard = next.wizard ?? filters.wizard;
     const levelMin = next.levelMin ?? filters.levelMin;
     const levelMax = next.levelMax ?? filters.levelMax;
     const spheres = next.spheres ?? filters.spheres;
+    const nextPage = next.page ?? filters.page;
+    const nextPageSize = next.pageSize ?? filters.pageSize;
 
     params.set("priest", priest ? "1" : "0");
     params.set("wizard", wizard ? "1" : "0");
     params.set("min", String(levelMin));
     params.set("max", String(levelMax));
+    params.set("page", String(nextPage));
+    params.set("perPage", String(nextPageSize));
 
     if (spheres.length > 0) {
       params.set("spheres", normalizeSpheres(spheres).join(","));
@@ -251,6 +288,19 @@ export function SpellExplorerPage() {
     return next;
   }, [filteredSpells, sort]);
 
+  const pageCount = Math.max(1, Math.ceil(sortedSpells.length / pageSize));
+
+  useEffect(() => {
+    if (page > pageCount) {
+      setPage(pageCount);
+    }
+  }, [page, pageCount]);
+
+  const pagedSpells = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return sortedSpells.slice(start, start + pageSize);
+  }, [page, pageSize, sortedSpells]);
+
   const toggleSphere = (sphere: string) => {
     const next = new Set(filters.spheres);
     if (next.has(sphere)) {
@@ -258,7 +308,10 @@ export function SpellExplorerPage() {
     } else {
       next.add(sphere);
     }
-    updateParams({ spheres: normalizeSpheres(Array.from(next)) });
+    updateParams({
+      spheres: normalizeSpheres(Array.from(next)),
+      page: 1,
+    });
   };
 
   const handleSort = (key: SortKey) => {
@@ -271,6 +324,7 @@ export function SpellExplorerPage() {
       }
       return { key, direction: "asc" };
     });
+    updateParams({ page: 1 });
   };
 
   const sortIcon = (key: SortKey) => {
@@ -306,7 +360,7 @@ export function SpellExplorerPage() {
 
       <div className="flex flex-col gap-4 lg:flex-row">
         <Card className="lg:w-72 py-0">
-          <CardContent className="flex h-full flex-col gap-3 pt-4 pb-2">
+          <CardContent className="space-y-4 pt-4 pb-2">
             <div className="space-y-2">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Classes
@@ -317,7 +371,7 @@ export function SpellExplorerPage() {
                   id="filter-priest"
                   checked={filters.priest}
                   onCheckedChange={(checked) =>
-                    updateParams({ priest: checked })
+                    updateParams({ priest: checked, page: 1 })
                   }
                 />
               </div>
@@ -327,7 +381,7 @@ export function SpellExplorerPage() {
                   id="filter-wizard"
                   checked={filters.wizard}
                   onCheckedChange={(checked) =>
-                    updateParams({ wizard: checked })
+                    updateParams({ wizard: checked, page: 1 })
                   }
                 />
               </div>
@@ -357,6 +411,7 @@ export function SpellExplorerPage() {
                   updateParams({
                     levelMin: clampLevel(Math.min(min, max)),
                     levelMax: clampLevel(Math.max(min, max)),
+                    page: 1,
                   });
                 }}
               />
@@ -388,14 +443,15 @@ export function SpellExplorerPage() {
                 </div>
               </ScrollArea>
             </div>
-            <div className="mt-auto text-right text-xs text-muted-foreground">
+            <div className="text-right text-xs text-muted-foreground">
               {sortedSpells.length} spells
             </div>
           </CardContent>
         </Card>
 
         <Card className="flex-1 py-0">
-          <CardContent className="pt-4">
+          <CardContent className="py-4">
+            <div ref={tableTopRef} />
             <Table>
               <TableHeader>
                 <TableRow>
@@ -468,7 +524,7 @@ export function SpellExplorerPage() {
                     </TableCell>
                   </TableRow>
                 )}
-                {sortedSpells.map((spell) => (
+                {pagedSpells.map((spell) => (
                   <TableRow key={`${spell.spellClass}:${spell.id}`}>
                     <TableCell className="whitespace-normal">
                       <Link
@@ -496,6 +552,49 @@ export function SpellExplorerPage() {
                 ))}
               </TableBody>
             </Table>
+            {sortedSpells.length > 0 && (
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 text-sm text-muted-foreground">
+                <div>
+                  Page {page} of {pageCount}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={page <= 1}
+                    onClick={() => {
+                      const nextPage = Math.max(1, page - 1);
+                      setPage(nextPage);
+                      updateParams({ page: nextPage });
+                      tableTopRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={page >= pageCount}
+                    onClick={() => {
+                      const nextPage = Math.min(pageCount, page + 1);
+                      setPage(nextPage);
+                      updateParams({ page: nextPage });
+                      tableTopRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

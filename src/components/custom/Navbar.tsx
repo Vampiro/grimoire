@@ -603,7 +603,7 @@ export function Navbar() {
                     </div>
                   </>
                 ) : (
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-3 text-sm">
                     <p className="text-muted-foreground">
                       Sign in to access characters and class tools.
                     </p>
@@ -617,6 +617,27 @@ export function Navbar() {
                     >
                       Sign in with Google
                     </button>
+                    <div className="h-px bg-border" />
+                    <div className="flex flex-col gap-1">
+                      <DrawerClose asChild>
+                        <Link
+                          to={PageRoute.SPELLS}
+                          className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                            isActivePath(PageRoute.SPELLS, true)
+                              ? "font-semibold bg-accent text-foreground"
+                              : ""
+                          }`}
+                        >
+                          {isActivePath(PageRoute.SPELLS, true) && (
+                            <span
+                              className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                              aria-hidden
+                            />
+                          )}
+                          Spell Explorer
+                        </Link>
+                      </DrawerClose>
+                    </div>
                   </div>
                 )}
               </div>
