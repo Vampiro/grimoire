@@ -70,7 +70,7 @@ const SPHERE_SORT = new Map(
   SPHERE_OPTIONS.map((sphere, index) => [sphere, index]),
 );
 
-const DEFAULT_PAGE_SIZE = 20;
+const DEFAULT_PAGE_SIZE = 15;
 
 type SortKey = "level" | "name" | "class" | "sphere";
 type SortDirection = "asc" | "desc";
