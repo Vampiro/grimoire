@@ -13,7 +13,6 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Dialog, DialogClose, DialogTitle } from "@/components/ui/dialog";
 import { MobileFullScreenDialogContent } from "./MobileFullScreenDialogContent";
 import { X } from "lucide-react";
-import { Select } from "../ui/select";
 import { Description } from "@radix-ui/react-dialog";
 
 type MobileSelectProps<T> = {

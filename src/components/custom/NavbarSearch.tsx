@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
+import { flushSync } from "react-dom";
 
 type SpellSearchEntry = {
   id: string;
@@ -42,10 +43,26 @@ export function NavbarSearch() {
 
   const handleSelect = (entry?: SpellSearchEntry) => {
     if (!entry) return;
-    setOpen(false);
+    /**
+     * Ran into an issue. Under these conditions:
+     *
+     * - On iPad or iPhone in both Chrome or Safari
+     * - Click on a spell to navigate to its page
+     * - Navigate back to the previous page
+     *
+     * The spell search dropdown would appear, but it would be unclickable.
+     *
+     * To counter this I had to:
+     *
+     * - Remove animations from the dialog component.
+     * - Add in the code below.
+     *
+     * Seemed to be some kind of stuck dialog animation that would remain.
+     */
+    flushSync(() => setOpen(false));
     setTimeout(() => {
       navigate(PageRoute.SPELL_VIEW(entry.spell.id));
-    }, 300);
+    }, 50);
   };
 
   return (
