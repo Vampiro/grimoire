@@ -62,6 +62,8 @@ export function MobileSelect<T>({
 }: MobileSelectProps<T>) {
   const [query, setQuery] = useState("");
   const [isLandscape, setIsLandscape] = useState(false);
+  const shouldAutoFocus = autoFocus && !preventAutoFocus && !isLandscape;
+  const shouldPreventAutoFocus = preventAutoFocus || isLandscape;
 
   useEffect(() => {
     if (open) {
@@ -178,7 +180,7 @@ export function MobileSelect<T>({
       <MobileFullScreenDialogContent
         showCloseButton={false}
         onOpenAutoFocus={(event) => {
-          if (preventAutoFocus) {
+          if (shouldPreventAutoFocus) {
             event.preventDefault();
           }
         }}
@@ -208,7 +210,7 @@ export function MobileSelect<T>({
             <div className="flex items-center gap-2">
               <div className="flex-1">
                 <CommandInput
-                  autoFocus={autoFocus}
+                  autoFocus={shouldAutoFocus}
                   value={query}
                   onValueChange={setQuery}
                   placeholder={placeholder}
