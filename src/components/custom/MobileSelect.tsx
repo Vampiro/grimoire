@@ -35,6 +35,7 @@ type MobileSelectProps<T> = {
   renderItem?(item: T): ReactNode;
   autoFocus?: boolean;
   inputRightSlot?: ReactNode;
+  preventAutoFocus?: boolean;
 };
 
 const DEFAULT_LIMIT = 200;
@@ -57,6 +58,7 @@ export function MobileSelect<T>({
   renderItem,
   autoFocus = true,
   inputRightSlot,
+  preventAutoFocus = false,
 }: MobileSelectProps<T>) {
   const [query, setQuery] = useState("");
   const [isLandscape, setIsLandscape] = useState(false);
@@ -173,7 +175,14 @@ export function MobileSelect<T>({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <MobileFullScreenDialogContent showCloseButton={false}>
+      <MobileFullScreenDialogContent
+        showCloseButton={false}
+        onOpenAutoFocus={(event) => {
+          if (preventAutoFocus) {
+            event.preventDefault();
+          }
+        }}
+      >
         <Command
           shouldFilter={false}
           className="flex h-full flex-col bg-background"
@@ -185,7 +194,7 @@ export function MobileSelect<T>({
               <DialogClose asChild>
                 <button
                   type="button"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
+                  className="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
                   aria-label="Close"
                 >
                   <X className="h-4 w-4" />
@@ -211,7 +220,7 @@ export function MobileSelect<T>({
                 <DialogClose asChild>
                   <button
                     type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
+                    className="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
                     aria-label="Close"
                   >
                     <X className="h-4 w-4" />

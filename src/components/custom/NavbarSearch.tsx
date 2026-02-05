@@ -40,11 +40,37 @@ function useIsMobile(): boolean {
   return isMobile;
 }
 
+function useIsLandscape(): boolean {
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(orientation: landscape)");
+    const update = () => setIsLandscape(mq.matches);
+    update();
+    if (mq.addEventListener) {
+      mq.addEventListener("change", update);
+    } else {
+      mq.addListener(update);
+    }
+    return () => {
+      if (mq.removeEventListener) {
+        mq.removeEventListener("change", update);
+      } else {
+        mq.removeListener(update);
+      }
+    };
+  }, []);
+
+  return isLandscape;
+}
+
 export function DndWikiSearch(props: DndWikiSearchProps) {
   const wizardSpells = useAtomValue(wizardSpellsAtom);
   const priestSpells = useAtomValue(priestSpellsAtom);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const isLandscape = useIsLandscape();
 
   const items = useMemo((): SpellSearchEntry[] => {
     const wizardEntries = wizardSpells.map((spell) => ({
@@ -95,6 +121,8 @@ export function DndWikiSearch(props: DndWikiSearchProps) {
       contentOnly
       open={props.open}
       onOpenChange={props.onOpenChange}
+      autoFocus={isMobile && !isLandscape}
+      preventAutoFocus={isMobile && isLandscape}
     />
   );
 

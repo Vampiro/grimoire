@@ -46,6 +46,7 @@ type BaseProps<T> = {
   contentOnly?: boolean;
   autoFocus?: boolean;
   inputRightSlot?: ReactNode;
+  preventAutoFocus?: boolean;
   renderTrigger?: (props: { open: boolean; label: string }) => ReactNode;
 };
 
@@ -87,6 +88,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
     contentOnly = false,
     autoFocus = false,
     inputRightSlot,
+    preventAutoFocus = false,
     renderTrigger,
   } = props;
 
@@ -315,6 +317,7 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
         renderItem={renderItem}
         autoFocus={autoFocus}
         inputRightSlot={inputRightSlot}
+        preventAutoFocus={preventAutoFocus}
       />
     );
 
