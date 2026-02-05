@@ -176,6 +176,7 @@ export function SpellExplorerPage() {
     key: SortKey;
     direction: SortDirection;
   }>({ key: "level", direction: "asc" });
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [favoriteSavingIds, setFavoriteSavingIds] = useState<Set<string>>(
@@ -291,15 +292,11 @@ export function SpellExplorerPage() {
         if (!spell.spheres?.length) return false;
         const majorMatch =
           hasMajorFilter &&
-          spell.spheres.some((sphere) =>
-            filters.majorSpheres.includes(sphere),
-          );
+          spell.spheres.some((sphere) => filters.majorSpheres.includes(sphere));
         const minorMatch =
           hasMinorFilter &&
           spell.level <= 3 &&
-          spell.spheres.some((sphere) =>
-            filters.minorSpheres.includes(sphere),
-          );
+          spell.spheres.some((sphere) => filters.minorSpheres.includes(sphere));
         if (!majorMatch && !minorMatch) return false;
       }
       return true;
@@ -435,145 +432,174 @@ export function SpellExplorerPage() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 lg:flex-row">
-        <Card className="lg:w-72 py-0">
-          <CardContent className="space-y-4 pt-4 pb-2">
-            <div className="space-y-2">
-              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Classes
+      <div
+        className={cn(
+          "flex flex-col gap-4 lg:flex-row",
+          !filtersOpen && "gap-0 lg:gap-4",
+        )}
+      >
+        <div className="space-y-2 lg:w-72">
+          <div className="flex items-start justify-between lg:hidden">
+            <div className="flex flex-col leading-tight">
+              <div className="text-xs font-semibold uppercase tracking-wide">
+                Filters
               </div>
-              <div className="flex items-center justify-between gap-3">
-                <Label htmlFor="filter-priest">Priest</Label>
-                <Switch
-                  id="filter-priest"
-                  checked={filters.priest}
-                  onCheckedChange={(checked) =>
-                    updateParams({ priest: checked, page: 1 })
-                  }
-                />
-              </div>
-              <div className="flex items-center justify-between gap-3">
-                <Label htmlFor="filter-wizard">Wizard</Label>
-                <Switch
-                  id="filter-wizard"
-                  checked={filters.wizard}
-                  onCheckedChange={(checked) =>
-                    updateParams({ wizard: checked, page: 1 })
-                  }
-                />
+              <div className="text-xs">
+                {sortedSpells.length} of {allSpells.length} spells
               </div>
             </div>
-
-            <div className="space-y-2">
-              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Level Range
-              </div>
-              <div className="text-sm text-muted-foreground">
-                {levelRange[0]} to {levelRange[1]}
-              </div>
-              <Slider
-                value={levelRange}
-                min={LEVEL_MIN}
-                max={LEVEL_MAX}
-                step={1}
-                onValueChange={(value) => {
-                  const [min, max] = value;
-                  setLevelRange([
-                    clampLevel(Math.min(min, max)),
-                    clampLevel(Math.max(min, max)),
-                  ]);
-                }}
-                onValueCommit={(value) => {
-                  const [min, max] = value;
-                  updateParams({
-                    levelMin: clampLevel(Math.min(min, max)),
-                    levelMax: clampLevel(Math.max(min, max)),
-                    page: 1,
-                  });
-                }}
-              />
-            </div>
-
-            <div className="space-y-3">
-              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Sphere Access
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>Major (all levels)</span>
-                  <span>
-                    {filters.majorSpheres.length > 0
-                      ? `${filters.majorSpheres.length} selected`
-                      : "Any sphere"}
-                  </span>
-                </div>
-                <ScrollArea className="h-40 rounded-sm border p-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    {SPHERE_OPTIONS.map((sphere) => (
-                      <label
-                        key={`major-${sphere}`}
-                        className="flex items-center gap-2 text-sm"
-                      >
-                        <Checkbox
-                          checked={filters.majorSpheres.includes(sphere)}
-                          onCheckedChange={() => toggleSphere(sphere, "major")}
-                        />
-                        <span>{sphere}</span>
-                      </label>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>Minor (levels 1-3)</span>
-                  <span>
-                    {filters.minorSpheres.length > 0
-                      ? `${filters.minorSpheres.length} selected`
-                      : "Any sphere"}
-                  </span>
-                </div>
-                <ScrollArea className="h-40 rounded-sm border p-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    {SPHERE_OPTIONS.map((sphere) => (
-                      <label
-                        key={`minor-${sphere}`}
-                        className="flex items-center gap-2 text-sm"
-                      >
-                        <Checkbox
-                          checked={filters.minorSpheres.includes(sphere)}
-                          onCheckedChange={() => toggleSphere(sphere, "minor")}
-                        />
-                        <span>{sphere}</span>
-                      </label>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
-            </div>
-
-            {user && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => setFiltersOpen((prev) => !prev)}
+            >
+              {filtersOpen ? "Hide Filters" : "Show Filters"}
+            </Button>
+          </div>
+          <Card className={cn("py-0 lg:block", !filtersOpen && "hidden")}>
+            <CardContent className="space-y-4 pt-4 pb-2">
               <div className="space-y-2">
                 <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  Favorites
+                  Classes
                 </div>
                 <div className="flex items-center justify-between gap-3">
-                  <Label htmlFor="filter-favorites">Favorites only</Label>
+                  <Label htmlFor="filter-priest">Priest</Label>
                   <Switch
-                    id="filter-favorites"
-                    checked={filters.favoritesOnly}
+                    id="filter-priest"
+                    checked={filters.priest}
                     onCheckedChange={(checked) =>
-                      updateParams({ favoritesOnly: checked, page: 1 })
+                      updateParams({ priest: checked, page: 1 })
+                    }
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <Label htmlFor="filter-wizard">Wizard</Label>
+                  <Switch
+                    id="filter-wizard"
+                    checked={filters.wizard}
+                    onCheckedChange={(checked) =>
+                      updateParams({ wizard: checked, page: 1 })
                     }
                   />
                 </div>
               </div>
-            )}
-            <div className="text-right text-xs text-muted-foreground">
-              {sortedSpells.length} spells
-            </div>
-          </CardContent>
-        </Card>
+
+              <div className="space-y-2">
+                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Level Range
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  {levelRange[0]} to {levelRange[1]}
+                </div>
+                <Slider
+                  value={levelRange}
+                  min={LEVEL_MIN}
+                  max={LEVEL_MAX}
+                  step={1}
+                  onValueChange={(value) => {
+                    const [min, max] = value;
+                    setLevelRange([
+                      clampLevel(Math.min(min, max)),
+                      clampLevel(Math.max(min, max)),
+                    ]);
+                  }}
+                  onValueCommit={(value) => {
+                    const [min, max] = value;
+                    updateParams({
+                      levelMin: clampLevel(Math.min(min, max)),
+                      levelMax: clampLevel(Math.max(min, max)),
+                      page: 1,
+                    });
+                  }}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Sphere Access
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Major (all levels)</span>
+                    <span>
+                      {filters.majorSpheres.length > 0
+                        ? `${filters.majorSpheres.length} selected`
+                        : "Any sphere"}
+                    </span>
+                  </div>
+                  <ScrollArea className="h-40 rounded-sm border p-2">
+                    <div className="grid grid-cols-2 gap-2">
+                      {SPHERE_OPTIONS.map((sphere) => (
+                        <label
+                          key={`major-${sphere}`}
+                          className="flex items-center gap-2 text-sm"
+                        >
+                          <Checkbox
+                            checked={filters.majorSpheres.includes(sphere)}
+                            onCheckedChange={() =>
+                              toggleSphere(sphere, "major")
+                            }
+                          />
+                          <span>{sphere}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Minor (levels 1-3)</span>
+                    <span>
+                      {filters.minorSpheres.length > 0
+                        ? `${filters.minorSpheres.length} selected`
+                        : "Any sphere"}
+                    </span>
+                  </div>
+                  <ScrollArea className="h-40 rounded-sm border p-2">
+                    <div className="grid grid-cols-2 gap-2">
+                      {SPHERE_OPTIONS.map((sphere) => (
+                        <label
+                          key={`minor-${sphere}`}
+                          className="flex items-center gap-2 text-sm"
+                        >
+                          <Checkbox
+                            checked={filters.minorSpheres.includes(sphere)}
+                            onCheckedChange={() =>
+                              toggleSphere(sphere, "minor")
+                            }
+                          />
+                          <span>{sphere}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </div>
+              </div>
+
+              {user && (
+                <div className="space-y-2">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Favorites
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <Label htmlFor="filter-favorites">Favorites only</Label>
+                    <Switch
+                      id="filter-favorites"
+                      checked={filters.favoritesOnly}
+                      onCheckedChange={(checked) =>
+                        updateParams({ favoritesOnly: checked, page: 1 })
+                      }
+                    />
+                  </div>
+                </div>
+              )}
+              <div className="text-right text-xs text-muted-foreground hidden lg:block">
+                {sortedSpells.length} of {allSpells.length} spells
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         <Card className="flex-1 py-0">
           <CardContent className="py-4">
