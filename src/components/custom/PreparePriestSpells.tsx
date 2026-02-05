@@ -53,7 +53,7 @@ export function PreparePriestSpells({
     totalPrepared < maxSlots
       ? "text-orange-500"
       : totalPrepared > maxSlots
-      ? "text-red-500"
+        ? "text-red-500"
         : "text-muted-foreground";
 
   const favoriteSet = useMemo(
@@ -241,7 +241,11 @@ export function PreparePriestSpells({
                             className="h-auto p-0 text-left text-sm disabled:text-muted-foreground"
                             onClick={() => {
                               if (!spell) return;
-                              navigate(PageRoute.SPELL_VIEW(spell.id));
+                              navigate(PageRoute.SPELL_VIEW(spell.id), {
+                                state: {
+                                  showBack: true,
+                                },
+                              });
                             }}
                             disabled={!spell}
                           >

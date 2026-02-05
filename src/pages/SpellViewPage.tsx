@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAtomValue } from "jotai";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,11 @@ export function SpellViewPage() {
   const favoriteSpellIds = useAtomValue(favoriteSpellIdsAtom);
   const navigate = useNavigate();
   const [favoriteSaving, setFavoriteSaving] = useState(false);
+  const location = useLocation();
+  const locState = location.state as
+    | undefined
+    | { showBack?: boolean; from?: string };
+  const showBack = !!locState?.showBack;
 
   const spell = useMemo(() => {
     if (!spellStatus.ready) return null;
@@ -73,16 +78,12 @@ export function SpellViewPage() {
 
   if (!spellStatus.ready) {
     return (
-      <div className="text-sm text-muted-foreground">
-        Loading spell data...
-      </div>
+      <div className="text-sm text-muted-foreground">Loading spell data...</div>
     );
   }
 
   if (spellStatus.error) {
-    return (
-      <div className="text-sm text-destructive">{spellStatus.error}</div>
-    );
+    return <div className="text-sm text-destructive">{spellStatus.error}</div>;
   }
 
   if (!spell) {
@@ -136,14 +137,16 @@ export function SpellViewPage() {
               {hasNote ? "Edit Note" : "Add Note"}
             </Button>
           )}
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            onClick={() => navigate(-1)}
-          >
-            Back
-          </Button>
+          {showBack && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => navigate(-1)}
+            >
+              Back
+            </Button>
+          )}
         </div>
       </div>
 

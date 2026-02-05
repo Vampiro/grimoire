@@ -703,6 +703,7 @@ export function SpellExplorerPage() {
                               ? "text-sky-600 dark:text-sky-400"
                               : "text-emerald-600 dark:text-emerald-400",
                           )}
+                          state={{ showBack: true }}
                         >
                           {spell.name}
                         </Link>

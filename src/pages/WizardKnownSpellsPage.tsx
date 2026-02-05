@@ -239,7 +239,11 @@ export function WizardKnownSpellsPage() {
                               variant="link"
                               className="h-auto p-0 text-left"
                               onClick={() =>
-                                navigate(PageRoute.SPELL_VIEW(spell.id))
+                                navigate(PageRoute.SPELL_VIEW(spell.id), {
+                                  state: {
+                                    showBack: true,
+                                  },
+                                })
                               }
                             >
                               {spell.name}

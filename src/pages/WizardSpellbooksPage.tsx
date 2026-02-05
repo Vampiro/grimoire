@@ -36,7 +36,11 @@ import {
   updateWizardSpellbook,
 } from "@/firebase/characters";
 import { useAtomValue } from "jotai";
-import { favoriteSpellIdsAtom, userAtom, wizardSpellsAtom } from "@/globalState";
+import {
+  favoriteSpellIdsAtom,
+  userAtom,
+  wizardSpellsAtom,
+} from "@/globalState";
 import { cn } from "@/lib/utils";
 import { PageRoute } from "./PageRoute";
 
@@ -531,7 +535,11 @@ function SpellbookCard({
                                 "!text-muted-foreground hover:!text-muted-foreground dark:!text-muted-foreground dark:hover:!text-muted-foreground",
                             )}
                             onClick={() =>
-                              navigate(PageRoute.SPELL_VIEW(spell.id))
+                              navigate(PageRoute.SPELL_VIEW(spell.id), {
+                                state: {
+                                  showBack: true,
+                                },
+                              })
                             }
                           >
                             {spell.name}

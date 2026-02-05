@@ -150,7 +150,11 @@ export function CastPriestSpells(props: CastPriestSpellsProps) {
                             className="h-auto p-0 text-left text-sm disabled:text-muted-foreground"
                             onClick={() => {
                               if (!spell) return;
-                              navigate(PageRoute.SPELL_VIEW(spell.id));
+                              navigate(PageRoute.SPELL_VIEW(spell.id), {
+                                state: {
+                                  showBack: true,
+                                },
+                              });
                             }}
                             disabled={!spell}
                           >
