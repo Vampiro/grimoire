@@ -38,6 +38,36 @@ This was built for my own personal use, though you're welcome to use it. If you 
 - Jotai
 - shadcn/ui
 
+## Running the App
+
+### Backend
+
+When the user logs in, they can store things like spells, spellbooks, etc. for a character. These are stored in Firebase.
+
+- Authentication needs to be set up in Firebase.
+- Firestore database rules need to be set up.
+- Environment variables needed for this app (all of which are to connect the frontend to Firebase):
+
+```sh
+VITE_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID
+VITE_FIREBASE_MEASUREMENT_ID
+```
+
+### Data Scripts
+
+These scripts generate the spell data:
+
+- `npm run generate:wiki:category:wizard-spells`: fetch wizard spell category members. This saves Wiki data locally (and is checked in under `/data`).
+- `npm run generate:wiki:category:priest-spells`: fetch priest spell category members. This saves Wiki data locally (and is checked in under `/data`).
+- `npm run generate:wiki:spell-pages:all`: fetch spell page wikitext for wizard + priest. This saves Wiki data locally (and is checked in under `/data`).
+- `npm run generate:wiki:spell-descriptions`: generate spell description JSON from wikitext. This saves the data the app will actually use (and is checked in under `/public`).
+- `npm run generate:wiki:all`: run all wiki generation steps in order.
+
 ## Spell Descriptions
 
 The spell descriptions were sourced from the [AD&D 2e Wiki](https://adnd2e.fandom.com/wiki/Advanced_Dungeons_%26_Dragons_2nd_Edition_Wiki). The descriptions are licensed [CC BY-SA](https://www.fandom.com/licensing). Spells were pulled down and parsed from MediaWiki markup into JSON and HTML. Hopefully not too many mistakes were made in the parsing/transforms! I'm thankful to the folks who have contributed so much to that Wiki. As I went, I tried to fix whatever small issues with spells I found under the alias [CheetahGoesMeow](https://adnd2e.fandom.com/wiki/User:CheetahGoesMeow).
