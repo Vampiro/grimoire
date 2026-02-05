@@ -28,24 +28,6 @@ This was built for my own personal use, though you're welcome to use it. If you 
 - Notes: attach personal notes to spell pages.
 - Settings: user preferences like UI scale.
 
-## Self-Hosting
-
-This project expects Firebase/Firestore to be available for authentication and per-user data.
-
-### Environment Variables
-
-Create a `.env` file with the following:
-
-```
-VITE_FIREBASE_API_KEY
-VITE_FIREBASE_AUTH_DOMAIN
-VITE_FIREBASE_PROJECT_ID
-VITE_FIREBASE_STORAGE_BUCKET
-VITE_FIREBASE_MESSAGING_SENDER_ID
-VITE_FIREBASE_APP_ID
-VITE_FIREBASE_MEASUREMENT_ID
-```
-
 ## Technologies
 
 - React
