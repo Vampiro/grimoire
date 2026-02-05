@@ -58,6 +58,4 @@ VITE_FIREBASE_MEASUREMENT_ID
 
 ## Spell Data Source
 
-Spell descriptions are sourced from the [AD&D 2e Wiki](https://adnd2e.fandom.com/wiki/Advanced_Dungeons_%26_Dragons_2nd_Edition_Wiki). Spell page data was pulled down and parsed from MediaWiki markup into JSON and HTML. Hopefully not too many mistakes were made in the parsing! Definitely thankful to the folks there who have contributed so much to that Wiki. I fixed what I found while making my mini-project under the Fandom alias [CheetahGoesMeow](https://adnd2e.fandom.com/wiki/User:CheetahGoesMeow).
-
-When last I checked, the text on their pages is covered under the [Creative Commons Attribution-Share Alike License 3.0](https://www.fandom.com/licensing).
+The spell descriptions, and only the spell descriptions, are sourced from the [AD&D 2e Wiki](https://adnd2e.fandom.com/wiki/Advanced_Dungeons_%26_Dragons_2nd_Edition_Wiki) and are licensed [CC BY-SA](https://www.fandom.com/licensing). Spell page data was pulled down and parsed from MediaWiki markup into JSON and HTML. Hopefully not too many mistakes were made in the parsing! Definitely thankful to the folks there who have contributed so much to that Wiki. I fixed what I found while making my mini-project under the alias [CheetahGoesMeow](https://adnd2e.fandom.com/wiki/User:CheetahGoesMeow).
