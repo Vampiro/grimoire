@@ -107,7 +107,7 @@ export async function fetchAllCategoryMembers(
 
     if (!res.ok) {
       throw new Error(
-        `MediaWiki categorymembers fetch failed: ${res.status} ${res.statusText}`,
+        `MediaWiki category members fetch failed: ${res.status} ${res.statusText}`,
       );
     }
 
