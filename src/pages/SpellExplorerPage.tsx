@@ -77,6 +77,9 @@ const SPHERE_SORT = new Map(
 );
 
 const DEFAULT_PAGE_SIZE = 15;
+const PAGE_SIZE_MIN = 5;
+const PAGE_SIZE_MAX = 20;
+const PAGE_SIZE_STORAGE_KEY = "spellExplorerPageSize";
 
 type SortKey = "level" | "name" | "class";
 type SortDirection = "asc" | "desc";
@@ -88,6 +91,35 @@ type ExplorerSpell = Spell & {
 const clampLevel = (value: number) =>
   Math.min(LEVEL_MAX, Math.max(LEVEL_MIN, value));
 
+const clampPageSize = (value: number) =>
+  Math.min(PAGE_SIZE_MAX, Math.max(PAGE_SIZE_MIN, value));
+
+const getStoredPageSize = () => {
+  if (typeof window === "undefined") return DEFAULT_PAGE_SIZE;
+  try {
+    const stored = window.localStorage.getItem(PAGE_SIZE_STORAGE_KEY);
+    if (!stored) return DEFAULT_PAGE_SIZE;
+    const parsed = Number(stored);
+    return Number.isFinite(parsed)
+      ? clampPageSize(Math.floor(parsed))
+      : DEFAULT_PAGE_SIZE;
+  } catch {
+    return DEFAULT_PAGE_SIZE;
+  }
+};
+
+const persistPageSize = (value: number) => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(
+      PAGE_SIZE_STORAGE_KEY,
+      String(clampPageSize(value)),
+    );
+  } catch {
+    // ignore storage errors
+  }
+};
+
 const parseLevel = (value: string | null, fallback: number) => {
   if (value === null) return fallback;
   const parsed = Number(value);
@@ -98,6 +130,11 @@ const parsePositiveInt = (value: string | null, fallback: number) => {
   if (value === null) return fallback;
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
+};
+
+const parsePageSize = (value: string | null, fallback: number) => {
+  const parsed = parsePositiveInt(value, fallback);
+  return clampPageSize(parsed);
 };
 
 const normalizeSpheres = (values: string[]) =>
@@ -168,7 +205,7 @@ export function SpellExplorerPage() {
       minorSpheres,
       favoritesOnly: favoritesParam === "1",
       page: parsePositiveInt(pageParam, 1),
-      pageSize: parsePositiveInt(pageSizeParam, DEFAULT_PAGE_SIZE),
+      pageSize: parsePageSize(pageSizeParam, getStoredPageSize()),
     };
   }, [searchParams]);
 
@@ -178,7 +215,10 @@ export function SpellExplorerPage() {
   }>({ key: "level", direction: "asc" });
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
+  const [pageSize, setPageSize] = useState(() => getStoredPageSize());
+  const [pageSizeDraft, setPageSizeDraft] = useState(() =>
+    getStoredPageSize(),
+  );
   const [favoriteSavingIds, setFavoriteSavingIds] = useState<Set<string>>(
     () => new Set(),
   );
@@ -195,7 +235,12 @@ export function SpellExplorerPage() {
   useEffect(() => {
     setPage(filters.page);
     setPageSize(filters.pageSize);
+    setPageSizeDraft(filters.pageSize);
   }, [filters.page, filters.pageSize]);
+
+  useEffect(() => {
+    persistPageSize(pageSize);
+  }, [pageSize]);
 
   useEffect(() => {
     const hasPage = searchParams.has("page");
@@ -204,7 +249,7 @@ export function SpellExplorerPage() {
 
     const params = new URLSearchParams(searchParams);
     if (!hasPage) params.set("page", "1");
-    if (!hasPerPage) params.set("perPage", String(DEFAULT_PAGE_SIZE));
+    if (!hasPerPage) params.set("perPage", String(getStoredPageSize()));
     setSearchParams(params, { replace: true });
   }, [searchParams, setSearchParams]);
 
@@ -220,7 +265,7 @@ export function SpellExplorerPage() {
     const minorSpheres = next.minorSpheres ?? filters.minorSpheres;
     const favoritesOnly = next.favoritesOnly ?? filters.favoritesOnly;
     const nextPage = next.page ?? filters.page;
-    const nextPageSize = next.pageSize ?? filters.pageSize;
+    const nextPageSize = clampPageSize(next.pageSize ?? filters.pageSize);
 
     params.set("priest", priest ? "1" : "0");
     params.set("wizard", wizard ? "1" : "0");
@@ -602,157 +647,189 @@ export function SpellExplorerPage() {
         </div>
 
         <Card className="flex-1 py-0">
-          <CardContent className="py-4">
+          <CardContent className="flex flex-col py-4">
             <div ref={tableTopRef} />
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[88px] whitespace-nowrap">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="h-auto p-0 text-xs font-semibold"
-                      onClick={() => handleSort("class")}
-                    >
-                      Class
-                      <span className="ml-1 inline-flex">
-                        {sortIcon("class")}
-                      </span>
-                    </Button>
-                  </TableHead>
-                  <TableHead className="w-[64px] whitespace-nowrap">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="h-auto p-0 text-xs font-semibold"
-                      onClick={() => handleSort("level")}
-                    >
-                      Level
-                      <span className="ml-1 inline-flex">
-                        {sortIcon("level")}
-                      </span>
-                    </Button>
-                  </TableHead>
-                  <TableHead>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="h-auto p-0 text-xs font-semibold"
-                      onClick={() => handleSort("name")}
-                    >
-                      Name
-                      <span className="ml-1 inline-flex">
-                        {sortIcon("name")}
-                      </span>
-                    </Button>
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {sortedSpells.length === 0 && (
+            <div className="flex-1">
+              <Table>
+                <TableHeader>
                   <TableRow>
-                    <TableCell
-                      colSpan={columnCount}
-                      className="py-6 text-center"
-                    >
-                      <div className="text-sm text-muted-foreground">
-                        No spells match these filters.
-                      </div>
-                    </TableCell>
+                    <TableHead className="w-[88px] whitespace-nowrap">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-auto p-0 text-xs font-semibold"
+                        onClick={() => handleSort("class")}
+                      >
+                        Class
+                        <span className="ml-1 inline-flex">
+                          {sortIcon("class")}
+                        </span>
+                      </Button>
+                    </TableHead>
+                    <TableHead className="w-[64px] whitespace-nowrap">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-auto p-0 text-xs font-semibold"
+                        onClick={() => handleSort("level")}
+                      >
+                        Level
+                        <span className="ml-1 inline-flex">
+                          {sortIcon("level")}
+                        </span>
+                      </Button>
+                    </TableHead>
+                    <TableHead>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-auto p-0 text-xs font-semibold"
+                        onClick={() => handleSort("name")}
+                      >
+                        Name
+                        <span className="ml-1 inline-flex">
+                          {sortIcon("name")}
+                        </span>
+                      </Button>
+                    </TableHead>
                   </TableRow>
-                )}
-                {pagedSpells.map((spell) => (
-                  <TableRow key={`${spell.spellClass}:${spell.id}`}>
-                    <TableCell className="capitalize whitespace-nowrap">
-                      {spell.spellClass}
-                    </TableCell>
-                    <TableCell className="whitespace-nowrap">
-                      {spell.level}
-                    </TableCell>
-                    <TableCell className="whitespace-normal">
-                      <div className="flex items-center gap-2">
-                        {user && (
-                          <Button
-                            type="button"
-                            size="icon"
-                            variant="ghost"
-                            className="h-7 w-7"
-                            onClick={() => handleToggleFavorite(spell.id)}
-                            disabled={favoriteSavingIds.has(String(spell.id))}
-                            aria-label={
-                              favoriteSet.has(String(spell.id))
-                                ? "Remove from favorites"
-                                : "Add to favorites"
-                            }
-                          >
-                            <Star
-                              className={cn(
-                                "h-4 w-4",
+                </TableHeader>
+                <TableBody>
+                  {sortedSpells.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columnCount}
+                        className="py-6 text-center"
+                      >
+                        <div className="text-sm text-muted-foreground">
+                          No spells match these filters.
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {pagedSpells.map((spell) => (
+                    <TableRow key={`${spell.spellClass}:${spell.id}`}>
+                      <TableCell className="capitalize whitespace-nowrap">
+                        {spell.spellClass}
+                      </TableCell>
+                      <TableCell className="whitespace-nowrap">
+                        {spell.level}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
+                        <div className="flex items-center gap-2">
+                          {user && (
+                            <Button
+                              type="button"
+                              size="icon"
+                              variant="ghost"
+                              className="h-7 w-7"
+                              onClick={() => handleToggleFavorite(spell.id)}
+                              disabled={favoriteSavingIds.has(String(spell.id))}
+                              aria-label={
                                 favoriteSet.has(String(spell.id))
-                                  ? "text-yellow-500 fill-yellow-500"
-                                  : "text-muted-foreground",
-                              )}
-                            />
-                          </Button>
-                        )}
-                        <Link
-                          to={PageRoute.SPELL_VIEW(spell.id)}
-                          className={cn(
-                            "font-medium hover:underline",
-                            spell.spellClass === "wizard"
-                              ? "text-sky-600 dark:text-sky-400"
-                              : "text-emerald-600 dark:text-emerald-400",
+                                  ? "Remove from favorites"
+                                  : "Add to favorites"
+                              }
+                            >
+                              <Star
+                                className={cn(
+                                  "h-4 w-4",
+                                  favoriteSet.has(String(spell.id))
+                                    ? "text-yellow-500 fill-yellow-500"
+                                    : "text-muted-foreground",
+                                )}
+                              />
+                            </Button>
                           )}
-                          state={{ showBack: true }}
-                        >
-                          {spell.name}
-                        </Link>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                          <Link
+                            to={PageRoute.SPELL_VIEW(spell.id)}
+                            className={cn(
+                              "font-medium hover:underline",
+                              spell.spellClass === "wizard"
+                                ? "text-sky-600 dark:text-sky-400"
+                                : "text-emerald-600 dark:text-emerald-400",
+                            )}
+                            state={{ showBack: true }}
+                          >
+                            {spell.name}
+                          </Link>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
             {sortedSpells.length > 0 && (
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 text-sm text-muted-foreground">
-                <div>
-                  Page {page} of {pageCount}
+              <div className="mt-auto space-y-3 pt-3 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    Page {page} of {pageCount}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      disabled={page <= 1}
+                      onClick={() => {
+                        const nextPage = Math.max(1, page - 1);
+                        setPage(nextPage);
+                        updateParams({ page: nextPage });
+                        tableTopRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }}
+                    >
+                      Previous
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      disabled={page >= pageCount}
+                      onClick={() => {
+                        const nextPage = Math.min(pageCount, page + 1);
+                        setPage(nextPage);
+                        updateParams({ page: nextPage });
+                        tableTopRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }}
+                    >
+                      Next
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    disabled={page <= 1}
-                    onClick={() => {
-                      const nextPage = Math.max(1, page - 1);
-                      setPage(nextPage);
-                      updateParams({ page: nextPage });
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span>Page size</span>
+                    <span>{pageSizeDraft}</span>
+                  </div>
+                  <Slider
+                    value={[pageSizeDraft]}
+                    min={PAGE_SIZE_MIN}
+                    max={PAGE_SIZE_MAX}
+                    step={1}
+                    onValueChange={(value) => {
+                      const [nextSize] = value;
+                      setPageSizeDraft(clampPageSize(nextSize));
+                    }}
+                    onValueCommit={(value) => {
+                      const [nextSize] = value;
+                      const clampedSize = clampPageSize(nextSize);
+                      setPageSizeDraft(clampedSize);
+                      setPage(1);
+                      setPageSize(clampedSize);
+                      updateParams({ pageSize: clampedSize, page: 1 });
                       tableTopRef.current?.scrollIntoView({
                         behavior: "smooth",
                         block: "start",
                       });
                     }}
-                  >
-                    Previous
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    disabled={page >= pageCount}
-                    onClick={() => {
-                      const nextPage = Math.min(pageCount, page + 1);
-                      setPage(nextPage);
-                      updateParams({ page: nextPage });
-                      tableTopRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      });
-                    }}
-                  >
-                    Next
-                  </Button>
+                  />
                 </div>
               </div>
             )}
