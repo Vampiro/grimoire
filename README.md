@@ -1,109 +1,63 @@
 # AD&D 2e Grimoire
 
-Helps with the organization of spells and spellbooks in AD&D 2e.
+A spellcasting companion for Advanced Dungeons & Dragons 2nd Edition. It helps you browse spells, manage wizard spellbooks, track priest spheres, and handle preparation/casting for characters.
 
-## Wiki Data Pipeline (Build-Time)
+Site: [AD&D 2e Grimoire Website](https://vampiro.github.io/grimoire/)
 
-This repo includes Node-based generator scripts that cache spell data from the AD&D 2e Fandom MediaWiki API so we can work offline and avoid repeatedly hitting the wiki.
+## Disclaimer
 
-### Overview
+This was built for my own personal use, though you're welcome to use it. If you do, keep a backup of your spellbooks on paper in case this project ever goes away. User data is stored in Google Firebase under a free tier (hopefully it stays that way).
 
-1. Fetch the category member lists (wizard + priest spells) via `list=categorymembers`.
-2. Fetch the wikitext for each spell page in batches via `prop=revisions&pageids=...`.
-3. Write the resulting JSON caches under data/wiki (these files are not intended to be served by the app).
+## Features
 
-### Rate Limits / Batch Size
+- Create Character: set name, add wizard/priest classes, and choose priest spheres.
+- Character View: quick overview of a character and their spellcasting status.
+- Character Edit: adjust class levels and details.
+- Spell Explorer: filter the full spell list by class, level range, and spheres.
+- Spell View: full spell details, with favorites and personal notes when signed in.
+- Wizard Spell Slots: Automatically (based on wizard level) keeps track of the number of spell slots you have for each level. Also allows you add persistent modifications to each (or all) levels.
+- Wizard Spellbooks: create books, add/remove spells, and track page limits.
+- Wizard Known Spells: manage the wizard’s learned spell list.
+- Wizard Prepare Spells: fill prepared slots after resting.
+- Wizard Cast Spells: track remaining prepared spells during the day.
+- Priest Spell Slots: Automatically (based on priest level) keeps track of the number of spell slots you have for each level. Also allows you add persistent modifications to each (or all) levels.
+- Priest Castable List: brings up the spell explorer with filters set for your priest's level and spell spheres.
+- Priest Prepare Spells: select prepared spells based on spheres and level.
+- Priest Cast Spells: track remaining prepared spells during the day.
+- Favorites: save spells for quick access across pages.
+- Notes: attach personal notes to spell pages.
+- Settings: user preferences like UI scale.
 
-- Requests are rate-limited to no more than 3 requests/second.
-- Wikitext fetch requests use up to 50 pageids per request.
+## Self-Hosting
 
-### API Examples
+This project expects Firebase/Firestore to be available for authentication and per-user data.
 
-- Category members (wizard spells):
-  - https://adnd2e.fandom.com/api.php?action=query&list=categorymembers&cmtitle=Category:Wizard_Spells&cmlimit=500&cmnamespace=0&format=json
-- Category members (priest spells):
-  - https://adnd2e.fandom.com/api.php?action=query&list=categorymembers&cmtitle=Category:Priest_Spells&cmlimit=500&cmnamespace=0&format=json
+### Environment Variables
 
-- Revisions by page ids (wikitext batch):
-  - https://adnd2e.fandom.com/api.php?action=query&prop=revisions&rvslots=main&rvprop=content&format=json&pageids=1474|41887|41888
+Create a `.env` file with the following:
 
-### Scripts
-
-- Generate category caches:
-  - npm run generate:wiki:category:wizard-spells
-  - npm run generate:wiki:category:priest-spells
-
-- Fetch all spell pages (wizard + priest) in 50-pageid batches:
-  - npm run generate:wiki:spell-pages:all
-
-### Output Files
-
-- Category member lists:
-  - data/wiki/categoryWizardSpells.json
-  - data/wiki/categoryPriestSpells.json
-
-- Wikitext caches (fetched by pageid batches):
-  - data/wiki/wizardSpells.json
-  - data/wiki/priestSpells.json
-
-### Notes
-
-- Generator output strips Unicode format characters (category \p{Cf}) from titles and wikitext (e.g. soft hyphen U+00AD, BOM U+FEFF) to avoid VS Code “invisible unicode characters” warnings and reduce subtle string-matching issues.
-
-### Spell Description Schema and Normalization
-
-- Outputs live at `public/resources/{wizard,priest}SpellDescriptions.json` with shape:
-
-```ts
-type SpellDescription = {
-  metadata: Record<string, string | boolean>; // plain text (booleans for components), infobox-derived (post overrides)
-  sections: Record<string, string>; // HTML, keyed by heading (Introduction fallback)
-  id?: number; // MediaWiki page id for traceability
-};
-type SpellDescriptionsFile = {
-  generatedAt: string;
-  source: "https://adnd2e.fandom.com";
-  categoryName: string;
-  spellsById: Record<string, SpellDescription>; // keyed by MediaWiki pageid
-  errors: Array<{ title: string; message: string }>;
-};
+```
+VITE_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID
+VITE_FIREBASE_MEASUREMENT_ID
 ```
 
-- `id` equals the MediaWiki `pageid` (curid) and is the canonical key for lookups/storage (spellbooks, prepared spells, descriptions).
+## Technologies
 
-- Infobox fields we expect (all optional; others are preserved as-is):
-  - `name`, `source`, `class`, `level`, `school`, `sphere`
-  - `verbal`, `somatic`, `material` (booleans; `true` when present, omitted when "0"/falsey)
-  - `range`, `duration`, `aoe`, `preparationTime`, `castingTime`, `save`, `requirements`
-  - PO: Spells & Magic extras: `subtlety`, `knockdown`, `sensory`, `critical`
-  - Ignored metadata fields (dropped going forward): `category`, `damage`, `materials`, `type`, `difficulty`, `finalDifficulty`, `adjustedDifficulty` (wtf_wikipedia lowercases incoming keys; we normalize but do not persist these)
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Firebase (Auth + Firestore)
+- Jotai
+- shadcn/ui
 
-- Metadata normalization (applied after overrides):
-  - Trim values; replace NBSP with space; collapse newlines to a single space (`source` uses `, `); collapse repeated commas/whitespace; drop trailing commas.
-  - Case-insensitive merge for overrides; override keys replace existing, keeping only one casing.
+## Spell Data Source
 
-- Sections (HTML) normalization:
-  - Headings from wiki sections; default heading `Introduction` when none.
-  - Strip `[[Category:...]]` lines; remove simple `{{...}}` template artifacts (e.g., `{{Highlight: ...}}`).
-  - Normalize HTML via `wtf_wikipedia` with HTML plugin; fallback parser uses escaped text + `<br>`; duplicate headings append with `<br><br>`.
+Spell descriptions are sourced from the [AD&D 2e Wiki](https://adnd2e.fandom.com/wiki/Advanced_Dungeons_%26_Dragons_2nd_Edition_Wiki). Spell page data was pulled down and parsed from MediaWiki markup into JSON and HTML. Hopefully not too many mistakes were made in the parsing! Definitely thankful to the folks there who have contributed so much to that Wiki. I fixed what I found while making my mini-project under the Fandom alias [CheetahGoesMeow](https://adnd2e.fandom.com/wiki/User:CheetahGoesMeow).
 
-- Keys use the MediaWiki `pageid`; if multiple pages share a `pageid`, only the first is kept and later duplicates are reported in `errors`.
-
-- Overrides file: `data/wiki/spellDescriptionOverrides.json`
-  - `excludeTitles`: exact page titles to drop.
-  - `spellsByTitle`: per-page overrides for `metadata` (text) and `sections` (HTML string or plain text with newlines → `<br>`).
-  - Applied after parsing and before disambiguating duplicate spell names.
-
-## Admin
-
-(Admin-only links)
-
-- [Firebase](https://console.firebase.google.com/u/0/project/dnd2e-grimoire/overview)
-
-## Ideas
-
-- Player notes for spells (spell name + spell class) that can simplify instructions or give guidance on rolls.
-  - type SpellNote = { spellName, spellClass, note }
-- Character notes.
-- Spellbook description.
-- Ability to add any spells to a bonus area that are from items and such.
+When last I checked, the text on their pages is covered under the [Creative Commons Attribution-Share Alike License 3.0](https://www.fandom.com/licensing).
