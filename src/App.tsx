@@ -55,7 +55,8 @@ function App() {
 
   useEffect(() => {
     const clamped = Math.min(1.5, Math.max(0.75, uiScale));
-    document.documentElement.style.fontSize = `${clamped * 100}%`;
+    const scaled = clamped * 1.1;
+    document.documentElement.style.fontSize = `${scaled * 100}%`;
   }, [uiScale]);
 
   useEffect(() => {
