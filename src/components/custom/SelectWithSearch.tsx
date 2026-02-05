@@ -96,6 +96,12 @@ export function SelectWithSearch<T>(props: BaseProps<T>) {
   const [query, setQuery] = useState("");
   const isMobile = useIsMobile();
 
+  useEffect(() => {
+    if (open) {
+      setQuery("");
+    }
+  }, [open]);
+
   const normalized = query.trim().toLowerCase();
   const filtered = useMemo(() => {
     const base = normalized

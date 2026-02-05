@@ -62,6 +62,12 @@ export function MobileSelect<T>({
   const [isLandscape, setIsLandscape] = useState(false);
 
   useEffect(() => {
+    if (open) {
+      setQuery("");
+    }
+  }, [open]);
+
+  useEffect(() => {
     if (typeof window === "undefined") return;
     const media = window.matchMedia("(orientation: landscape)");
     const update = () => setIsLandscape(media.matches);

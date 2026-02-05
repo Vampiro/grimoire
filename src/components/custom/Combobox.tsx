@@ -57,7 +57,10 @@ export function Combobox<T>({
 
       <PopoverContent className="p-0 w-[250px]">
         <Command>
-          <CommandInput placeholder="Search..." />
+          <CommandInput
+            placeholder="Search..."
+            className="text-base sm:text-sm"
+          />
           <CommandEmpty>No results found.</CommandEmpty>
 
           <CommandList>
