@@ -50,7 +50,6 @@ export function MobileSelect<T>({
   getLabel,
   getKey,
   isItemDisabled,
-  title,
   placeholder = "Search…",
   emptyText = "No results found.",
   limit = DEFAULT_LIMIT,
@@ -192,22 +191,6 @@ export function MobileSelect<T>({
           shouldFilter={false}
           className="flex h-full flex-col bg-background"
         >
-          {/* Header */}
-          {!isLandscape && (
-            <div className="flex items-center justify-between border-b px-4 py-1">
-              <div className="text-sm font-semibold">{title ?? "Select"}</div>
-              <DialogClose asChild>
-                <button
-                  type="button"
-                  className="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
-                  aria-label="Close"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </DialogClose>
-            </div>
-          )}
-
           {/* Search */}
           <div className="border-b px-1 md:px-4 py-2">
             <div className="flex items-center gap-2">
@@ -221,17 +204,15 @@ export function MobileSelect<T>({
                   rightSlot={inputRightSlot}
                 />
               </div>
-              {isLandscape && (
-                <DialogClose asChild>
-                  <button
-                    type="button"
-                    className="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
-                    aria-label="Close"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </DialogClose>
-              )}
+              <DialogClose asChild>
+                <button
+                  type="button"
+                  className="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
+                  aria-label="Close"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </DialogClose>
             </div>
           </div>
 
@@ -313,3 +294,4 @@ export function MobileSelect<T>({
     </Dialog>
   );
 }
+
