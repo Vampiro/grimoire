@@ -19,10 +19,14 @@ import {
 } from "@/firebase/characters";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { findWizardSpellById } from "@/lib/spellLookup";
+import {
+  getSpellLevelCategoryLabel,
+  getSpellLevelGroup,
+  getSpellLevelSortValue,
+} from "@/lib/spellLevels";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
-const SPELL_LEVELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export function WizardKnownSpellsPage() {
   const { characterId } = useParams();
@@ -53,28 +57,40 @@ export function WizardKnownSpellsPage() {
   }, [wizardProgression?.knownSpellsById, wizardProgression?.spellbooksById]);
 
   const knownSpellsByLevel = useMemo(() => {
-    const grouped: Record<number, Spell[]> = {};
+    const grouped: Record<
+      string,
+      { label: string; sortValue: number; spells: Spell[] }
+    > = {};
     knownSpellIds.forEach((id) => {
       const spellId = Number(id);
       if (!Number.isFinite(spellId)) return;
       const spell = findWizardSpellById(spellId);
       if (!spell) return;
-      grouped[spell.level] = grouped[spell.level] || [];
-      grouped[spell.level].push(spell);
+      const group = getSpellLevelGroup(spell);
+      const entry = grouped[group.key] ?? {
+        label: group.label,
+        sortValue: group.sortValue,
+        spells: [],
+      };
+      entry.spells.push(spell);
+      grouped[group.key] = entry;
     });
 
-    Object.values(grouped).forEach((spells) =>
-      spells.sort((a, b) => a.name.localeCompare(b.name)),
+    Object.values(grouped).forEach((group) =>
+      group.spells.sort((a, b) => a.name.localeCompare(b.name)),
     );
 
-    return grouped;
+    return Object.values(grouped).sort((a, b) => {
+      if (a.sortValue !== b.sortValue) return a.sortValue - b.sortValue;
+      return a.label.localeCompare(b.label, undefined, { sensitivity: "base" });
+    });
   }, [knownSpellIds]);
 
   const sortedWizardSpells = useMemo(
     () =>
       [...allWizardSpells].sort((a, b) =>
-        a.level !== b.level
-          ? a.level - b.level
+        getSpellLevelSortValue(a.level) !== getSpellLevelSortValue(b.level)
+          ? getSpellLevelSortValue(a.level) - getSpellLevelSortValue(b.level)
           : a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
       ),
     [allWizardSpells],
@@ -165,7 +181,7 @@ export function WizardKnownSpellsPage() {
                 onChange={handleAddSpell}
                 placeholder="Search spells..."
                 emptyText="No spells found."
-                getCategory={(spell) => `Level ${spell.level}`}
+                getCategory={(spell) => getSpellLevelCategoryLabel(spell)}
                 categoryLabel={(cat) => cat}
                 open={addSpellOpen}
                 onOpenChange={handleOpenChange}
@@ -211,12 +227,12 @@ export function WizardKnownSpellsPage() {
 
           {hasKnownSpells && (
             <div className="space-y-6">
-              {SPELL_LEVELS.map((lvl) => {
-                const spells = knownSpellsByLevel[lvl] ?? [];
+              {knownSpellsByLevel.map((group) => {
+                const spells = group.spells;
                 if (spells.length === 0) return null;
                 return (
-                  <div key={lvl} className="space-y-2">
-                    <div className="font-semibold text-2xl">Level {lvl}</div>
+                  <div key={group.label} className="space-y-2">
+                    <div className="font-semibold text-2xl">{group.label}</div>
                     <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
                       {spells.map((spell) => (
                         <div

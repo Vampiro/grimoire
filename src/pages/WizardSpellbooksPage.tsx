@@ -28,6 +28,11 @@ import { ChevronDown, Plus, Star, Trash2 } from "lucide-react";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { WizardSpellbook } from "@/types/WizardClassProgression";
 import { findWizardSpellById } from "@/lib/spellLookup";
+import {
+  getSpellLevelCategoryLabel,
+  getSpellLevelGroup,
+  getSpellLevelSortValue,
+} from "@/lib/spellLevels";
 import type { Spell } from "@/types/Spell";
 import {
   addSpellToWizardSpellbook,
@@ -43,8 +48,6 @@ import {
 } from "@/globalState";
 import { cn } from "@/lib/utils";
 import { PageRoute } from "./PageRoute";
-
-const SPELL_LEVELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 /**
  * Wizard spellbooks management page.
@@ -146,16 +149,28 @@ function SpellbookCard({
   const user = useAtomValue(userAtom);
   const favoriteSpellIds = useAtomValue(favoriteSpellIdsAtom);
   const spellsByLevel = useMemo(() => {
-    const grouped: Record<number, Spell[]> = {};
+    const grouped: Record<
+      string,
+      { label: string; sortValue: number; spells: Spell[] }
+    > = {};
     const spellsById = spellbook.spellsById ?? {};
     Object.keys(spellsById).forEach((idKey) => {
       const spellId = Number(idKey);
       const spell = Number.isNaN(spellId) ? null : findWizardSpellById(spellId);
       if (!spell) return;
-      grouped[spell.level] = grouped[spell.level] || [];
-      grouped[spell.level].push(spell);
+      const group = getSpellLevelGroup(spell);
+      const entry = grouped[group.key] ?? {
+        label: group.label,
+        sortValue: group.sortValue,
+        spells: [],
+      };
+      entry.spells.push(spell);
+      grouped[group.key] = entry;
     });
-    return grouped;
+    return Object.values(grouped).sort((a, b) => {
+      if (a.sortValue !== b.sortValue) return a.sortValue - b.sortValue;
+      return a.label.localeCompare(b.label, undefined, { sensitivity: "base" });
+    });
   }, [spellbook.spellsById]);
 
   const spellIdsInBook = useMemo(() => {
@@ -174,7 +189,7 @@ function SpellbookCard({
       const spellId = Number(idKey);
       const spell = Number.isNaN(spellId) ? null : findWizardSpellById(spellId);
       if (spell) {
-        used += spell.level;
+        used += spell.level === -1 ? 0 : spell.level;
       }
     });
     return {
@@ -214,9 +229,9 @@ function SpellbookCard({
 
   const selectableSpells = useMemo(() => {
     return [...allWizardSpells].sort((a, b) => {
-      if (a.level !== b.level) {
-        return a.level - b.level;
-      }
+      const levelCmp =
+        getSpellLevelSortValue(a.level) - getSpellLevelSortValue(b.level);
+      if (levelCmp !== 0) return levelCmp;
       return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
     });
   }, [allWizardSpells]);
@@ -341,7 +356,7 @@ function SpellbookCard({
                 onChange={handleSelectSpell}
                 placeholder="Search spells..."
                 emptyText="No spells found."
-                getCategory={(spell) => `Level ${spell.level}`}
+                getCategory={(spell) => getSpellLevelCategoryLabel(spell)}
                 categoryLabel={(cat) => cat}
                 open={addSpellOpen}
                 onOpenChange={handleOpenChange}
@@ -488,14 +503,14 @@ function SpellbookCard({
       <CardContent className="space-y-4">
         {/* Spells grouped by level */}
         <div className="space-y-6">
-          {SPELL_LEVELS.map((lvl) => {
-            const spells = (spellsByLevel[lvl] || [])
+          {spellsByLevel.map((group) => {
+            const spells = group.spells
               .slice()
               .sort((a, b) => a.name.localeCompare(b.name));
             if (spells.length === 0) return null;
             return (
-              <div key={lvl} className="space-y-2">
-                <div className="font-semibold text-2xl">Level {lvl}</div>
+              <div key={group.label} className="space-y-2">
+                <div className="font-semibold text-2xl">{group.label}</div>
                 <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
                   {spells.map((spell) => {
                     const isKnown = knownSpellIds.has(String(spell.id));

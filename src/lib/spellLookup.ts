@@ -55,6 +55,7 @@ export function loadSpellData(): Promise<void> {
 
     const wizardSpells: Spell[] = wizardList.map((s) => ({
       level: s.level,
+      levelString: s.levelString,
       name: s.name,
       id: s.id,
       wikiLink: s.wikiLink ?? wizardSpellMap[String(s.id)]?.wikiLink,
@@ -63,6 +64,7 @@ export function loadSpellData(): Promise<void> {
 
     const priestSpells: Spell[] = priestList.map((s) => ({
       level: s.level,
+      levelString: s.levelString,
       name: s.name,
       id: s.id,
       wikiLink: s.wikiLink ?? priestSpellMap[String(s.id)]?.wikiLink,

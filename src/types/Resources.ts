@@ -13,7 +13,8 @@ export interface SpellDescriptionMetadata {
   name: string;
   source: string;
   class?: string;
-  level?: string;
+  level?: number | string;
+  levelString?: string;
   school?: string;
   sphereRaw?: string;
   spheres?: string[];
@@ -51,6 +52,7 @@ export interface SpellDescriptionJson {
 /** Minimal spell list entry derived from spell descriptions. */
 export interface SpellListEntry {
   level: number;
+  levelString?: string;
   name: string;
   id: number;
   wikiLink?: string;

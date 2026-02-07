@@ -54,6 +54,7 @@ const allowedMetadataKeys: Array<keyof SpellDescriptionMetadata> = [
   "source",
   "class",
   "level",
+  "levelString",
   "school",
   "sphereRaw",
   "spheres",
@@ -180,6 +181,47 @@ const stripTemplateArtifacts = (html: string): string =>
     .replace(/\}\}/g, "")
     .trim();
 
+const UNKNOWN_LEVEL = -1;
+const LEVEL_STRING_QUEST = "Quest";
+const LEVEL_STRING_UNKNOWN = "Unknown";
+const LEVEL_STRING_TRUE_DWEOMER = "True Dweomer";
+const LEVEL_STRING_SPECIAL = "Special";
+
+const resolveSpellLevel = (
+  rawLevel: SpellDescriptionMetadata["level"],
+  opts: { pageId?: number | null },
+): { level: number; levelString?: string } => {
+  if (opts.pageId === 15010) {
+    return { level: 1, levelString: LEVEL_STRING_SPECIAL };
+  }
+
+  const rawText = String(rawLevel ?? "").trim();
+  if (!rawText) {
+    return { level: UNKNOWN_LEVEL, levelString: LEVEL_STRING_UNKNOWN };
+  }
+
+  const lower = rawText.toLowerCase();
+
+  if (lower === "quest" || lower === "quest spell") {
+    return { level: UNKNOWN_LEVEL, levelString: LEVEL_STRING_QUEST };
+  }
+
+  if (lower.startsWith("true dweomer")) {
+    return { level: 10, levelString: LEVEL_STRING_TRUE_DWEOMER };
+  }
+
+  if (lower === LEVEL_STRING_SPECIAL.toLowerCase()) {
+    return { level: UNKNOWN_LEVEL, levelString: LEVEL_STRING_SPECIAL };
+  }
+
+  const match = rawText.match(/\d+/);
+  if (match) {
+    return { level: Number(match[0]) };
+  }
+
+  return { level: UNKNOWN_LEVEL, levelString: LEVEL_STRING_UNKNOWN };
+};
+
 const METADATA_TABLE_TITLES = new Set([
   "Karsus's Avatar (Wizard Spell)",
   "Karsus's Avatar (Priest Spell)",
@@ -201,8 +243,9 @@ function stripMetadataTablesForTitle(
   };
 }
 
-const parseLevelNumber = (raw: string | undefined): number => {
-  if (!raw) return 0;
+const parseLevelNumber = (raw: string | number | undefined): number => {
+  if (raw === undefined || raw === null || raw === "") return 0;
+  if (typeof raw === "number" && Number.isFinite(raw)) return raw;
   const match = String(raw).match(/\d+/);
   return match ? Number(match[0]) : 0;
 };
@@ -505,6 +548,14 @@ function parseBatchFileToDescriptions(opts: {
       normalizeComponentFlags(mergedMetadata);
     const mergedMetadataNormalized =
       normalizeSphereRaw(mergedMetadataWithComponents);
+    const resolvedLevel = resolveSpellLevel(mergedMetadataNormalized.level, {
+      pageId: page.pageid,
+    });
+    const mergedMetadataWithLevel: SpellDescriptionMetadata = {
+      ...mergedMetadataNormalized,
+      level: resolvedLevel.level,
+      levelString: resolvedLevel.levelString,
+    };
 
     const mergedSectionsRaw = override?.sections
       ? {
@@ -526,7 +577,7 @@ function parseBatchFileToDescriptions(opts: {
     );
     mergedSections = stripMetadataTablesForTitle(title, mergedSections);
 
-    const filteredMetadata = filterKnownMetadata(mergedMetadataNormalized);
+    const filteredMetadata = filterKnownMetadata(mergedMetadataWithLevel);
     const resolvedName = getNameFromMetadata(
       filteredMetadata,
       page.title ?? `pageid:${page.pageid}`,
@@ -603,6 +654,10 @@ function buildSpellListEntries(
     const name = spell.metadata.name || `pageid:${id}`;
     return {
       level,
+      levelString:
+        typeof spell.metadata.levelString === "string"
+          ? spell.metadata.levelString
+          : undefined,
       name,
       id: Number(id),
       wikiLink: spell.wikiLink,

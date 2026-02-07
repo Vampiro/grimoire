@@ -7314,7 +7314,8 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15009"
   },
   {
-    "level": 0,
+    "level": 1,
+    "levelString": "Special",
     "name": "Familiar Enhancer",
     "id": 15010,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15010"
@@ -10764,13 +10765,15 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15635"
   },
   {
-    "level": 0,
+    "level": -1,
+    "levelString": "Unknown",
     "name": "Silence, 15' Radius - Red Wizard (Wizard)",
     "id": 15641,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15641"
   },
   {
-    "level": 0,
+    "level": -1,
+    "levelString": "Unknown",
     "name": "Slaying Wind",
     "id": 15642,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15642"
@@ -11742,7 +11745,8 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15820"
   },
   {
-    "level": 0,
+    "level": -1,
+    "levelString": "Unknown",
     "name": "Stonecase",
     "id": 15822,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15822"
@@ -14628,79 +14632,92 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=21979"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Hurd's Obligation",
     "id": 22553,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22553"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Kolin's Undead Legion",
     "id": 22554,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22554"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Kreb's Flaming Dragon",
     "id": 22555,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22555"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Kreb's Stately Veil",
     "id": 22556,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22556"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Nazzer's Nullification",
     "id": 22557,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22557"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Neja's Irresistible Plea",
     "id": 22558,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22558"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Neja's Toadstool",
     "id": 22559,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22559"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Neja's Unfailing Contempt",
     "id": 22560,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22560"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Ratecliffe's Deadly Finger",
     "id": 22561,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22561"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Tenser's Telling Blow",
     "id": 22562,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22562"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Wulf's Erasure",
     "id": 22563,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22563"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Wulf's Rectification",
     "id": 22564,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22564"
   },
   {
-    "level": 0,
+    "level": 10,
+    "levelString": "True Dweomer",
     "name": "Yunni's Herald",
     "id": 22565,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=22565"

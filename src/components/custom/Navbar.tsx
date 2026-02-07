@@ -159,6 +159,8 @@ export function Navbar() {
     params.set("wizard", "0");
     params.set("min", "0");
     params.set("max", String(Math.min(9, Math.max(0, priest.level))));
+    params.set("quest", "0");
+    params.set("unknown", "0");
     if (priest.majorSpheres?.length) {
       params.set("majorSpheres", priest.majorSpheres.join(","));
     }
@@ -178,6 +180,8 @@ export function Navbar() {
       "wizard",
       "min",
       "max",
+      "quest",
+      "unknown",
       "majorSpheres",
       "minorSpheres",
       "page",
@@ -193,6 +197,8 @@ export function Navbar() {
     if (params.get("min") !== "0") return false;
     const expectedMax = String(Math.min(9, Math.max(0, priest.level)));
     if (params.get("max") !== expectedMax) return false;
+    if (params.get("quest") !== "0") return false;
+    if (params.get("unknown") !== "0") return false;
 
     const normalizeList = (value: string | null) =>
       value

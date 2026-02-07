@@ -32,6 +32,11 @@ import {
   removeUserFavoriteSpell,
 } from "@/firebase/userSettings";
 import { cn } from "@/lib/utils";
+import {
+  getSpellLevelDisplay,
+  isQuestSpell,
+  isUnknownLevelSpell,
+} from "@/lib/spellLevels";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
@@ -149,6 +154,24 @@ const normalizeSpheres = (values: string[]) =>
 const compareStrings = (a: string, b: string) =>
   a.localeCompare(b, undefined, { sensitivity: "base" });
 
+const startsWithDigit = (value: string) => /^\d/.test(value);
+
+const compareSpellLevelDisplay = (a: ExplorerSpell, b: ExplorerSpell) => {
+  const aDisplay = getSpellLevelDisplay(a);
+  const bDisplay = getSpellLevelDisplay(b);
+  const aIsNumber = startsWithDigit(aDisplay);
+  const bIsNumber = startsWithDigit(bDisplay);
+  if (aIsNumber !== bIsNumber) return aIsNumber ? -1 : 1;
+  if (aIsNumber && bIsNumber) {
+    const aValue = Number.parseFloat(aDisplay);
+    const bValue = Number.parseFloat(bDisplay);
+    if (Number.isFinite(aValue) && Number.isFinite(bValue)) {
+      if (aValue !== bValue) return aValue - bValue;
+    }
+  }
+  return aDisplay.localeCompare(bDisplay, undefined, { sensitivity: "base" });
+};
+
 export function SpellExplorerPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const spellStatus = useAtomValue(spellDataStatusAtom);
@@ -168,6 +191,8 @@ export function SpellExplorerPage() {
     const minorParam = searchParams.get("minorSpheres");
     const legacySpheresParam = searchParams.get("spheres");
     const favoritesParam = searchParams.get("fav");
+    const questParam = searchParams.get("quest");
+    const unknownParam = searchParams.get("unknown");
     const pageParam = searchParams.get("page");
     const pageSizeParam = searchParams.get("perPage");
 
@@ -204,10 +229,23 @@ export function SpellExplorerPage() {
       majorSpheres,
       minorSpheres,
       favoritesOnly: favoritesParam === "1",
+      includeQuest: questParam ? questParam !== "0" : true,
+      includeUnknown: unknownParam ? unknownParam !== "0" : true,
       page: parsePositiveInt(pageParam, 1),
       pageSize: parsePageSize(pageSizeParam, getStoredPageSize()),
     };
   }, [searchParams]);
+
+  const isDefaultFilters =
+    filters.priest &&
+    filters.wizard &&
+    filters.levelMin === LEVEL_MIN &&
+    filters.levelMax === LEVEL_MAX &&
+    filters.majorSpheres.length === 0 &&
+    filters.minorSpheres.length === 0 &&
+    !filters.favoritesOnly &&
+    filters.includeQuest &&
+    filters.includeUnknown;
 
   const [sort, setSort] = useState<{
     key: SortKey;
@@ -264,6 +302,8 @@ export function SpellExplorerPage() {
     const majorSpheres = next.majorSpheres ?? filters.majorSpheres;
     const minorSpheres = next.minorSpheres ?? filters.minorSpheres;
     const favoritesOnly = next.favoritesOnly ?? filters.favoritesOnly;
+    const includeQuest = next.includeQuest ?? filters.includeQuest;
+    const includeUnknown = next.includeUnknown ?? filters.includeUnknown;
     const nextPage = next.page ?? filters.page;
     const nextPageSize = clampPageSize(next.pageSize ?? filters.pageSize);
 
@@ -279,6 +319,9 @@ export function SpellExplorerPage() {
     } else {
       params.delete("fav");
     }
+
+    params.set("quest", includeQuest ? "1" : "0");
+    params.set("unknown", includeUnknown ? "1" : "0");
 
     if (majorSpheres.length > 0) {
       params.set("majorSpheres", normalizeSpheres(majorSpheres).join(","));
@@ -326,8 +369,18 @@ export function SpellExplorerPage() {
     return allSpells.filter((spell) => {
       if (!filters.priest && spell.spellClass === "priest") return false;
       if (!filters.wizard && spell.spellClass === "wizard") return false;
-      if (spell.level < filters.levelMin || spell.level > filters.levelMax)
+      if (spell.level === -1) {
+        if (isQuestSpell(spell)) {
+          if (!filters.includeQuest) return false;
+        } else if (isUnknownLevelSpell(spell) && !filters.includeUnknown) {
+          return false;
+        }
+      } else if (
+        spell.level < filters.levelMin ||
+        spell.level > filters.levelMax
+      ) {
         return false;
+      }
       if (filters.favoritesOnly && !favoriteSet.has(String(spell.id))) {
         return false;
       }
@@ -340,6 +393,7 @@ export function SpellExplorerPage() {
           spell.spheres.some((sphere) => filters.majorSpheres.includes(sphere));
         const minorMatch =
           hasMinorFilter &&
+          spell.level >= 0 &&
           spell.level <= 3 &&
           spell.spheres.some((sphere) => filters.minorSpheres.includes(sphere));
         if (!majorMatch && !minorMatch) return false;
@@ -356,7 +410,7 @@ export function SpellExplorerPage() {
       let cmp = 0;
       switch (sort.key) {
         case "level":
-          cmp = a.level - b.level;
+          cmp = compareSpellLevelDisplay(a, b);
           break;
         case "name":
           cmp = compareStrings(a.name, b.name);
@@ -372,7 +426,7 @@ export function SpellExplorerPage() {
         return cmp * direction;
       }
 
-      const levelCmp = a.level - b.level;
+      const levelCmp = compareSpellLevelDisplay(a, b);
       if (levelCmp !== 0) return levelCmp;
 
       return compareStrings(a.name, b.name);
@@ -479,7 +533,7 @@ export function SpellExplorerPage() {
 
       <div
         className={cn(
-          "flex flex-col gap-4 lg:flex-row",
+          "flex flex-col gap-4 lg:flex-row lg:items-start",
           !filtersOpen && "gap-0 lg:gap-4",
         )}
       >
@@ -558,6 +612,30 @@ export function SpellExplorerPage() {
                     });
                   }}
                 />
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between gap-3">
+                    <Label htmlFor="filter-quest">Include Quest Spells</Label>
+                    <Switch
+                      id="filter-quest"
+                      checked={filters.includeQuest}
+                      onCheckedChange={(checked) =>
+                        updateParams({ includeQuest: checked, page: 1 })
+                      }
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <Label htmlFor="filter-unknown">
+                      Include Spells of Unknown Level
+                    </Label>
+                    <Switch
+                      id="filter-unknown"
+                      checked={filters.includeUnknown}
+                      onCheckedChange={(checked) =>
+                        updateParams({ includeUnknown: checked, page: 1 })
+                      }
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -639,6 +717,31 @@ export function SpellExplorerPage() {
                   </div>
                 </div>
               )}
+              <div className="pt-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  disabled={isDefaultFilters}
+                  onClick={() =>
+                    updateParams({
+                      priest: true,
+                      wizard: true,
+                      levelMin: LEVEL_MIN,
+                      levelMax: LEVEL_MAX,
+                      majorSpheres: [],
+                      minorSpheres: [],
+                      favoritesOnly: false,
+                      includeQuest: true,
+                      includeUnknown: true,
+                      page: 1,
+                    })
+                  }
+                >
+                  Clear Filters
+                </Button>
+              </div>
               <div className="text-right text-xs text-muted-foreground hidden lg:block">
                 {sortedSpells.length} of {allSpells.length} spells
               </div>
@@ -713,7 +816,7 @@ export function SpellExplorerPage() {
                         {spell.spellClass}
                       </TableCell>
                       <TableCell className="whitespace-nowrap">
-                        {spell.level}
+                        {getSpellLevelDisplay(spell)}
                       </TableCell>
                       <TableCell className="whitespace-normal">
                         <div className="flex items-center gap-2">

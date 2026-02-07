@@ -4,6 +4,8 @@
 export interface Spell {
   /** Level of the spell. */
   level: number;
+  /** Optional display label for non-standard spell levels. */
+  levelString?: string;
   /** Name of the spell. */
   name: string;
   /** MediaWiki page id for the spell description. */

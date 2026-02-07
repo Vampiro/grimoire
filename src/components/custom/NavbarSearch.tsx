@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 import { flushSync } from "react-dom";
+import { getSpellLevelDisplay } from "@/lib/spellLevels";
 
 type SpellSearchEntry = {
   id: string;
@@ -25,14 +26,14 @@ export function NavbarSearch() {
     const wizardEntries = wizardSpells.map((spell) => ({
       id: `wizard:${String(spell.id)}`,
       name: spell.name,
-      meta: `Wizard Level ${spell.level}`,
+      meta: `Wizard Level ${getSpellLevelDisplay(spell)}`,
       spell,
     }));
 
     const priestEntries = priestSpells.map((spell) => ({
       id: `priest:${String(spell.id)}`,
       name: spell.name,
-      meta: `Priest Level ${spell.level}`,
+      meta: `Priest Level ${getSpellLevelDisplay(spell)}`,
       spell,
     }));
 

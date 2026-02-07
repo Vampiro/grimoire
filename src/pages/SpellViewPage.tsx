@@ -12,6 +12,7 @@ import {
 } from "@/globalState";
 import { findPriestSpellById, findWizardSpellById } from "@/lib/spellLookup";
 import { isSpellNoteEmpty } from "@/lib/spellNotes";
+import { getSpellLevelDisplay } from "@/lib/spellLevels";
 import {
   addUserFavoriteSpell,
   removeUserFavoriteSpell,
@@ -123,7 +124,7 @@ export function SpellViewPage() {
             )}
           </h1>
           <p className="text-muted-foreground text-sm capitalize">
-            {spell.spellClass} Spell Level: {spell.level}
+            {spell.spellClass} Spell Level: {getSpellLevelDisplay(spell)}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2 lg:justify-end">

@@ -101,7 +101,7 @@ export function CharacterPage() {
                 character.class.priest.minorSpheres?.length
                   ? `&minorSpheres=${character.class.priest.minorSpheres.join(",")}`
                   : ""
-              }`}
+              }&quest=0&unknown=0`}
             />
             <div className="h-px w-full bg-border" />
             <PageLink

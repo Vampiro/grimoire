@@ -10,6 +10,7 @@ import { isSpellNoteEmpty, getSpellNotePlainText } from "@/lib/spellNotes";
 import { SpellNotePreview } from "@/components/custom/SpellNotePreview";
 import { SpellNoteEditor } from "@/components/custom/SpellNoteEditor";
 import { deleteUserSpellNote, setUserSpellNote } from "@/firebase/userSettings";
+import { getSpellLevelDisplay } from "@/lib/spellLevels";
 import "./SpellViewer.css";
 
 interface SpellViewerProps {
@@ -170,7 +171,7 @@ export function SpellViewer(props: SpellViewerProps) {
           </div>
           {/* Small subtitle line requested for both dialog + inline viewer. */}
           <div className="text-sm text-muted-foreground capitalize">
-            {spell.spellClass} Spell Level: {spell.level}
+            {spell.spellClass} Spell Level: {getSpellLevelDisplay(spell)}
           </div>
         </div>
       )}
