@@ -180,6 +180,27 @@ const stripTemplateArtifacts = (html: string): string =>
     .replace(/\}\}/g, "")
     .trim();
 
+const METADATA_TABLE_TITLES = new Set([
+  "Karsus's Avatar (Wizard Spell)",
+  "Karsus's Avatar (Priest Spell)",
+]);
+
+const stripLeadingMetadataTable = (html: string): string =>
+  html.replace(/<table[\s\S]*?<\/table>/i, "").trim();
+
+function stripMetadataTablesForTitle(
+  title: string,
+  sections: Record<string, string>,
+): Record<string, string> {
+  if (!METADATA_TABLE_TITLES.has(title)) return sections;
+  const intro = sections.Introduction;
+  if (!intro) return sections;
+  return {
+    ...sections,
+    Introduction: stripLeadingMetadataTable(intro),
+  };
+}
+
 const parseLevelNumber = (raw: string | undefined): number => {
   if (!raw) return 0;
   const match = String(raw).match(/\d+/);
@@ -497,12 +518,13 @@ function parseBatchFileToDescriptions(opts: {
         }
       : parsed.sections;
 
-    const mergedSections = Object.fromEntries(
+    let mergedSections = Object.fromEntries(
       Object.entries(mergedSectionsRaw).map(([k, v]) => [
         k,
         stripTemplateArtifacts(v),
       ]),
     );
+    mergedSections = stripMetadataTablesForTitle(title, mergedSections);
 
     const filteredMetadata = filterKnownMetadata(mergedMetadataNormalized);
     const resolvedName = getNameFromMetadata(

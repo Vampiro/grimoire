@@ -7,7 +7,7 @@
 export const LATEST_RESOURCE_VERSIONS = {
   priestSpellDescriptions: 17,
   priestSpells: 4,
-  wizardSpellDescriptions: 13,
+  wizardSpellDescriptions: 14,
   wizardSpells: 5,
 } as const;
 
