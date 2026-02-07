@@ -58,11 +58,7 @@ function useIsMobile(): boolean {
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px), (max-height: 800px)");
     const update = () => {
-      const viewportHeight =
-        window.visualViewport?.height ?? window.innerHeight;
-      setIsMobile(
-        mq.matches || navigator.maxTouchPoints > 0 || viewportHeight < 1000
-      );
+      setIsMobile(mq.matches || navigator.maxTouchPoints > 0);
     };
     update();
     mq.addEventListener("change", update);
