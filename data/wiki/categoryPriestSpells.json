@@ -526,6 +526,10 @@
       "title": "Battletide (Priest Spell)"
     },
     {
+      "pageid": 43460,
+      "title": "Bear Fruit (Priest Spell)"
+    },
+    {
       "pageid": 17450,
       "title": "Bear Hug (Priest Spell)"
     },
@@ -796,6 +800,10 @@
     {
       "pageid": 17486,
       "title": "Brightmantle (Priest Spell)"
+    },
+    {
+      "pageid": 43462,
+      "title": "Bronzewood Weapon (Priest Spell)"
     },
     {
       "pageid": 17488,
@@ -1480,6 +1488,10 @@
     {
       "pageid": 17689,
       "title": "Create Mask (Priest Spell)"
+    },
+    {
+      "pageid": 43496,
+      "title": "Create Memento Mori (Priest Spell)"
     },
     {
       "pageid": 17690,
@@ -2594,6 +2606,10 @@
       "title": "Fertility (Priest Spell)"
     },
     {
+      "pageid": 43448,
+      "title": "Fertility - Dragon (Priest Spell)"
+    },
+    {
       "pageid": 20775,
       "title": "Find a Stray (Orison)"
     },
@@ -3020,6 +3036,10 @@
     {
       "pageid": 21100,
       "title": "Haelyn's Wisdom (Quest Spell)"
+    },
+    {
+      "pageid": 43454,
+      "title": "Hail of Thorns (Priest Spell)"
     },
     {
       "pageid": 20229,
@@ -3666,6 +3686,10 @@
       "title": "Leadership (Priest Spell)"
     },
     {
+      "pageid": 43457,
+      "title": "Leaf Ears (Priest Spell)"
+    },
+    {
       "pageid": 20322,
       "title": "Leaf Into Dagger (Priest Spell)"
     },
@@ -4278,6 +4302,10 @@
       "title": "Nature's Eyes (Priest Spell)"
     },
     {
+      "pageid": 43456,
+      "title": "Nature's Mantilla (Priest Spell)"
+    },
+    {
       "pageid": 22557,
       "title": "Nazzer's Nullification (True Dweomer)"
     },
@@ -4474,8 +4502,16 @@
       "title": "Pillar of Borogar (Priest Spell)"
     },
     {
+      "pageid": 43455,
+      "title": "Pinespear (Priest Spell)"
+    },
+    {
       "pageid": 20427,
       "title": "Pixie Dust (Priest Spell)"
+    },
+    {
+      "pageid": 43461,
+      "title": "Placate Plants (Priest Spell)"
     },
     {
       "pageid": 20428,
@@ -5184,6 +5220,14 @@
     {
       "pageid": 20518,
       "title": "Rockburst (Priest Spell)"
+    },
+    {
+      "pageid": 43463,
+      "title": "Rooted Wrath (Priest Spell)"
+    },
+    {
+      "pageid": 43458,
+      "title": "Rooting (Priest Spell)"
     },
     {
       "pageid": 13315,
@@ -6388,6 +6432,10 @@
     {
       "pageid": 871,
       "title": "Thief's Lament (Priest Spell)"
+    },
+    {
+      "pageid": 43459,
+      "title": "Thorn Growth (Priest Spell)"
     },
     {
       "pageid": 13259,

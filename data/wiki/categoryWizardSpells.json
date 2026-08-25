@@ -2,6 +2,10 @@
   "categoryName": "Wizard Spells",
   "categoryMembers": [
     {
+      "pageid": 43418,
+      "title": "A Summons One Dares Not Deny (Wizard Spell)"
+    },
+    {
       "pageid": 1474,
       "title": "Abi-Dalzim's Horrid Wilting (Wizard Spell)"
     },
@@ -64,10 +68,6 @@
     {
       "pageid": 13809,
       "title": "Acid Rain (Wizard Spell)"
-    },
-    {
-      "pageid": 13810,
-      "title": "Acid Rain - Red Wizard (Wizard Spell)"
     },
     {
       "pageid": 1434,
@@ -252,6 +252,10 @@
     {
       "pageid": 13370,
       "title": "Amplify (Wizard Spell)"
+    },
+    {
+      "pageid": 43415,
+      "title": "Amplify Mystical Endeavors (Wizard Spell)"
     },
     {
       "pageid": 13840,
@@ -962,6 +966,10 @@
       "title": "Breach Defenses (Wizard Spell)"
     },
     {
+      "pageid": 43412,
+      "title": "Breach the Beast's Defenses (Wizard Spell)"
+    },
+    {
       "pageid": 13952,
       "title": "Breath of Bewilderment (Wizard Spell)"
     },
@@ -1068,6 +1076,14 @@
     {
       "pageid": 14212,
       "title": "Call Spirit (Wizard Spell)"
+    },
+    {
+      "pageid": 43427,
+      "title": "Call upon Radiance (Wizard Spell)"
+    },
+    {
+      "pageid": 43402,
+      "title": "Callistram's Canal Conveyance (Wizard Spell)"
     },
     {
       "pageid": 14213,
@@ -1346,8 +1362,16 @@
       "title": "Cleansing Flame (Wizard Spell)"
     },
     {
+      "pageid": 43413,
+      "title": "Cleave the Magical Union (Wizard Spell)"
+    },
+    {
       "pageid": 14183,
       "title": "Cling (Wizard Spell)"
+    },
+    {
+      "pageid": 43403,
+      "title": "Cloak Against All Peril (Wizard Spell)"
     },
     {
       "pageid": 13384,
@@ -1590,6 +1614,10 @@
       "title": "Consume Knowledge (Wizard Spell)"
     },
     {
+      "pageid": 43416,
+      "title": "Consume the Wealth of Wisdom (Wizard Spell)"
+    },
+    {
       "pageid": 14249,
       "title": "Contact Archetype (Wizard Spell)"
     },
@@ -1612,6 +1640,10 @@
     {
       "pageid": 14250,
       "title": "Control Death Tyrant (Wizard Spell)"
+    },
+    {
+      "pageid": 43430,
+      "title": "Control Destiny (Wizard Spell)"
     },
     {
       "pageid": 14251,
@@ -2018,10 +2050,6 @@
       "title": "Death Recall (Wizard Spell)"
     },
     {
-      "pageid": 11342,
-      "title": "Death Shroud (Wizard Spell)"
-    },
-    {
       "pageid": 14448,
       "title": "Death Sight (Wizard Spell)"
     },
@@ -2394,6 +2422,14 @@
       "title": "Discern Sire (Wizard Spell)"
     },
     {
+      "pageid": 43400,
+      "title": "Discern the Heart of the Beast (Wizard Spell)"
+    },
+    {
+      "pageid": 43432,
+      "title": "Discharge (Wizard Spell)"
+    },
+    {
       "pageid": 14588,
       "title": "Discord (Wizard Spell)"
     },
@@ -2628,6 +2664,10 @@
     {
       "pageid": 14696,
       "title": "Draindoom (Wizard Spell)"
+    },
+    {
+      "pageid": 43395,
+      "title": "Draw Forth the Truth (Wizard Spell)"
     },
     {
       "pageid": 14697,
@@ -2900,6 +2940,10 @@
     {
       "pageid": 14901,
       "title": "Elude Blow (Wizard Spell)"
+    },
+    {
+      "pageid": 43407,
+      "title": "Eluding the Death Blow (Wizard Spell)"
     },
     {
       "pageid": 11327,
@@ -3286,6 +3330,10 @@
       "title": "Fatigue (Wizard Spell)"
     },
     {
+      "pageid": 43504,
+      "title": "Fea's Flesh to Plush (Wizard Spell)"
+    },
+    {
       "pageid": 1269,
       "title": "Fear (Wizard Spell)"
     },
@@ -3412,6 +3460,10 @@
     {
       "pageid": 15032,
       "title": "Finding the Center (Wizard Spell)"
+    },
+    {
+      "pageid": 43401,
+      "title": "Finery and Freshness (Wizard Spell)"
     },
     {
       "pageid": 1444,
@@ -3774,6 +3826,10 @@
       "title": "Fumble (Wizard Spell)"
     },
     {
+      "pageid": 43519,
+      "title": "Gain Weight (Wizard Spell)"
+    },
+    {
       "pageid": 15089,
       "title": "Galathar's Gnostic Chain (Wizard Spell)"
     },
@@ -3990,6 +4046,10 @@
       "title": "Graft Limb (Wizard Spell)"
     },
     {
+      "pageid": 43417,
+      "title": "Grasp the Magic Since Used (Wizard Spell)"
+    },
+    {
       "pageid": 1077,
       "title": "Grease (Wizard Spell)"
     },
@@ -4124,6 +4184,10 @@
     {
       "pageid": 15130,
       "title": "Halaster's Grappling Hand (Wizard Spell)"
+    },
+    {
+      "pageid": 43523,
+      "title": "Hallucinatory Murrain (Wizard Spell)"
     },
     {
       "pageid": 1276,
@@ -4874,6 +4938,10 @@
       "title": "Land Lock (Wizard Spell)"
     },
     {
+      "pageid": 43404,
+      "title": "Landscape of Spell Lore (Wizard Spell)"
+    },
+    {
       "pageid": 15234,
       "title": "Lapis Bonds (Wizard Spell)"
     },
@@ -5182,6 +5250,10 @@
       "title": "Lysander's Kaleidoscope (Wizard Spell)"
     },
     {
+      "pageid": 43521,
+      "title": "Macho's Uncontrollable Hideous Belching (Wizard Spell)"
+    },
+    {
       "pageid": 15268,
       "title": "Maelstrom (Wizard Spell)"
     },
@@ -5192,6 +5264,10 @@
     {
       "pageid": 15269,
       "title": "Mage Tunnel (Wizard Spell)"
+    },
+    {
+      "pageid": 43410,
+      "title": "Magic Defiance Undone (Wizard Spell)"
     },
     {
       "pageid": 15270,
@@ -6394,6 +6470,10 @@
       "title": "Patternweave (Wizard Spell)"
     },
     {
+      "pageid": 43522,
+      "title": "Pelf's Rancid Arrow (Wizard Spell)"
+    },
+    {
       "pageid": 1484,
       "title": "Permanency (Wizard Spell)"
     },
@@ -6542,6 +6622,10 @@
       "title": "Plant Renewal (Wizard Spell)"
     },
     {
+      "pageid": 43411,
+      "title": "Pluck a Petal of Spellflower (Wizard Spell)"
+    },
+    {
       "pageid": 15486,
       "title": "Poison (Wizard Spell)"
     },
@@ -6588,6 +6672,10 @@
     {
       "pageid": 1519,
       "title": "Power Word, Kill (Wizard Spell)"
+    },
+    {
+      "pageid": 43525,
+      "title": "Power Word, Kill Rodents (Wizard Spell)"
     },
     {
       "pageid": 15489,
@@ -7278,6 +7366,10 @@
       "title": "Remove Smell (Wizard Spell)"
     },
     {
+      "pageid": 43396,
+      "title": "Remove the Instrument of Death (Wizard Spell)"
+    },
+    {
       "pageid": 11802,
       "title": "Reopened Gate (Wizard Spell)"
     },
@@ -7308,6 +7400,10 @@
     {
       "pageid": 15630,
       "title": "Resist Turning (Wizard Spell)"
+    },
+    {
+      "pageid": 43429,
+      "title": "Retain Power (Wizard Spell)"
     },
     {
       "pageid": 15601,
@@ -7554,8 +7650,16 @@
       "title": "Sathrah's Ingenious Recollection (Wizard Spell)"
     },
     {
+      "pageid": 43419,
+      "title": "Sathrath's Ingenious Method of Instantaneous Recollection of Dweomers and Enchantments (Wizard Spell)"
+    },
+    {
       "pageid": 15675,
       "title": "Satire (Wizard Spell)"
+    },
+    {
+      "pageid": 43431,
+      "title": "Saturation (Wizard Spell)"
     },
     {
       "pageid": 15676,
@@ -7718,6 +7822,10 @@
       "title": "Seek Teleporter (Wizard Spell)"
     },
     {
+      "pageid": 43414,
+      "title": "Seek the Traveler (Wizard Spell)"
+    },
+    {
       "pageid": 13700,
       "title": "Seeking (Wizard Spell)"
     },
@@ -7804,6 +7912,10 @@
     {
       "pageid": 15709,
       "title": "Sever Lifeline (Wizard Spell)"
+    },
+    {
+      "pageid": 43433,
+      "title": "Sever the Tie (Wizard Spell)"
     },
     {
       "pageid": 1424,
@@ -8270,6 +8382,10 @@
       "title": "Sorcerous Scribe (Wizard Spell)"
     },
     {
+      "pageid": 43397,
+      "title": "Sorcerous Transcription (Wizard Spell)"
+    },
+    {
       "pageid": 15771,
       "title": "Soul Anchor (Wizard Spell)"
     },
@@ -8522,6 +8638,10 @@
       "title": "Spirit Form (Wizard Spell)"
     },
     {
+      "pageid": 43398,
+      "title": "Spirit of Servitude (Wizard Spell)"
+    },
+    {
       "pageid": 15807,
       "title": "Spirit Self (Wizard Spell)"
     },
@@ -8540,6 +8660,10 @@
     {
       "pageid": 1107,
       "title": "Spook (Wizard Spell)"
+    },
+    {
+      "pageid": 43405,
+      "title": "Spout of Scalding Wrath (Wizard Spell)"
     },
     {
       "pageid": 15811,
@@ -8814,6 +8938,10 @@
       "title": "Summon Modron (Wizard Spell)"
     },
     {
+      "pageid": 43428,
+      "title": "Summon Radiance (Wizard Spell)"
+    },
+    {
       "pageid": 15860,
       "title": "Summon Sha'ir (Wizard Spell)"
     },
@@ -8950,6 +9078,10 @@
       "title": "Sweeten (Cantrip)"
     },
     {
+      "pageid": 43399,
+      "title": "Swiftly Devour the Written Word (Wizard Spell)"
+    },
+    {
       "pageid": 11563,
       "title": "Swim (Wizard Spell)"
     },
@@ -9076,6 +9208,10 @@
     {
       "pageid": 15919,
       "title": "Teleport Other (Wizard Spell)"
+    },
+    {
+      "pageid": 43524,
+      "title": "Teleport Without Awareness (Wizard Spell)"
     },
     {
       "pageid": 1472,
@@ -9354,6 +9490,10 @@
       "title": "Torment (Wizard Spell)"
     },
     {
+      "pageid": 43406,
+      "title": "Torrent of Death (Wizard Spell)"
+    },
+    {
       "pageid": 16371,
       "title": "Touch the Black (Wizard Spell)"
     },
@@ -9368,6 +9508,10 @@
     {
       "pageid": 16440,
       "title": "Train Vegetation (Wizard Spell)"
+    },
+    {
+      "pageid": 43434,
+      "title": "Transcend Life Force (Wizard Spell)"
     },
     {
       "pageid": 15963,
@@ -9802,6 +9946,10 @@
       "title": "Wail of the Banshee (Wizard Spell)"
     },
     {
+      "pageid": 43520,
+      "title": "Wake-up Call (Wizard Spell)"
+    },
+    {
       "pageid": 16033,
       "title": "Wakefulness (Wizard Spell)"
     },
@@ -9904,6 +10052,10 @@
     {
       "pageid": 16043,
       "title": "Wardaway (Wizard Spell)"
+    },
+    {
+      "pageid": 43409,
+      "title": "Warding Against Subtle Enchantment (Wizard Spell)"
     },
     {
       "pageid": 16044,

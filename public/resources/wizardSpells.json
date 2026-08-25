@@ -3264,12 +3264,6 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=11341"
   },
   {
-    "level": 8,
-    "name": "Death Shroud",
-    "id": 11342,
-    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=11342"
-  },
-  {
     "level": 1,
     "name": "Prestidigitation (Reversible)",
     "id": 11546,
@@ -4741,15 +4735,9 @@
   },
   {
     "level": 6,
-    "name": "Acid Rain",
+    "name": "Acid Rain — Red Wizard",
     "id": 13809,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=13809"
-  },
-  {
-    "level": 6,
-    "name": "Acid Rain — Red Wizard",
-    "id": 13810,
-    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=13810"
   },
   {
     "level": 2,
@@ -11625,7 +11613,7 @@
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15794"
   },
   {
-    "level": 8,
+    "level": 7,
     "name": "Spelldoor",
     "id": 15795,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=15795"
@@ -15162,7 +15150,7 @@
   },
   {
     "level": 2,
-    "name": "Curse of the grinning skull",
+    "name": "Curse of the Grinning Skull",
     "id": 29614,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=29614"
   },
@@ -15639,5 +15627,245 @@
     "name": "Value",
     "id": 42951,
     "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=42951"
+  },
+  {
+    "level": 1,
+    "name": "Draw Forth the Truth",
+    "id": 43395,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43395"
+  },
+  {
+    "level": 1,
+    "name": "Remove the Instrument of Death",
+    "id": 43396,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43396"
+  },
+  {
+    "level": 1,
+    "name": "Sorcerous Transcription",
+    "id": 43397,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43397"
+  },
+  {
+    "level": 1,
+    "name": "Spirit of Servitude",
+    "id": 43398,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43398"
+  },
+  {
+    "level": 1,
+    "name": "Swiftly Devour the Written Word",
+    "id": 43399,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43399"
+  },
+  {
+    "level": 2,
+    "name": "Discern the Heart of the Beast",
+    "id": 43400,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43400"
+  },
+  {
+    "level": 2,
+    "name": "Finery and Freshness",
+    "id": 43401,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43401"
+  },
+  {
+    "level": 3,
+    "name": "Callistram's Canal Conveyance",
+    "id": 43402,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43402"
+  },
+  {
+    "level": 3,
+    "name": "Cloak Against All Peril",
+    "id": 43403,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43403"
+  },
+  {
+    "level": 3,
+    "name": "Landscape of Spell Lore",
+    "id": 43404,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43404"
+  },
+  {
+    "level": 3,
+    "name": "Spout of Scalding Wrath",
+    "id": 43405,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43405"
+  },
+  {
+    "level": 3,
+    "name": "Torrent of Death",
+    "id": 43406,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43406"
+  },
+  {
+    "level": 4,
+    "name": "Eluding the Death Blow (Reversible)",
+    "id": 43407,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43407"
+  },
+  {
+    "level": 4,
+    "name": "Warding Against Subtle Enchantment",
+    "id": 43409,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43409"
+  },
+  {
+    "level": 5,
+    "name": "Magic Defiance Undone",
+    "id": 43410,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43410"
+  },
+  {
+    "level": 5,
+    "name": "Pluck a Petal of Spellflower",
+    "id": 43411,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43411"
+  },
+  {
+    "level": 6,
+    "name": "Breach the Beast's Defenses",
+    "id": 43412,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43412"
+  },
+  {
+    "level": 6,
+    "name": "Cleave the Magical Union",
+    "id": 43413,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43413"
+  },
+  {
+    "level": 6,
+    "name": "Seek the Traveler",
+    "id": 43414,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43414"
+  },
+  {
+    "level": 7,
+    "name": "Amplify Mystical Endeavors",
+    "id": 43415,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43415"
+  },
+  {
+    "level": 7,
+    "name": "Consume the Wealth of Wisdom",
+    "id": 43416,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43416"
+  },
+  {
+    "level": 8,
+    "name": "Grasp the Magic Since Used",
+    "id": 43417,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43417"
+  },
+  {
+    "level": 9,
+    "name": "A Summons One Dares Not Deny",
+    "id": 43418,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43418"
+  },
+  {
+    "level": 9,
+    "name": "Sathrath's Ingenious Method of Instantaneous Recollection of Dweomers and Enchantments",
+    "id": 43419,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43419"
+  },
+  {
+    "level": 5,
+    "name": "Call upon Radiance",
+    "id": 43427,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43427"
+  },
+  {
+    "level": 6,
+    "name": "Summon Radiance",
+    "id": 43428,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43428"
+  },
+  {
+    "level": 7,
+    "name": "Retain Power",
+    "id": 43429,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43429"
+  },
+  {
+    "level": 7,
+    "name": "Control Destiny",
+    "id": 43430,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43430"
+  },
+  {
+    "level": 8,
+    "name": "Saturation",
+    "id": 43431,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43431"
+  },
+  {
+    "level": 8,
+    "name": "Discharge",
+    "id": 43432,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43432"
+  },
+  {
+    "level": 9,
+    "name": "Sever the Tie",
+    "id": 43433,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43433"
+  },
+  {
+    "level": 9,
+    "name": "Transcend Life Force",
+    "id": 43434,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43434"
+  },
+  {
+    "level": 5,
+    "name": "Fea's Flesh to Plush (Reversible)",
+    "id": 43504,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43504"
+  },
+  {
+    "level": 1,
+    "name": "Gain Weight",
+    "id": 43519,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43519"
+  },
+  {
+    "level": 1,
+    "name": "Wake-up Call",
+    "id": 43520,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43520"
+  },
+  {
+    "level": 1,
+    "name": "Macho's Uncontrollable Hideous Belching",
+    "id": 43521,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43521"
+  },
+  {
+    "level": 1,
+    "name": "Pelf's Rancid Arrow",
+    "id": 43522,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43522"
+  },
+  {
+    "level": 3,
+    "name": "Hallucinatory Murrain",
+    "id": 43523,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43523"
+  },
+  {
+    "level": 7,
+    "name": "Teleport Without Awareness",
+    "id": 43524,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43524"
+  },
+  {
+    "level": 5,
+    "name": "Power word, kill rodents",
+    "id": 43525,
+    "wikiLink": "https://adnd2e.fandom.com/wiki/?curid=43525"
   }
 ]
