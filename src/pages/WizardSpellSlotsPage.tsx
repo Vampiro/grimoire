@@ -159,12 +159,15 @@ function WizardEditor({
         <CardContent className="space-y-6">
           <SpellSlotsPreview baseSlots={baseSlots} totalSlots={totalSlots} />
           <div className="h-px bg-border" />
-          <SpellSlotModifiersEditor
-            modifiers={modifiers}
-            onAddModifier={handleAddModifier}
-            onChangeModifier={handleModifierChange}
-            onRemoveModifier={handleRemoveModifier}
-          />
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Player-Added Modifiers</h3>
+            <SpellSlotModifiersEditor
+              modifiers={modifiers}
+              onAddModifier={handleAddModifier}
+              onChangeModifier={handleModifierChange}
+              onRemoveModifier={handleRemoveModifier}
+            />
+          </div>
         </CardContent>
       </Card>
     </div>
