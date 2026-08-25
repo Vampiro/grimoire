@@ -11,6 +11,10 @@ import {
 import { Button } from "@/components/ui/button";
 // Removed Separator import
 import { ArrowUpRight, Menu } from "lucide-react";
+import {
+  getHighestAvailableSpellLevel,
+  getPriestProgressionSpellSlots,
+} from "@/lib/spellSlots";
 
 export function CharacterPage() {
   const { id } = useParams();
@@ -23,6 +27,12 @@ export function CharacterPage() {
   if (!character) {
     return <div>No character with ID {id}</div>;
   }
+
+  const priestMaxSpellLevel = character.class.priest
+    ? getHighestAvailableSpellLevel(
+        getPriestProgressionSpellSlots(character.class.priest),
+      )
+    : 0;
 
   return (
     <div className="space-y-4">
@@ -90,10 +100,7 @@ export function CharacterPage() {
             <PageLink
               title="Castable Spells List"
               description="Browse priest spells in the Spell Explorer filtered to your level and sphere access. Favorite spells so you can filter by them when preparing spells."
-              href={`${PageRoute.SPELLS}?priest=1&wizard=0&min=0&max=${Math.min(
-                9,
-                Math.max(0, character.class.priest.level),
-              )}${
+              href={`${PageRoute.SPELLS}?priest=1&wizard=0&min=0&max=${priestMaxSpellLevel}${
                 character.class.priest.majorSpheres?.length
                   ? `&majorSpheres=${character.class.priest.majorSpheres.join(",")}`
                   : ""

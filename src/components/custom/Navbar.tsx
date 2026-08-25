@@ -14,6 +14,10 @@ import {
 import { logout, signInWithGoogle } from "@/firebase/auth";
 import { charactersAtom, userAtom } from "@/globalState";
 import { PageRoute } from "@/pages/PageRoute";
+import {
+  getHighestAvailableSpellLevel,
+  getPriestProgressionSpellSlots,
+} from "@/lib/spellSlots";
 import { useAtomValue } from "jotai";
 import { Menu, User, X } from "lucide-react";
 import { KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
@@ -154,11 +158,14 @@ export function Navbar() {
   const priestCastableLink = useMemo(() => {
     if (!selectedCharacter?.class.priest) return null;
     const priest = selectedCharacter.class.priest;
+    const maxSpellLevel = getHighestAvailableSpellLevel(
+      getPriestProgressionSpellSlots(priest),
+    );
     const params = new URLSearchParams();
     params.set("priest", "1");
     params.set("wizard", "0");
     params.set("min", "0");
-    params.set("max", String(Math.min(9, Math.max(0, priest.level))));
+    params.set("max", String(maxSpellLevel));
     params.set("quest", "0");
     params.set("unknown", "0");
     if (priest.majorSpheres?.length) {
@@ -174,6 +181,9 @@ export function Navbar() {
     if (location.pathname !== PageRoute.SPELLS) return false;
 
     const priest = selectedCharacter.class.priest;
+    const maxSpellLevel = getHighestAvailableSpellLevel(
+      getPriestProgressionSpellSlots(priest),
+    );
     const params = new URLSearchParams(location.search);
     const allowedKeys = new Set([
       "priest",
@@ -195,7 +205,7 @@ export function Navbar() {
     if (params.get("priest") !== "1") return false;
     if (params.get("wizard") !== "0") return false;
     if (params.get("min") !== "0") return false;
-    const expectedMax = String(Math.min(9, Math.max(0, priest.level)));
+    const expectedMax = String(maxSpellLevel);
     if (params.get("max") !== expectedMax) return false;
     if (params.get("quest") !== "0") return false;
     if (params.get("unknown") !== "0") return false;

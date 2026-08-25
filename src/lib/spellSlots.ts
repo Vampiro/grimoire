@@ -29,6 +29,23 @@ function toRecord(values: number[]): Record<number, number> {
 }
 
 /**
+ * Find the highest spell level with at least one available slot.
+ * @param slots Adjusted spell slots keyed by spell level.
+ * @returns Highest available spell level, or 0 when no slots are available.
+ */
+export function getHighestAvailableSpellLevel(
+  slots: Record<number, number>,
+): number {
+  return Object.entries(slots).reduce((highest, [level, count]) => {
+    if (count <= 0) return highest;
+    const numericLevel = Number(level);
+    return Number.isFinite(numericLevel)
+      ? Math.max(highest, numericLevel)
+      : highest;
+  }, 0);
+}
+
+/**
  * Get the base wizard spell slots for the given class level.
  * @param level Wizard class level (1-20).
  * @returns Record keyed by spell level to slot count.

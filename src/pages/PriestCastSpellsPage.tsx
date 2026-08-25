@@ -11,7 +11,10 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useCharacterById } from "@/hooks/useCharacterById";
-import { getPriestProgressionSpellSlots } from "@/lib/spellSlots";
+import {
+  getHighestAvailableSpellLevel,
+  getPriestProgressionSpellSlots,
+} from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -49,12 +52,14 @@ export function PriestCastSpellsPage() {
     return <div>This character has no priest progression.</div>;
   }
 
+  const slotMap = getPriestProgressionSpellSlots(priest);
+  const maxSpellLevel = getHighestAvailableSpellLevel(slotMap);
   const spellExplorerLink = (() => {
     const params = new URLSearchParams();
     params.set("priest", "1");
     params.set("wizard", "0");
     params.set("min", "0");
-    params.set("max", String(Math.min(9, Math.max(0, priest.level))));
+    params.set("max", String(maxSpellLevel));
     if (priest.majorSpheres?.length) {
       params.set("majorSpheres", priest.majorSpheres.join(","));
     }
@@ -64,7 +69,6 @@ export function PriestCastSpellsPage() {
     return `${PageRoute.SPELLS}?${params.toString()}`;
   })();
 
-  const slotMap = getPriestProgressionSpellSlots(priest);
   const availableLevels = [1, 2, 3, 4, 5, 6, 7].filter(
     (lvl) => (slotMap[lvl] ?? 0) > 0,
   );

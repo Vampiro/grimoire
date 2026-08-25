@@ -18,7 +18,10 @@ import {
 } from "@/components/ui/popover";
 import { useCharacterById } from "@/hooks/useCharacterById";
 import { updatePriestPreparedSpellsLevel } from "@/firebase/characters";
-import { getPriestProgressionSpellSlots } from "@/lib/spellSlots";
+import {
+  getHighestAvailableSpellLevel,
+  getPriestProgressionSpellSlots,
+} from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
 import { ChevronDown, RotateCcw } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
@@ -50,6 +53,7 @@ export function PriestPrepareSpellsPage() {
   }
 
   const slotMap = getPriestProgressionSpellSlots(priest);
+  const maxSpellLevel = getHighestAvailableSpellLevel(slotMap);
   const availableLevels = [1, 2, 3, 4, 5, 6, 7].filter(
     (lvl) => (slotMap[lvl] ?? 0) > 0,
   );
@@ -58,7 +62,7 @@ export function PriestPrepareSpellsPage() {
     params.set("priest", "1");
     params.set("wizard", "0");
     params.set("min", "0");
-    params.set("max", String(Math.min(9, Math.max(0, priest.level))));
+    params.set("max", String(maxSpellLevel));
     if (priest.majorSpheres?.length) {
       params.set("majorSpheres", priest.majorSpheres.join(","));
     }
