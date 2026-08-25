@@ -11,7 +11,47 @@ import { SpellNotePreview } from "@/components/custom/SpellNotePreview";
 import { SpellNoteEditor } from "@/components/custom/SpellNoteEditor";
 import { deleteUserSpellNote, setUserSpellNote } from "@/firebase/userSettings";
 import { getSpellLevelDisplay } from "@/lib/spellLevels";
+import type { SpellDescriptionJson } from "@/types/Resources";
+import { cn } from "@/lib/utils";
 import "./SpellViewer.css";
+
+interface SpellDescriptionSectionsProps {
+  description?: SpellDescriptionJson;
+  className?: string;
+  emptyMessage?: string;
+}
+
+/** Renders the wiki-derived body sections shared by spell detail surfaces. */
+export function SpellDescriptionSections({
+  description,
+  className,
+  emptyMessage = "No page sections available.",
+}: SpellDescriptionSectionsProps) {
+  const sectionEntries = useMemo(() => {
+    if (!description) return [] as Array<[string, string]>;
+    // Preserve section order from source; do not sort.
+    return Object.entries(description.sections)
+      .map(([k, v]) => [k.trim(), String(v ?? "").trim()] as [string, string])
+      .filter(([k, v]) => k.length > 0 && v.length > 0);
+  }, [description]);
+
+  if (sectionEntries.length === 0) {
+    return <div className="text-sm text-muted-foreground">{emptyMessage}</div>;
+  }
+
+  return (
+    <div className={cn("space-y-6", className)}>
+      {sectionEntries.map(([heading, content], index) => (
+        <section key={`${heading}-${index}`} className="space-y-2">
+          <div
+            className="prose prose-sm max-w-none text-sm leading-relaxed break-words"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        </section>
+      ))}
+    </div>
+  );
+}
 
 interface SpellViewerProps {
   /** The spell to render. */
@@ -134,14 +174,6 @@ export function SpellViewer(props: SpellViewerProps) {
     return entries;
   }, [description]);
 
-  const sectionEntries = useMemo(() => {
-    if (!description) return [] as Array<[string, string]>;
-    // Preserve section order from source; do not sort.
-    return Object.entries(description.sections)
-      .map(([k, v]) => [k.trim(), String(v ?? "").trim()] as [string, string])
-      .filter(([k, v]) => k.length > 0 && v.length > 0);
-  }, [description]);
-
   const formatValue = (value: string) =>
     value.replace(/<br\s*\/?>(\s*)/gi, "\n").trim();
 
@@ -237,7 +269,9 @@ export function SpellViewer(props: SpellViewerProps) {
                   onClick={async () => {
                     if (noteSaving) return;
                     if (!user) {
-                      setNoteError("You must be logged in to edit spell notes.");
+                      setNoteError(
+                        "You must be logged in to edit spell notes.",
+                      );
                       return;
                     }
 
@@ -300,22 +334,7 @@ export function SpellViewer(props: SpellViewerProps) {
         </div>
       )}
 
-      {sectionEntries.length > 0 ? (
-        <div className="space-y-6">
-          {sectionEntries.map(([heading, content], index) => (
-            <section key={`${heading}-${index}`} className="space-y-2">
-              <div
-                className="prose prose-sm max-w-none text-sm leading-relaxed break-words"
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            </section>
-          ))}
-        </div>
-      ) : (
-        <div className="text-sm text-muted-foreground">
-          No page sections available.
-        </div>
-      )}
+      <SpellDescriptionSections description={description} />
     </div>
   );
 }

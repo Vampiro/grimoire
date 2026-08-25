@@ -1,12 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAtomValue } from "jotai";
-import { ChevronDown, ChevronUp, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Settings2, Star } from "lucide-react";
 
+import { SpellDescriptionSections } from "@/components/custom/SpellViewer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
@@ -38,6 +44,7 @@ import {
   isUnknownLevelSpell,
 } from "@/lib/spellLevels";
 import { PageRoute } from "@/pages/PageRoute";
+import type { SpellDescriptionJson } from "@/types/Resources";
 import type { Spell } from "@/types/Spell";
 
 const LEVEL_MIN = 0;
@@ -85,12 +92,41 @@ const DEFAULT_PAGE_SIZE = 15;
 const PAGE_SIZE_MIN = 5;
 const PAGE_SIZE_MAX = 20;
 const PAGE_SIZE_STORAGE_KEY = "spellExplorerPageSize";
+const COLUMN_STORAGE_KEY = "spellExplorerVisibleColumns";
 
 type SortKey = "level" | "name" | "class";
 type SortDirection = "asc" | "desc";
+type ColumnKey = "class" | "level" | "name" | "school" | "description";
+
+const COLUMN_OPTIONS: ReadonlyArray<{
+  key: ColumnKey;
+  label: string;
+  sortKey?: SortKey;
+  headerClassName?: string;
+}> = [
+  {
+    key: "class",
+    label: "Class",
+    sortKey: "class",
+    headerClassName: "w-[88px]",
+  },
+  {
+    key: "level",
+    label: "Level",
+    sortKey: "level",
+    headerClassName: "w-[64px]",
+  },
+  { key: "name", label: "Name", sortKey: "name" },
+  { key: "school", label: "School" },
+  { key: "description", label: "Description" },
+];
+
+const DEFAULT_VISIBLE_COLUMNS: ColumnKey[] = ["class", "level", "name"];
+const COLUMN_KEYS = new Set(COLUMN_OPTIONS.map(({ key }) => key));
 
 type ExplorerSpell = Spell & {
   spheres: string[];
+  description?: SpellDescriptionJson;
 };
 
 const clampLevel = (value: number) =>
@@ -119,6 +155,40 @@ const persistPageSize = (value: number) => {
     window.localStorage.setItem(
       PAGE_SIZE_STORAGE_KEY,
       String(clampPageSize(value)),
+    );
+  } catch {
+    // ignore storage errors
+  }
+};
+
+const getStoredVisibleColumns = () => {
+  if (typeof window === "undefined") return new Set(DEFAULT_VISIBLE_COLUMNS);
+  try {
+    const stored = window.localStorage.getItem(COLUMN_STORAGE_KEY);
+    if (!stored) return new Set(DEFAULT_VISIBLE_COLUMNS);
+    const parsed: unknown = JSON.parse(stored);
+    if (!Array.isArray(parsed)) return new Set(DEFAULT_VISIBLE_COLUMNS);
+    const columns = parsed.filter(
+      (value): value is ColumnKey =>
+        typeof value === "string" && COLUMN_KEYS.has(value as ColumnKey),
+    );
+    return columns.length > 0
+      ? new Set(columns)
+      : new Set(DEFAULT_VISIBLE_COLUMNS);
+  } catch {
+    return new Set(DEFAULT_VISIBLE_COLUMNS);
+  }
+};
+
+const persistVisibleColumns = (columns: Set<ColumnKey>) => {
+  if (typeof window === "undefined") return;
+  try {
+    const orderedColumns = COLUMN_OPTIONS.filter(({ key }) =>
+      columns.has(key),
+    ).map(({ key }) => key);
+    window.localStorage.setItem(
+      COLUMN_STORAGE_KEY,
+      JSON.stringify(orderedColumns),
     );
   } catch {
     // ignore storage errors
@@ -254,8 +324,9 @@ export function SpellExplorerPage() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(() => getStoredPageSize());
-  const [pageSizeDraft, setPageSizeDraft] = useState(() =>
-    getStoredPageSize(),
+  const [pageSizeDraft, setPageSizeDraft] = useState(() => getStoredPageSize());
+  const [visibleColumns, setVisibleColumns] = useState<Set<ColumnKey>>(() =>
+    getStoredVisibleColumns(),
   );
   const [favoriteSavingIds, setFavoriteSavingIds] = useState<Set<string>>(
     () => new Set(),
@@ -279,6 +350,10 @@ export function SpellExplorerPage() {
   useEffect(() => {
     persistPageSize(pageSize);
   }, [pageSize]);
+
+  useEffect(() => {
+    persistVisibleColumns(visibleColumns);
+  }, [visibleColumns]);
 
   useEffect(() => {
     const hasPage = searchParams.has("page");
@@ -342,18 +417,24 @@ export function SpellExplorerPage() {
     const rows: ExplorerSpell[] = [];
 
     for (const spell of wizardSpells) {
-      const metadata = wizardDescriptions[String(spell.id)]?.metadata;
+      const description =
+        wizardDescriptions[String(spell.id)] ??
+        priestDescriptions[String(spell.id)];
       rows.push({
         ...spell,
-        spheres: metadata?.spheres ?? [],
+        spheres: description?.metadata.spheres ?? [],
+        description,
       });
     }
 
     for (const spell of priestSpells) {
-      const metadata = priestDescriptions[String(spell.id)]?.metadata;
+      const description =
+        priestDescriptions[String(spell.id)] ??
+        wizardDescriptions[String(spell.id)];
       rows.push({
         ...spell,
-        spheres: metadata?.spheres ?? [],
+        spheres: description?.metadata.spheres ?? [],
+        description,
       });
     }
 
@@ -483,6 +564,19 @@ export function SpellExplorerPage() {
     updateParams({ page: 1 });
   };
 
+  const toggleColumn = (key: ColumnKey) => {
+    setVisibleColumns((current) => {
+      if (current.has(key) && current.size === 1) return current;
+      const next = new Set(current);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
   const sortIcon = (key: SortKey) => {
     if (sort.key !== key) return null;
     return sort.direction === "asc" ? (
@@ -520,7 +614,10 @@ export function SpellExplorerPage() {
     return <div className="text-sm text-destructive">{spellStatus.error}</div>;
   }
 
-  const columnCount = 3;
+  const displayedColumns = COLUMN_OPTIONS.filter(({ key }) =>
+    visibleColumns.has(key),
+  );
+  const columnCount = displayedColumns.length;
 
   return (
     <div className="space-y-4">
@@ -753,115 +850,182 @@ export function SpellExplorerPage() {
           <CardContent className="flex flex-col py-4">
             <div ref={tableTopRef} />
             <div className="flex-1">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[88px] whitespace-nowrap">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        className="h-auto p-0 text-xs font-semibold"
-                        onClick={() => handleSort("class")}
-                      >
-                        Class
-                        <span className="ml-1 inline-flex">
-                          {sortIcon("class")}
-                        </span>
-                      </Button>
-                    </TableHead>
-                    <TableHead className="w-[64px] whitespace-nowrap">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        className="h-auto p-0 text-xs font-semibold"
-                        onClick={() => handleSort("level")}
-                      >
-                        Level
-                        <span className="ml-1 inline-flex">
-                          {sortIcon("level")}
-                        </span>
-                      </Button>
-                    </TableHead>
-                    <TableHead>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        className="h-auto p-0 text-xs font-semibold"
-                        onClick={() => handleSort("name")}
-                      >
-                        Name
-                        <span className="ml-1 inline-flex">
-                          {sortIcon("name")}
-                        </span>
-                      </Button>
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {sortedSpells.length === 0 && (
+              <Popover>
+                <Table>
+                  <TableHeader>
                     <TableRow>
-                      <TableCell
-                        colSpan={columnCount}
-                        className="py-6 text-center"
-                      >
-                        <div className="text-sm text-muted-foreground">
-                          No spells match these filters.
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  )}
-                  {pagedSpells.map((spell) => (
-                    <TableRow key={`${spell.spellClass}:${spell.id}`}>
-                      <TableCell className="capitalize whitespace-nowrap">
-                        {spell.spellClass}
-                      </TableCell>
-                      <TableCell className="whitespace-nowrap">
-                        {getSpellLevelDisplay(spell)}
-                      </TableCell>
-                      <TableCell className="whitespace-normal">
-                        <div className="flex items-center gap-2">
-                          {user && (
-                            <Button
-                              type="button"
-                              size="icon"
-                              variant="ghost"
-                              className="h-7 w-7"
-                              onClick={() => handleToggleFavorite(spell.id)}
-                              disabled={favoriteSavingIds.has(String(spell.id))}
-                              aria-label={
-                                favoriteSet.has(String(spell.id))
-                                  ? "Remove from favorites"
-                                  : "Add to favorites"
-                              }
-                            >
-                              <Star
-                                className={cn(
-                                  "h-4 w-4",
-                                  favoriteSet.has(String(spell.id))
-                                    ? "text-yellow-500 fill-yellow-500"
-                                    : "text-muted-foreground",
-                                )}
-                              />
-                            </Button>
-                          )}
-                          <Link
-                            to={PageRoute.SPELL_VIEW(spell.id)}
+                      {displayedColumns.map((column, index) => {
+                        const isLast = index === displayedColumns.length - 1;
+                        return (
+                          <TableHead
+                            key={column.key}
                             className={cn(
-                              "font-medium hover:underline",
-                              spell.spellClass === "wizard"
-                                ? "text-sky-600 dark:text-sky-400"
-                                : "text-emerald-600 dark:text-emerald-400",
+                              "whitespace-nowrap",
+                              column.headerClassName,
                             )}
-                            state={{ showBack: true }}
                           >
-                            {spell.name}
-                          </Link>
-                        </div>
-                      </TableCell>
+                            <div className="flex items-center justify-between gap-2">
+                              {column.sortKey ? (
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  className="h-auto p-0 text-xs font-semibold"
+                                  onClick={() => handleSort(column.sortKey!)}
+                                >
+                                  {column.label}
+                                  <span className="ml-1 inline-flex">
+                                    {sortIcon(column.sortKey)}
+                                  </span>
+                                </Button>
+                              ) : (
+                                <span className="text-xs font-semibold">
+                                  {column.label}
+                                </span>
+                              )}
+                              {isLast && (
+                                <PopoverTrigger asChild>
+                                  <Button
+                                    type="button"
+                                    size="icon-xs"
+                                    variant="ghost"
+                                    aria-label="Choose visible columns"
+                                    title="Choose visible columns"
+                                  >
+                                    <Settings2 />
+                                  </Button>
+                                </PopoverTrigger>
+                              )}
+                            </div>
+                          </TableHead>
+                        );
+                      })}
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {sortedSpells.length === 0 && (
+                      <TableRow>
+                        <TableCell
+                          colSpan={columnCount}
+                          className="py-6 text-center"
+                        >
+                          <div className="text-sm text-muted-foreground">
+                            No spells match these filters.
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    )}
+                    {pagedSpells.map((spell) => (
+                      <TableRow key={`${spell.spellClass}:${spell.id}`}>
+                        {visibleColumns.has("class") && (
+                          <TableCell className="capitalize whitespace-nowrap align-top">
+                            {spell.spellClass}
+                          </TableCell>
+                        )}
+                        {visibleColumns.has("level") && (
+                          <TableCell className="whitespace-nowrap align-top">
+                            {getSpellLevelDisplay(spell)}
+                          </TableCell>
+                        )}
+                        {visibleColumns.has("name") && (
+                          <TableCell className="whitespace-normal align-top">
+                            <div className="flex items-start gap-2">
+                              {user && (
+                                <Button
+                                  type="button"
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-5 w-5"
+                                  onClick={() => handleToggleFavorite(spell.id)}
+                                  disabled={favoriteSavingIds.has(
+                                    String(spell.id),
+                                  )}
+                                  aria-label={
+                                    favoriteSet.has(String(spell.id))
+                                      ? "Remove from favorites"
+                                      : "Add to favorites"
+                                  }
+                                >
+                                  <Star
+                                    className={cn(
+                                      "h-4 w-4",
+                                      favoriteSet.has(String(spell.id))
+                                        ? "text-yellow-500 fill-yellow-500"
+                                        : "text-muted-foreground",
+                                    )}
+                                  />
+                                </Button>
+                              )}
+                              <Link
+                                to={PageRoute.SPELL_VIEW(spell.id)}
+                                className={cn(
+                                  "font-medium leading-5 hover:underline",
+                                  spell.spellClass === "wizard"
+                                    ? "text-sky-600 dark:text-sky-400"
+                                    : "text-emerald-600 dark:text-emerald-400",
+                                )}
+                                state={{ showBack: true }}
+                              >
+                                {spell.name}
+                              </Link>
+                            </div>
+                          </TableCell>
+                        )}
+                        {visibleColumns.has("school") && (
+                          <TableCell className="min-w-40 whitespace-normal align-top">
+                            {spell.description?.metadata.school || (
+                              <span className="text-muted-foreground">—</span>
+                            )}
+                          </TableCell>
+                        )}
+                        {visibleColumns.has("description") && (
+                          <TableCell className="min-w-[28rem] max-w-[48rem] whitespace-normal align-top">
+                            <SpellDescriptionSections
+                              description={spell.description}
+                              className="space-y-4"
+                              emptyMessage="No description available."
+                            />
+                          </TableCell>
+                        )}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+                <PopoverContent align="end" className="w-48 p-3">
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Columns
+                  </div>
+                  <div className="space-y-2">
+                    {COLUMN_OPTIONS.map((option) => {
+                      const checked = visibleColumns.has(option.key);
+                      const isOnlyVisible =
+                        checked && visibleColumns.size === 1;
+                      const id = `spell-column-${option.key}`;
+                      return (
+                        <div
+                          key={option.key}
+                          className="flex items-center gap-2"
+                        >
+                          <Checkbox
+                            id={id}
+                            checked={checked}
+                            disabled={isOnlyVisible}
+                            onCheckedChange={() => toggleColumn(option.key)}
+                          />
+                          <Label
+                            htmlFor={id}
+                            className={cn(
+                              "cursor-pointer text-sm",
+                              isOnlyVisible && "cursor-not-allowed opacity-50",
+                            )}
+                          >
+                            {option.label}
+                          </Label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
             {sortedSpells.length > 0 && (
               <div className="mt-auto space-y-3 pt-3 text-sm text-muted-foreground">
