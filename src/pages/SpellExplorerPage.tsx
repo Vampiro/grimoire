@@ -96,7 +96,13 @@ const COLUMN_STORAGE_KEY = "spellExplorerVisibleColumns";
 
 type SortKey = "level" | "name" | "class";
 type SortDirection = "asc" | "desc";
-type ColumnKey = "class" | "level" | "name" | "school" | "description";
+type ColumnKey =
+  | "class"
+  | "level"
+  | "name"
+  | "school"
+  | "source"
+  | "description";
 
 const COLUMN_OPTIONS: ReadonlyArray<{
   key: ColumnKey;
@@ -118,6 +124,7 @@ const COLUMN_OPTIONS: ReadonlyArray<{
   },
   { key: "name", label: "Name", sortKey: "name" },
   { key: "school", label: "School" },
+  { key: "source", label: "Source" },
   { key: "description", label: "Description" },
 ];
 
@@ -973,6 +980,13 @@ export function SpellExplorerPage() {
                         {visibleColumns.has("school") && (
                           <TableCell className="min-w-40 whitespace-normal align-top">
                             {spell.description?.metadata.school || (
+                              <span className="text-muted-foreground">—</span>
+                            )}
+                          </TableCell>
+                        )}
+                        {visibleColumns.has("source") && (
+                          <TableCell className="min-w-40 whitespace-normal align-top">
+                            {spell.description?.metadata.source || (
                               <span className="text-muted-foreground">—</span>
                             )}
                           </TableCell>
