@@ -150,7 +150,7 @@ function PriestEditor({
 
       <Card>
         <CardHeader>
-          <CardTitle>Spell Slots & Modifiers</CardTitle>
+          <h3 className="text-lg font-semibold">Spell Slots & Modifiers</h3>
           <CardDescription>
             Base table preview plus custom modifications.
           </CardDescription>
