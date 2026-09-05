@@ -93,12 +93,18 @@ export function CharacterPage() {
             <div className="h-px w-full bg-border" />
             <PageLink
               title="Prepare Spells"
-              description="Pick which spells are prepared in each slot, by level."
+              description="Prepare spells from your known list, filtered by level and sphere access."
               href={PageRoute.PRIEST_PREPARE(character.id)}
             />
             <div className="h-px w-full bg-border" />
             <PageLink
-              title="Castable Spells List"
+              title="Known Spells"
+              description="Choose the priest spells available to this character for preparation."
+              href={PageRoute.PRIEST_KNOWN_SPELLS(character.id)}
+            />
+            <div className="h-px w-full bg-border" />
+            <PageLink
+              title="Spells in your Spheres"
               description="Browse priest spells in the Spell Explorer filtered to your level and sphere access. Favorite spells so you can filter by them when preparing spells."
               href={`${PageRoute.SPELLS}?priest=1&wizard=0&min=0&max=${priestMaxSpellLevel}${
                 character.class.priest.majorSpheres?.length

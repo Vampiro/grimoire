@@ -31,6 +31,9 @@ export const PageRoute = {
   /** Priest "prepare" page (choose and adjust prepared spells after resting). */
   PRIEST_PREPARE: (characterId: string) =>
     `/characters/${characterId}/priest/prepare`,
+  /** Priest known spells page. */
+  PRIEST_KNOWN_SPELLS: (characterId: string) =>
+    `/characters/${characterId}/priest/known_spells`,
   /** Priest spell slot management page. */
   PRIEST_SPELL_SLOTS: (characterId: string) =>
     `/characters/${characterId}/priest/edit`,

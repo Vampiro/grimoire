@@ -94,7 +94,7 @@ export function HomePage() {
                 Manage spell slots to set daily capacity and any modifiers.
               </li>
               <li>
-                Use the Castable Spells List to view only spells that match the
+                Use Spells in your Spheres to view only spells that match the
                 priest&apos;s spheres and level. You can favorite spells from
                 the Spell Explorer and filter on them when picking spells to
                 prepare.

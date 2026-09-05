@@ -12,13 +12,13 @@ import {
 } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
 import { SelectWithSearch } from "@/components/custom/SelectWithSearch";
-import { wizardSpellsAtom } from "@/globalState";
+import { priestSpellsAtom } from "@/globalState";
 import {
-  addWizardKnownSpell,
-  removeWizardKnownSpell,
+  addPriestKnownSpell,
+  removePriestKnownSpell,
 } from "@/firebase/characters";
 import { useCharacterById } from "@/hooks/useCharacterById";
-import { findWizardSpellById } from "@/lib/spellLookup";
+import { getPriestKnownSpells } from "@/lib/priestKnownSpells";
 import {
   getSpellLevelCategoryLabel,
   getSpellLevelGroup,
@@ -27,34 +27,30 @@ import {
 import { PageRoute } from "@/pages/PageRoute";
 import type { Spell } from "@/types/Spell";
 
-
-export function WizardKnownSpellsPage() {
+export function PriestKnownSpellsPage() {
   const { characterId } = useParams();
   const { character, isLoading } = useCharacterById(characterId);
-  const allWizardSpells = useAtomValue(wizardSpellsAtom);
+  const allPriestSpells = useAtomValue(priestSpellsAtom);
   const navigate = useNavigate();
 
   const [addSpellOpen, setAddSpellOpen] = useState(false);
   const [addError, setAddError] = useState<string | null>(null);
   const [removeError, setRemoveError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
   const [optionsOpen, setOptionsOpen] = useState(false);
 
-  const wizardProgression = character?.class.wizard;
+  const priestProgression = character?.class.priest;
 
-  const knownSpellIds = useMemo(() => {
-    if (!wizardProgression) return new Set<string>();
-    if (wizardProgression.knownSpellsById) {
-      return new Set(Object.keys(wizardProgression.knownSpellsById));
-    }
-    const fallback = new Set<string>();
-    Object.values(wizardProgression.spellbooksById ?? {}).forEach((book) => {
-      Object.keys(book.spellsById ?? {}).forEach((spellId) => {
-        fallback.add(String(spellId));
-      });
-    });
-    return fallback;
-  }, [wizardProgression?.knownSpellsById, wizardProgression?.spellbooksById]);
+  const knownSpellIds = useMemo(
+    () =>
+      new Set(
+        Object.keys(
+          priestProgression ? getPriestKnownSpells(priestProgression) : {},
+        ),
+      ),
+    [priestProgression],
+  );
 
   const knownSpellsByLevel = useMemo(() => {
     const grouped: Record<
@@ -64,7 +60,7 @@ export function WizardKnownSpellsPage() {
     knownSpellIds.forEach((id) => {
       const spellId = Number(id);
       if (!Number.isFinite(spellId)) return;
-      const spell = findWizardSpellById(spellId);
+      const spell = allPriestSpells.find((entry) => entry.id === spellId);
       if (!spell) return;
       const group = getSpellLevelGroup(spell);
       const entry = grouped[group.key] ?? {
@@ -84,46 +80,53 @@ export function WizardKnownSpellsPage() {
       if (a.sortValue !== b.sortValue) return a.sortValue - b.sortValue;
       return a.label.localeCompare(b.label, undefined, { sensitivity: "base" });
     });
-  }, [knownSpellIds]);
+  }, [knownSpellIds, allPriestSpells]);
 
-  const sortedWizardSpells = useMemo(
+  const sortedPriestSpells = useMemo(
     () =>
-      [...allWizardSpells].sort((a, b) =>
+      [...allPriestSpells].sort((a, b) =>
         getSpellLevelSortValue(a.level) !== getSpellLevelSortValue(b.level)
           ? getSpellLevelSortValue(a.level) - getSpellLevelSortValue(b.level)
           : a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
       ),
-    [allWizardSpells],
+    [allPriestSpells],
   );
 
   if (isLoading) return <div>Loading known spells...</div>;
   if (!character) return <div>No character with id {characterId}</div>;
 
-  if (!wizardProgression) {
-    return <div>This character has no wizard progression.</div>;
+  if (!priestProgression) {
+    return <div>This character has no priest progression.</div>;
   }
 
   const hasKnownSpells = knownSpellIds.size > 0;
 
   const handleAddSpell = async (spell: Spell | undefined) => {
-    if (!spell) return;
+    if (!spell || saving) return;
+    setSaving(true);
     setAddError(null);
     try {
-      await addWizardKnownSpell(character.id, spell.id);
+      await addPriestKnownSpell(character.id, spell.id);
       setAddSpellOpen(false);
     } catch (err) {
       setAddError(err instanceof Error ? err.message : "Failed to add spell");
+    } finally {
+      setSaving(false);
     }
   };
 
   const handleRemoveSpell = async (spell: Spell) => {
+    if (saving) return;
+    setSaving(true);
     setRemoveError(null);
     try {
-      await removeWizardKnownSpell(character.id, spell.id);
+      await removePriestKnownSpell(character.id, spell.id);
     } catch (err) {
       setRemoveError(
         err instanceof Error ? err.message : "Failed to remove spell",
       );
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -144,10 +147,9 @@ export function WizardKnownSpellsPage() {
                 Known Spells ({knownSpellIds.size})
               </h1>
               <p className="text-muted-foreground text-xs">
-                Known spells are those you have successfully learned. A spell
-                can exist in a spellbook without being learned (and vice versa).
-                Any spell added to a spellbook is automatically added here, but
-                you can remove it from known spells if needed.
+                Choose the priest spells available to this character.
+                Preparation uses this list together with your level and sphere
+                access. Removing a spell keeps its existing prepared copies.
               </p>
             </div>
           </div>
@@ -163,6 +165,7 @@ export function WizardKnownSpellsPage() {
                 variant="outline"
                 className="gap-2 rounded-r-none"
                 aria-label="Add Known Spell"
+                disabled={saving}
               >
                 <Plus className="h-4 w-4" />
                 Add Spell
@@ -171,14 +174,16 @@ export function WizardKnownSpellsPage() {
             <PopoverContent className="p-0 w-80" align="start" sideOffset={8}>
               <SelectWithSearch<Spell>
                 title="Add Known Spell"
-                items={sortedWizardSpells}
+                items={sortedPriestSpells}
                 getKey={(spell) => String(spell.id)}
                 getLabel={(spell) =>
                   knownSpellIds.has(String(spell.id))
                     ? `${spell.name} (known)`
                     : spell.name
                 }
-                isItemDisabled={(spell) => knownSpellIds.has(String(spell.id))}
+                isItemDisabled={(spell) =>
+                  saving || knownSpellIds.has(String(spell.id))
+                }
                 value={undefined}
                 onChange={handleAddSpell}
                 placeholder="Search spells..."
@@ -205,7 +210,11 @@ export function WizardKnownSpellsPage() {
             <PopoverContent align="end" className="w-56 p-2">
               <div className="flex w-full items-center justify-between rounded-md px-2 py-2 text-sm hover:bg-accent dark:hover:bg-accent/50 font-medium">
                 <span>Delete Mode</span>
-                <Switch checked={deleteMode} onCheckedChange={setDeleteMode} />
+                <Switch
+                  aria-label="Delete Mode"
+                  checked={deleteMode}
+                  onCheckedChange={setDeleteMode}
+                />
               </div>
             </PopoverContent>
           </Popover>
@@ -249,6 +258,7 @@ export function WizardKnownSpellsPage() {
                                 variant="ghost"
                                 size="icon-sm"
                                 className="text-destructive hover:text-destructive"
+                                disabled={saving}
                                 aria-label={`Remove ${spell.name} from known spells`}
                                 onClick={() => handleRemoveSpell(spell)}
                               >

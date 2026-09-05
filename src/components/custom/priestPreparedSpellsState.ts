@@ -4,6 +4,7 @@ import { useAtomValue } from "jotai";
 import { updatePriestPreparedSpellsLevel } from "@/firebase/characters";
 import { findPriestSpellById } from "@/lib/spellLookup";
 import { getPriestProgressionSpellSlots } from "@/lib/spellSlots";
+import { getPriestKnownSpells } from "@/lib/priestKnownSpells";
 import { priestSpellDescriptionsAtom, priestSpellsAtom } from "@/globalState";
 import { PreparedSpellCounts } from "@/types/ClassProgression";
 import { PriestClassProgression } from "@/types/PriestClassProgression";
@@ -28,6 +29,8 @@ interface PreparedSpellsState {
   sortedSpells: PreparedSpellEntries;
   /** Candidate priest spells not currently prepared at this level. */
   availableSpells: Array<[string, Spell]>;
+  /** Known spells at this level that also match sphere access. */
+  eligibleSpellIds: Set<string>;
   /** Maximum rested slots available for this level. */
   maxSlots: number;
   /** Remaining casts across all prepared spells at this level. */
@@ -98,6 +101,10 @@ export function usePriestPreparedSpellsState({
   );
 
   const preparedIds = useMemo(() => new Set(Object.keys(spells)), [spells]);
+  const knownSpellIds = useMemo(
+    () => new Set(Object.keys(getPriestKnownSpells(progression))),
+    [progression],
+  );
 
   const sphereAccess = useMemo(() => {
     const major = new Set(progression.majorSpheres ?? []);
@@ -110,12 +117,12 @@ export function usePriestPreparedSpellsState({
     };
   }, [progression.majorSpheres, progression.minorSpheres]);
 
-  const availableSpells = useMemo(() => {
+  const eligibleSpells = useMemo(() => {
     return allPriestSpells
       .filter(
         (spell) =>
           spell.level === spellLevel &&
-          !preparedIds.has(String(spell.id)),
+          knownSpellIds.has(String(spell.id)),
       )
       .filter((spell) => {
         if (!sphereAccess.hasMajor && !sphereAccess.hasMinor) return true;
@@ -135,11 +142,20 @@ export function usePriestPreparedSpellsState({
       .sort((a, b) => a[1].name.localeCompare(b[1].name));
   }, [
     allPriestSpells,
-    preparedIds,
+    knownSpellIds,
     priestDescriptions,
     spellLevel,
     sphereAccess,
   ]);
+
+  const eligibleSpellIds = useMemo(
+    () => new Set(eligibleSpells.map(([id]) => id)),
+    [eligibleSpells],
+  );
+  const availableSpells = useMemo(
+    () => eligibleSpells.filter(([id]) => !preparedIds.has(id)),
+    [eligibleSpells, preparedIds],
+  );
 
   const sortedSpells = useMemo<PreparedSpellEntries>(
     () =>
@@ -201,7 +217,8 @@ export function usePriestPreparedSpellsState({
       };
     });
 
-  const adjustTotal = (spellId: string, delta: number) =>
+  const adjustTotal = (spellId: string, delta: number) => {
+    if (delta > 0 && !eligibleSpellIds.has(spellId)) return;
     updateLevelSpells((current) => {
       const prev = current[spellId] ?? { total: 0, used: 0 };
       const nextTotal = Math.max(0, (prev.total ?? 0) + delta);
@@ -217,6 +234,7 @@ export function usePriestPreparedSpellsState({
         [spellId]: { total: nextTotal, used: nextUsed },
       };
     });
+  };
 
   const deleteSpellGroup = (spellId: string) =>
     updateLevelSpells((current) => {
@@ -225,7 +243,8 @@ export function usePriestPreparedSpellsState({
       return rest;
     });
 
-  const handleAddSpell = (spellId: string) =>
+  const handleAddSpell = (spellId: string) => {
+    if (!eligibleSpellIds.has(spellId)) return;
     updateLevelSpells((current) => {
       const prev = current[spellId];
       if (!prev) {
@@ -243,6 +262,7 @@ export function usePriestPreparedSpellsState({
         [spellId]: { total: nextTotal, used: nextUsed },
       };
     });
+  };
 
   const handleIncreaseCopies = (spellId: string) => adjustTotal(spellId, 1);
 
@@ -250,6 +270,7 @@ export function usePriestPreparedSpellsState({
     spells,
     sortedSpells,
     availableSpells,
+    eligibleSpellIds,
     maxSlots,
     castable,
     totalPrepared,

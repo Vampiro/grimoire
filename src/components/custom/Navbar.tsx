@@ -466,6 +466,32 @@ export function Navbar() {
                               Prepare Spells
                             </Link>
                           </DrawerClose>
+                          <DrawerClose asChild>
+                            <Link
+                              to={PageRoute.PRIEST_KNOWN_SPELLS(
+                                selectedCharacter.id,
+                              )}
+                              className={`relative rounded-md pl-3 pr-2 py-1 text-sm hover:bg-accent ${
+                                isActivePath(
+                                  PageRoute.PRIEST_KNOWN_SPELLS(
+                                    selectedCharacter.id,
+                                  ),
+                                )
+                                  ? "font-semibold bg-accent text-foreground"
+                                  : ""
+                              }`}
+                            >
+                              {isActivePath(
+                                PageRoute.PRIEST_KNOWN_SPELLS(selectedCharacter.id),
+                              ) && (
+                                <span
+                                  className="absolute -left-1.5 top-1 bottom-1 w-0.5 rounded-full bg-white"
+                                  aria-hidden
+                                />
+                              )}
+                              Known Spells
+                            </Link>
+                          </DrawerClose>
                           {priestCastableLink && (
                             <DrawerClose asChild>
                               <Link
@@ -482,7 +508,7 @@ export function Navbar() {
                                     aria-hidden
                                   />
                                 )}
-                                Castable Spells List
+                                Spells in your Spheres
                               </Link>
                             </DrawerClose>
                           )}

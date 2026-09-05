@@ -29,6 +29,7 @@ import {
   WizardSpellbook,
 } from "../types/WizardClassProgression";
 import { PriestClassProgression } from "../types/PriestClassProgression";
+import { getPriestKnownSpells } from "../lib/priestKnownSpells";
 import { getCurrentUserId } from "./auth";
 import { charactersAtom, store } from "../globalState";
 
@@ -355,6 +356,52 @@ export async function removeWizardKnownSpell(
   }
 }
 
+/** Add a priest spell to the character's known spells. */
+export async function addPriestKnownSpell(
+  characterId: string,
+  spellId: number | string,
+): Promise<void> {
+  const character = store.get(charactersAtom).find((c) => c.id === characterId);
+  if (!character) throw new Error("Character not found");
+  const priest = character.class.priest;
+  if (!priest) throw new Error("Character has no priest progression");
+
+  await updateCharacterFields(
+    characterId,
+    priest.knownSpellsById
+      ? { [`class.priest.knownSpellsById.${String(spellId)}`]: true }
+      : {
+          "class.priest.knownSpellsById": {
+            ...getPriestKnownSpells(priest),
+            [String(spellId)]: true,
+          },
+        },
+  );
+}
+
+/** Removing knowledge preserves existing prepared copies and their cast counts. */
+export async function removePriestKnownSpell(
+  characterId: string,
+  spellId: number | string,
+): Promise<void> {
+  const character = store.get(charactersAtom).find((c) => c.id === characterId);
+  if (!character) throw new Error("Character not found");
+  const priest = character.class.priest;
+  if (!priest) throw new Error("Character has no priest progression");
+
+  if (priest.knownSpellsById) {
+    await updateCharacterFields(characterId, {
+      [`class.priest.knownSpellsById.${String(spellId)}`]: deleteField(),
+    });
+  } else {
+    const known = getPriestKnownSpells(priest);
+    delete known[String(spellId)];
+    await updateCharacterFields(characterId, {
+      "class.priest.knownSpellsById": known,
+    });
+  }
+}
+
 /**
  * Remove a spell from a specific wizard spellbook, persisting to Firestore.
  */
@@ -616,14 +663,15 @@ export async function updatePriestPreparedSpells(
 
   const updatedPriest: PriestClassProgression = {
     ...priest,
+    knownSpellsById: getPriestKnownSpells(priest),
     preparedSpells,
   };
 
-  await updateCharacterDoc(characterId, {
-    class: {
-      ...existing.class,
-      priest: updatedPriest,
-    },
+  await updateCharacterFields(characterId, {
+    "class.priest.preparedSpells": preparedSpells,
+    ...(!priest.knownSpellsById
+      ? { "class.priest.knownSpellsById": updatedPriest.knownSpellsById }
+      : {}),
   });
 
   return updatedPriest;

@@ -171,10 +171,16 @@ export function PriestCastSpellsPage() {
                             Prepare Spells
                           </Link>
                           <Link
+                            to={PageRoute.PRIEST_KNOWN_SPELLS(character.id)}
+                            className="rounded px-2 py-1 hover:bg-accent"
+                          >
+                            Known Spells
+                          </Link>
+                          <Link
                             to={spellExplorerLink}
                             className="rounded px-2 py-1 hover:bg-accent"
                           >
-                            Castable Spells List
+                            Spells in your Spheres
                           </Link>
                           <Link
                             to={PageRoute.PRIEST_SPELL_SLOTS(character.id)}

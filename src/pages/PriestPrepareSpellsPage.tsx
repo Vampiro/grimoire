@@ -23,13 +23,14 @@ import {
   getPriestProgressionSpellSlots,
 } from "@/lib/spellSlots";
 import { PageRoute } from "@/pages/PageRoute";
+import { getPriestKnownSpells } from "@/lib/priestKnownSpells";
 import { ChevronDown, RotateCcw } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 /**
  * Priest "Prepare Spells" page.
  *
- * Allows adding spells from the priest list and adjusting rested prepared
+ * Allows adding known priest spells and adjusting rested prepared
  * counts for each spell level.
  */
 export function PriestPrepareSpellsPage() {
@@ -96,8 +97,19 @@ export function PriestPrepareSpellsPage() {
     <div className="space-y-3">
       <div>
         <h1 className="text-3xl font-bold">Prepare Spells</h1>
-        <p className="text-muted-foreground text-sm">Prepare priest spells.</p>
+        <p className="text-muted-foreground text-sm">
+          Prepare spells from your priest's known list.
+        </p>
       </div>
+
+      <Button asChild variant="outline" size="sm">
+        <Link to={PageRoute.PRIEST_KNOWN_SPELLS(character.id)}>Known Spells</Link>
+      </Button>
+      {Object.keys(getPriestKnownSpells(priest)).length === 0 && (
+        <p className="rounded-md border border-dashed bg-muted/40 p-3 text-sm">
+          No known spells yet. Add spells to Known Spells before preparing them.
+        </p>
+      )}
 
       <Card>
         <CardContent className="space-y-4">
@@ -171,10 +183,16 @@ export function PriestPrepareSpellsPage() {
                               Cast Spells
                             </Link>
                             <Link
+                              to={PageRoute.PRIEST_KNOWN_SPELLS(character.id)}
+                              className="rounded px-2 py-1 hover:bg-accent"
+                            >
+                              Known Spells
+                            </Link>
+                            <Link
                               to={spellExplorerLink}
                               className="rounded px-2 py-1 hover:bg-accent"
                             >
-                              Castable Spells List
+                              Spells in your Spheres
                             </Link>
                             <Link
                               to={PageRoute.PRIEST_SPELL_SLOTS(character.id)}

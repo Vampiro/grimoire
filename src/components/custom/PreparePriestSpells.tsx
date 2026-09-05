@@ -19,7 +19,7 @@ import {
 /**
  * Priest spell preparation view for a single spell level.
  *
- * Allows adding spells from the priest list and adjusting rested prepared
+ * Allows adding known priest spells and adjusting rested prepared
  * counts for each spell level.
  */
 type PreparePriestSpellsProps = PriestPreparedSpellsProps & {
@@ -36,6 +36,7 @@ export function PreparePriestSpells({
   const {
     sortedSpells,
     availableSpells,
+    eligibleSpellIds,
     maxSlots,
     totalPrepared,
     adjustTotal,
@@ -94,7 +95,7 @@ export function PreparePriestSpells({
               handleAddSpell(item[0]);
               setAddOpen(false);
             }}
-            emptyText="No remaining spells match your filter."
+            emptyText="No remaining known spells match this level, sphere access, and filter."
             open={addOpen}
             onOpenChange={setAddOpen}
             autoFocus={false}
@@ -148,7 +149,7 @@ export function PreparePriestSpells({
               No level {props.spellLevel} prepared spells yet.
             </p>
             <p className="text-muted-foreground">
-              Use the add button above to add spells of this level.
+              Use the add button above to prepare known spells of this level.
             </p>
           </div>
         )}
@@ -227,6 +228,7 @@ export function PreparePriestSpells({
                             variant="outline"
                             className="h-8 w-8 rounded-l-none"
                             onClick={() => handleIncreaseCopies(spellId)}
+                            disabled={!eligibleSpellIds.has(spellId)}
                             title="Increase prepared copies"
                           >
                             <Plus className="h-4 w-4" />
@@ -251,6 +253,11 @@ export function PreparePriestSpells({
                           >
                             {spell?.name ?? spellId}
                           </Button>
+                          {!eligibleSpellIds.has(spellId) && (
+                            <span className="text-xs text-muted-foreground">
+                              Requires known spell and sphere access to prepare more.
+                            </span>
+                          )}
                         </div>
                       </td>
                     </tr>

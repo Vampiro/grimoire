@@ -235,6 +235,7 @@ export function CharacterEditPage() {
     className: CharacterClass.PRIEST,
     level,
     preparedSpells: {},
+    knownSpellsById: {},
     spellSlotModifiers: [],
   });
 

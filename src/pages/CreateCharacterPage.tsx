@@ -126,6 +126,7 @@ export function CreateCharacterPage() {
                   className: CharacterClass.PRIEST,
                   level: classLevels.priest,
                   preparedSpells: {},
+                  knownSpellsById: {},
                   spellSlotModifiers: [],
                   ...(priestMajorSpheres.length > 0
                     ? { majorSpheres: priestMajorSpheres }

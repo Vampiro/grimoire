@@ -30,6 +30,7 @@ import { WizardPrepareSpellsPage } from "./pages/WizardPrepareSpellsPage";
 import { WizardSpellSlotsPage } from "./pages/WizardSpellSlotsPage";
 import { WizardSpellbooksPage } from "./pages/WizardSpellbooksPage";
 import { WizardKnownSpellsPage } from "./pages/WizardKnownSpellsPage";
+import { PriestKnownSpellsPage } from "./pages/PriestKnownSpellsPage";
 import { PriestCastSpellsPage } from "./pages/PriestCastSpellsPage";
 import { PriestPrepareSpellsPage } from "./pages/PriestPrepareSpellsPage";
 import { PriestSpellSlotsPage } from "./pages/PriestSpellSlotsPage";
@@ -197,6 +198,10 @@ function App() {
               <Route
                 path={PageRoute.WIZARD_KNOWN_SPELLS(":characterId")}
                 element={<WizardKnownSpellsPage />}
+              />
+              <Route
+                path={PageRoute.PRIEST_KNOWN_SPELLS(":characterId")}
+                element={<PriestKnownSpellsPage />}
               />
               <Route path="/characters/:id" element={<CharacterPage />} />
               <Route
